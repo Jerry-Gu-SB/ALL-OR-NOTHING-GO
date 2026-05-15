@@ -172,7 +172,7 @@ ownpal = 1
 type = HitDef
 trigger1 = Time = 0
 attr = S,NA
-hitflag = MAF
+hitflag = MA
 guardflag = MA
 animtype = Light
 damage = 31,0
