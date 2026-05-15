@@ -31,8 +31,8 @@ draw.offset = 0,0
 [Velocity]
 walk.fwd  = 6.4
 walk.back = -5.2
-run.fwd  = 25, 0
-run.back = -6.5,-3.8
+run.fwd  = 30, 0
+run.back = -20.5,-3.8
 jump.neu = 0,-39.8
 jump.back = -11.55
 jump.fwd = 10.5
@@ -137,7 +137,7 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 
-
+;light punch
 [Statedef 200]
 type = S
 movetype= A
@@ -173,7 +173,7 @@ type = HitDef
 trigger1 = Time = 0
 attr = S,NA
 hitflag = MA
-guardflag = MA
+guardflag = M
 animtype = Light
 damage = 31,0
 getpower = 20,0
@@ -186,12 +186,12 @@ sparkxy = -10, -60* const(size.yscale)
 hitsound = S5,0
 guardsound = S6,0
 ground.type = High
-ground.slidetime = 8
-ground.hittime = 10
-air.hittime = 8
+ground.slidetime = 10
+ground.hittime = 16
+air.hittime = 16
 yaccel = .53
-ground.velocity = -3.5,0
-ground.cornerpush.veloff = -6.5
+ground.velocity = -16,0
+ground.cornerpush.veloff = -14.5
 air.velocity = -4,-1
 airguard.velocity = -6,-2
 fall.xvelocity = 0
@@ -206,6 +206,8 @@ trigger1 = animtime = 0
 value = 0
 ctrl = 1
 
+
+;standing medium 
 [Statedef 210]
 type = S
 movetype= A
@@ -241,7 +243,7 @@ type = HitDef
 trigger1 = Time = 0
 attr = S,NA
 hitflag = MAF
-guardflag = MA
+guardflag = M
 animtype = Medium
 damage = 36,0
 getpower = 30,0
@@ -255,10 +257,10 @@ hitsound = S5,1
 guardsound = S6,0
 ground.type = Low
 ground.slidetime = 12
-ground.hittime = 14
-air.hittime = 12
+ground.hittime = 18
+air.hittime = 16
 yaccel = .53
-ground.velocity = -6,0
+ground.velocity = -13,0
 air.velocity = -2,-6
 airguard.velocity = -6,-2
 fall.xvelocity = 0
@@ -548,6 +550,7 @@ trigger1 = animtime = 0
 value = 0
 ctrl = 1
 
+;crouching light
 [Statedef 400]
 type = C
 movetype= A
@@ -569,7 +572,7 @@ type = HitDef
 trigger1 = time = 0
 attr = C,NA
 hitflag = MAFD
-guardflag = LA
+guardflag = L
 animtype = Light
 damage = 31,0
 getpower = 20,0
@@ -582,12 +585,12 @@ sparkxy = -10, -35* const(size.yscale)
 hitsound = S5,0
 guardsound = S6,0
 ground.type = Low
-ground.slidetime = 8
-ground.hittime = 10
-air.hittime = 8
+ground.slidetime = 10
+ground.hittime = 16
+air.hittime = 16
 yaccel = .53
-ground.velocity = -3.5,0
-ground.cornerpush.veloff = -6.5
+ground.velocity = -16,0
+ground.cornerpush.veloff = -19.5
 air.velocity = -4,-8
 down.velocity = -4,-6
 airguard.velocity = -6,-2
@@ -603,6 +606,7 @@ trigger1 = animtime = 0
 value = 11
 ctrl = 1
  
+; anti air
 [Statedef 410]
 type = C
 movetype= A
@@ -624,7 +628,7 @@ type = HitDef
 trigger1 = time = 0
 attr = C,NA
 hitflag = MAFD
-guardflag = LA
+guardflag = M
 animtype = Medium
 damage = 36,0
 getpower = 30,0
@@ -637,9 +641,9 @@ sparkxy = -10, -45* const(size.yscale)
 hitsound = S5,1
 guardsound = S6,0
 ground.type = High
-ground.slidetime = 12
-ground.hittime = 14
-air.hittime = 12
+ground.slidetime = 14
+ground.hittime = 20
+air.hittime = 20
 yaccel = .53
 ground.velocity = -6,0
 air.velocity = -2,-6
@@ -1982,7 +1986,7 @@ fvar(1) = -.1
 type = VelSet
 trigger1 = animtime = 0
 x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
-y = ifelse(!var(1),const(velocity.jump.y),-12)
+y = ifelse(!var(1),const(velocity.jump.y),-45)
 
 [State 40, VelSet]
 type = VelSet
@@ -2105,6 +2109,7 @@ value = 0
 ctrl = 1
  
 ; RUN_FWD 
+
 	
 [Statedef 100] 
 type    = S
@@ -2151,7 +2156,7 @@ ctrl = 1
 [Statedef 105] 
 type    = S
 physics = S
-anim = 0
+anim = 105
 sprpriority = 1
 velset = 0,0
 ctrl = 0
