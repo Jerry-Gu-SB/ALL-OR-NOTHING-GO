@@ -1,0 +1,39 @@
+難易度：やや難
+空中強ヘッドバット→中コサックステップ→強バニシングフラット
+気絶値67。体力が低いキャラは気絶確定。
+
+
+難易度：普通
+
+オリコン発動→屈弱Ｋ→屈中Ｋ→立ち強Ｐ×2→ファイナルアトミックバスター
+（２回目の強Ｐは63214Pで出すと上手くいくと思います。）
+
+Difficulity:Normal
+
+Custom Combo --- Crouch Light K --- Crouch Medium K --- Stand High P*2 --- Final Atmic Buster
+
+
+
+
+難易度：難
+
+(ZERO3,EX-mode限定)
+オリコン発動→屈弱Ｋ→屈中Ｋ→ヘッドバット→ジャンプ強Ｋ→屈中Ｋ→（ヘッドバット→ジャンプ強Ｋ→→屈中Ｋ）×ｎ→ファイナルアトミックバスターＯＲファイナルサイクロンバスター
+（ジャンプ強Ｋは少し遅めに出してください。）
+
+Difficulity:Difficult
+
+(Only ZERO3,EX-mode)
+Custom Combo --- Crouch Light K --- Crouch Medium K --- HeadBut --- Jump High K --- Crouch Medium Kick --- (HeadBut --- Jump High K --- Crouch Medium Kick)*n --- Final Atmic Buster/Final Cyclone Buster
+（Please use Jump High K late.）
+
+
+
+難易度：低
+
+オリコン発動→屈弱Ｋ→屈中Ｋ→屈強Ｋ→立ち強Ｐ×３→ダブルラリアット×ｎ→エリアルロシアンスラム
+（相手との距離が近すぎると、ZERO2,3はエリアルが決まらないので、ダブルラリアットで距離を調節してください。）
+
+Difficulity:Easy
+
+Custom Combo --- Crouch Light K --- Crouch Medium K --- Stand High Punch*3 --- Double Lariat*n --- Aerial Rosian Slam

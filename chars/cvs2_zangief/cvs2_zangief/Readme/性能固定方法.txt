@@ -1,0 +1,19 @@
+cvs2_system.cnsを開き、「statedef 8051」を検索します。
+
+[state 30000,varset]
+type = parentvarset
+trigger1 = time=0
+var(47) = ifelse(random%5=0,10,ifelse(random%3=0,0,random%5))
+
+を
+
+[state 30000,varset]
+type = parentvarset
+trigger1 = time=0
+var(47) = 0
+;「var(47) = 」の後に、好きな数字をいれてください（0:CVS2,1:CVS1,2:CFJ,3:ZERO3,4:ZERO2,10:EX-mode）。
+
+に変えます。
+
+
+以上です。

@@ -1,0 +1,27 @@
+Zangief
+Command (Basic Moves, Special Moves, Super Moves)
+
+PÅFPunch, KÅFKick
+The figure is a position of the calculator.
+The command is 1P side standard.
+
+
+Basic Moves
+Cossack Step			1+Medium K OR High K(cannot use CVS1 and SFIV mode.)
+Head Bat			6+High P(Alpha3,SFIIX Only)
+Air Head Bat			8+Medium P OR High P(in vertical jump)
+Flying Body Attack		2+High P(in the air(not vertical))
+Double Knee Drop		2+Light K OR Medium K(in the air)
+
+Special Moves
+Doble Lariat			PP
+Quick Doble Lariat		KK
+Banishing Flat			623+P
+Spining Pile Driver		roll direction button+P
+Atmic ?				roll direction button+K(close distance)
+Flying Power Bomb		roll direction button+K
+
+Super Moves
+Final Atmic Buster		roll direction button 2 times+P
+Aerial Rosian Slam		236236+P
+Ultimate Atmic Buster		roll direction button 2 times+K(SFIV mode only and Lv.3/MAX only)

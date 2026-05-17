@@ -1,0 +1,26 @@
+Zangief
+Command (Basic Moves, Special Moves, Super Moves)
+
+PÅFPunch, KÅFKick
+The figure is a position of the calculator.
+The command is 1P side standard.
+
+
+Basic Moves
+Cossack Step			1+Medium K OR High K
+Head Bat			6+High P
+Air Head Bat			8+Medium P OR High P(in vertical jump)
+Flying Body Attack		2+High P(in the air(not vertical))
+Double Knee Drop		2+Light K OR Medium K(in the air)
+
+Special Moves
+Doble Lariat			PP
+Quick Doble Lariat		KK
+Suicide Pile Driver		roll direction button+P
+Mach Stmac Claw			421+K(capable of KK)
+Flying Iron Bomb		roll direction button+K
+Vodka Fire			623+P
+
+Super Moves
+Final Cyclone Buster		roll direction button 2 times+P
+Aerial Rosian Slam		236236+P

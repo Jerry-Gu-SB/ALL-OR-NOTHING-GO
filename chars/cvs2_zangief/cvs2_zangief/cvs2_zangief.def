@@ -1,0 +1,48 @@
+; Definition file -Cvs2 Zangief- since 2007/6/3
+;--------------------
+;[Player Information]
+;--------------------
+[Info]
+name = "cvszangief"	   ;Name of character
+displayname = "Zangief"	   ;Name of character to display
+versiondate = 2007.1.3    ;Version date of character
+mugenversion = 2004.04.14  ;Version of M.U.G.E.N character works on
+author = "rei"	   ;Character author name
+pal.defaults = 4,5,12 ;Default palettes in order of preference
+
+; Files for the Player
+[Files]
+cmd = cvs2_zangief.cmd
+cns = data-cvs2_zangief.cns
+st  = cvs2_system.cns   
+st2 = N-cvs2_zangief.cns    ;States (Normal)
+st3 = S-cvs2_zangief.cns    ;States(Special move)
+st4 = H-cvs2_zangief.cns	  ;States(SuperAurts)
+st5 = system-cvs2_zangief.cns   ;States(System moves)
+st6 = option.cns
+stcommon = common1.cns          ;Common states (in data/)
+sprite  = cvs2_zangief.sff      ;Sprite
+anim    = cvs2_zangief.air      ;Animation
+sound   = cvs2_zangief.snd      ;Sound
+
+;Palettes
+pal1    = act/cvs2_zangief04.act    ;(Light K)
+pal2    = act/cvs2_zangief05.act    ;(Medium K)
+pal3    = act/cvs2_zangief08.act    ;(3K)
+pal4    = act/cvs2_zangief01.act    ;(Light P)
+pal5    = act/cvs2_zangief02.act    ;(Medium P)
+pal6    = act/cvs2_zangief07.act    ;(3P)
+pal7    = act/cvs2_zangief14.act    ;(Alpha2 K(Auto))
+pal8    = act/cvs2_zangief30.act    ;(MVC K)
+pal9    = act/cvs2_zangief100.act    ;(Original)
+pal10    = act/cvs2_zangief11.act    ;(Alpha2 P(Auto))
+pal11    = act/cvs2_zangief40.act    ;(CVS LP+LK)
+pal12    = act/cvs2_zangief11.act    ;(Alpha2 P(Auto))
+
+;ç∑Çµë÷Ç¶óp
+;pal??    = act/cvs2_zangief03.act    ;(High P)
+;pal??    = act/cvs2_zangief06.act    ;(High K)
+;pal??    = act/cvs2_zangief11.act    ;(Start+Medium K)
+;pal??    = act/cvs2_zangief12.act    ;(Start+High K)
+;pal??    = act/cvs2_zangief09.act    ;(Start+High P)
+4
