@@ -900,7 +900,7 @@ trigger1 = animtime = 0
 value = 11
 ctrl = 1
 
-
+;jumping light
 [Statedef 600]
 type = A
 movetype= A
@@ -985,7 +985,7 @@ air.fall = 1
 fall.recover = 0
 id = 1
  
-
+;cross up jump
 [Statedef 610]
 type = A
 movetype= A
@@ -1032,7 +1032,7 @@ guardsound = S6,0
 ground.type = High
 ground.slidetime = 10
 ground.cornerpush.veloff = -8
-ground.hittime = 12
+ground.hittime = 22
 air.hittime = 12
 yaccel = .53
 ground.velocity = -5,0
