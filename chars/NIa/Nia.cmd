@@ -300,7 +300,7 @@ trigger3 = stateno = 200 && movecontact
 trigger4 = stateno = 400 && movecontact
 
 ;Stand Medium Punch
-[State -1]
+  [State -1]
 type = ChangeState
 value = 210
 triggerall = command = "y" && command != "holddown"
@@ -453,7 +453,7 @@ value = 600
 triggerall = command = "x"
 trigger1 = statetype = A && ctrl
 trigger3 = stateno = 200 && movecontact
-
+trigger4 = stateno = 600 && movecontact
 ;Jump Medium Punch
 [State -1]
 type = ChangeState
