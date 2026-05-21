@@ -14,7 +14,7 @@ command.time = 15
 
 ; Default value for the "buffer.time" parameter of a Command. Minimum 1,
 ; maximum 30.
-command.buffer.time = 1
+command.buffer.time = 3
 
 
 ;-| Super Motions |--------------------------------------------------------
@@ -327,6 +327,21 @@ trigger13 = stateno = 450 && movecontact
 trigger14 = stateno = 1000 && movecontact
 trigger15 = stateno = 1010 && movecontact
 
+;Sweap
+[State -1]
+type = ChangeState
+value = 450
+triggerall = command = "x+y" && command = "holddown"
+trigger1 = statetype = C && ctrl
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 210 && movecontact
+trigger4 = stateno = 230 && movecontact
+trigger5 = stateno = 240 && movecontact
+trigger6 = stateno = 400 && movecontact
+trigger7 = stateno = 410 && movecontact
+trigger8 = stateno = 430 && movecontact
+trigger9 = stateno = 440 && movecontact
+
 ;Stand Light Punch
 [State -1]
 type = ChangeState
@@ -469,29 +484,17 @@ trigger5 = stateno = 400 && movecontact
 trigger6 = stateno = 410 && movecontact
 trigger7 = stateno = 430 && movecontact
 
-;Crouch Strong Kick
-[State -1]
-type = ChangeState
-value = 450
-triggerall = command = "x+y"
-trigger1 = statetype = C && ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 210 && movecontact
-trigger4 = stateno = 230 && movecontact
-trigger5 = stateno = 240 && movecontact
-trigger6 = stateno = 400 && movecontact
-trigger7 = stateno = 410 && movecontact
-trigger8 = stateno = 430 && movecontact
-trigger9 = stateno = 440 && movecontact
  
 ;Jump Light Punch
 [State -1]
 type = ChangeState
 value = 600
 triggerall = command = "x"
+triggerall = time >= 4
 trigger1 = statetype = A && ctrl
-trigger3 = stateno = 200 && movecontact
-trigger4 = stateno = 600 && movecontact
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 600 && movecontact
+
 ;Jump Medium Punch
 [State -1]
 type = ChangeState
@@ -572,6 +575,20 @@ triggerall = command = "holdup" && !var(1) && prevstateno != 810
 trigger1 = stateno = [100,102]
 trigger2 = stateno = [105,107]
 trigger3 = stateno = 420 && movehit
+
+;---------------------------------------------------------------------------
+[State -1, Jump Cancel]
+type = ChangeState
+value = 40
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "holdup"
+trigger1 = stateno = 400 && movehit
+trigger2 = stateno = 410 && movehit
+trigger3 = stateno = 450 && movehit
+trigger4 = stateno = 200 && movehit
+trigger5 = stateno = 210 && movehit
+
 
 ;Crouch Down
 [State 106, ChangeState]
