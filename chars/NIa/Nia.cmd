@@ -1,4 +1,28 @@
+[Remap]
+x = x
+y = y
+z = z
+a = a
+b = b
+c = c
+s = s
+
+;-| Default Values |-------------------------------------------------------
+[Defaults]
+; Default value for the "time" parameter of a Command. Minimum 1.
+command.time = 15
+
+; Default value for the "buffer.time" parameter of a Command. Minimum 1,
+; maximum 30.
+command.buffer.time = 1
+
+
+;-| Super Motions |--------------------------------------------------------
+;The following two have the same name, but different motion.
+;Either one will be detected by a "command = TripleKFPalm" trigger.
+;Time is set to 20 (instead of default of 15) to make the move
 ;---------------------------------------------------
+
 ;Hyper Moves
 ;---------------------------------------------------
 
@@ -45,17 +69,22 @@ time = 10
 
 [Command]
 name = "recovery"
-command = x+y
+command = x
 time = 1
 
 [Command]
 name = "recovery"
-command = y+z
+command = y
 time = 1
 
 [Command]
-name = "recovery"
-command = y+z
+name = "recovery";Required (do not remove)
+command = /x
+time = 1
+
+[Command]
+name = "recovery";Required (do not remove)
+command = /y
 time = 1
 
 ;---------------------------------------------------
@@ -72,6 +101,10 @@ name = "BB"
 command = B, B
 time = 10
 
+[Command]
+name = "DD"     
+command = D, D
+time = 10
 ;---------------------------------------------------
 ;Single Buttons
 ;---------------------------------------------------
@@ -111,6 +144,10 @@ name = "start"
 command = s
 time = 1
 
+[Command]
+name = "x+y"
+command = x+y
+time = 1
 ;---------------------------------------------------
 ;Hold Directions
 ;---------------------------------------------------
@@ -182,6 +219,7 @@ time = 1
 name = "dash"
 command = x+y
 time = 1
+
 
 [Command]
 name = "dash"
@@ -435,7 +473,7 @@ trigger7 = stateno = 430 && movecontact
 [State -1]
 type = ChangeState
 value = 450
-triggerall = command = "c" && command = "holddown"
+triggerall = command = "x+y"
 trigger1 = statetype = C && ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 210 && movecontact

@@ -842,7 +842,7 @@ trigger1 = animtime = 0
 value = 11
 ctrl = 1
  
-
+;sweap
 [Statedef 450]
 type = C
 movetype= A
@@ -863,8 +863,8 @@ value = 0,5
 type = HitDef
 trigger1 = time = 0
 attr = C,NA
-hitflag  = MAFD
-guardflag = LA
+hitflag  = MAF
+guardflag = L
 animtype = Hard
 damage = 45,0
 getpower = 50,0
