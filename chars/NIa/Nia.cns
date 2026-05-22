@@ -995,7 +995,7 @@ id = 1
 [Statedef 610]
 type = A
 movetype= A
-physics = A
+physics = N
 ctrl = 0
 anim = 610
 sprpriority = 2
@@ -1017,6 +1017,17 @@ type = CtrlSet
 trigger1 = var(1)
 trigger1 = animelem = 6
 value = 1
+
+[State 5050, 3] ;Gravity
+type = VelAdd
+trigger1 = 1
+y = 1
+
+[State 610, ChangeState]
+type = ChangeState
+trigger1 = pos y >= 0 && vel y > 0
+value = cond(MoveContact, 52, 611) ; should go to 611 if no contact, and 52 if contact
+
 
 [State 610, HitDef]
 type = HitDef
@@ -1081,7 +1092,38 @@ fall.yvelocity = -2
 air.fall = 1
 fall.recover = 0
 id = 1
- 
+
+; 610 whiff state
+;---------------------------------------------------------------------------
+; Downed get-hit (hit ground from fall)
+[Statedef 611]
+type    = L
+movetype= H
+physics = N
+velset = 0,0
+
+[State 611, EnvShake]
+type = FallEnvShake
+trigger1 = Time = 0
+
+[State 611, Var] ;Save fall velocity
+type = VarSet
+trigger1 = Time = 0
+sysvar(1) = floor(vel y)
+
+[State 611, 2] ;Hit ground anim (normal)
+type = ChangeAnim
+triggerall = time = 0
+trigger1 = 1
+value = 611
+
+[State 611,2]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+
 
 [Statedef 620]
 type = A
