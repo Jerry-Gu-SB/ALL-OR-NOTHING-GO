@@ -178,8 +178,8 @@ animtype = Light
 damage = 31,0
 getpower = 20,0
 givepower = 20,0
-pausetime = 10,10
-guard.pausetime = 10,10
+pausetime = 7,8
+guard.pausetime = 7,8
 sparkno = S8000
 guard.sparkno = S8050
 sparkxy = -10, -60* const(size.yscale)
@@ -253,8 +253,8 @@ animtype = Medium
 damage = 36,0
 getpower = 30,0
 givepower = 20,0
-pausetime = 12,12
-guard.pausetime = 12,12
+pausetime = 7,8
+guard.pausetime = 7,8
 sparkno = S8001
 guard.sparkno = S8050
 sparkxy = -10, -76* const(size.yscale)
@@ -584,8 +584,8 @@ animtype = Light
 damage = 31,0
 getpower = 20,0
 givepower = 20,0
-pausetime = 10,10
-guard.pausetime = 10,10
+pausetime = 7,8
+guard.pausetime = 7,8
 sparkno = S8000
 guard.sparkno = S8050
 sparkxy = -10, -35* const(size.yscale)
@@ -883,10 +883,10 @@ sparkxy = -15, -75* const(size.yscale)
 hitsound = S5,2
 guardsound = S6,0
 ground.type = High
-ground.slidetime = 16
-guard.slidetime = 16
+ground.slidetime = 12
+guard.slidetime = 12
 ground.hittime = 18
-guard.hittime =16
+guard.hittime =12
 air.hittime = 20
 yaccel = .82
 ground.velocity = 0,-20 ;ground/air y velocity must always be between -17 to -20 in launchers.
@@ -977,11 +977,9 @@ sparkxy = -10, -76* const(size.yscale)
 hitsound = S5,0
 guardsound = S6,0
 ground.type = High
-ground.slidetime = 18
-guard.slidetime = 18
-ground.hittime = 17
-guard.hittime =18
-air.hittime = 20
+ground.slidetime = 8
+ground.hittime = 10
+air.hittime = 12
 yaccel = ifelse(vel y<-4,.82,.53)
 ground.velocity = -3.5,0
 ground.cornerpush.veloff = 0
@@ -1023,7 +1021,7 @@ value = 1
 [State 5050, 3] ;Gravity
 type = VelAdd
 trigger1 = 1
-y = 1
+y = 2
 
 [State 610, ChangeState]
 type = ChangeState
@@ -1049,12 +1047,10 @@ sparkxy = -10, -76* const(size.yscale)
 hitsound = S5,1
 guardsound = S6,0
 ground.type = High
-ground.slidetime = 20
-guard.slidetime = 20
-ground.hittime = 23
-guard.hittime =18
-air.hittime = 19
+ground.slidetime = 10
 ground.cornerpush.veloff = -8
+ground.hittime = 22
+air.hittime = 12
 yaccel = .53
 ground.velocity = -5,0
 air.velocity = 0,-6
@@ -1106,6 +1102,7 @@ movetype= H
 physics = N
 velset = 0,0
 
+
 [State 611, EnvShake]
 type = FallEnvShake
 trigger1 = Time = 0
@@ -1114,6 +1111,16 @@ trigger1 = Time = 0
 type = VarSet
 trigger1 = Time = 0
 sysvar(1) = floor(vel y)
+
+[State 611, 1]
+type = VelSet
+trigger1 = Time = 0
+y = 0
+
+[State 611, 2]
+type = PosSet
+trigger1 = Time = 0
+y = 0
 
 [State 611, 2] ;Hit ground anim (normal)
 type = ChangeAnim
