@@ -3,12 +3,12 @@
 # Credits:
 
 ### Director + Art
-Taedaartist
+- Taedaartist
 
 ### Programming
-Taedaartist
-SpiralBiscuit
-Ulti
+- Taedaartist
+- SpiralBiscuit
+- Ulti
 
 
 
