@@ -262,6 +262,112 @@ physics = A
 type = Null
 trigger1 = 1
 
+[Statedef 90]
+type    = A
+movetype= I
+physics = N
+juggle  = 0
+velset = 0,0
+anim = 41
+sprpriority = 2
+ctrl = 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+y = -6
+
+[State 0, CtrlSet]
+type = CtrlSet
+trigger1 = time >= 1
+value = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = command = "holdfwd"
+trigger2 = ailevel >= 1 && prevstateno = 616
+x = 4
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = command = "holdback" && ailevel = 0
+x = -4
+
+[State 0, Explod]
+type = Explod
+trigger1 = animelem = 1
+anim = 7023
+ID = 7023
+pos = 0,0
+postype = P1  ;P2, Front, Back, Left, Right
+facing = -1
+vfacing = 1
+bindtime = 1
+vel = 0,0
+accel = 0,.1
+random = 0,0
+removetime = -2
+supermovetime = 0
+pausemovetime = 0
+scale = .35,.35
+sprpriority = 5
+ownpal = 1
+removeongethit = 1
+
+[State 0, Limiter]
+type = Helper
+trigger1 = Time = 0
+helpertype = normal
+name = "Limiter"
+ID = 91
+stateno = 91
+pos = 0,0
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 5
+value = S5,60
+volume = 999
+channel = -1
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = time = 5
+value = S5,60
+volume = 999
+channel = -1
+
+[State 0, CtrlSet]
+type = CtrlSet
+trigger1 = time >= 1
+value = 1
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = command = "holdfwd"
+x = 4
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = command = "holdback"
+x = -4
+
+[State 0, Veladd]
+type = Veladd
+trigger1 = time > 10
+y = .4
+x = 0
+
+[State 200, End]
+type = ChangeState
+triggerall = time > 0
+trigger1 = animtime = 0
+value = 50
+ctrl = 1
 ;---------------------------------------------------------------------------
 ; Jump Land
 [Statedef 52]
@@ -1311,8 +1417,6 @@ trigger1 = SelfAnimExist(anim+10)
 value = anim+10
 persistent = 0
 
-
-
 [State 5050, 3] ;Gravity
 type = VelAdd
 trigger1 = 1
@@ -1339,7 +1443,7 @@ value = 5210 ;Air get-hit (fall recovery in air)
 type = ChangeState
 trigger1 = Vel Y > 0
 trigger1 = Pos Y >= ifelse((anim = [5051,5059]) || (anim = [5061,5069]), 0, Const(movement.air.gethit.groundlevel))
-value = 5110 ;Downed get-hit (hit ground from fall)
+value = 5100 ;Downed get-hit (hit ground from fall)
 
 ;---------------------------------------------------------------------------
 ; Tripped get-hit (shaking)
@@ -1461,46 +1565,6 @@ type = ChangeState
 trigger1 = HitOver
 value = 5110 ;Downed get-hit (lying down)
 
-; Dead Get Hit (initial going up, used when dead, Vs System Type)
-[Statedef 5090]
-type    = A
-movetype= H
-physics = N
-
-[State 5090, 1]
-type = VelAdd
-trigger1 = Time > 0
-y = GetHitVar(yaccel)
-
-[State 5090, 2a]
-type = VelSet
-trigger1 = Time = 0 && Roundstate = 2 && roundstate != 3
-x = -(abs(GetHitVar(xvel)) + (Const720p(20)))
-y = -(abs(GetHitVar(yvel)) + (Const720p(20))*(abs(GetHitVar(yvel) < Const720p(56))))
-
-
-[State 5090, 2b]
-type = VelSet
-trigger1 = Time = 0 && Roundstate = 3
-x = -(abs(GetHitVar(xvel)) + (Const720p(20)))
-y = -(abs(GetHitVar(yvel)) + (Const720p(20))*(abs(GetHitVar(yvel) < Const720p(56))))
-
-[State 5090, 3] ;Anim for HIT_BACK/HIT_DIAG_UP
-type = ChangeAnim
-trigger1 = Vel Y < Const720p(-16)
-value = Cond(SelfAnimExist(5035), 5035, 5030)
-
-[State 5090, 4]
-type = NotHitBy
-trigger1 = Vel Y > Const720p(-8)
-value = SCA
-time = 700
-
-[State 5090, 4]
-type = ChangeState
-trigger1 = Vel Y > 0
-value = 5050
-
 ;---------------------------------------------------------------------------
 ; Downed get-hit (hit ground from fall)
 [Statedef 5100]
@@ -1562,9 +1626,11 @@ value = 5110 ;Downed get-hit (lying down)
 [State 5100, 8]
 type = Explod
 trigger1 = Time = 1
-anim = 8010
-pos = 0, 0
-sprpriority = 5
+anim = F(60 + (sysvar(1) > Const720p(20)) + (sysvar(1) > Const720p(56)))
+postype = none
+pos = pos x + camerapos x, 0
+facing = facing
+sprpriority = ifelse (sysvar(1) <= Const720p(56), -10, 10)
 
 [State 5100, 9]
 type = HitFallDamage
@@ -1573,7 +1639,7 @@ trigger1 = Time = 3
 [State 5100, 10]
 type = PlaySnd
 trigger1 = Time = 1
-value = 0,7
+value = F7, (sysvar(1) > Const720p(20)) + (sysvar(1) > Const720p(56))
 
 [State 5100, 11]
 type = PosFreeze
@@ -1690,15 +1756,17 @@ sysvar(1) = floor(vel y)
 type = PlaySnd
 trigger1 = Time = 0
 trigger1 = !SysVar(0)
-value = 0,7
+value = F7, (sysvar(1) > Const720p(20)) + (sysvar(1) > Const720p(56))
 
 [State 5110, 7]
 type = Explod
 trigger1 = Time = 0
 trigger1 = !SysVar(0)
-anim = 8010
-pos = 0, 0
-sprpriority = 5
+anim = F(60 + (sysvar(1) > Const720p(20)) + (sysvar(1) > Const720p(56)))
+postype = none
+pos = pos x + camerapos x, 0
+facing = facing
+sprpriority = ifelse (sysvar(1) <= Const720p(56), -10, 10)
 
 [State 5110, 8]
 type = VelSet
@@ -1762,14 +1830,6 @@ trigger1 = Time = 0
 ampl = 200, 7, -.467
 time = 30
 waveform = sine
-
-[State 0, ChangeState]
-type = ChangeState
-triggerall = Alive 
-triggerall = Anim = 5110
-trigger1 = command = "recovery"
-value = 5202
-
 
 ;---------------------------------------------------------------------------
 ; Downed get-hit (getting up)
@@ -1835,16 +1895,8 @@ physics = N
 sprpriority = -3
 ctrl = 0
 
-[State 0, AssertSpecial]
-type = AssertSpecial
-triggerall = Anim = 5140
-trigger1 = Time % 3 = 2 && Time >= 70
-trigger2 = Time > 122
-flag = Invisible
-
 [State 5150, 1] ;Normal anim
 type = ChangeAnim
-triggerall = roundstate = 2
 triggerall = Time = 0
 triggerall = SelfAnimExist(5140)
 trigger1 = (anim != [5111,5119]) && (anim != [5171,5179])
@@ -1853,11 +1905,10 @@ value = 5140
 
 [State 5150, 3] ;Hit up type anim
 type = ChangeAnim
-triggerall = roundstate = 3
 trigger1 = Time = 0
 trigger1 = (anim = [5111,5119]) || (anim = [5171,5179])
-trigger1 = SelfAnimExist(5150)
-value = 5150
+trigger1 = SelfAnimExist(5140 + (anim % 10))
+value = 5140 + (anim % 10)
 
 [State 5150, 4] ;Match over anim
 type = ChangeAnim
@@ -1885,13 +1936,6 @@ type = VelSet
 trigger1 = abs(Vel x) < Const(movement.down.friction.threshold)
 persistent = 0
 x = 0
-
-[State 0, ScreenBound]
-type = ScreenBound
-trigger1 = prevstateno = 50002 
-value = 0
-movecamera = 0,0 
-
 
 [State 5150, 8]
 type = NotHitBy
@@ -1963,7 +2007,9 @@ add = 128,128,128 ;256,256,256
 type = Explod
 trigger1 = Time = 0
 anim = F60
-pos = 0, -floor(vel y)
+postype = none
+pos = pos x + camerapos x, (pos y) - floor(vel y)
+facing = facing
 sprpriority = -10
 
 ;---------------------------------------------------------------------------
@@ -2011,7 +2057,7 @@ y = .8
 [State 5210, 2002.04.14 behavior 2]
 type = null;VelAdd
 trigger1 = Time = 4
-x = 0
+x = 0 
 y = -4.5
 
 [State 5210, 2002.04.14 behavior 3]
@@ -2084,7 +2130,7 @@ ctrl = 1
 [Statedef 5500]
 type = S
 ctrl = 0
-anim = 170
+anim = 5300
 velset = 0,0
 
 [State 5500, 1] ;Use continue animation if available
@@ -2121,517 +2167,5 @@ value = 190
 
 [State 5900, 5] ;All other rounds
 type = ChangeState
-triggerall = !roundsexisted && teammode = turns
-trigger1 = roundno != 1
-value = 190
-; ...
-[Statedef 19999997]
-type    = A
-movetype= H
-physics = N
-velset = 0,0
-anim = 9999
-
-[State 7760]
-type = playsnd
-trigger1 = Time = 1
-value = 0,14
-channel = 8
-volume = 255
-persistent = 0
-
-[State 7760]
-type = playsnd
-trigger1 = Time = 1
-value = 0,14
-channel = 9
-volume = 255
-persistent = 0
-
-[State FX-4b, Pause]
-type = Pause
-trigger1 = roundstate = 2
-trigger1 = time <= 60
-trigger1 = (time % 1) = 0
-time = 1
-
-[State 7760]
-type = Explod
-triggerall = !NumExplod(88888888)
-trigger1 = WinKO
-trigger2 = Time = 0
-persistent = 0
-anim = 9950
-id = 88888888
-postype = Back
-pos = 0, 0
-bindtime = -1
-removetime = -2
-ontop = 1
-supermovetime = 1000
-pausemovetime = 1000
-ignorehitpause = 1
-
-
-[State 7760]
-type = DestroySelf
-trigger1 = Parent,alive
-
-[Statedef 19999998]
-type    = A
-movetype= H
-physics = N
-velset = 0,0
-anim = 9999
-
-[State 6119, Explod]
-type = Explod
-triggerall = !NumExplod(88888888)
-trigger1 = WinKO
-trigger2 = Time = 0
-persistent = 0
-anim = 9950
-id = 88888888
-postype = Back
-pos = 0, 0
-bindtime = -1
-removetime = -2
-ontop = 1
-supermovetime = 1000
-pausemovetime = 1000
-ignorehitpause = 1
-
-
-[State 7760]
-type = playsnd
-trigger1 = Time = 1
-value = 0,15
-channel = 8
-volume = 255
-persistent = 0
-
-[State 7760]
-type = playsnd
-trigger1 = Time = 1
-value = 0,15
-channel = 9
-volume = 255
-persistent = 0
-
-
-[State 7770]
-type = DestroySelf
-trigger1 = Parent,alive
-
-;Lv 3 Hyper Helper
-[Statedef 8501] 
-type = A
-physics = N
-anim = 9999
-velset = 0,0
-ctrl = 0
-
-[State 8500, PlaySnd]
-type = PlaySnd
-trigger1 = time = 0
-value = 1,2
-
-[State 8500, AssertSpecial]
-type = AssertSpecial
 trigger1 = 1
-flag = nofg
-
-[State 8500, EnvColor]
-type = EnvColor
-trigger1 = time < 37
-value = 0,0,0
-under = 1
-
-[State 8500, Explod]
-type = Explod
-trigger1 = time = 0
-anim = 8500
-id = 8500
-bindtime = -1
-removetime = -1
-ontop = 1
-supermove = 1
-ownpal = 1
-scale = 1.1,1.1
-
-[State 8500, Explod]
-type = Explod
-trigger1 = time = 0
-anim = 8900
-sprpriority = -1
-pos = 0,120
-postype = back
-under = 1
-supermove = 1
-bindtime = 6
-removetime = 37
-vel = -0.09,0
-scale = 1,1
-ID = 8900
-ownpal = 1
-
-[State 8500, Explod]
-type = Explod
-trigger1 = time = 0
-anim = f9951
-sprpriority = -2
-postype = left
-under = 1
-supermove = 1
-bindtime = -1
-removetime = 37
-scale = 1,1
-ownpal = 1
-
-
-[State 9999,0]
-type = ModifyExplod
-trigger1 = time = [0,6]
-ID = 8900
-scale = .75- (.0415*time), .75- (.0415*time)
-sprpriority = -1
-under = 1
-
-[State 8500, Explod]
-type = Explod
-trigger1 = time = 37
-trigger2 = time > 37 && root,var(4) = 1 && !numexplod(8505)
-anim = 8506
-id = 8505
-postype = left
-bindtime = -1
-removetime = -1
-sprpriority = -3
-ownpal = 1
-
-[State 8500, RemoveExplod]
-type = RemoveExplod
-trigger1 = root,var(4) = 0 || root,var(4) = 2
-trigger2 = root,movetype = H
-trigger3 = time >= 37 && roundstate > 2
-id = 8505
-
-[State 8500, ChangeState]
-type = ChangeState
-triggerall = root,winko
-trigger1 = time >= 37 && roundstate > 2
-value = 8510
-
-[State 8500, DestroySelf]
-type = DestroySelf
-trigger1 = root,var(4) = 0
-trigger2 = root,movetype = H
-
-;X-Over Hyper Helper
-[Statedef 8502] 
-type = A
-physics = N
-anim = 9999
-velset = 0,0
-ctrl = 0
-
-[State 8500, PlaySnd]
-type = PlaySnd
-trigger1 = time = 0
-value = 1,2
-
-[State 8500, AssertSpecial]
-type = AssertSpecial
-trigger1 = 1
-flag = nofg
-
-;[State 8500, EnvColor]
-;type = EnvColor
-;trigger1 = time < 37
-;value = 0,0,0
-;under = 1
-
-[State 8500, Explod]
-type = Explod
-trigger1 = time = 0
-anim = 9101
-id = 8500
-bindtime = -1
-removetime = -1
-ontop = 1
-supermove = 1
-ownpal = 1
-scale = 1.1,1.1
-
-[State 8500, Explod]
-type = Explod
-trigger1 = time = 0
-anim = 8905
-sprpriority = 5
-pos = 60,78
-postype = back
-ontop = 1
-supermove = 1
-bindtime = 6
-removetime = 37
-vel = 0,0
-scale = 1,1
-ID = 8900
-ownpal = 1
-
-;[State 8500, Explod]
-;type = Explod
-;trigger1 = time = 0
-;anim = f9951
-;sprpriority = -2
-;postype = left
-;under = 1
-;supermove = 1
-;bindtime = -1
-;removetime = 37
-;scale = 1,1
-;ownpal = 1
-
-
-[State 9999,0]
-type = ModifyExplod
-trigger1 = time = [0,6]
-ID = 8900
-scale = .75- (.0415*time), .75- (.0415*time)
-sprpriority = -1
-under = 1
-
-[State 8500, Explod]
-type = Explod
-trigger1 = time = 0
-trigger2 = time > 0 && root,var(4) = 1 && !numexplod(8505)
-anim = 8506
-id = 8505
-postype = left
-bindtime = -1
-removetime = -1
-sprpriority = -3
-ownpal = 1
-Supermovetime = 37
-ignorehitpause = 1
-
-
-[State 8500, RemoveExplod]
-type = RemoveExplod
-trigger1 = root,var(4) = 0 || root,var(4) = 2
-trigger2 = root,movetype = H
-trigger3 = time >= 37 && roundstate > 2
-id = 8505
-
-[State 8500, ChangeState]
-type = ChangeState
-triggerall = root,winko 
-trigger1 = time >= 37 && roundstate > 2
-value = 8510
-
-[State 8500, DestroySelf]
-type = DestroySelf
-trigger1 = root,var(4) = 0
-trigger2 = root,movetype = H
- 
-;Doing the Recovery command while
-;lying down will save you from extra hits on ground
-[Statedef 5202]
-type    = C
-movetype= H
-physics = N
-anim = 5200
-facep2 = 1
-sprpriority = -1
-
-[State 5201, PosSet]
-type = PosSet
-trigger1 = time = 0
-y = 0
-
-[State 5201, VelSet]
-type = VelSet
-trigger1 = time = 0
-x = 8
-y = 0
-
-[State 5201, NotHitBy]
-type = NotHitBy
-trigger1 = 1
-value = SCA
-time = 1
-
-[State 5201, PlayerPush]
-type = PlayerPush
-trigger1 = anim = 5200
 value = 0
-
-[State 5201, ChangeState]
-type = ChangeState
-trigger1 = animtime = 0
-value = 0
-ctrl = 1
-
-;P1 Tech Hit
-[Statedef 200000]
-type = S
-movetype = I
-physics = S
-velset = -8,0
-facep2 = 1
-anim = 47
-
-[State -2, システムメッセージ]
-type = Explod
-triggerall = var(40)
-triggerall = teamside = 1 && alive
-trigger1 = time = 0
-anim = f8578
-ownpal = 1
-ontop = 1
-postype = right
-bindtime = -1
-pos = 0,var(41)+var(16)*20
-scale = .5,.5
-supermove = 1
-pausemovetime = 99999999
-ignorehitpause = 1
-id = 8570
-
-[State -2, システムメッセージ]
-type = Explod
-triggerall = var(40)
-triggerall = teamside = 2 && alive
-trigger1 = time = 0
-anim = f8573
-ownpal = 1
-ontop = 1
-postype = left
-bindtime = -1
-pos = 0,var(41)+var(16)*20
-scale = .5,.5
-supermove = 1
-pausemovetime = 99999999
-ignorehitpause = 1
-id = 8570
-
-[State 7000, sn1]
-type = PlaySnd
-trigger1 = Time = 0
-value = f2,14
-volume = 255
-
-[State 820, 2]
-type = nothitby
-trigger1 = 1
-value = SCA
-
-[State 820, 2]
-type = changestate
-trigger1 = animtime = 0
-value = 0
-ctrl = 1
-
-;P1 Air Tech-Hit
-[Statedef 200010];??????
-type = A
-movetype = I
-physics = N
-anim = 132
-velset = -2,-2
-facep2 = 1
-
-[State 820, 1]
-type = playsnd
-trigger1 = time = 1
-value = S8201,4
-volume = 250
-
-[State -2, システムメッセージ]
-type = Explod
-triggerall = var(40)
-triggerall = teamside = 1 && alive
-trigger1 = time = 0
-anim = f8578
-ownpal = 1
-ontop = 1
-postype = right
-bindtime = -1
-pos = 0,var(41)+var(16)*20
-scale = .5,.5
-supermove = 1
-pausemovetime = 99999999
-ignorehitpause = 1
-id = 8570
-
-[State -2, システムメッセージ]
-type = Explod
-triggerall = var(40)
-triggerall = teamside = 2 && alive
-trigger1 = time = 0
-anim = f8573
-ownpal = 1
-ontop = 1
-postype = left
-bindtime = -1
-pos = 0,var(41)+var(16)*20
-scale = .5,.5
-supermove = 1
-pausemovetime = 99999999
-ignorehitpause = 1
-id = 8570
-
-[State 7000, sn1]
-type = PlaySnd
-trigger1 = Time = 0
-value = f2,14
-volume = 255
-
-[State 821, 1] ;Gravity
-type = VelAdd
-Trigger1 = 1
-y = .53
-
-[State 820, 2]
-type = nothitby
-trigger1 = 1
-value = SCA
-time = 1
-
-[State 820, 2]
-type = SelfState
-trigger1 = time > 15
-value = 51
-anim = 44
-ctrl = 1
-
-;----------------------------------------------------------------------
-;P2 Tech-Hit
-[Statedef 200020]
-type = A
-movetype = H
-physics = N
-velset = -4,-10
-facep2 = 1
-
-[State 821, 1]
-type = VelAdd
-Trigger1 = 1
-y = .53
-
-[State 820, 1]
-type = ChangeAnim
-Trigger1 = Time = 0
-value = 5040
-
-[State 820, 2]
-type = nothitby
-trigger1 = time = 0
-value = SCA
-time = 17
-
-[State 820, 2]
-type = SelfState
-trigger1 = time > 18
-value = 50
-ctrl = 1

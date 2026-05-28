@@ -1,0 +1,601 @@
+;Light Lariat
+[Statedef 1000]
+type = A
+physics = N
+movetype = A
+ctrl = 0
+anim = 1000
+velset = 0,0
+sprpriority = 2
+poweradd = 50
+juggle = 1
+
+
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = 0,4
+[State 1200, Anim]
+type = changeanim
+trigger1 = anim = 1000 && !animtime
+value = 1001
+
+[State 1200, statetype]
+type = statetypeset
+trigger1 = anim = 1000 
+statetype = S
+physics = S
+
+
+[State 1200, statetype]
+type = statetypeset
+trigger1 = anim = 1001
+statetype = A
+physics = N
+
+[State 1200, Vel]
+type = velset
+trigger1 = anim = 1000 && animelem = 1
+x = -2.5
+
+[State 1200, Vel]
+type = velset
+trigger1 = anim = 1001
+x = 27
+y = -8
+
+[State 1200, Vel]
+type = velset
+trigger1 = anim = 1001 && animelem =3
+x = 47
+
+[State 1200, Vel]
+type = velset
+trigger1 = anim = 1001 && time >= 18
+x = 19
+y = 17
+
+[State 210, Explod]
+type = Explod
+trigger1 = abs(vel x) > 1 && time % 3 = 0
+anim = 8200
+scale = 2,2
+pos = -20,0
+sprpriority = 4
+ownpal = 1
+
+[State 210, HitDef]
+type = HitDef
+trigger1 = anim = 1001 && !movecontact
+attr = S,NA
+hitflag = MAF
+guardflag = M
+animtype = Medium
+damage = 36,0
+getpower = 30,0
+givepower = 20,0
+pausetime = 8,8
+guard.pausetime = 12,12
+sparkno = S8001
+guard.sparkno = S8050
+sparkxy = -10, -76* const(size.yscale)
+hitsound = S5,1
+guardsound = S6,0
+ground.type = Low
+ground.slidetime = 19
+guard.slidetime = 19
+ground.hittime = 18
+guard.hittime =12
+air.hittime = 18
+yaccel = .53
+ground.velocity = -13,0
+air.velocity = -2,-6
+airguard.velocity = -6,-2
+fall.xvelocity = 0
+fall.yvelocity = -2
+air.fall = 1
+fall.recover = 0
+id = 1
+
+[State 200, ChangeState]
+type = ChangeState
+trigger1 = time >= 13 && pos y > 0
+value = 1001
+ctrl = 0
+
+;EX Lariat (reuse from original code)
+[Statedef 1019]
+type = A
+physics = N
+movetype = A
+ctrl = 0
+anim = 1003
+velset = 0,0
+sprpriority = 2
+poweradd = 50
+juggle = 1
+
+
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = 0,4
+[State 1200, Anim]
+type = changeanim
+trigger1 = anim = 1003 && !animtime
+value = 1004
+
+[State 1200, statetype]
+type = statetypeset
+trigger1 = anim = 1003 
+statetype = S
+physics = S
+
+
+[State 1200, statetype]
+type = statetypeset
+trigger1 = anim = 1004
+statetype = A
+physics = N
+
+[State 1200, Vel]
+type = velset
+trigger1 = anim = 1003 && animelem = 1
+x = -2.5
+
+[State 1200, Vel]
+type = velset
+trigger1 = anim = 1004 
+x =51
+y = -8
+
+[State 1200, Vel]
+type = velset
+trigger1 = anim = 1004 && animelem = 1
+x = 0
+y = -35
+
+[State 1200, Vel]
+type = velset
+trigger1 = anim = 1004 && animelem =3
+x = 27
+y = 0
+[State 1200, Vel]
+type = velset
+trigger1 = anim = 1004 && time >= 21
+x = 4
+y = 27
+
+[State 210, Explod]
+type = Explod
+trigger1 = abs(vel x) > 1 && time % 3 = 0
+anim = 8200
+scale = 2,2
+pos = -20,0
+sprpriority = 4
+ownpal = 1
+
+[State 210, HitDef]
+type = HitDef
+trigger1 = anim = 1004 && !movecontact
+attr = S,NA
+hitflag = MAF
+guardflag = M
+animtype = Medium
+damage = 36,0
+getpower = 30,0
+givepower = 20,0
+pausetime = 8,8
+guard.pausetime = 12,12
+sparkno = S8001
+guard.sparkno = S8050
+sparkxy = -10, -76* const(size.yscale)
+hitsound = S5,1
+guardsound = S6,0
+ground.type = Low
+ground.slidetime = 16
+ground.hittime = 40
+air.hittime = 40
+ground.velocity = -39, -6
+air.type = Low
+air.velocity = -32, -6
+air.cornerpush.veloff = 0
+ground.cornerpush.veloff = 0
+guard.velocity = -10.52
+guard.cornerpush.veloff = 0;-12.74
+getpower = 40
+givepower = 36, 36
+envshake.time = 15
+envshake.ampl = 6
+fall = 1
+fall.recover = 0
+air.recover=0
+yaccel = 0.3
+forcestand = 1
+p2stateno=1125
+
+[State 200, ChangeState]
+type = ChangeState
+trigger1 = time >= 13 && pos y > 0
+value = 1001
+ctrl = 0
+
+
+;Heavy Lariat
+[Statedef 1010]
+type    = S
+movetype = A
+physics = N
+velset = 0,0
+ctrl = 0
+anim = 1003
+poweradd=0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 1
+value = S4000,10
+
+[State 3001, Width]
+type = Width
+trigger1 = 1
+edge = 1,0
+
+[State 220, Position]
+type = PosSet
+trigger1 = AnimElem = 1
+y = 0
+
+[State 1100, Velocity]
+type = VelSet
+trigger1 = AnimElem = 3
+x = 58.5
+y= -8
+[State 1200, Vel]
+type = velset
+trigger1 = time >= 21
+x = 4
+y = 27
+[State 1200, 1]
+type = HitDef
+trigger1 = AnimElem = 3
+attr = S, SA
+animtype = hard
+air.animtype = back
+hitflag = MAF
+guardflag = MA
+priority = 6,Hit
+pausetime= 12,12
+sparkno = -1 
+guard.sparkno =  -1 
+sparkxy = -10 
+hitsound   = S1,9
+guardsound = S2,0
+damage = 0,25
+guard.dist = 0
+getpower = 0, 0
+givepower = 24,24
+ground.type = low
+ground.slidetime = 20
+ground.hittime  = 20
+guard.ctrltime = 20
+ground.velocity = 0
+air.velocity = -6,-6
+airguard.velocity = -6.67,-1
+yaccel = .5
+ground.cornerpush.veloff = 0
+guard.cornerpush.veloff = -11.2
+air.cornerpush.veloff = 0
+airguard.cornerpush.veloff = 0
+kill = 0
+envshake.time = 5
+envshake.ampl = 2
+fall = 0
+air.fall = 1
+fall.recover = 0
+air.recover = 0
+forcestand = 1
+ID = 1010
+numhits = 0
+
+[State 901,1]
+type = TargetBind
+trigger1 = time > 1 && numtarget && movehit
+pos = 40, 0
+postype = P1
+time = -1
+id = 1010
+
+[State 1200, 2]
+type = ChangeState
+trigger1 = time > 1 && numtarget && movehit
+value = 1011
+persistent = 0
+
+[State 200, ChangeState]
+type = ChangeState
+trigger1 = time >= 13 && pos y > 0
+value = 1001
+ctrl = 0
+
+;Lariat Drag
+[Statedef 1011]
+type    = S
+movetype = A
+physics = N
+velset = 0,0
+ctrl = 0
+anim = 1004
+
+[State 1000, 0]
+type = TargetFacing
+trigger1 = time = 0
+value = -1
+
+[State 1100, Effect]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = s40,0
+channel = 3
+
+[State 901, Throw]
+type = TargetState
+trigger1 = time = 0
+value = 1207
+
+[State 901,1]
+type = TargetBind
+trigger1 = AnimElem = 1
+pos = 65, -25
+postype = P1
+time = -1
+
+[State 1100, Velocity]
+type = VelSet
+trigger1 = Time = 0
+x = 120
+y = -8
+
+[State 3100, VelAdd]
+type = veladd
+trigger1 = 1
+y = .5
+
+[State 1205, ChangeState]
+type = ChangeState
+trigger1 = FrontEdgeBodyDist <= 10
+value = 1012
+
+[State 1510,1]
+type = ChangeState
+trigger1 = Pos Y >= 0 && Time > 5
+value = 1012
+;---------------------------------------------------------------------------
+;Lariat Hit
+[Statedef 1012]
+type    = S
+movetype = A
+physics = S
+juggle = ifelse(target,gethitvar(fall),0,8)
+velset = 0,0
+ctrl = 0
+anim = 1005
+
+[State 220, Position]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 1012, width]
+type = width
+trigger1 = animelem = 1
+edge = 40,0
+
+[State 1012, width]
+type = width
+trigger1 = animelem = 2
+edge = 75,0
+
+[State 1012, width]
+type = width
+trigger1 = animelem = 3
+edge = 90,0
+
+[State 901,1]
+type = TargetBind
+trigger1 = AnimElem = 1
+pos = 45, -77
+Time = -1
+postype = P1
+
+
+
+[State 903, EnvShake]
+type = EnvShake
+trigger1 = AnimElem = 2
+time = 25
+
+[State 1200, 1]
+type = HitDef
+trigger1 = AnimElem = 1
+attr = S, SA
+animtype = up
+hitflag = MAF
+guardflag = MA
+snap = 95,0
+priority = 5,Hit
+pausetime = 0,1
+sparkno = -1 
+guard.sparkno= -1 
+sparkxy = -10 
+hitsound   =-1
+guardsound =-1
+damage= 120
+guard.dist = 0
+givepower = 35, 35
+ground.type = low
+ground.slidetime = 20
+ground.hittime  = 20
+guard.ctrltime = 20
+ground.velocity = -6,-8.5
+air.velocity = -6,-8.5
+yaccel = .55
+fall = 1
+air.fall = 1
+fall.recover = 0
+air.recover = 0
+ID = 1010
+numhits=0
+givepower = 24,24
+
+[State 1205, ChangeState]
+type = ChangeState
+Trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;p2grabbed, dashing
+[Statedef 1207]
+type    = A
+movetype = H
+physics = N
+velset = 0,0
+ctrl = 0
+sprpriority = 2
+
+[State 1201, screenbound]
+type = screenbound
+trigger1 = 1
+value = 1
+
+[State 1510,1]
+type = changeanim2
+trigger1 = time = 0
+value = 1207
+
+;Lariat Fall
+[Statedef 1001]
+type = S
+movetype= A
+physics = S
+ctrl = 0
+anim = 1005
+velset = 0,0
+sprpriority = 2
+poweradd = 50
+juggle = 1
+
+
+[State 200, ChangeState]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;Air Light Lariat
+[Statedef 1002]
+type = A
+physics = N
+movetype = A
+ctrl = 0
+anim = 1000
+velset = 0,0
+sprpriority = 2
+poweradd = 50
+juggle = 1
+
+[State 0, Limiter]
+type = Helper
+trigger1 = Time = 0
+helpertype = normal
+name = "Limiter"
+ID = 93
+stateno = 93
+pos = 0,0
+postype = p1
+facing = 1
+keyctrl = 0
+ownpal = 1
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = 0,4
+[State 1200, Anim]
+type = changeanim
+trigger1 = anim = 1000 && !animtime
+value = 1002
+
+
+[State 1200, Vel]
+type = velset
+trigger1 = anim = 1000 && animelem = 1
+x = -1.5
+y = 0
+
+[State 1200, Vel]
+type = velset
+trigger1 = anim = 1002
+x = 17
+y = -12
+
+[State 210, Explod]
+type = Explod
+trigger1 = abs(vel x) > 1 && time % 3 = 0
+anim = 8200
+scale = 2,2
+pos = -20,0
+sprpriority = 4
+ownpal = 1
+
+[State 210, HitDef]
+type = HitDef
+trigger1 = anim = 1002 && !movecontact
+attr = S,NA
+hitflag = MAF
+guardflag = M
+animtype = Medium
+damage = 36,0
+getpower = 30,0
+givepower = 20,0
+pausetime = 8,8
+guard.pausetime = 12,12
+sparkno = S8001
+guard.sparkno = S8050
+sparkxy = -10, -76* const(size.yscale)
+hitsound = S5,1
+guardsound = S6,0
+ground.type = Low
+ground.slidetime = 12
+guard.slidetime = 12
+ground.hittime = 18
+guard.hittime =12
+air.hittime = 18
+yaccel = .53
+ground.velocity = -13,-14
+air.velocity = -2,-10
+airguard.velocity = -6,-2
+fall.xvelocity = 0
+fall.yvelocity = -2
+air.fall = 1
+fall.recover = 0
+id = 1
+ [State 200, End]
+type = ChangeState
+triggerall= movehit
+trigger1 = ailevel = 0 && command = "x"
+trigger2 = roundstate = 2 && ailevel > 0 
+value = 600
+ [State 200, End]
+type = ChangeState
+triggerall=  movehit
+trigger1 = ailevel = 0 && command = "y"
+trigger2 = roundstate = 2 && ailevel > 0 
+value = 630
+[State 200, ChangeState]
+type = ChangeState
+trigger1 = anim = 1002 && !animtime
+value = 50
+ctrl = 0

@@ -14,7 +14,7 @@ command.time = 15
 
 ; Default value for the "buffer.time" parameter of a Command. Minimum 1,
 ; maximum 30.
-command.buffer.time = 3
+command.buffer.time = 5
 
 
 ;-| Super Motions |--------------------------------------------------------
@@ -267,24 +267,21 @@ trigger16 = stateno = 1020 && movecontact
 ;Special Moves
 ;---------------------------------------------------
 
-;Special1_X
+;Air Lariat
+[State -1]
+type = ChangeState
+value = 1002
+triggerall = command = "Special1_X"
+trigger1 = statetype = A && ctrl
+trigger2 = stateno = 1000 && movecontact && time >=3
+trigger3 = (stateno = [600,650])&& var(6) = 0 && movehit 
 [State -1]
 type = ChangeState
 value = 1000
 triggerall = command = "Special1_X"
 trigger1 = statetype != A && ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 210 && movecontact
-trigger4 = stateno = 220 && movecontact
-trigger5 = stateno = 230 && movecontact
-trigger6 = stateno = 240 && movecontact
-trigger7 = stateno = 250 && movecontact
-trigger8 = stateno = 400 && movecontact
-trigger9 = stateno = 410 && movecontact
-trigger10 = stateno = 420 && movecontact
-trigger11 = stateno = 430 && movecontact
-trigger12 = stateno = 440 && movecontact
-trigger13 = stateno = 450 && movecontact
+trigger2 = (stateno = [200,430])&& movecontact
+trigger3 = (stateno = [400,450])&& movecontact
 
 ;Special1_Y
 [State -1]
@@ -292,19 +289,8 @@ type = ChangeState
 value = 1010
 triggerall = command = "Special1_Y"
 trigger1 = statetype != A && ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 210 && movecontact
-trigger4 = stateno = 220 && movecontact
-trigger5 = stateno = 230 && movecontact
-trigger6 = stateno = 240 && movecontact
-trigger7 = stateno = 250 && movecontact
-trigger8 = stateno = 400 && movecontact
-trigger9 = stateno = 410 && movecontact
-trigger10 = stateno = 420 && movecontact
-trigger11 = stateno = 430 && movecontact
-trigger12 = stateno = 440 && movecontact
-trigger13 = stateno = 450 && movecontact
-trigger14 = stateno = 1000 && movecontact
+trigger2 = (stateno = [200,430])&& movecontact
+trigger3 = (stateno = [400,450])&& movecontact
 
 ;Special1_Z
 [State -1]
@@ -348,38 +334,20 @@ type = ChangeState
 value = 200
 triggerall = command = "x" && command != "holddown"
 trigger1 = statetype = S && ctrl
-trigger2 = (stateno = 101 || stateno = 106) && prevstateno != 810
+trigger2 = stateno = 101
 trigger3 = stateno = 200 && movecontact
 trigger4 = stateno = 400 && movecontact
 
-;Stand Medium Punch
+;Stand Heavy Punch
   [State -1]
 type = ChangeState
 value = 210
 triggerall = command = "y" && command != "holddown"
 trigger1 = statetype = S && ctrl
-trigger2 = (stateno = 101 || stateno = 106) && prevstateno != 810
+trigger2 = stateno = 101
 trigger3 = stateno = 200 && movecontact
-trigger4 = stateno = 230 && movecontact
-trigger5 = stateno = 400 && movecontact
-trigger5 = stateno = 410 && movecontact
-trigger7 = stateno = 430 && movecontact
-
-;Stand Strong Punch
-[State -1]
-type = ChangeState
-value = 220
-triggerall = command = "z" && command != "holddown"
-trigger1 = statetype = S && ctrl
-trigger2 = (stateno = 101 || stateno = 106) && prevstateno != 810
-trigger3 = stateno = 200 && movecontact
-trigger4 = stateno = 210 && movecontact
-trigger5 = stateno = 230 && movecontact
-trigger6 = stateno = 240 && movecontact
-trigger7 = stateno = 400 && movecontact
-trigger8 = stateno = 410 && movecontact
-trigger9 = stateno = 430 && movecontact
-trigger10 = stateno = 440 && movecontact
+trigger4 = (stateno = [230,240])&& movecontact
+trigger5 = (stateno = [400,450])&& movecontact
 
 ;Stand Light Kick
 [State -1]
@@ -387,41 +355,19 @@ type = ChangeState
 value = 230
 triggerall = command = "a" && command != "holddown"
 trigger1 = statetype = S && ctrl
-trigger2 = (stateno = 101 || stateno = 106) && prevstateno != 810
+trigger2 = stateno = 101
 trigger3 = stateno = 200 && movecontact
-
-;Stand Medium Kick
+trigger4 = (stateno = [400,450])&& movecontact
+;Stand Heavy Kick
 [State -1]
 type = ChangeState
 value = 240
 triggerall = command = "b" && command != "holddown"
 trigger1 = statetype = S && ctrl
-trigger2 = (stateno = 101 || stateno = 106) && prevstateno != 810
-trigger3 = stateno = 200 && movecontact
-trigger4 = stateno = 210 && movecontact
-trigger5 = stateno = 230 && movecontact
-trigger6 = stateno = 400 && movecontact
-trigger7 = stateno = 410 && movecontact
-trigger8 = stateno = 430 && movecontact
+trigger2 = stateno = 101
+trigger3 = (stateno = [200,430])&& movecontact
+trigger4 = (stateno = [400,450])&& movecontact
 
-;Stand Strong Kick
-[State -1]
-type = ChangeState
-value = 250
-triggerall = command = "c" && command != "holddown"
-trigger1 = statetype = S && ctrl
-trigger2 = (stateno = 101 || stateno = 106) && prevstateno != 810
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 210 && movecontact
-trigger4 = stateno = 220 && movecontact
-trigger5 = stateno = 230 && movecontact
-trigger6 = stateno = 240 && movecontact
-trigger7 = stateno = 400 && movecontact
-trigger8 = stateno = 410 && movecontact
-trigger9 = stateno = 420 && movecontact
-trigger10 = stateno = 430 && movecontact
-trigger11 = stateno = 440 && movecontact
- 
 ;Crouch Light Punch
 [State -1]
 type = ChangeState
@@ -431,34 +377,14 @@ trigger1 = statetype = C && ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 400 && movecontact
 
-;Crouch Medium Punch
+;Crouch Heavy Punch
 [State -1]
 type = ChangeState
 value = 410
 triggerall = command = "y" && command = "holddown"
 trigger1 = statetype = C && ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 210 && movecontact
-trigger4 = stateno = 230 && movecontact
-trigger5 = stateno = 400 && movecontact
-trigger6 = stateno = 430 && movecontact
-
-
-;Crouch Strong Punch
-[State -1]
-type = ChangeState
-value = 420
-triggerall = command = "z" && command = "holddown"
-trigger1 = statetype = C && ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 210 && movecontact
-trigger4 = stateno = 230 && movecontact
-trigger5 = stateno = 240 && movecontact
-trigger6 = stateno = 400 && movecontact
-trigger7 = stateno = 410 && movecontact
-trigger8 = stateno = 430 && movecontact
-trigger9 = stateno = 440 && movecontact
-
+trigger2 = (stateno = [200,409])&& movecontact
+trigger3 = (stateno = [430,440])&& movecontact
 ;Crouch Light Kick
 [State -1]
 type = ChangeState
@@ -467,11 +393,9 @@ triggerall = command = "a" && command = "holddown"
 trigger1 = statetype = C && ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 400 && movecontact
-trigger4 = stateno = 200 && movecontact
-trigger5 = stateno = 400 && movecontact
-trigger6 = stateno = 430 && movecontact
+trigger4 = stateno = 410 && movecontact
 
-;Crouch Medium Kick
+;Crouch Heavy Kick
 [State -1]
 type = ChangeState
 value = 440
@@ -490,11 +414,9 @@ trigger7 = stateno = 430 && movecontact
 type = ChangeState
 value = 600
 triggerall = command = "x"
-triggerall = time >= 4
 trigger1 = statetype = A && ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 600 && movecontact
-
 ;Jump Medium Punch
 [State -1]
 type = ChangeState
@@ -503,7 +425,6 @@ triggerall = command = "y"
 trigger1 = statetype = A && ctrl
 trigger2 = stateno = 600 && movecontact
 trigger3 = stateno = 630 && movecontact
-
 ;Jump Strong Punch
 [State -1]
 type = ChangeState
@@ -573,8 +494,7 @@ type = ChangeState
 value = 40
 triggerall = command = "holdup" && !var(1) && prevstateno != 810
 trigger1 = stateno = [100,102]
-trigger2 = stateno = [105,107]
-trigger3 = stateno = 420 && movehit
+trigger2 = stateno = [200,450] && movecontact
 
 ;---------------------------------------------------------------------------
 [State -1, Jump Cancel]
@@ -588,16 +508,6 @@ trigger2 = stateno = 410 && movehit
 trigger3 = stateno = 450 && movehit
 trigger4 = stateno = 200 && movehit
 trigger5 = stateno = 210 && movehit
-
-
-;Crouch Down
-[State 106, ChangeState]
-type = ChangeState
-triggerall = command = "holddown" && prevstateno != 810
-trigger1 = stateno = [100,102]
-trigger2 = stateno = [105,107]
-value = 10
-ctrl = 1
 
 ;Taunt
 [State -1]
