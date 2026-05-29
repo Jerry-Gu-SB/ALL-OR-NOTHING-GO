@@ -1,0 +1,440 @@
+﻿;--------------------------------------------------------
+[Info]
+name			= "MBTL Moonlit Altar"
+Author			= "Beterhans"
+displayname		= "MBTL Moonlit Altar TWS"
+versiondate		= 04,20,2022;(MM-DD-YYYY)
+mugenversion	= 1.1
+
+[Camera]
+startx = 0
+starty = 0
+boundleft = -700
+boundright = 700
+boundhigh = -450
+boundlow = 0
+
+verticalfollow = .85
+floortension = 200
+tension = 200
+
+overdrawhigh = 120
+overdrawlow = 120
+cuthigh = 0
+cutlow = 0
+
+zoomout = .8
+
+
+;--------------------------------------------------------
+[PlayerInfo]
+;--- Player 1 ---
+p1startx		= -280          ;Starting x coordinates
+p1starty		= 0            ;Starting y coordinates
+p1facing		= 1            ;Direction player faces: 1=right, -1=left
+
+;--- Player 2 ---
+p2startx		= 280
+p2starty		= 0
+p2facing		= -1
+
+;--- Player 3 ---
+p3startx		= -460          ;Starting x coordinates
+p3starty		= 0            ;Starting y coordinates
+p3facing		= 1            ;Direction player faces: 1=right, -1=left
+
+;--- Player 4 ---
+p4startx		= 460
+p4starty		= 0
+p4facing		= -1
+
+;--- Common ---
+;Don't change these values.
+leftbound		= -4000 ;Left bound (x-movement)
+rightbound		=  4000 ;Right bound
+topbound		=  0     ;Top bound (z-movement)
+botbound		=  0     ;Bottom bound
+
+;--------------------------------------------------------
+[Scaling]
+;No need to change these values
+topz			= 0       ;Top z-coordinate for scaling
+botz			= 50      ;Bottom z-coordinate for scaling
+topscale		= 1       ;Scale to use at top
+botscale		= 1.2     ;Scale to use at bottom
+
+;--------------------------------------------------------
+[Bound]
+ ;Distance from left/right edge of screen that player can move to
+ ;Typically 15
+screenleft		= 60  ;Dist from left of screen that player can move to
+screenright		= 60  ;Right edge
+
+;--------------------------------------------------------
+[StageInfo]
+zoffset			= 0				;Calculatred
+zoffsetlink		= 100
+autoturn		= 1
+resetBG			= 0
+localcoord		= 1280,720
+xscale			= 1
+yscale			= 1
+
+
+;--------------------------------------------------------
+[Reflection]
+intensity		= 0
+
+[Shadow]
+intensity		= 128
+color			= 0,0,0
+yscale			= 1
+xshear			= 0
+fade.range		= -100,0
+
+;--------------------------------------------------------
+[Music]
+bgmusic 		= stages/MBTL_Moonlit_Altar_TWS.mp3
+bgm.loop		= 1
+bgmloopstart	= 29794
+bgmloopend		= 6228994
+bgmvolume		= 100
+
+;Main background definition
+[BGdef]
+spr				= MBTL_Moonlit_Altar_TWS.sff
+debugbg			= 0
+;--------------------------------------------------------
+;----------------------- BG Elements --------------------
+
+
+;[BG Floor];Width type
+;type			= parallax
+;spriteno			= 100, 0
+;start			= 0, 680
+;tile			= 0, 0
+;tilespacing		= 0,0
+;delta			= 0.288329849,1		;1st value is the upper delta; R = Down Width - (Gh*((Down Width-UpperWidth)/Full Height)); Upper Delta = Upper Width / R; UP Delta = Down Width / R
+;mask			= 0
+;width			= 4000,16000		;too maintain middle size = to picture the upper width is / 2 but botton is * by 2
+;scaledelta		= 0, -0.0005
+;scalestart		= 1, 0.2
+;ID			= 100
+
+[BG SKY]
+type			= Normal
+mask			= 0
+spriteNo		= 0,0
+start			= 0,800
+delta			= 0,0.1
+scalestart		= 1,2.25
+tile			= 1,0
+tileSpacing		= 0,0
+
+[BG SKY]
+type			= Normal
+spriteNo		= 0,1
+start			= 0,0
+delta			= 0.1, 0.1
+scalestart		= 1.25, 1.25
+trans			= add
+alpha			= 256, 256
+tile			= 1,1
+tileSpacing		= 0,0
+velocity		= 0.2, 0.2
+
+[BG Moon]
+type			= Anim
+actionNo		= 105
+start			= -280, 100
+delta			= 0.25, 0.25
+scalestart		= 1, 1
+velocity		= 0.1, -0.1
+tile			= 1,1
+tileSpacing		= 3200,2000
+
+[BG Moon]
+type			= Anim
+actionNo		= 106
+start			= -280, 100
+delta			= 0.25, 0.25
+scalestart		= 1, 1
+velocity		= 0.1, -0.1
+tile			= 1,1
+tileSpacing		= 3200,2000
+
+[BG Floor_BG_left]
+type			= Anim
+actionNo		= 101
+start			= -3050,810
+delta			= 1.158631415, 1
+scalestart		= 1,1
+
+[BG Floor_BG_right]
+type			= Anim
+actionNo		= 102
+start			= 3050,810
+delta			= 1.158631415, 1
+scalestart		= 1,1
+
+
+[BG Floor]; xScale Type
+type			= Parallax
+mask			= 1
+spriteNo		= 100,0
+start			= 0,640
+delta			= 0.536547434,1
+xscale			= 0.536547434,1.158631415			; Just a ratio
+scalestart		= 2,2
+ID				= 100
+;trans=add
+;alpha=96,256
+
+[BG WLEN]
+type			= Anim
+mask			 1
+actionNo		= 180
+start			= 560,-1188
+delta			= 0.622,1
+scalestart		= 1.1, 1.1
+
+
+[BG Pillar]
+type			= Normal
+mask			= 1
+spriteNo		= 110,1
+start			= 50,34
+delta			= 0.622,1
+scalestart		= 1.98, 1.98
+
+[BG Pillar]
+type			= Normal
+mask			= 1
+spriteNo		= 110,2
+start			= 34,154
+delta			= 0.6874,1
+scalestart		= 1.99, 1.99
+
+[BG Pillar]
+type			= Normal
+mask			= 1
+spriteNo		= 110,3
+start			= 0,218
+delta			= 0.7325,1
+scalestart		= 2,2
+
+[BG Box_left]
+type			= Anim
+ActionNo		= 112
+start			= -110,86
+delta			= 0.718507,1
+mask			= 1
+scalestart		= 1.5, 1.5
+scaledelta		= 0.005,0	;value 1 = 1/600 * scalestart (1 means double x in size pre 1px cam move); (Sprit x / distance to center / sprite x * scalestart) in short 1/distance to center * scalestart
+
+[BG Box_right]
+type			= Anim
+ActionNo		= 113
+start			=  110,86
+delta			= 0.718507,1
+mask			= 1
+scalestart		= 1.5, 1.5
+scaledelta		= -0.005,0	;value 1 = 1/600 * scalestart (1 means double x in size pre 1px cam move); (Sprit x / distance to center / sprite x * scalestart) in short 1/distance to center * scalestart
+
+
+[BG Box_Front]
+type			= Normal
+mask			= 1
+spriteNo		= 112,0
+start			= 0,86
+delta			= 0.718507,1
+scalestart		= 1.5, 1.5
+;trans = add
+;alpha = 96,128
+
+[BG Box_top]
+type			= parallax
+mask			= 1
+spriteNo		= 112,2
+start			= 0,66;86
+delta			= 0.718507,1
+width			= 148,142
+scalestart		= 1.45, -0.25
+
+[BG Aura top light]
+type			= Anim
+mask			= 1
+ActionNo		= 122
+start			= -10,-1220
+delta			= 0.718507,1
+scalestart		= 0.5, 0.5
+
+[BG Aura 01]
+type			= Anim
+mask			= 1
+ActionNo		= 120
+start			= 0,640
+delta			= 0.718507,1
+scalestart		= 2,2
+
+[BG Nero]
+type			= Anim
+mask			= 1
+ActionNo		= 170
+start			= -800,-1240
+delta			= 0.789269,1
+scalestart		= 1.5, 1.5
+
+[BG Pillar]
+type			= Normal
+mask			= 1
+spriteNo		= 110,4
+start			= -10,350
+delta			= 0.789269,1
+scalestart		= 2,2
+
+[BG Mist]
+type			= Normal
+mask			= 1
+spriteNo		= 130,0
+start			= 0,370
+delta			= 0.79,1
+scalestart		= 2,1.5
+tile			= 1,0
+tileSpacing		= 0,0
+velocity		= 2,0
+sin.y			= 12,360,0
+
+[BG Rock_01]
+type			= Normal
+mask			= 1
+spriteNo		= 111,0
+start			= 0,464
+delta			= 0.868585,1
+scalestart		= 2,2
+
+[BG Pillar]
+type			= Normal
+mask			= 1
+spriteNo		= 110,5
+start			= 0,500
+delta			= 0.901244,1
+scalestart		= 2,2
+
+
+
+[BG Rock_02]
+type			= Normal
+mask			= 1
+spriteNo		= 111,1
+start			= -2560,500
+delta			= 0.919129,1
+scalestart		= 2,2
+
+[BG Rock_03]
+type			= Normal
+mask			= 1
+spriteNo		= 111,2
+start			= 0,578
+delta			= 0.961897,1
+scalestart		= 2,2
+
+
+;---------------- Front Element ------------------
+[BG Mist near]
+type			= Normal
+mask			= 1
+layerno			= 1
+spriteNo		= 130,0
+start			= 0,820
+delta			= 0.79,1
+scalestart		= 2,2
+tile			= 1,0
+tileSpacing		= 0,0
+velocity		= -4,0
+sin.y			= 24,360,0
+
+[BG Mist near]
+type			= Normal
+mask			= 1
+layerno			= 1
+spriteNo		= 130,0
+start			= 440,1000
+delta			= 0.79,1
+scalestart		= 2,2
+tile			= 1,0
+tileSpacing		= 0,0
+velocity		= -8,0
+sin.y			= 28,180,0
+
+
+;-- Animation ---
+
+; Stars
+[Begin Action 1]
+0,1, 0,0, 32, , A
+Interpolate Blend
+0,1, 0,0, 32, , AS196D256
+Interpolate Blend
+0,1, 0,0, 1, , A
+
+[Begin Action 101]
+101,0, 0,0, -1, , , 1.25,1.25, -7
+
+[Begin Action 102]
+101,0, 0,0, -1, , , 1.25,1.25, 7
+
+; Moon
+[Begin Action 105]
+105,0, 0,0, 18000
+Interpolate Angle
+105,0, 0,0, 1, , , 1,1, 359
+
+; Moon Light
+[Begin Action 106]
+106,0, 0,0, 96, , A
+Interpolate Blend
+106,0, 0,0, 96, , AS128D256
+Interpolate Blend
+106,0, 0,0, 1, , A
+
+; Aura
+[Begin Action 120]
+120,0, 0,0, 64, , A
+Interpolate Blend
+120,0, 0,0, 64, , AS128D256
+Interpolate Blend
+120,0, 0,0, 1, , A
+
+
+[Begin Action 122]
+Interpolate Scale
+122,0, 0,0, 64, , A
+Interpolate Blend
+Interpolate Scale
+122,0, 0,0, 64, , AS128D256, 0.5,0.5
+Interpolate Blend
+Interpolate Scale
+122,0, 0,0, 1, , A
+
+; Box Left
+[Begin Action 112]
+112,1, 0,0, -1
+
+; Box right
+[Begin Action 113]
+112,1, 0,0, -1, H
+; Neo
+[Begin Action 170]
+170,0, 0,0, 6
+170,1, 0,0, 6
+170,2, 0,0, 12
+170,1, 0,0, 6
+
+; WLEN
+[Begin Action 180]
+180,0, 0,0, 8, H
+180,1, 0,0, 8, H
+180,2, 0,0, 8, H
+180,1, 0,0, 8, H
+

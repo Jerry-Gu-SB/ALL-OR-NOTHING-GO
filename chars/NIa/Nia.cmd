@@ -148,6 +148,11 @@ time = 1
 name = "x+y"
 command = x+y
 time = 1
+
+[Command]
+name = "x+z"
+command = x+z
+time = 1
 ;---------------------------------------------------
 ;Hold Directions
 ;---------------------------------------------------
@@ -316,17 +321,27 @@ trigger15 = stateno = 1010 && movecontact
 ;Sweap
 [State -1]
 type = ChangeState
-value = 450
+value = 440
 triggerall = command = "x+y" && command = "holddown"
 trigger1 = statetype = C && ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 210 && movecontact
 trigger4 = stateno = 230 && movecontact
-trigger5 = stateno = 240 && movecontact
-trigger6 = stateno = 400 && movecontact
-trigger7 = stateno = 410 && movecontact
-trigger8 = stateno = 430 && movecontact
-trigger9 = stateno = 440 && movecontact
+trigger5 = stateno = 400 && movecontact
+trigger6 = stateno = 410 && movecontact
+trigger7 = stateno = 430 && movecontact
+
+;grab
+[State -1, Grab]
+type = ChangeState
+value = 800
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "x+z"
+triggerall = statetype != A
+triggerall = ctrl
+trigger1 = stateno != 100
+
 
 ;Stand Light Punch
 [State -1]

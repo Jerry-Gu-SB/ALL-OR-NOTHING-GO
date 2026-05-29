@@ -198,6 +198,7 @@ cvs2_zangief
 SF2_zangief
 mika
 Waldstein
+Carmine
 randomselect
 
 ;-------------------------------------------------------------------------------
@@ -277,6 +278,7 @@ stages/interactivestage.def
 stages/kfm.def
 stages/stage0.def
 stages/stage0-720.def
+stages/MBTL_Moonlit_Altar_TWS.def
 
 ;-------------------------------------------------------------------------------
 [Options]
