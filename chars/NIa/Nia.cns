@@ -1239,22 +1239,6 @@ id = 4+64
 
 ; Throw 
 [Statedef 800]
-<<<<<<< Updated upstream
-type = S
-ctrl = 0
-anim = 195
-velset = 0,0
-movetype = I
-physics = S
-sprpriority = 2
-
-[State 800, ChangeState]
-type = ChangeState
-trigger1 = animtime = 0
-value = 0
-ctrl = 1
-
-=======
 type    = S
 movetype= A
 physics = S
@@ -1421,7 +1405,8 @@ ctrl = 1
 ;     an action in the AIR file of the attacker (in this case, kfm.air),
 ;     whereas ChangeAnim always changes the player to an action in his
 ;     own AIR file. Look at Action 820 in kfm.air for some extra
-;     comments.
+;     comment
+s.
 [Statedef 820]
 type    = A
 movetype= H
@@ -1484,7 +1469,6 @@ trigger1 = Pos Y >= 0
 value = 5100 ;Hit ground
 
 
->>>>>>> Stashed changes
 ; Triple Kung Fu Palm
 [Statedef 3000] 
 type = S
