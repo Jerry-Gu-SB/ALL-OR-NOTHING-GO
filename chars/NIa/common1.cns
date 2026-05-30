@@ -271,19 +271,6 @@ anim = 41
 sprpriority = 2
 ctrl = 0
 
-<<<<<<< Updated upstream
-[Statedef 90]
-type    = A
-movetype= I
-physics = N
-juggle  = 0
-velset = 0,0
-anim = 41
-sprpriority = 2
-ctrl = 0
-
-=======
->>>>>>> Stashed changes
 [State 0, VelSet]
 type = VelSet
 trigger1 = time = 0

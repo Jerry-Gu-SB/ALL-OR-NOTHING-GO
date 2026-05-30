@@ -148,11 +148,6 @@ time = 1
 name = "x+y"
 command = x+y
 time = 1
-
-[Command]
-name = "x+z"
-command = x+z
-time = 1
 ;---------------------------------------------------
 ;Hold Directions
 ;---------------------------------------------------
@@ -276,7 +271,7 @@ trigger16 = stateno = 1020 && movecontact
 [State -1]
 type = ChangeState
 value = 1002
-triggerall = command = "Special1_X"
+triggerall = command = "Special1_X" && var(6) = 0
 trigger1 = statetype = A && ctrl
 trigger2 = stateno = 1000 && movecontact && time >=3
 trigger3 = (stateno = [600,650])&& var(6) = 0 && movehit 
@@ -321,26 +316,24 @@ trigger15 = stateno = 1010 && movecontact
 ;Sweap
 [State -1]
 type = ChangeState
-value = 440
+value = 450
 triggerall = command = "x+y" && command = "holddown"
 trigger1 = statetype = C && ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 210 && movecontact
 trigger4 = stateno = 230 && movecontact
-trigger5 = stateno = 400 && movecontact
-trigger6 = stateno = 410 && movecontact
-trigger7 = stateno = 430 && movecontact
+trigger5 = stateno = 240 && movecontact
+trigger6 = stateno = 400 && movecontact
+trigger7 = stateno = 410 && movecontact
+trigger8 = stateno = 430 && movecontact
+trigger9 = stateno = 440 && movecontact
 
-;grab
-[State -1, Grab]
-type = ChangeState
-value = 800
-triggerall = !ishelper
-triggerall = !AIlevel
-triggerall = command = "x+z"
-triggerall = statetype != A
-triggerall = ctrl
-trigger1 = stateno != 100
+[State -1, Throw]
+type=ChangeState
+value =800
+trigger1=(command = "holdfwd"||command = "holdback")&& command = "x+y"
+trigger1=!AILevel && RoundState=2 && Statetype!=A && !var(20)
+trigger1=ctrl
 
 
 ;Stand Light Punch
