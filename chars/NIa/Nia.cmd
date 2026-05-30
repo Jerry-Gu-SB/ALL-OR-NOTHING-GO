@@ -316,17 +316,15 @@ trigger15 = stateno = 1010 && movecontact
 ;Sweap
 [State -1]
 type = ChangeState
-value = 450
+value = 440
 triggerall = command = "x+y" && command = "holddown"
 trigger1 = statetype = C && ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 210 && movecontact
 trigger4 = stateno = 230 && movecontact
-trigger5 = stateno = 240 && movecontact
-trigger6 = stateno = 400 && movecontact
-trigger7 = stateno = 410 && movecontact
-trigger8 = stateno = 430 && movecontact
-trigger9 = stateno = 440 && movecontact
+trigger5 = stateno = 400 && movecontact
+trigger6 = stateno = 410 && movecontact
+trigger7 = stateno = 430 && movecontact
 
 [State -1, Throw]
 type=ChangeState
@@ -403,18 +401,7 @@ trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 400 && movecontact
 trigger4 = stateno = 410 && movecontact
 
-;Crouch Heavy Kick
-[State -1]
-type = ChangeState
-value = 440
-triggerall = command = "b" && command = "holddown"
-trigger1 = statetype = C && ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 210 && movecontact
-trigger4 = stateno = 230 && movecontact
-trigger5 = stateno = 400 && movecontact
-trigger6 = stateno = 410 && movecontact
-trigger7 = stateno = 430 && movecontact
+
 
  
 ;Jump Light Punch
