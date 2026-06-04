@@ -212,6 +212,29 @@ command = /s
 time = 1
 
 ;---------------------------------------------------
+;Direction Tap
+;---------------------------------------------------
+[Command]
+name = "fwd"
+command = F
+time = 1
+
+[Command]
+name = "back"
+command = B
+time = 1
+
+[Command]
+name = "up"
+command = U
+time = 1
+
+[Command]
+name = "down"
+command = D
+time = 1
+
+;---------------------------------------------------
 ;Dashing
 ;---------------------------------------------------
 
@@ -503,6 +526,31 @@ trigger2 = stateno = 410 && movehit
 trigger3 = stateno = 450 && movehit
 trigger4 = stateno = 200 && movehit
 trigger5 = stateno = 210 && movehit
+
+[State -1, PerfectBlock Stand]
+type = HitOverride
+triggerall = !AILevel && roundstate=2 && Statetype != A
+triggerall = command = "fwd" && command != "back" && command != "up" && command != "down"
+trigger1 = Ctrl
+stateno = 6130
+attr = SA, AA, AP
+; Slot just sets the order in which State -1 will take precedence, so PerfectBlock has the highest priority of State -1 I guess?
+; Source: https://mugenfreeforall.com/topic/34752-ricepigeons-coding-tutorial-code-snippet-repository/
+slot = 0
+time = 7
+
+[State -1, PerfectBlock Crouch]
+type = HitOverride
+triggerall = !AILevel && roundstate=2 && Statetype != A
+;triggerall = command = "fwd" && command = "down" && command != "back" && command != "up" 
+triggerall = command = "holddown" && command = "holdfwd"
+trigger1 = Ctrl
+stateno = 6131
+attr = C, NA, SA, HA
+; Slot just sets the order in which State -1 will take precedence, so PerfectBlock has the highest priority of State -1 I guess?
+; Source: https://mugenfreeforall.com/topic/34752-ricepigeons-coding-tutorial-code-snippet-repository/
+slot = 0
+time = 7
 
 ;Taunt
 [State -1]

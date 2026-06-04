@@ -1922,6 +1922,23 @@ Clsn2Default: 2
 41,7, 0,0, 4
 41,8, 0,0, 4
 
+; Perfect Guard Stand
+[Begin Action 6130]
+
+120,0, 0,4, 12
+
+; Perfect Guard Crouch
+[Begin Action 6131]
+121,0, 0,0, 12
+
+; Perfect Guard Stand
+[Begin Action 6130]
+
+120,0, 0,4, 12
+
+; Perfect Guard Crouch
+[Begin Action 6131]
+121,0, 0,0, 12
 
 ;---------------------------
 ; Dizzy
