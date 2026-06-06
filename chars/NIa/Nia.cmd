@@ -410,10 +410,11 @@ trigger3 = stateno = 400 && movecontact
 [State -1]
 type = ChangeState
 value = 410
-triggerall = command = "y" && command = "holddown"
+triggerall = command = "y" 
 trigger1 = statetype = C && ctrl
 trigger2 = (stateno = [200,409])&& movecontact
 trigger3 = (stateno = [430,440])&& movecontact
+
 ;Crouch Light Kick
 [State -1]
 type = ChangeState

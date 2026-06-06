@@ -13,35 +13,35 @@ IntPersistIndex = 60
 FloatPersistIndex = 40
 
 [Size]
-xscale = 0.70          ;Horizontal scaling factor.
-yscale = 0.70
-ground.back = 80
-ground.front = 76
-air.back = 80
-air.front = 60
-height = 240
-attack.dist = 640
-proj.attack.dist = 90
-proj.doscale = 0
-head.pos = 22, -452
-mid.pos = 8, -324
-shadowoffset = 0
-draw.offset = 0,0
+xscale = 0.20         ;Horizontal scaling factor.
+yscale = 0.20
+ground.back = 15     ;Player width (back, ground)
+ground.front = 16    ;Player width (front, ground)
+air.back = 12        ;Player width (back, air)
+air.front = 12       ;Player width (front, air)
+height = 60          ;Height of player (for opponent to jump over)
+attack.dist = 160    ;Default attack distance
+proj.attack.dist = 90 ;Default attack distance for projectiles
+proj.doscale = 0     ;Set to 1 to scale projectiles too
+head.pos = -5, -90   ;Approximate position of head
+mid.pos = -5, -60    ;Approximate position of midsection
+shadowoffset = 0     ;Number of pixels to vertically offset the shadow
+draw.offset = 0,0    ;Player drawing offset in pixels (x, y). Recommended 0,0
 
 
 [Velocity]
-walk.fwd  = 9.6      ;Walk forward
-walk.back = -8.8     ;Walk backward
-run.fwd  = 18.4, 0   ;Run forward (x, y)
-run.back = -18,-2.2 ;Hop backward (x, y)
-jump.neu = 0,-33.6   ;Neutral jumping velocity (x, y)
-jump.back = -19.2,-33.6 ;Jump back Speed (x, y)
-jump.fwd = 19,-33.6     ;Jump forward Speed (x, y)
-runjump.back = -10.2,-32.4 ;Running jump speeds (opt)
-runjump.fwd = 16,-32.4    ;.
-airjump.neu = 0,-32.4     ;.
-airjump.back = -10.2      ;Air jump speeds (opt)
-airjump.fwd = 10          ;.
+walk.fwd  = 2.4      ;Walk forward
+walk.back = -2.4     ;Walk backward
+run.fwd  = 7.0, 0   ;Run forward (x, y)
+run.back = -5.5,-2.2 ;Hop backward (x, y)
+jump.neu = 0,-10.55
+jump.back = -2.5
+jump.fwd = 2.5
+runjump.back = -2.5,-10.55
+runjump.fwd = 5,-10.55
+airjump.neu = 0,-8.55
+airjump.back = -2.5
+airjump.fwd = 2.5       ;.
 air.gethit.groundrecover = -.6,-14  
 air.gethit.airrecover.mul = .5,.2    
 air.gethit.airrecover.add = 0,-18    
@@ -53,7 +53,7 @@ air.gethit.airrecover.down = 6
 [Movement]
 airjump.num = 0      ;Number of air jumps allowed (opt)
 airjump.height = 140 ;Minimum distance from ground before you can air jump (opt)
-yaccel = 1.76         ;Vertical acceleration
+yaccel = .44          ;Vertical acceleration
 stand.friction = .85  ;Friction coefficient when standing
 crouch.friction = .82 ;Friction coefficient when crouching
 stand.friction.threshold = 8          ;If player's speed drops below this threshold while standing, stop his movement **MUGEN 1.0**
@@ -169,7 +169,7 @@ ownpal = 1
 
 [State 200, HitDef]
 type = HitDef
-trigger1 = Time = 0
+trigger1 = !time
 attr = S,NA
 hitflag = MAF
 guardflag = M
@@ -194,8 +194,8 @@ guard.slidetime = 12
 guard.hittime =12
 airguard.ctrltime = 11
 yaccel = .53
-ground.velocity = -16,0
-ground.cornerpush.veloff = -14.5
+ground.velocity = -5,0
+ground.cornerpush.veloff = -5.5
 air.velocity = -4,-1
 airguard.velocity = -6,-2
 fall.xvelocity = 0
@@ -243,7 +243,7 @@ x = 10
 
 [State 210, HitDef]
 type = HitDef
-trigger1 = Time = 0
+trigger1 = !time
 attr = S,NA
 hitflag = MAF
 guardflag = M
@@ -265,7 +265,7 @@ ground.hittime = 18 + 4*var(9)
 guard.hittime =12
 air.hittime = 18
 yaccel = .53
-ground.velocity = -13,0
+ground.velocity = -3,0
 air.velocity = -2,-6
 airguard.velocity = -6,-2
 fall.xvelocity = 0
@@ -315,7 +315,7 @@ ownpal = 1
 
 [State 230, HitDef]
 type = HitDef
-trigger1 = Time = 0
+trigger1 = !time
 attr = S,NA
 hitflag = MAF
 guardflag = MA
@@ -386,7 +386,7 @@ ownpal = 1
 
 [State 210, HitDef]
 type = HitDef
-trigger1 = Time = 0
+trigger1 = !time
 attr = S,NA
 hitflag = MAF
 guardflag = MA
@@ -440,7 +440,7 @@ value = 0,3
 
 [State 400, HitDef]
 type = HitDef
-trigger1 = time = 0
+trigger1 = !time
 attr = C,NA
 hitflag = MAF
 guardflag = L
@@ -462,8 +462,8 @@ ground.hittime = 16
 guard.hittime =10
 air.hittime = 16
 yaccel = .53
-ground.velocity = -16,0
-ground.cornerpush.veloff = -19.5
+ground.velocity = -5,0
+ground.cornerpush.veloff = -5.0
 air.velocity = -4,-8
 down.velocity = -4,-6
 airguard.velocity = -6,-2
@@ -502,7 +502,7 @@ x = 6
 
 [State 410, HitDef]
 type = HitDef
-trigger1 = time = 0
+trigger1 = !time
 attr = C,NA
 hitflag = MAF
 guardflag = M
