@@ -16,9 +16,9 @@ map(jayframedisplay_p2StartPosX) := 40;		# P2 start X position of the cells
 map(jayframedisplay_p2StartPosY) := 195;	# P2 start Y position of the cells
 
 map(jayframedisplay_offCell169X) := 57;		# Offset X based on widescreen (cells)
-map(jayframedisplay_offCell169Y) := -139;		# Offset Y based on widescreen (cells)
+map(jayframedisplay_offCell169Y) := 20;		# Offset Y based on widescreen (cells)
 map(jayframedisplay_offText169X) := 90;		# Offset X based on widescreen (text)
-map(jayframedisplay_offText169Y) := -139;		# Offset Y based on widescreen (text)
+map(jayframedisplay_offText169Y) := 20;		# Offset Y based on widescreen (text)
 
 map(jayframedisplay_spacing) := 3;			# Spacing between each cell
 map(jayframedisplay_scale) := 0.75;			# Scaling of each cell
@@ -57,15 +57,15 @@ map(jayframedisplay_projR) := 256;			# Red color value for a "proj" cell
 map(jayframedisplay_projG) := 64;			# Green color value for a "proj" cell
 map(jayframedisplay_projB) := 216;			# Blue color value for a "proj" cell
 
-map(jayframedisplay_p1TextPosX) := 289;		# P1 X position for the info text
-map(jayframedisplay_p1TextPosY) := 280;		# P1 Y position for the info text
-map(jayframedisplay_p2TextPosX) := 289;		# P2 X position for the info text
-map(jayframedisplay_p2TextPosY) := 332;		# P2 Y position for the info text
+map(jayframedisplay_p1TextPosX) := 39;		# P1 X position for the info text
+map(jayframedisplay_p1TextPosY) := 186;		# P1 Y position for the info text
+map(jayframedisplay_p2TextPosX) := 39;		# P2 X position for the info text
+map(jayframedisplay_p2TextPosY) := 202;		# P2 Y position for the info text
 
 map(jayframedisplay_textFont) := -1;		# Font for the info text
 map(jayframedisplay_textBank) := -1;		# Bank for the info text
 map(jayframedisplay_textAlign) := 1;		# Alignment for the info text
-map(jayframedisplay_textScale) := 1.5;	# Scale for the info text
+map(jayframedisplay_textScale) := 0.333;	# Scale for the info text
 map(jayframedisplay_textLayer) := 1;		# Layer for the info text
 
 map(jayframedisplay_textPlusR) := 128;		# Red value for the info text (+oB)
@@ -79,7 +79,7 @@ map(jayframedisplay_textMinusB) := 176;		# Blue value for the info text (-oB)
 # ==================================
 
 # Spawn helper
-ignoreHitPause if (!isHelper && roundState = 2 && playerNo = teamLeader && map(jayframedisplay_enable) = 1 && gameMode = "training") {
+ignoreHitPause if (!isHelper && (teamMode != Simul || teamMode = Simul && playerNo = teamSide) && roundState = 2 && playerNo = teamLeader && map(jayframedisplay_enable) = 1 && gameMode = "training") {
 	if (!numHelper(123123619)) {
 		helper{
 			name: "Frame Display";
@@ -93,19 +93,19 @@ ignoreHitPause if (!isHelper && roundState = 2 && playerNo = teamLeader && map(j
 			pauseMoveTime: -1;
 		}
 	}
-	
-	# Detect projectile (credit to Inktrebuchet for concept)
-	if (!numHelper(123123316)) {
-		helper{
-			name: "Proj Detector";
-			id: 123123316;
-			stateno: 123123316;
-			pos: 0,0;
-			postype: P1;
-			facing: 1;
-			superMoveTime: -1;
-			pauseMoveTime: -1;
-		}
+}
+
+# Detect projectile (credit to Inktrebuchet for concept)
+if (!numHelper(123123316)) {
+	helper{
+		name: "Proj Detector";
+		id: 123123316;
+		stateno: 123123316;
+		pos: 0,0;
+		postype: P1;
+		facing: 1;
+		superMoveTime: -1;
+		pauseMoveTime: -1;
 	}
 }
 
@@ -117,8 +117,8 @@ ignoreHitPause if (!isHelper && roundState = 2 && playerNo = teamLeader && map(j
 ignoreHitPause {
 	let wide = (screenHeight/240);
 	let isWide = (screenWidth / screenHeight != 1.33333333);
-	let isHurt = (parent, moveType = H) || ((parent, stateNo = [5000,5999]) && !(parent, ctrl));
-	let isAtk = (parent, moveType = A) || (parent, stateNo = map(atkState)) || ((enemyNear, moveType = H) || ((enemyNear, stateNo = [5000,5999]) && !(enemyNear, ctrl))) || ((parent, prevMoveType = A) && (parent, moveType = I) && (parent, ctrl = 0));
+	let isHurt = (parent, moveType = H) || ((parent, moveType != A) && !(parent, ctrl));
+	let isAtk = (parent, moveType = A) || (parent, stateNo = map(atkState)) || ((enemyNear, moveType = H) || ((enemyNear, moveType != A) && !(enemyNear, ctrl))) || ((parent, prevMoveType = A) && (parent, moveType = I) && (parent, ctrl = 0));
 	let isMv = (parent, stateNo = [40,52]) || (parent, stateNo = [100,106]);
 	map(projData) := parent, map(jayframedisplay_projData);
 	
