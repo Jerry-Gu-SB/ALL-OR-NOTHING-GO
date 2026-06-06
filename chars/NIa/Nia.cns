@@ -636,8 +636,8 @@ ground.type = High
 ground.slidetime = 12
 ground.hittime = 14
 air.hittime = 12
-ground.velocity = -10,-15
-air.velocity = -7,-15
+ground.velocity = -4,-12
+air.velocity = -3,-12
 down.velocity = -4,-6
 airguard.velocity = -6,-2
 fall.xvelocity = 0
@@ -1826,7 +1826,7 @@ fvar(1) = -.1
 type = VelSet
 trigger1 = animtime = 0
 x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
-y = ifelse(!var(1),const(velocity.jump.y),-45)
+y = ifelse(!var(1),const(velocity.jump.y),-13)
 
 [State 40, VelSet]
 type = VelSet
