@@ -830,6 +830,11 @@ type = VarSet
 trigger1 = Time = 0
 sysvar(1) = floor(vel y)
 
+[State 611, Pos Set]
+type = PosSet
+trigger1 = 1
+y = 0
+
 [State 611, 2] ;Hit ground anim (normal)
 type = ChangeAnim
 triggerall = time = 0
