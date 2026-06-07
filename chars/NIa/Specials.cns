@@ -49,7 +49,7 @@ y = -4
 [State 1200, Vel]
 type = velset
 trigger1 = anim = 1001 && animelem =3
-x = 23
+x = 14
 
 [State 1200, Vel]
 type = velset
