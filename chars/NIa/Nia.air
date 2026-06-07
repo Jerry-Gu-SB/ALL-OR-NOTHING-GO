@@ -2001,7 +2001,7 @@ Clsn2Default: 1
 
 ; Reversal Spark
 [Begin Action 8020]
-8020,0, 0,0, 1,, A
+8020,0, 0,0, 1, , A, 0.3,0.3
 
 ; Jump Dust
 [Begin Action 8100]

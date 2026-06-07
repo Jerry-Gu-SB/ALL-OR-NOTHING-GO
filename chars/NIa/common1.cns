@@ -2193,8 +2193,8 @@ ampl = 5
 type = Explod
 trigger1 = 1
 anim = 8020
-scale = .75,.75
-pos = 50,-300
+scale = 1, 1
+pos = 25, -80
 sprpriority = 4
 ownpal = 1
 
@@ -2244,8 +2244,8 @@ ampl = 5
 type = Explod
 trigger1 = 1
 anim = 8020
-scale = .75,.75
-pos = 50,-150
+scale = 1, 1
+pos = 25, -10
 sprpriority = 4
 ownpal = 1
 
