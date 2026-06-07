@@ -234,13 +234,14 @@ y = 0
 [State 1100, Velocity]
 type = VelSet
 trigger1 = AnimElem = 3
-x = 58.5
-y= -8
+x = 23
+y= -4
 [State 1200, Vel]
 type = velset
 trigger1 = time >= 21
-x = 4
-y = 27
+x = 2
+y = 14
+
 [State 1200, 1]
 type = HitDef
 trigger1 = AnimElem = 3
@@ -253,7 +254,7 @@ priority = 6,Hit
 pausetime= 12,12
 sparkNo= s8010
 guard.sparkNo=-1 + 0 * (var(34) := 8000)
-sparkXY=-100 + 0 * (var(35) := 200), var(36):=-160
+sparkXY=-1 + 0 * (var(35) := 200), var(36):=-50
 hitsound   = S1,26
 guardsound = S2,0
 damage = 0,25
@@ -342,8 +343,8 @@ time = -1
 [State 1100, Velocity]
 type = VelSet
 trigger1 = Time = 0
-x = 120
-y = -8
+x = 60
+y = -4
 
 [State 3100, VelAdd]
 type = veladd
@@ -404,7 +405,7 @@ priority = 5,Hit
 pausetime = 0,1
 sparkNo= s8010
 guard.sparkNo=-1 + 0 * (var(34) := 8000)
-sparkXY=-1 + 0 * (var(35) := 200), var(36):=-75
+sparkXY=-1 + 0 * (var(35) := 200), var(36):=-50
 hitsound = S0,17
 guardsound =-1
 damage= 120
