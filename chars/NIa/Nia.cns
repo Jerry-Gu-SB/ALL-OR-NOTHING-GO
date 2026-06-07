@@ -514,7 +514,7 @@ pausetime = 7,8
 guard.pausetime = 7,8
 sparkNo= s8010
 guard.sparkNo=-1 + 0 * (var(34) := 8000)
-sparkXY=-1 + 0 * (var(35) := 200), var(36):= -100
+sparkXY= -1 + 0 * (var(35) := 200), var(36):= -100
 hitsound = S1,26
 guardsound = S6,0
 ground.type = High
@@ -630,7 +630,7 @@ pausetime = 7,8
 guard.pausetime = 7,8
 sparkNo= s8010
 guard.sparkNo=-1 + 0 * (var(34) := 8000)
-sparkXY=-100 + 0 * (var(35) := 200), var(36):=-160
+sparkXY=-1 + 0 * (var(35) := 200), var(36):=-50
 hitsound = S1,26
 guardsound = S6,0
 ground.type = High
