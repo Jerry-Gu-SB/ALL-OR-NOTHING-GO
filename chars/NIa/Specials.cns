@@ -38,24 +38,24 @@ physics = N
 [State 1200, Vel]
 type = velset
 trigger1 = anim = 1000 && animelem = 1
-x = -2.5
+x = -1
 
 [State 1200, Vel]
 type = velset
 trigger1 = anim = 1001
-x = 47
-y = -8
+x = 23
+y = -4
 
 [State 1200, Vel]
 type = velset
 trigger1 = anim = 1001 && animelem =3
-x = 47
+x = 23
 
 [State 1200, Vel]
 type = velset
 trigger1 = anim = 1001 && time >= 18
-x = 19
-y = 17
+x = 10
+y = 8
 
 [State 210, HitDef]
 type = HitDef
@@ -71,7 +71,7 @@ pausetime = 8,8
 guard.pausetime = 12,12
 sparkNo= s8010
 guard.sparkNo=-1 + 0 * (var(34) := 8000)
-sparkXY=-100 + 0 * (var(35) := 200), var(36):=-160
+sparkXY=-1 + 0 * (var(35) := 200), var(36):=-50
 hitsound = S1,26
 guardsound = S6,0
 ground.type = Low
@@ -404,7 +404,7 @@ priority = 5,Hit
 pausetime = 0,1
 sparkNo= s8010
 guard.sparkNo=-1 + 0 * (var(34) := 8000)
-sparkXY=-100 + 0 * (var(35) := 200), var(36):=-160
+sparkXY=-1 + 0 * (var(35) := 200), var(36):=-75
 hitsound = S0,17
 guardsound =-1
 damage= 120

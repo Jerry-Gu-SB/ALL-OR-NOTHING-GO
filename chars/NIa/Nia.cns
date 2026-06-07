@@ -716,6 +716,7 @@ anim = 610
 sprpriority = 2
 poweradd = 50
 juggle = 1
+
 [State 610, PlaySnd]
 type = PlaySnd
 trigger1 = time = 0
