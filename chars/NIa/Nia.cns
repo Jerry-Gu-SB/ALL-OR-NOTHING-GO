@@ -1,10 +1,10 @@
 [Data]
-life = 1000
+life = 18000
 attack = 100
 defence = 100
 fall.defence_up = 50
-liedown.time = 60
-airjuggle = 18
+liedown.time = 30
+airjuggle = 15
 sparkno = 2
 guard.sparkno = 40
 KO.echo = 0
@@ -174,7 +174,7 @@ attr = S,NA
 hitflag = MAF
 guardflag = M
 animtype = Light
-damage = 31,0
+damage = 600,0
 getpower = 20,0
 givepower = 20,0
 pausetime = 10,10
@@ -248,7 +248,7 @@ attr = S,NA
 hitflag = MAF
 guardflag = M
 animtype = Medium
-damage = 36,0
+damage = 1400,0
 getpower = 30,0
 givepower = 20,0
 pausetime = 12,12
@@ -280,76 +280,6 @@ trigger1 = animtime = 0
 value = 0
 ctrl = 1
 
-
-;Light Kick
-[Statedef 230]
-type = S
-movetype= A
-physics = S
-ctrl = 0
-anim = 230
-velset = 0,0
-sprpriority = 2
-poweradd = 20
-juggle = 1
-
-[State 230, PlaySnd]
-type = PlaySnd
-trigger1 = time = 0
-value = 0,3
-
-[State 230, VelSet]
-type = VelSet
-trigger1 = time = 0
-trigger1 = prevstateno = 20
-x = 0
-
-[State 230, Explod]
-type = Explod
-trigger1 = abs(vel x) > 1 && time % 3 = 0
-anim = 8200
-scale = 2,2
-pos = -20,0
-sprpriority = 4
-ownpal = 1
-
-[State 230, HitDef]
-type = HitDef
-trigger1 = !time
-attr = S,NA
-hitflag = MAF
-guardflag = MA
-animtype = Light
-damage = 31,0
-getpower = 20,0
-givepower = 20,0
-pausetime = 7,8
-guard.pausetime = 7,8
-sparkno = S8000
-guard.sparkno = S8050
-sparkxy = -10, -35* const(size.yscale)
-hitsound = S5,0
-guardsound = S6,0
-ground.type = Low
-ground.slidetime = 8
-ground.hittime = 10
-air.hittime = 8
-yaccel = .53
-ground.velocity = -3.5,0
-ground.cornerpush.veloff = -6.5
-air.velocity = -4,-1
-airguard.velocity = -6,-2
-fall.xvelocity = 0
-fall.yvelocity = -2
-air.fall = 1
-fall.recover = 0
-id = 1
-
-[State 230, ChangeState]
-type = ChangeState
-trigger1 = animtime = 0
-value = 0
-ctrl = 1
 
 ;Heavy Kick
 [Statedef 240]
@@ -391,11 +321,11 @@ attr = S,NA
 hitflag = MAF
 guardflag = MA
 animtype = Medium
-damage = 36,0
+damage = 900,0
 getpower = 30,0
 givepower = 20,0
-pausetime = 7,8
-guard.pausetime = 7,8
+pausetime = 8,8
+guard.pausetime = 8,8
 sparkno = S8001
 guard.sparkno = S8050
 sparkxy = -10, -65* const(size.yscale)
@@ -445,7 +375,7 @@ attr = C,NA
 hitflag = MAF
 guardflag = L
 animtype = Light
-damage = 31,0
+damage = 400,0
 getpower = 20,0
 givepower = 20,0
 pausetime = 10,10
@@ -507,11 +437,11 @@ attr = C,NA
 hitflag = MAF
 guardflag = M
 animtype = Medium
-damage = 36,0
+damage = 900,0
 getpower = 30,0
 givepower = 20,0
-pausetime = 7,8
-guard.pausetime = 7,8
+pausetime = 8,8
+guard.pausetime = 8,8
 sparkNo= s8010
 guard.sparkNo=-1 + 0 * (var(34) := 8000)
 sparkXY= -1 + 0 * (var(35) := 200), var(36):= -100
@@ -521,7 +451,7 @@ ground.type = High
 ground.slidetime = 14
 ground.hittime = 20
 air.hittime = 20
-ground.velocity = -6,-7
+ground.velocity = -2,-4
 air.velocity = -2,-7
 airguard.velocity = -6,-2
 fall = 1
@@ -618,12 +548,12 @@ x = 3
 
 [State 440, HitDef]
 type = HitDef
-trigger1 = time = 0
+trigger1 = !time
 attr = C,NA
 hitflag = MAFD
 guardflag = LA
 animtype = Medium
-damage = 37,0
+damage = 950,0
 getpower = 30,0
 givepower = 20,0
 pausetime = 7,8
@@ -637,8 +567,8 @@ ground.type = High
 ground.slidetime = 12
 ground.hittime = 14
 air.hittime = 12
-ground.velocity = -4,-12
-air.velocity = -3,-12
+ground.velocity = -1,-6
+air.velocity = -2,-5
 down.velocity = -4,-6
 airguard.velocity = -6,-2
 fall.xvelocity = 0
@@ -683,7 +613,7 @@ attr = A,NA
 hitflag = MAF
 guardflag = HA
 animtype = Light
-damage = 30,0
+damage = 600,0
 getpower = 20,0
 givepower = 20,0
 pausetime = 8,7
@@ -699,8 +629,8 @@ ground.hittime = 16 + 2 * var(9)
 air.hittime = 12
 ground.velocity = -3.5,0
 ground.cornerpush.veloff = -8
-air.velocity = 0,-9
-airguard.velocity = -6,-2
+air.velocity = 0,-3
+airguard.velocity = -3,-2
 fall.xvelocity = 0
 fall.yvelocity = -2
 air.fall = 1
@@ -738,7 +668,7 @@ value = 1
 [State 5050, 3] ;Gravity
 type = VelAdd
 trigger1 = 1
-y = .6
+y = .4
 
 [State 610, ChangeState]
 type = ChangeState
@@ -753,7 +683,7 @@ attr = A,NA
 hitflag = MAF
 guardflag = HA
 animtype = Medium
-damage = 36,0
+damage = 800,0
 getpower = 30,0
 givepower = 20,0
 pausetime = 8,7
@@ -1463,7 +1393,7 @@ attr = S,NA
 hitflag = MAF
 guardflag = M
 animtype = Medium
-damage = 36,0
+damage = 2500,0
 getpower = 30,0
 givepower = 20,0
 pausetime = 12,12
@@ -1560,7 +1490,7 @@ attr = S,NA
 hitflag = MAF
 guardflag = M
 animtype = Medium
-damage = 36,0
+damage = 2500,0
 getpower = 30,0
 givepower = 20,0
 pausetime = 12,12
