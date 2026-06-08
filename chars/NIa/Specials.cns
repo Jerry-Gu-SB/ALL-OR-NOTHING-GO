@@ -43,18 +43,18 @@ x = -1
 [State 1200, Vel]
 type = velset
 trigger1 = anim = 1001
-x = 23
+x = 10
 y = -4
 
 [State 1200, Vel]
 type = velset
 trigger1 = anim = 1001 && animelem =3
-x = 14
+x = 5
 
 [State 1200, Vel]
 type = velset
 trigger1 = anim = 1001 && time >= 18
-x = 10
+x = 3
 y = 8
 
 [State 210, HitDef]
@@ -95,6 +95,8 @@ type = ChangeState
 trigger1 = time >= 13 && pos y > 0
 value = 1001
 ctrl = 0
+
+
 
 ;EX Lariat (reuse from original code)
 [Statedef 1019]
@@ -234,7 +236,7 @@ y = 0
 [State 1100, Velocity]
 type = VelSet
 trigger1 = AnimElem = 3
-x = 23
+x = 19
 y= -4
 [State 1200, Vel]
 type = velset
@@ -578,3 +580,5 @@ type = ChangeState
 trigger1 = anim = 1002 && !animtime
 value = 50
 ctrl = 1
+
+
