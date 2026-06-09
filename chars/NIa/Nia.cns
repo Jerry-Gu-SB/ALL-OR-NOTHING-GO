@@ -772,6 +772,11 @@ triggerall = time = 0
 trigger1 = 1
 value = 611
 
+[State 620, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = 1,6
+
 [State 611,2]
 type = ChangeState
 trigger1 = animtime = 0
