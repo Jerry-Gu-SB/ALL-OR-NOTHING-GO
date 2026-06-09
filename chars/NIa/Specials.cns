@@ -218,6 +218,7 @@ ctrl = 0
 anim = 1003
 poweradd=0
 juggle = 1
+
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 = animelem = 1
@@ -468,6 +469,10 @@ sprpriority = 2
 poweradd = 50
 juggle = 1
 
+[State 1001, Position]
+type = PosSet
+trigger1 = time = 0
+y = 0
 
 [State 200, ChangeState]
 type = ChangeState
@@ -522,13 +527,13 @@ y = 0
 [State 1200, Vel]
 type = velset
 trigger1 = anim = 1002
-x = 29
-y = -12
+x = 10
+y = -4
 [State 1200, Vel]
 type = velset
 trigger1 = movehit
-x =19
-y = -12
+x =6
+y = -4
 
 [State 210, HitDef]
 type = HitDef
