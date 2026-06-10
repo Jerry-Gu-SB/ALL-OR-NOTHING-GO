@@ -15,8 +15,8 @@ FloatPersistIndex = 40
 [Size]
 xscale = 0.20         ;Horizontal scaling factor.
 yscale = 0.20
-ground.back = 15     ;Player width (back, ground)
-ground.front = 16    ;Player width (front, ground)
+ground.back = 11     ;Player width (back, ground)
+ground.front = 11    ;Player width (front, ground)
 air.back = 12        ;Player width (back, air)
 air.front = 12       ;Player width (front, air)
 height = 60          ;Height of player (for opponent to jump over)
@@ -201,7 +201,8 @@ airguard.velocity = -6,-2
 fall.xvelocity = 0
 fall.yvelocity = -2
 air.fall = 1
-fall.recover = 0
+fall.recover = 1
+fall.recovertime = 3
 id = 1
 
 [State 200, ChangeState]
@@ -271,7 +272,8 @@ airguard.velocity = -6,-2
 fall.xvelocity = 0
 fall.yvelocity = -2
 air.fall = 1
-fall.recover = 0
+fall.recover = 1
+fall.recovertime = 3
 id = 1
 
 [State 210, ChangeState]
@@ -280,76 +282,6 @@ trigger1 = animtime = 0
 value = 0
 ctrl = 1
 
-
-;Heavy Kick
-[Statedef 240]
-type = S
-movetype= A
-physics = S
-ctrl = 0
-anim = 240
-velset = 0,0
-sprpriority = 2
-poweradd = 50
-juggle = 1
-
-[State 210, PlaySnd]
-type = PlaySnd
-trigger1 = time = 0
-value = 0,4
-
-
-[State 210, VelSet]
-type = VelSet
-trigger1 = time = 0
-trigger1 = prevstateno = 20
-x = 0
-
-[State 210, Explod]
-type = Explod
-trigger1 = abs(vel x) > 1 && time % 3 = 0
-anim = 8200
-scale = 2,2
-pos = -20,0
-sprpriority = 4
-ownpal = 1
-
-[State 210, HitDef]
-type = HitDef
-trigger1 = !time
-attr = S,NA
-hitflag = MAF
-guardflag = MA
-animtype = Medium
-damage = 900,0
-getpower = 30,0
-givepower = 20,0
-pausetime = 8,8
-guard.pausetime = 8,8
-sparkno = S8001
-guard.sparkno = S8050
-sparkxy = -10, -65* const(size.yscale)
-hitsound = S5,1
-guardsound = S6,0
-ground.type = Low
-ground.slidetime = 12
-ground.hittime = 14
-air.hittime = 12
-yaccel = .53
-ground.velocity = -6,0
-air.velocity = -2,-6
-airguard.velocity = -6,-2
-fall.xvelocity = 0
-fall.yvelocity = -2
-air.fall = 1
-fall.recover = 0
-id = 1
-
-[State 210, ChangeState]
-type = ChangeState
-trigger1 = animtime = 0
-value = 0
-ctrl = 1
 
 ;Crouching Light Punch
 [Statedef 400]
@@ -400,7 +332,8 @@ airguard.velocity = -6,-2
 fall.xvelocity = 0
 fall.yvelocity = -2
 air.fall = 1
-fall.recover = 0
+fall.recover = 1
+fall.recovertime = 3
 id = 1
 
 [State 400, ChangeState]
@@ -455,7 +388,8 @@ ground.velocity = -2,-4
 air.velocity = -2,-7
 airguard.velocity = -6,-2
 fall = 1
-fall.recover = 0
+fall.recover = 20
+fall.recovertime = 3
 
 
 [State 0, Saltar]
@@ -470,61 +404,6 @@ trigger1 = animtime = 0
 value = 11
 ctrl = 1
 
-;Light Crouching Kick
-[Statedef 430]
-type = C
-movetype= A
-physics = C
-ctrl = 0
-anim = 450
-velset = 0,0
-sprpriority = 2
-poweradd = 20
-
-[State 430, PlaySnd]
-type = PlaySnd
-trigger1 = time = 0
-value = 0,3
-
-[State 430, HitDef]
-type = HitDef
-trigger1 = time = 0
-attr = C,NA
-hitflag = MAFD
-guardflag = LA
-animtype = Light
-damage = 31,0
-getpower = 20,0
-givepower = 20,0
-pausetime = 7,8
-guard.pausetime = 7,8
-sparkNo= s8010
-guard.sparkNo=-1 + 0 * (var(34) := 8000)
-sparkXY=-100 + 0 * (var(35) := 200), var(36):=-160
-hitsound = S1,19
-guardsound = S6,0
-ground.type = Low
-ground.slidetime = 8
-ground.hittime = 10
-air.hittime = 8
-yaccel = .53
-ground.velocity = -3.5,0
-ground.cornerpush.veloff = -6.5
-air.velocity = -4,-1
-down.velocity = -4,-6
-airguard.velocity = -6,-2
-fall.xvelocity = 0
-fall.yvelocity = -2
-air.fall = 1
-fall.recover = 0
-id = 1
-
-[State 430, ChangeState]
-type = ChangeState
-trigger1 = animtime = 0
-value = 11
-ctrl = 1
- 
 ;Heavy Crouching Kick
 [Statedef 440]
 type = C
@@ -576,6 +455,7 @@ fall.yvelocity = -2
 air.fall = 1
 fall = 1
 fall.recover = 0
+
 
 [State 440, ChangeState]
 type = ChangeState
@@ -708,6 +588,7 @@ fall.xvelocity = 0
 fall.yvelocity = -2
 air.fall = 1
 fall.recover = 0
+fall.recovertime = 16
 id = 1
 
 [State 610, HitDef]
