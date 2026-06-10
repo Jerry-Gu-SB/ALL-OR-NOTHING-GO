@@ -1186,7 +1186,7 @@ var(19)=-1
 [State 805, Bind 1]
 type = targetbind
 trigger1 = animelemtime(3) < 0
-pos = ceil(50 * const(size.xscale)), 0
+pos = ceil(30 * const(size.xscale)), 0
 [State 805, Bind 2]
 type = targetbind
 trigger1 = animelemtime(3) >= 0 && animelemtime(3) < 0
@@ -1319,8 +1319,8 @@ guard.slidetime = 12
 ground.hittime = 18
 guard.hittime =12
 air.hittime = 18
-ground.velocity = -13,-2
-air.velocity = -13,--2
+ground.velocity = -3,-2
+air.velocity = -3,-2
 airguard.velocity = -6,-2
 fall = 1
 air.fall = 1
@@ -1329,7 +1329,7 @@ id = 1
 [State 810, Width 2-11]
 type = Width
 trigger1 = AnimElemTime(5) >= 0 && AnimElemTime(8) < 0
-edge = 240,0
+edge = 35,0
 
 [State 810, State End]
 type = ChangeState
@@ -1416,8 +1416,8 @@ guard.slidetime = 12
 ground.hittime = 18
 guard.hittime =12
 air.hittime = 18
-ground.velocity = 13,-2
-air.velocity = 13,-2
+ground.velocity = 6,-2
+air.velocity = 6,-2
 airguard.velocity = -6,-2
 fall = 1
 air.fall = 1
@@ -1426,7 +1426,7 @@ fall.recover = 0
 [State 810, Width 2-11]
 type = Width
 trigger1 = AnimElemTime(5) >= 0 && AnimElemTime(8) < 0
-edge = 240,0
+edge = -35,0
 
 [State 810, State End]
 type = ChangeState
