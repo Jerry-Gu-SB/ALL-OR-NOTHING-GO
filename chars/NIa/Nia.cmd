@@ -393,7 +393,7 @@ trigger1 = statetype = S && ctrl
 trigger2 = stateno = 101
 trigger3 = stateno = 200 && movecontact
 trigger4 = (stateno = [230,240])&& movecontact
-trigger5 = (stateno = [400,450])&& movecontact
+trigger5 = (stateno = [400,410])&& movecontact
 
 ;Stand Light Kick
 [State -1]
@@ -430,7 +430,6 @@ value = 410
 triggerall = command = "y" 
 trigger1 = statetype = C && ctrl
 trigger2 = (stateno = [200,409])&& movecontact
-trigger3 = (stateno = [430,440])&& movecontact
 
 ;Crouch Light Kick
 [State -1]

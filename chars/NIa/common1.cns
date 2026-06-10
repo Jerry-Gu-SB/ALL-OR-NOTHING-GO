@@ -403,6 +403,14 @@ ctrl = 1
 
 ;---------------------------------------------------------------------------
 ; Run forward
+[Remap]
+x = x
+y = y
+z = z
+a = a
+b = b
+c = c
+s = s
 [Statedef 100]
 type    = S
 physics = S

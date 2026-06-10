@@ -585,5 +585,81 @@ type = ChangeState
 trigger1 = anim = 1002 && !animtime
 value = 50
 ctrl = 1
+;----------------------------------------------
 
+;light command grab
+[Statedef 1600]
+type = S
+movetype = A
+physics = S
+anim = 1600
+ctrl = 0
+velset = 0,0
+sprpriority = 2
 
+[State 1, ]
+type = velset
+trigger1 = animelemtime(2) < 0
+x = 0
+y = 0
+
+[State 806, NotHitBy]
+type = NotHitBy
+trigger1 = Time = [0,2]
+value = ,NT, ST, HT
+time=1
+
+[State 200, 2]
+type = statetypeset
+trigger1 = animelem = 3
+statetype = A
+
+[State 1, ]
+type = veladd
+trigger1 = animelem = 3
+y = -3
+
+[State 1, ]
+type = velset
+trigger1 = animelemtime(3) > 0
+x = 5
+
+[State 1, ]
+type = veladd
+trigger1 = animelemtime(4) > 0
+y = 0.5
+
+[State 1001, Position]
+type = PosSet
+trigger1 = animelemtime(6) > 0
+y = 0
+
+[State 1600, 1]
+type = HitDef
+trigger1 = !movecontact && !movereversed
+triggerall = enemynear,movetype = H
+attr = S, ST         
+hitflag = M-
+guardflag = MA     
+guard.pausetime = 10,10  
+priority = 1, Miss    
+sparkno = -1        
+sparkxy = 0,-50
+guardsound = S6, 0   
+p1sprpriority = 1     
+p1facing = 1          
+p1stateno = 1601       
+p2stateno = 1602            
+fall = 1  
+fall.recover = 0
+
+[State 1001, Position]
+type = PosSet
+trigger1 = animelemtime(6) > 0
+y = 0
+
+[State 810, State End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
