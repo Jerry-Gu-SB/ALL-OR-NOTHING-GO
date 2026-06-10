@@ -242,6 +242,13 @@ type = velset
 trigger1 = animelem=3
 x = 3
 
+[State 610, Camera Shake]
+type = EnvShake
+trigger1 = !time
+time = 10
+freq = 10
+ampl = 2
+
 [State 210, HitDef]
 type = HitDef
 trigger1 = !time
@@ -275,6 +282,7 @@ air.fall = 1
 fall.recover = 1
 fall.recovertime = 3
 id = 1
+
 
 [State 210, ChangeState]
 type = ChangeState
@@ -363,6 +371,13 @@ type = velset
 trigger1 = animelem=2
 x = 3.5
 
+[State 610, Camera Shake]
+type = EnvShake
+trigger1 = !time
+time = 10
+freq = 10
+ampl = 2
+
 [State 410, HitDef]
 type = HitDef
 trigger1 = !time
@@ -424,6 +439,13 @@ value = 0,4
 type = velset
 trigger1 = animelem=2
 x = 3
+
+[State 610, Camera Shake]
+type = EnvShake
+trigger1 = !time
+time = 10
+freq = 10
+ampl = 2
 
 [State 440, HitDef]
 type = HitDef
@@ -1215,6 +1237,7 @@ type=SelfState
 trigger1=Time >= 60
 value=Ifelse(pos y < 0, 5040, 0)
 ctrl=1
+
 ;Forward Throw Hit
 [Statedef 810]
 type    = S
@@ -1271,7 +1294,8 @@ ignorehitpause = 1
 [State 810, Bind 1]
 type = TargetBind
 trigger1 = AnimElemTime(5) < 0
-pos = 112, 0
+pos = 38, 0
+
 [State 210, HitDef]
 type = HitDef
 trigger1 = Time = 0
@@ -1368,7 +1392,7 @@ ignorehitpause = 1
 [State 810, Bind 1]
 type = TargetBind
 trigger1 = AnimElemTime(5) < 0
-pos = -112, 0
+pos = -38, 0
 [State 210, HitDef]
 type = HitDef
 trigger1 = Time = 0 
