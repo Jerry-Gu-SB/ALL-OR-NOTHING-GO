@@ -1818,6 +1818,39 @@ type = PlaySnd
 trigger1 = time = 0
 value = 0,1
 
+[State 6061, Effect]
+type = Explod
+trigger1 = animelem = 2
+anim = 8104
+scale = 0.22,0.22
+postype = p1
+facing = 1
+pos = 60,0
+sprpriority = 3
+ownpal = 1
+removeongethit = 1
+pausemovetime = 99999
+supermovetime = 99999
+ignorehitpause = 1
+persistent = 0
+bindtime = 0
+
+[State 6061, Effect]
+type = Explod
+trigger1 = animelem = 2
+anim = 8100
+scale = 0.80,0.80
+postype = p1
+facing = 1
+pos = 43,0
+sprpriority = 3
+ownpal = 1
+removeongethit = 1
+pausemovetime = 99999
+supermovetime = 99999
+ignorehitpause = 1
+persistent = 0
+bindtime = 0
 
 [State 106, ChangeState]
 type = ChangeState
@@ -1834,6 +1867,7 @@ sprpriority = 1
 velset = 0,0
 ctrl = 0
 
+
 [State 105, ChangeState]
 type = ChangeState
 trigger1 = 1
@@ -1845,7 +1879,6 @@ physics = N
 anim = 106
 sprpriority = 1
 velset = const(velocity.run.back.x),0
-
 
 
 [State 106, VelMul]
@@ -1883,6 +1916,7 @@ sprpriority = 1
 type = PlaySnd
 trigger1 = time = 0
 value = 0,0
+
 
 [State 107, ChangeState]
 type = ChangeState
