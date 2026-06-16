@@ -33,7 +33,7 @@ draw.offset = 0,0    ;Player drawing offset in pixels (x, y). Recommended 0,0
 walk.fwd  = 2.4      ;Walk forward
 walk.back = -2.4     ;Walk backward
 run.fwd  = 7.0, 0   ;Run forward (x, y)
-run.back = -5.5,-2.2 ;Hop backward (x, y)
+run.back = -6,0 ;Hop backward (x, y)
 jump.neu = 0,-10.55
 jump.back = -2.5
 jump.fwd = 2.5
@@ -1792,7 +1792,7 @@ trigger1 = animtime = 0
 value = 0
 ctrl = 1
 
- ;RUN_FWD 	
+;RUN_FWD 	
 [Statedef 100] 
 type    = S
 physics = S
@@ -1867,6 +1867,10 @@ sprpriority = 1
 velset = 0,0
 ctrl = 0
 
+[State 105, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = 0,1
 
 [State 105, ChangeState]
 type = ChangeState
@@ -1876,51 +1880,34 @@ value = 106
 [Statedef 106] 
 type    = S
 physics = N
-anim = 106
+anim = 105
 sprpriority = 1
 velset = const(velocity.run.back.x),0
 
+[State 106, Invul]
+Type = NotHitBy
+Trigger1 = Time < 9
+Value = , ST, HT, NA, SA, HA, NP, SP, HP
+Time = 1
 
-[State 106, VelMul]
-type = VelMul
-trigger1 = 1
-x = .98
+[State 106, VelSet]
+type = VelSet
+trigger1 = Time < 8
+x = -5
 
-[State 106, VarAdd]
-type = VarSet
-trigger1 = 1
-fvar(2) = const(velocity.run.back.y)
+[State 106, VelSet]
+type = VelSet
+trigger1 = Time = 16
+x = -2
 
-[State 106, VarSet]
-type = VarAdd
-trigger1 = 1
-fvar(2) = const(velocity.run.back.y)*time+.26*time*time
+[State 106, VelSet]
+type = VelSet
+trigger1 = Time = 28
+x = 0
 
-[State 106, OffSet]
-type = OffSet
-trigger1 = 1
-y = ceil(fvar(2))
-
-[State 106, ChangeState]
+[State 106, End]
 type = ChangeState
-trigger1 = fvar(2) >= 0
-value = 107
- 
-[Statedef 107] 
-type    = S
-physics = S
-anim = 47
-sprpriority = 1
-
-[State 107, PlaySnd]
-type = PlaySnd
-trigger1 = time = 0
-value = 0,0
-
-
-[State 107, ChangeState]
-type = ChangeState
-trigger1 = animtime = 0
+trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
