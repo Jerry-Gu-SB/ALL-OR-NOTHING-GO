@@ -592,6 +592,7 @@ ctrl = 1
 type = S
 movetype = A
 physics = S
+juggle  = 1
 anim = 1600
 ctrl = 0
 velset = 0,0
@@ -599,15 +600,14 @@ sprpriority = 2
 
 [State 1, ]
 type = velset
-trigger1 = animelemtime(2) < 0
+trigger1 = animelemtime(3) < 0
 x = 0
 y = 0
 
-[State 806, NotHitBy]
-type = NotHitBy
-trigger1 = Time = [0,2]
-value = ,NT, ST, HT
-time=1
+[State 1, ]
+type = nothitby
+trigger1 = 1
+value = ,AT
 
 [State 200, 2]
 type = statetypeset
@@ -637,7 +637,8 @@ y = 0
 [State 1600, 1]
 type = HitDef
 trigger1 = !movecontact && !movereversed
-triggerall = enemynear,movetype = H
+triggerall = enemynear,movetype != A
+triggerall = enemynear,movetype != H
 attr = S, ST         
 hitflag = M-
 guardflag = MA     
@@ -648,17 +649,226 @@ sparkxy = 0,-50
 guardsound = S6, 0   
 p1sprpriority = 1     
 p1facing = 1          
-p1stateno = 1601       
-p2stateno = 1602            
+p1stateno = 1602      
+p2stateno = 1603            
 fall = 1  
 fall.recover = 0
 
-[State 1001, Position]
-type = PosSet
-trigger1 = animelemtime(6) > 0
-y = 0
+[State 1000, 1]
+type = HitDef
+trigger1 = !movecontact && !movereversed
+triggerall = enemynear,movetype = H
+attr = S, ST         
+hitflag = MAFD
+guardflag = MA     
+guard.pausetime = 10,10  
+priority = 1, Miss    
+sparkno = -1        
+sparkxy = 0,-50
+guardsound = S6, 0   
+p1sprpriority = 1     
+p1facing = 1          
+p1stateno = 1602       
+p2stateno = 1603            
+fall = 1  
+fall.recover = 0
+
+[State 1000, 1]
+type = HitDef
+trigger1 = !movecontact && !movereversed
+triggerall = enemynear,movetype = A
+damage = ceil(10),0
+attr = S, ST         
+hitflag = MAFD
+guardflag =         
+guard.pausetime = 10,10  
+priority = 1, Miss    
+sparkno = -1        
+sparkxy = 0,-50
+guardsound = S6, 0   
+p1sprpriority = 1     
+p1facing = 1          
+p1stateno = 1602       
+p2stateno = 1603            
+fall = 1   
+kill = 0
+fall.recover = 0
+
+
+[State 1300, 6]
+type = ChangeState
+trigger1 = animelemtime(4) > 16
+trigger1 = pos Y >= -10
+value = 1601
+
+[State 200, Damage Scaling]
+type = varset
+trigger1 = movehit
+trigger1 = !moveguarded
+fvar(4) = fvar(4)*0.84
+ignorehitpause = 1
+persistent = 0
+
+[State 1, ]
+type = veladd
+trigger1 = animelemtime(7) = 0
+x = -1
+
+[State 1, ]
+type = velmul
+trigger1 = animelemtime(7) > 0
+x = .99
 
 [State 810, State End]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+[Statedef 1602]
+type    = S
+movetype= A
+physics = N
+anim = 1602
+velset = 0,0
+poweradd = 0
+sprpriority = 3
+
+[State 1, ]
+type = posset
+trigger1 = !time
+y = 0
+
+[State 810, Grab Sound]
+type = PlaySnd
+trigger1 = time = 0
+value = 1, 6
+
+[State 810, Bind 1]
+type = TargetBind
+trigger1 = animelemtime(1) = 0
+pos = -34, -79
+
+[State 810, Bind 1]
+type = TargetBind
+trigger1 = animelemtime(2) = 0
+pos = -33, -86
+
+[State 810, Bind 1]
+type = TargetBind
+trigger1 = animelemtime(3) = 0
+pos = -26, -90
+
+[State 810, Bind 1]
+type = TargetBind
+trigger1 = animelemtime(4) = 0
+pos = -51, -89
+
+[State 810, Bind 1]
+type = TargetBind
+trigger1 = animelemtime(5) = 0
+pos = -51, -89
+
+[State 810, Bind 1]
+type = TargetBind
+trigger1 = animelemtime(6) = 0
+pos = -51, -89
+
+[State 810, Bind 1]
+type = TargetBind
+trigger1 = animelemtime(7) = 0
+pos = -19, -112
+
+[State 810, Bind 1]
+type = TargetBind
+trigger1 = animelemtime(8) = 0
+pos = -19, -112
+
+[State 800, 1]
+type = hitadd
+trigger1 = AnimElemTime(9) = 0
+value = 1
+
+[State 620, 3]
+type = HitDef
+trigger1 = prevstateno != 1010
+trigger1 = !movecontact && !movereversed
+attr = S, ST
+damage = ceil(500)
+hitflag = MAFD
+animtype =  Medium
+guardflag = 
+priority = 4
+pausetime = 6,6
+sparkno = 3
+sparkxy = -7,-150
+hitsound   = S5,4
+guardsound = S6,0
+ground.type = High
+ground.slidetime = 6
+ground.hittime  = 30
+ground.velocity = -4,-1
+air.velocity = -4,-1
+forcenofall = 1
+fall = 1
+fall.recover = 0
+
+[State 620, 3]
+type = HitDef
+nochainID = 8000
+trigger1 = prevstateno = 1010
+trigger1 = !movecontact && !movereversed
+attr = S, ST
+damage = ceil(600)
+hitflag = MAFD
+animtype = Medium
+guardflag = 
+priority = 4
+pausetime = 6,6
+sparkno = 3
+sparkxy = -7,-150
+hitsound   = S5,4
+guardsound = S6,0
+ground.type = High
+ground.slidetime = 6
+ground.hittime  = 30
+ground.velocity = -4,-1
+air.velocity = -4,-1
+forcenofall = 1
+fall = 1
+fall.recover = 0
+getpower = 0,0
+
+;---------------------------------------------------------------------------
+[Statedef 1601]
+type    = S
+physics = S
+ctrl = 0
+anim = 1006
+
+[State 1,]
+type = PlaySnd
+trigger1 = !time
+value = 40, 0
+
+[State 1, ]
+type = PlaySnd
+trigger1 = !time
+value = 801, 0+random%2
+channel = 0
+
+[State 52, 1]
+type = VelSet
+trigger1 = Time = 0
+y = 0
+
+[State 52, 2]
+type = PosSet
+trigger1 = Time = 0
+y = 0
+
+[State 52, 5]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
