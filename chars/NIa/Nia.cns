@@ -1747,6 +1747,17 @@ trigger1 = time = 0
 trigger1 = var(1)
 value = 0,2
 
+[State 50, 2]
+type = Explod
+trigger1 = time = 0
+anim = 8101
+pos = 3,6
+ownpal = 1
+ignorehitpause = 1
+persistent = 0
+sprpriority = 3
+scale = 0.5,0.4
+
 [State 50, VarSet]
 type = VarSet
 trigger1 = time = 0
@@ -1774,6 +1785,23 @@ var(4) = 0
 type = PlaySnd
 trigger1 = time = 0
 value = 0,0
+
+[State 52,]
+type = Explod
+trigger1 = animelem = 1
+anim = 8102
+scale = 0.70,0.70
+postype = p1
+facing = 1
+pos = 0,0
+sprpriority = 1
+ownpal = 1
+removeongethit = 1
+pausemovetime = 99999
+supermovetime = 99999
+ignorehitpause = 1
+persistent = 0
+bindtime = 0
 
 [State 52, VelSet]
 type = VelSet
@@ -1817,6 +1845,23 @@ velset = const(velocity.run.fwd.x),0
 type = PlaySnd
 trigger1 = time = 0
 value = 0,1
+
+[State 6061, Effect]
+type = Explod
+trigger1 = animelem = 1
+anim = 8103
+scale = 0.60,0.60
+postype = p1
+facing = 1
+pos = -30,0
+sprpriority = 3
+ownpal = 1
+removeongethit = 1
+pausemovetime = 99999
+supermovetime = 99999
+ignorehitpause = 1
+persistent = 0
+bindtime = 0
 
 [State 6061, Effect]
 type = Explod
@@ -1871,6 +1916,23 @@ ctrl = 0
 type = PlaySnd
 trigger1 = time = 0
 value = 0,1
+
+[State 6061, Effect]
+type = Explod
+trigger1 = animelem = 2
+anim = 8104
+scale = 0.22,0.22
+postype = p1
+facing = 1
+pos = 109,0
+sprpriority = 3
+ownpal = 1
+removeongethit = 1
+pausemovetime = 99999
+supermovetime = 99999
+ignorehitpause = 1
+persistent = 0
+bindtime = 0
 
 [State 105, ChangeState]
 type = ChangeState
