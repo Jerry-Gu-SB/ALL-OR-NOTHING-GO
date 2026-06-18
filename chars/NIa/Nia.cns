@@ -1955,7 +1955,7 @@ Time = 1
 [State 106, VelSet]
 type = VelSet
 trigger1 = Time < 8
-x = -5
+x = -3
 
 [State 106, VelSet]
 type = VelSet
