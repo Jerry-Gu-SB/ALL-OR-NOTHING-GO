@@ -30,10 +30,10 @@ draw.offset = 0,0    ;Player drawing offset in pixels (x, y). Recommended 0,0
 
 
 [Velocity]
-walk.fwd  = 2.4      ;Walk forward
-walk.back = -2.4     ;Walk backward
+walk.fwd  = 2.3      ;Walk forward
+walk.back = -2.1    ;Walk backward
 run.fwd  = 7.0, 0   ;Run forward (x, y)
-run.back = -6,0   ;Hop backward (x, y)
+run.back = -3,0   ;Hop backward (x, y)
 jump.neu = 0,-10.55
 jump.back = -2.5
 jump.fwd = 2.5
@@ -195,7 +195,7 @@ guard.hittime =12
 airguard.ctrltime = 11
 yaccel = .53
 ground.velocity = -5,0
-ground.cornerpush.veloff = -5.5
+ground.cornerpush.veloff = -7
 air.velocity = -2,-6
 airguard.velocity = -6,-2
 fall.xvelocity = 0
@@ -333,7 +333,7 @@ guard.hittime =10
 air.hittime = 16
 yaccel = .53
 ground.velocity = -5,0
-ground.cornerpush.veloff = -5.0
+ground.cornerpush.veloff = -7
 air.velocity = -4,-8
 down.velocity = -4,-6
 airguard.velocity = -6,-2
@@ -1326,6 +1326,7 @@ fall = 1
 air.fall = 1
 fall.recover = 0
 id = 1
+
 [State 810, Width 2-11]
 type = Width
 trigger1 = AnimElemTime(5) >= 0 && AnimElemTime(8) < 0
@@ -1955,7 +1956,7 @@ Time = 1
 [State 106, VelSet]
 type = VelSet
 trigger1 = Time < 8
-x = -5
+x = -3
 
 [State 106, VelSet]
 type = VelSet

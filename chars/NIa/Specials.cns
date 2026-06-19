@@ -585,291 +585,203 @@ type = ChangeState
 trigger1 = anim = 1002 && !animtime
 value = 50
 ctrl = 1
-;----------------------------------------------
 
-;light command grab
+
+
 [Statedef 1600]
 type = S
-movetype = A
+movetype= A
 physics = S
-juggle  = 1
+juggle = 0
+velset = 0, 0
 anim = 1600
 ctrl = 0
-velset = 0,0
-sprpriority = 2
-
-[State 1, ]
-type = velset
-trigger1 = animelemtime(3) < 0
-x = 0
-y = 0
-
-[State 1, ]
-type = nothitby
-trigger1 = 1
-value = ,AT
-
-[State 200, 2]
-type = statetypeset
-trigger1 = animelem = 3
-statetype = A
-
-[State 1, ]
-type = veladd
-trigger1 = animelem = 3
-y = -3
-
-[State 1, ]
-type = velset
-trigger1 = animelemtime(3) > 0
-x = 5
-
-[State 1, ]
-type = veladd
-trigger1 = animelemtime(4) > 0
-y = 0.5
-
-[State 1001, Position]
-type = PosSet
-trigger1 = animelemtime(6) > 0
-y = 0
 
 [State 1600, 1]
 type = HitDef
-trigger1 = !movecontact && !movereversed
-triggerall = enemynear,movetype != A
-triggerall = enemynear,movetype != H
-attr = S, ST         
+trigger1 = Time = 0
+attr = S, NT
 hitflag = M-
-guardflag = MA     
-guard.pausetime = 10,10  
-priority = 1, Miss    
-sparkno = -1        
-sparkxy = 0,-50
-guardsound = S6, 0   
-p1sprpriority = 1     
-p1facing = 1          
-p1stateno = 1602      
-p2stateno = 1603            
-fall = 1  
-fall.recover = 0
+priority = 1, Miss
+sparkno = -1
+p1sprpriority = 1
+p1facing = ifelse(command = "holdfwd", 1, -1)
+p2facing = 1
+p1stateno = 1610
+p2stateno = 1620
+guard.dist = 0
+fall = 1
 
-[State 1000, 1]
-type = HitDef
-trigger1 = !movecontact && !movereversed
-triggerall = enemynear,movetype = H
-attr = S, ST         
-hitflag = MAFD
-guardflag = MA     
-guard.pausetime = 10,10  
-priority = 1, Miss    
-sparkno = -1        
-sparkxy = 0,-50
-guardsound = S6, 0   
-p1sprpriority = 1     
-p1facing = 1          
-p1stateno = 1602       
-p2stateno = 1603            
-fall = 1  
-fall.recover = 0
-
-[State 1000, 1]
-type = HitDef
-trigger1 = !movecontact && !movereversed
-triggerall = enemynear,movetype = A
-damage = ceil(10),0
-attr = S, ST         
-hitflag = MAFD
-guardflag =         
-guard.pausetime = 10,10  
-priority = 1, Miss    
-sparkno = -1        
-sparkxy = 0,-50
-guardsound = S6, 0   
-p1sprpriority = 1     
-p1facing = 1          
-p1stateno = 1602       
-p2stateno = 1603            
-fall = 1   
-kill = 0
-fall.recover = 0
-
-
-[State 1300, 6]
-type = ChangeState
-trigger1 = animelemtime(4) > 16
-trigger1 = pos Y >= -10
-value = 1601
-
-[State 200, Damage Scaling]
-type = varset
-trigger1 = movehit
-trigger1 = !moveguarded
-fvar(4) = fvar(4)*0.84
-ignorehitpause = 1
-persistent = 0
 
 [State 1, ]
 type = veladd
-trigger1 = animelemtime(7) = 0
-x = -1
+trigger1 = animelem = 3
+y = -4
 
 [State 1, ]
-type = velmul
-trigger1 = animelemtime(7) > 0
-x = .99
-
-[State 810, State End]
-type = ChangeState
-trigger1 = animtime = 0
-value = 0
-ctrl = 1
-
-;---------------------------------------------------------------------------
-[Statedef 1602]
-type    = S
-movetype= A
-physics = N
-anim = 1602
-velset = 0,0
-poweradd = 0
-sprpriority = 3
+type = velset
+trigger1 = animelem <= 3 || animelem >= 5
+x = 10
 
 [State 1, ]
-type = posset
-trigger1 = !time
-y = 0
+type = veladd
+trigger1 = animelemtime(4) > 0 && animelem <= 6
+y = 0.55
 
-[State 810, Grab Sound]
-type = PlaySnd
-trigger1 = time = 0
-value = 1, 6
-
-[State 810, Bind 1]
-type = TargetBind
-trigger1 = animelemtime(1) = 0
-pos = -34, -79
-
-[State 810, Bind 1]
-type = TargetBind
-trigger1 = animelemtime(2) = 0
-pos = -33, -86
-
-[State 810, Bind 1]
-type = TargetBind
-trigger1 = animelemtime(3) = 0
-pos = -26, -90
-
-[State 810, Bind 1]
-type = TargetBind
-trigger1 = animelemtime(4) = 0
-pos = -51, -89
-
-[State 810, Bind 1]
-type = TargetBind
-trigger1 = animelemtime(5) = 0
-pos = -51, -89
-
-[State 810, Bind 1]
-type = TargetBind
-trigger1 = animelemtime(6) = 0
-pos = -51, -89
-
-[State 810, Bind 1]
-type = TargetBind
-trigger1 = animelemtime(7) = 0
-pos = -19, -112
-
-[State 810, Bind 1]
-type = TargetBind
-trigger1 = animelemtime(8) = 0
-pos = -19, -112
-
-[State 800, 1]
-type = hitadd
-trigger1 = AnimElemTime(9) = 0
-value = 1
-
-[State 620, 3]
-type = HitDef
-trigger1 = prevstateno != 1010
-trigger1 = !movecontact && !movereversed
-attr = S, ST
-damage = ceil(500)
-hitflag = MAFD
-animtype =  Medium
-guardflag = 
-priority = 4
-pausetime = 6,6
-sparkno = 3
-sparkxy = -7,-150
-hitsound   = S5,4
-guardsound = S6,0
-ground.type = High
-ground.slidetime = 6
-ground.hittime  = 30
-ground.velocity = -4,-1
-air.velocity = -4,-1
-forcenofall = 1
-fall = 1
-fall.recover = 0
-
-[State 620, 3]
-type = HitDef
-nochainID = 8000
-trigger1 = prevstateno = 1010
-trigger1 = !movecontact && !movereversed
-attr = S, ST
-damage = ceil(600)
-hitflag = MAFD
-animtype = Medium
-guardflag = 
-priority = 4
-pausetime = 6,6
-sparkno = 3
-sparkxy = -7,-150
-hitsound   = S5,4
-guardsound = S6,0
-ground.type = High
-ground.slidetime = 6
-ground.hittime  = 30
-ground.velocity = -4,-1
-air.velocity = -4,-1
-forcenofall = 1
-fall = 1
-fall.recover = 0
-getpower = 0,0
-
-;---------------------------------------------------------------------------
-[Statedef 1601]
-type    = S
-physics = S
-ctrl = 0
-anim = 1006
-
-[State 1,]
-type = PlaySnd
-trigger1 = !time
-value = 40, 0
-
-[State 1, ]
-type = PlaySnd
-trigger1 = !time
-value = 801, 0+random%2
-channel = 0
-
-[State 52, 1]
-type = VelSet
-trigger1 = Time = 0
-y = 0
-
-[State 52, 2]
+[State 1600, ]
 type = PosSet
-trigger1 = Time = 0
+trigger1 = animelem = 6
+y = 0
+x = 0
+
+[State 1600, Stop]
+type = VelSet
+trigger1 = animelem = 6
+x = 0
 y = 0
 
-[State 52, 5]
+[State 1600, 2]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
+
+; Hug of Destruction Hit
+[Statedef 1610]
+type = S
+movetype= A
+physics = N
+anim = 1602
+poweradd = 60
+
+[State 1610, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 0
+y = 0
+
+[State 1610, PosSet]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 1610, Grab Sound]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 1, 6
+
+[State 1610, Bind 1]
+type = TargetBind
+trigger1 = AnimElem = 1
+pos = -30.624999543652, -82.187498775311
+
+[State 1610, Bind 2]
+type = TargetBind
+trigger1 = AnimElem = 2
+pos = -36.87499945052, -84.999998733401
+
+[State 1610, Bind 3]
+type = TargetBind
+trigger1 = AnimElem = 3
+pos = -26.187499818392, -90.37499844469
+
+[State 1610, Bind 4]
+type = TargetBind
+trigger1 = AnimElem = 4
+pos = -51.874999823049, -89.87499810942
+
+[State 1610, Bind 5]
+type = TargetBind
+trigger1 = AnimElem = 5
+pos = -51.49999973923, -89.06249800231
+
+[State 1610, Bind 6]
+type = TargetBind
+trigger1 = AnimElem = 6
+pos = -19.874999748543, -112.37499807216
+
+[State 1610, Bind 7]
+type = TargetBind
+trigger1 = AnimElem = 7
+pos = -19.187499594875, -112.749999124557
+
+[State 1610, Bind 8]
+type = TargetBind
+trigger1 = AnimElem = 8
+pos = 75.0, 0.0
+
+[State 1610, Hurt]
+type = TargetLifeAdd
+trigger1 = AnimElem = 8
+value = -2500
+
+[State 1610, Zoom] 
+type = Zoom
+trigger1 = time = [0,32] 
+scale = 1.25
+pos = 0, 35
+ignorehitpause = 1
+
+[State 1610, Grab Sound]
+type = PlaySnd
+trigger1 = AnimElem = 8
+value = 1, 4
+
+[State 1610, Throw]
+type = TargetState
+trigger1 = AnimElem = 8
+value = 1621
+
+[State 1610, State End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+; Getting Grabbed
+[Statedef 1620]
+type = A
+movetype = H
+physics = N
+velset = 0,0
+
+[State 1620, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 1603
+
+[Statedef 1621]
+type = A
+movetype = H
+physics = N
+velset = -10,10
+poweradd = 40
+
+[State 1621, 1] ;Gravity
+type = VelAdd
+trigger1 = 1
+y = .4
+
+[State 1621, 2] ; Recover near ground (use ChangeState)
+type = ChangeState
+triggerall = Vel Y > 0
+triggerall = Pos Y >= -20
+triggerall = alive
+triggerall = CanRecover
+trigger1 = Command = "recovery"
+value = 5200 ;HITFALL_RECOVER
+
+[State 1621, 3] ; Recover in mid air (use SelfState)
+type = SelfState
+triggerall = Vel Y > 0
+triggerall = alive
+triggerall = CanRecover
+trigger1 = Command = "recovery"
+value = 5210 ;HITFALL_AIRRECOVER
+
+[State 1621, 4] ;Hit ground
+type = SelfState
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 5100 ;Hit ground
