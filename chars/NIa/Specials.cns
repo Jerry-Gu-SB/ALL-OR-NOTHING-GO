@@ -611,11 +611,11 @@ y = -4
 [State 1, ]
 type = velset
 trigger1 = animelemtime(3) > 0
-x = 5
+x = 3
 
 [State 1, ]
 type = veladd
-trigger1 = animelemtime(4) > 0
+trigger1 = animelemtime(4) > 0 && animelem <= 6
 y = 0.55
 
 [State 1600, ]
