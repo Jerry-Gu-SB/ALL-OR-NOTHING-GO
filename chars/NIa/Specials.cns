@@ -620,8 +620,8 @@ y = -4
 
 [State 1, ]
 type = velset
-trigger1 = animelemtime(3) > 0
-x = 3
+trigger1 = animelem <= 3 || animelem >= 5
+x = 10
 
 [State 1, ]
 type = veladd
@@ -632,8 +632,9 @@ y = 0.55
 type = PosSet
 trigger1 = animelem = 6
 y = 0
+x = 0
 
-[State 1600, Stop ]
+[State 1600, Stop]
 type = VelSet
 trigger1 = animelem = 6
 x = 0
@@ -718,7 +719,7 @@ value = -2500
 type = Zoom
 trigger1 = time = [0,32] 
 scale = 1.25
-pos = cond(facing = 1, enemynear,pos x -24,enemynear,pos x +24)
+pos = 0, 30
 ignorehitpause = 1
 
 [State 1610, Grab Sound]
