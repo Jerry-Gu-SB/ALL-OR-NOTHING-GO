@@ -585,23 +585,33 @@ type = ChangeState
 trigger1 = anim = 1002 && !animtime
 value = 50
 ctrl = 1
-;----------------------------------------------
 
-;light command grab
+
+
 [Statedef 1600]
 type = S
-movetype = A
+movetype= A
 physics = S
-juggle  = 1
+juggle = 0
+velset = 0, 0
 anim = 1600
 ctrl = 0
-velset = 0,0
-sprpriority = 2
 
-[State 200, 2]
-type = statetypeset
-trigger1 = animelem = 3
-statetype = A
+[State 1600, 1]
+type = HitDef
+trigger1 = Time = 0
+attr = S, NT
+hitflag = M-
+priority = 1, Miss
+sparkno = -1
+p1sprpriority = 1
+p1facing = ifelse(command = "holdfwd", 1, -1)
+p2facing = 1
+p1stateno = 1610
+p2stateno = 1620
+guard.dist = 0
+fall = 1
+
 
 [State 1, ]
 type = veladd
@@ -623,21 +633,142 @@ type = PosSet
 trigger1 = animelem = 6
 y = 0
 
-[State 1600, ]
-type = StateTypeSet
-trigger1 = animelem = 6
-statetype = S
-physics = S
-
-
 [State 1600, Stop ]
 type = VelSet
 trigger1 = animelem = 6
 x = 0
 y = 0
 
-[State 1600, End]
+[State 1600, 2]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
+
+
+[Statedef 1610]
+type = S
+movetype= A
+physics = N
+anim = 1602
+poweradd = 60
+
+[State 1610, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 0
+y = 0
+
+[State 1610, PosSet]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 1610, Grab Sound]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 1, 6
+
+[State 1610, Bind 1]
+type = TargetBind
+trigger1 = AnimElem = 1
+pos = -30.624999543652, -82.187498775311
+
+[State 1610, Bind 2]
+type = TargetBind
+trigger1 = AnimElem = 2
+pos = -36.87499945052, -84.999998733401
+
+[State 1610, Bind 3]
+type = TargetBind
+trigger1 = AnimElem = 3
+pos = -12.187499818392, -104.37499844469
+
+[State 1610, Bind 4]
+type = TargetBind
+trigger1 = AnimElem = 4
+pos = -11.874999823049, -126.87499810942
+
+[State 1610, Bind 5]
+type = TargetBind
+trigger1 = AnimElem = 5
+pos = -17.49999973923, -134.06249800231
+
+[State 1610, Bind 6]
+type = TargetBind
+trigger1 = AnimElem = 6
+pos = -16.874999748543, -129.37499807216
+
+[State 1610, Bind 7]
+type = TargetBind
+trigger1 = AnimElem = 7
+pos = 27.187499594875, -58.749999124557
+
+[State 1610, Bind 8]
+type = TargetBind
+trigger1 = AnimElem = 8
+pos = 75.0, 0.0
+
+[State 1610, Hurt]
+type = TargetLifeAdd
+trigger1 = AnimElem = 8
+value = -78
+
+[State 1610, Throw]
+type = TargetState
+trigger1 = AnimElem = 8
+value = 1621
+
+[State 1610, State End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+; Getting Grabbed
+[Statedef 1620]
+type = A
+movetype = H
+physics = N
+velset = 0,0
+
+[State 1620, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 1603
+
+[Statedef 1621]
+type = A
+movetype = H
+physics = N
+velset = -10,10
+poweradd = 40
+
+[State 1621, 1] ;Gravity
+type = VelAdd
+trigger1 = 1
+y = .4
+
+[State 1621, 2] ; Recover near ground (use ChangeState)
+type = ChangeState
+triggerall = Vel Y > 0
+triggerall = Pos Y >= -20
+triggerall = alive
+triggerall = CanRecover
+trigger1 = Command = "recovery"
+value = 5200 ;HITFALL_RECOVER
+
+[State 1621, 3] ; Recover in mid air (use SelfState)
+type = SelfState
+triggerall = Vel Y > 0
+triggerall = alive
+triggerall = CanRecover
+trigger1 = Command = "recovery"
+value = 5210 ;HITFALL_AIRRECOVER
+
+[State 1621, 4] ;Hit ground
+type = SelfState
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 5100 ;Hit ground
