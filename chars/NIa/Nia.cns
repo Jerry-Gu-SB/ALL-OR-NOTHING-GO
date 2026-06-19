@@ -1326,6 +1326,7 @@ fall = 1
 air.fall = 1
 fall.recover = 0
 id = 1
+
 [State 810, Width 2-11]
 type = Width
 trigger1 = AnimElemTime(5) >= 0 && AnimElemTime(8) < 0
