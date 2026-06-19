@@ -719,7 +719,7 @@ value = -2500
 type = Zoom
 trigger1 = time = [0,32] 
 scale = 1.25
-pos = 0, 30
+pos = 0, 40
 ignorehitpause = 1
 
 [State 1610, Grab Sound]
