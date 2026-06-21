@@ -253,8 +253,8 @@ var(12) = 1
 
 [State 210, 2]
 type = changestate
-trigger1 = time = 7
-trigger1 = var(12) >= 7
+trigger1 = time = 8
+trigger1 = var(12) >= 8
 value = 211
 
 [State 610, Camera Shake]

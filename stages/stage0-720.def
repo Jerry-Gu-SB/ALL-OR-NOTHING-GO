@@ -21,8 +21,8 @@ starty = 0
  ;You may want to fiddle a bit with these values to make sure the
  ;background doesn't move too far or too little
  ;***
-boundleft = -1000
-boundright = 1000
+boundleft = -1500
+boundright = 1500
 
  ;High and low bound of camera
  ;High is a negative number. Make is more negative if you want to
@@ -30,7 +30,7 @@ boundright = 1000
  ;Low should usually be 0.
  ;If omitted, defaults to -25 and 0 respectively
  ;***
-boundhigh = -900
+boundhigh = -1000
 boundlow = 0
 
  ;This is how much the camera will move vertically towards the
@@ -49,10 +49,10 @@ floortension = 200
 
  ;Horizontal distance player is from edge before camera starts to move
  ;left or right. Typically 50 or 60.
-tension = 200
+tension = 300
 
 overdrawhigh = 120
-overdrawlow = 120
+overdrawlow = 0
 cuthigh = 0
 cutlow = 0
 

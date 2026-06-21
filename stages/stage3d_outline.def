@@ -11,9 +11,9 @@ author = "SuperFromND"; modifed by Eiton
 [Camera]
 startx = 0
 starty = 0
-boundleft = -700
-boundright = 700
-boundhigh = -450
+boundleft = -1500
+boundright = 1500
+boundhigh = -1000
 boundlow = 0
 
 verticalfollow = .85

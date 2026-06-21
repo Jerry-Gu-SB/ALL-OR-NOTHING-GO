@@ -16,7 +16,6 @@ command.time = 15
 ; maximum 30.
 command.buffer.time = 1
 
-
 ;-| Super Motions |--------------------------------------------------------
 ;The following two have the same name, but different motion.
 ;Either one will be detected by a "command = TripleKFPalm" trigger.
@@ -427,7 +426,7 @@ trigger3 = stateno = 400 && movecontact
 [State -1]
 type = ChangeState
 value = 410
-triggerall = command = "y" 
+triggerall = command = "y" && command = "holddown"
 trigger1 = statetype = C && ctrl
 trigger2 = (stateno = [200,409])&& movecontact
 
