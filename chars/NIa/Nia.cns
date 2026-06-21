@@ -538,6 +538,7 @@ fall.yvelocity = -2
 air.fall = 1
 fall.recover = 0
 
+;---------------------------------------------------------------------------
 ;Jumping Heavy
 [Statedef 610]
 type = A

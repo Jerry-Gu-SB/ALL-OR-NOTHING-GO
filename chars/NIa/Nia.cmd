@@ -14,7 +14,7 @@ command.time = 15
 
 ; Default value for the "buffer.time" parameter of a Command. Minimum 1,
 ; maximum 30.
-command.buffer.time = 5
+command.buffer.time = 1
 
 
 ;-| Super Motions |--------------------------------------------------------
