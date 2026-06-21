@@ -240,9 +240,26 @@ type = velset
 trigger1 = animelem=3
 x = 3
 
+[State 210, 2]
+type = varset
+trigger1 = !time
+var(12) = 0
+
+[State 210, 2]
+type = varadd
+triggerall = !ailevel
+trigger1 = command = "hold_y"
+var(12) = 1
+
+[State 210, 2]
+type = changestate
+trigger1 = time = 7
+trigger1 = var(12) >= 7
+value = 211
+
 [State 610, Camera Shake]
 type = EnvShake
-trigger1 = !time
+trigger1 = AnimElem =2
 time = 10
 freq = 10
 ampl = 2
@@ -288,8 +305,159 @@ trigger1 = animtime = 0
 value = 0
 ctrl = 1
 
-
 ;held heavy
+[Statedef 211]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd= 0
+velset = 0,0 
+ctrl = 0
+anim = 211
+sprpriority = 2
+
+[State 210, VelSet]
+type = VelSet
+trigger1 = time = 0
+trigger1 = prevstateno = 20
+x = 0
+
+[State 0, Vel]
+type = velset
+trigger1 = animelem=3
+x = 3
+
+[State 50, 2]
+type = Explod
+trigger1 = time = 0
+anim = 10700
+pos = -34,-73
+ownpal = 1
+ignorehitpause = 1
+persistent = 0
+sprpriority = 3
+scale = 0.50,0.50
+
+[State 610, Camera Shake]
+type = EnvShake
+trigger1 = AnimElem =3
+time = 10
+freq = 10
+ampl = 2
+
+[State 1, ]
+type = PlaySnd
+trigger1 = time = 13
+value = 220, 1
+channel = 0
+
+[State 100, 1]
+type = playsnd
+trigger1 = animelem = 7
+value = 101,0
+
+[State 211, 2]
+type = PlaySnd
+trigger1 = animelemtime(2) = 0
+value = 0, 5
+
+[State 1, ]
+type = PlaySnd
+trigger1 = movehit
+value = 3002,1
+persistent = 0
+ignorehitpause = 1
+
+
+[State 211, 3]
+type = HitDef
+trigger1 = !movecontact && !movereversed
+triggerall = enemynear,movetype != A
+attr = S, NA
+guardflag = M
+animtype = Hard
+damage = ceil(1500),0
+getpower = 30,0
+givepower = 20,0
+pausetime = 12,12
+guard.pausetime = 12,12
+sparkNo= s8010
+guard.sparkNo= -1 + 0 * (var(34) := 8000)
+sparkXY= -1 + 0 * (var(35) := 200), var(36):=-75
+hitsound = S1,26
+guardsound = S6,0
+ground.type = Low
+ground.slidetime = 20
+guard.slidetime = 18
+ground.hittime = 20
+guard.hittime =18
+air.hittime = 20
+yaccel = .53
+ground.velocity = 3,0
+air.velocity = 2,-6
+airguard.velocity = 6,-2
+fall.xvelocity = 0
+fall.yvelocity = -2
+air.fall = 1
+fall.recover = 1
+fall.recovertime = 3
+id = 1
+
+[State 211, 3]
+type = HitDef
+trigger1 = !movecontact && !movereversed
+triggerall = enemynear,movetype = A
+attr = S, NA
+guardflag = M
+animtype = Hard
+damage = ceil(1500),0
+getpower = 30,0
+givepower = 20,0
+pausetime = 12,12
+guard.pausetime = 12,12
+sparkNo= s8010
+guard.sparkNo= -1 + 0 * (var(34) := 8000)
+sparkXY= -1 + 0 * (var(35) := 200), var(36):=-75
+hitsound = S1,26
+guardsound = S6,0
+ground.type = Low
+ground.slidetime = 12
+guard.slidetime = 12
+ground.hittime = 18 + 4*var(9)
+guard.hittime =12
+air.hittime = 18
+yaccel = .53
+ground.velocity = 3,0
+air.velocity = 2,-6
+airguard.velocity = 6,-2
+fall.xvelocity = 0
+fall.yvelocity = -2
+air.fall = 1
+fall.recover = 1
+fall.recovertime = 3
+id = 1
+
+[State 200, Damage Scaling]
+type = null;targetstate
+trigger1 = movehit
+value = 5825
+ignorehitpause = 1
+persistent = 0
+
+[State 200, Damage Scaling]
+type = varset
+trigger1 = movehit
+trigger1 = !moveguarded
+fvar(4) = fvar(4)*0.85
+ignorehitpause = 1
+persistent = 0
+
+[State 600, 3]
+type = changestate
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
 
 ;Crouching Light Punch
 [Statedef 400]
