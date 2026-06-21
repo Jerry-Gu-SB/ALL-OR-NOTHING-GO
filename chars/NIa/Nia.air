@@ -927,7 +927,7 @@ Clsn2: 3
 600,5, 0,0, 12
 Clsn2: 1
   Clsn2[0] = -178, -436, 196, -2
-41,3, 0,0, -1
+41,2, 0,0, -1
 
 ; Jump Medium Punch
 [Begin Action 610]
