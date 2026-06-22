@@ -1940,7 +1940,7 @@ physics = N
 type = ChangeAnim
 trigger1 = Anim = 5035
 trigger1 = AnimTime = 0
-value = 5050
+value = 5040  ;5050
 
 [State 5200, 2]
 type = VelAdd
@@ -1959,7 +1959,7 @@ value = 5201
 type    = A
 movetype= H
 physics = A
-anim = 5200
+anim = 5240 ;5200
 
 [State 5201, 1] ;Turn if not facing opponent
 type = Turn
@@ -1997,14 +1997,13 @@ postype = none
 pos = pos x + camerapos x, (pos y) - floor(vel y)
 facing = facing
 sprpriority = -10
-
 ;---------------------------------------------------------------------------
 ; Air get-hit (fall recovery in air)
 [Statedef 5210]
 type    = A
 movetype= I
 physics = N
-anim = 5210
+anim = 5040 ; 5210
 ctrl = 0
 
 [State 5210, 1] ;Blink white

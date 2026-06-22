@@ -2452,7 +2452,7 @@ trigger1=Target, command="recovery"
 trigger1=Target, pos y >= -20 && Target, vel y > 0
 trigger1=Target, Alive && Target, HitFall && Target, GetHitVar(fall.recover)
 trigger1=Target, StateNo=5030 || Target, StateNo=5035 || Target, StateNo=5050 || Target, StateNo=5071
-value=5205
+value=5210
 ignoreHitPause=1
 
 [State -2, Assert: UnGuardable]
