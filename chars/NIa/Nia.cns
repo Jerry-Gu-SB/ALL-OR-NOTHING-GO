@@ -185,13 +185,11 @@ sparkXY=-1 + 0 * (var(35) := 200), var(36):=-75
 hitsound = S1,1
 guardsound = S6,0
 ground.type = High
-ground.slidetime = 10
-guard.slidetime = 10
-ground.hittime = 16 + 2 * var(9)
-guard.hittime =10
-air.hittime = 16
+ground.slidetime = 16
 guard.slidetime = 12
+ground.hittime = 16 + 2 * var(9)
 guard.hittime =12
+air.hittime = 16
 airguard.ctrltime = 11
 yaccel = .53
 ground.velocity = -5,0
