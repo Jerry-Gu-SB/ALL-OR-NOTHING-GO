@@ -42,13 +42,13 @@ runjump.fwd = 5,-10.55
 airjump.neu = 0,-8.55
 airjump.back = -2.5
 airjump.fwd = 2.5       ;.
-air.gethit.groundrecover = -.6,-14  
-air.gethit.airrecover.mul = .5,.2    
-air.gethit.airrecover.add = 0,-18    
-air.gethit.airrecover.back = -4      
-air.gethit.airrecover.fwd = 0      
-air.gethit.airrecover.up = -8         
-air.gethit.airrecover.down = 6        
+air.gethit.groundrecover = -.15,-3.5  ;Velocity for ground recovery state (x, y) **MUGEN 1.0**
+air.gethit.airrecover.mul = .5,.2     ;Multiplier for air recovery velocity (x, y) **MUGEN 1.0**
+air.gethit.airrecover.add = 0,-5.5    ;Velocity offset for air recovery (x, y) **MUGEN 1.0**
+air.gethit.airrecover.back = -3       ;Extra x-velocity for holding back during air recovery **MUGEN 1.0**
+air.gethit.airrecover.fwd = 3         ;Extra x-velocity for holding forward during air recovery **MUGEN 1.0**
+air.gethit.airrecover.up = -3         ;Extra y-velocity for holding up during air recovery **MUGEN 1.0**
+air.gethit.airrecover.down = 6      ;Extra y-velocity for holding down during air recovery **MUGEN 1.0**     
 
 [Movement]
 airjump.num = 0      ;Number of air jumps allowed (opt)
@@ -58,12 +58,12 @@ stand.friction = .85  ;Friction coefficient when standing
 crouch.friction = .82 ;Friction coefficient when crouching
 stand.friction.threshold = 8          ;If player's speed drops below this threshold while standing, stop his movement **MUGEN 1.0**
 crouch.friction.threshold = .2        ;If player's speed drops below this threshold while crouching, stop his movement **MUGEN 1.0**
-air.gethit.groundlevel = 25         ;Y-position at which a falling player is considered to hit the ground **MUGEN 1.0**
-air.gethit.groundrecover.ground.threshold = -80 ;Y-position below which falling player can use the recovery command **MUGEN 1.0**
-air.gethit.groundrecover.groundlevel = 40   ;Y-position at which player in the ground recovery state touches the ground **MUGEN 1.0**
-air.gethit.airrecover.threshold = -4  ;Y-velocity above which player may use the air recovery command **MUGEN 1.0**
-air.gethit.airrecover.yaccel = 1.4    ;Vertical acceleration for player in the air recovery state **MUGEN 1.0**
-air.gethit.trip.groundlevel = 60      ;Y-position at which player in the tripped state touches the ground **MUGEN 1.0**
+air.gethit.groundrecover.ground.threshold = -20 ;Y-position below which falling player can use the recovery command **MUGEN 1.0**
+air.gethit.groundrecover.groundlevel = 10   ;Y-position at which player in the ground recovery state touches the ground **MUGEN 1.0**
+air.gethit.airrecover.threshold = -1  ;Y-velocity above which player may use the air recovery command **MUGEN 1.0**
+air.gethit.airrecover.yaccel = .35    ;Vertical acceleration for player in the air recovery state **MUGEN 1.0**
+air.gethit.trip.groundlevel = 15      ;Y-position at which player in the tripped state touches the ground **MUGEN 1.0**
+
 
 [Quotes]
 victory0 = "Go home and be a family man!"
@@ -169,7 +169,8 @@ ownpal = 1
 
 [State 200, HitDef]
 type = HitDef
-trigger1 = !time
+trigger1 = !movecontact && !movereversed
+trigger1 = enemynear,movetype != A
 attr = S,NA
 hitflag = MAF
 guardflag = M
@@ -251,8 +252,8 @@ var(12) = 1
 
 [State 210, 2]
 type = changestate
-trigger1 = time = 8
-trigger1 = var(12) >= 8
+trigger1 = time = 9
+trigger1 = var(12) >= 9
 value = 211
 
 [State 610, Camera Shake]
@@ -578,7 +579,7 @@ type = ChangeState
 triggerall = movecontact
 trigger1 = ailevel = 0 && command = "holdup"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
-value = 50
+value = 40
 [State 410, ChangeState]
 type = ChangeState
 trigger1 = animtime = 0
@@ -668,15 +669,11 @@ type = PlaySnd
 trigger1 = time = 0
 value = 0,3
 
-[State 600, CtrlSet] 
-type = CtrlSet
-trigger1 = var(1)
-trigger1 = animelem = 5 ;Have control in the air after the attack. Add fall frames on EVERY air normal.
-value = 1
 
 [State 600, HitDef]
 type = HitDef
-trigger1 = !var(1) && animelem = 2
+trigger1 = !movecontact && !movereversed
+trigger1 = enemynear,movetype != A
 attr = A,NA
 hitflag = MAF
 guardflag = HA
@@ -703,7 +700,10 @@ fall.xvelocity = 0
 fall.yvelocity = -2
 air.fall = 1
 fall.recover = 0
-
+[State 600, 3]
+type = changestate
+trigger1 = AnimTime = 0
+value = 51
 ;---------------------------------------------------------------------------
 ;Jumping Heavy
 [Statedef 610]
@@ -727,12 +727,6 @@ trigger1 = prevstateno = 600
 trigger1 = animelem=2
 x = 1
 y = 1
-
-[State 610, CtrlSet]
-type = CtrlSet
-trigger1 = var(1)
-trigger1 = animelem = 6
-value = 1
 
 [State 5050, 3] ;Gravity
 type = VelAdd
@@ -960,18 +954,6 @@ type = PlaySnd
 trigger1 = time = 0
 value = 0,3
 
-[State 630, VarSet]
-type = VarSet
-trigger1 = numtarget && prevstateno = [600,800)
-trigger1 = target,statetype = A
-var(6) = 1
-
-[State 630, CtrlSet]
-type = CtrlSet
-trigger1 = var(1)
-trigger1 = animelem = 5
-value = 1
-
 [State 630, HitDef]
 type = HitDef
 trigger1 = !var(1) && animelem = 2
@@ -1051,18 +1033,6 @@ type = PlaySnd
 trigger1 = time = 0
 value = 0,4
 
-
-[State 640, VarSet]
-type = VarSet
-trigger1 = numtarget && prevstateno = [600,800)
-trigger1 = target,statetype = A
-var(6) = 1
-
-[State 640, CtrlSet]
-type = CtrlSet
-trigger1 = var(1)
-trigger1 = animelem = 6
-value = 1
 
 [State 640, HitDef]
 type = HitDef
@@ -1737,257 +1707,6 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
-[Statedef 0]
-type = S
-physics = S
-sprpriority = 0
-velset = 0,0
-
-
-[State 0, ChangeAnim]
-type = ChangeAnim
-trigger1 = anim != 0 && anim != 5
-trigger2 = anim = 5 && animtime = 0
-value = 0
- 
-; Stand to Crouch 
-[Statedef 10]
-type    = C
-physics = C
-anim = 10
-
-[State 0, VelSet]
-type = VelSet
-trigger1 = time = 0
-trigger1 = prevstateno = 20
-x = 0
-
-[State 10, ChangeAnim]
-type = ChangeState
-trigger1 = animtime = 0
-value = 11
- 
-; Walk 
-[Statedef 20]
-type    = S
-physics = S
-sprpriority = 0
-
-[State 20, VelSet]
-type = VelSet
-trigger1 = command = "holdfwd"
-x = const(velocity.walk.fwd.x)
-
-[State 20, VelSet]
-type = VelSet
-trigger1 = command = "holdback"
-x = const(velocity.walk.back.x)
-
-[State 20, VelMul]
-type = VelMul
-trigger1 = var(51) = 1
-x = 1.3
-
-[State 20, ChangeAnim]
-type = ChangeAnim
-trigger1 = vel x > 0 &&  anim != 20
-value = 20
-
-[State 20, ChangeAnim]
-type = ChangeAnim
-trigger1 = vel x < 0 &&  anim != 21
-value = 21
- 
-; Jump Start 
-[Statedef 40]
-type    = S
-physics = S
-anim = 40
-ctrl = 0
-sprpriority = 1
-velset = 0,0
-facep2 = 1
-
-[State 40, PosSet]
-type = PosSet
-trigger1 = time = 0
-y = 0
-
-[State 40, VarSet]
-type = VarSet
-trigger1 = time = 1
-sysvar(1) = ifelse(command = "holdfwd",1,ifelse(command = "holdback", -1, 0))
-
-[State 40, VarSet] ;This is the Super Jump Var
-type = VarSet
-trigger1 = time = 0
-var(1) = command = "highjump" || prevstateno = 420 
-
-[State 40, VarSet] ;This is the Air Jump limiter.
-type = VarSet
-trigger1 = time = 0
-var(2) = 0 ;Increasing the number allows how many air jumps the character can do.
-
-[State 40, VarSet]
-type = VarSet
-trigger1 = time = 0
-var(3) = 1
-
-[State 40, VarSet]
-type = VarSet
-trigger1 = time = 0 && var(1)
-fvar(1) = -.1
-
-[State 40, VelSet]
-type = VelSet
-trigger1 = animtime = 0
-x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
-y = ifelse(!var(1),const(velocity.jump.y),-13)
-
-[State 40, VelSet]
-type = VelSet
-trigger1 = animtime = 0
-trigger1 = prevstateno = 101
-trigger1 = sysvar(1) = 1
-x = const(velocity.runjump.fwd.x)
-
-[State 40, Explod]
-type = Explod
-trigger1 = animtime = -1
-trigger1 = var(1)
-anim = 8250
-id = 8250
-sprpriority = 4
-supermove = 1
-ownpal = 1
-
-[State 40, ChangeState]
-type = ChangeState
-trigger1 = animtime = 0
-value = 50
-ctrl = 1
- 
-; AirJump Start 
-[Statedef 45]
-type    = A
-physics = A
-velset = 0,0
-
-[State 40, VarSet]
-type = VarSet
-trigger1 = time = 0
-sysvar(1) = ifelse(command = "holdfwd",1,ifelse(command = "holdback", -1, 0))
-
-[State 40, VarAdd]
-type = VarAdd
-trigger1 = time = 0
-var(2) = -1
-
-[State 40, VarSet]
-type = VarSet
-trigger1 = time = 0
-var(3) = 1
-
-[State 40, VelSet]
-type = VelSet
-trigger1 = Time = 0
-x = ifelse(sysvar(1)=0, const(velocity.jump.neu.x), ifelse(sysvar(1)=1, const(velocity.jump.fwd.x), const(velocity.jump.back.x)))
-y = const(velocity.jump.y)
-
-[State 50, ChangeAnim]
-type = ChangeAnim
-trigger1 = Time = 0
-value = ifelse((vel x)=0, 41, ifelse((vel x)>0, 42, 43))
- 
-; Jump Up 
-[Statedef 50]
-type    = A
-physics = A
-
-[State 3000, VarSet] ;This is to kill the Hyper Helper
-type = VarSet
-trigger1 = time = 0
-var(4) = 0
-
-[State 50, PlaySnd]
-type = PlaySnd
-trigger1 = time = 0
-trigger1 = var(1)
-value = 0,2
-
-[State 50, 2]
-type = Explod
-trigger1 = time = 0
-anim = 8101
-pos = 3,6
-ownpal = 1
-ignorehitpause = 1
-persistent = 0
-sprpriority = 3
-scale = 0.5,0.4
-
-[State 50, VarSet]
-type = VarSet
-trigger1 = time = 0
-sysvar(1) = 0
-
-[State 50, ChangeAnim]
-type = ChangeAnim
-trigger1 = time = 0
-value = ifelse((vel x)=0, 41, ifelse((vel x)>0, 42, 43))
- 
-; Jump Land 
-[Statedef 52]
-type    = S
-physics = S
-anim = 47
-velset = 0,0
-ctrl = 1
-
-[State 3000, VarSet]
-type = VarSet
-trigger1 = time = 0
-var(4) = 0
-
-[State 52, PlaySnd]
-type = PlaySnd
-trigger1 = time = 0
-value = 0,0
-
-[State 52,]
-type = Explod
-trigger1 = animelem = 1
-anim = 8102
-scale = 0.70,0.70
-postype = p1
-facing = 1
-pos = 0,0
-sprpriority = 1
-ownpal = 1
-removeongethit = 1
-pausemovetime = 99999
-supermovetime = 99999
-ignorehitpause = 1
-persistent = 0
-bindtime = 0
-
-[State 52, VelSet]
-type = VelSet
-trigger1 = time = 0
-y = 0
-
-[State 52, PosSet]
-type = PosSet
-trigger1 = time = 0
-y = 0
-
-
-[State 52, ChangeState]
-type = ChangeState
-trigger1 = animtime = 0
-value = 0
-ctrl = 1
-
 ;RUN_FWD 	
 [Statedef 100] 
 type    = S
@@ -2296,43 +2015,6 @@ trigger1=Time >= 27
 value=0
 ctrl=1
 
-; HIT_FALLRECOVER (on the ground) 
-[Statedef 5201]
-type    = C
-movetype= H
-physics = N
-anim = ifelse(prevstateno=5200,5200,5201)
-facep2 = 1
-sprpriority = -1
-
-[State 5201, PosSet]
-type = PosSet
-trigger1 = time = 0
-y = 0
-
-[State 5201, VelSet]
-type = VelSet
-trigger1 = time = 0
-x = ifelse(anim=5200,8,-4)
-y = 0
-
-[State 5201, NotHitBy]
-type = NotHitBy
-trigger1 = 1
-value = SCA
-time = 1
-
-[State 5201, PlayerPush]
-type = PlayerPush
-trigger1 = anim = 5200
-value = 0
-
-[State 5201, ChangeState]
-type = ChangeState
-trigger1 = animtime = 0
-value = 0
-ctrl = 1
- 
 ; Initialize (at the start of the round) 
 [Statedef 5900]
 type = S
@@ -2344,26 +2026,6 @@ source = 1,1
 dest = 1,palno
   
 [Statedef -2] 
-
-
-[State -3, Prevent Crossup]
-type = width
-trigger1 = movetype != H
-edge = 8, 0
-ignorehitpause = 1
-
-[State -3, Variable Height]
-type = playerpush
-triggerall = statetype = A && movetype != H && numenemy = 1
-triggerall = p2bodydist x = [ -(enemynear, const(size.ground.back) + enemynear, const(size.ground.front)) , 0]
-trigger1 = p2statetype = S
-trigger1 = p2dist y >= (enemynear, const(size.height) - 30)
-trigger2 = p2statetype = C
-trigger2 = p2dist y >= (enemynear, const(size.height) - 56)
-trigger3 = p2statetype = L
-trigger3 = p2dist y >= 12
-value = 0
-ignorehitpause = 1
 
 
 [State -2, Hit Detection]
@@ -2425,35 +2087,11 @@ var(30)=-1
 [State -2, Hit Detection]
 type=varrangeset
 trigger1= movetype=I 
-trigger2= movetype=H && time
-first=30
-last=36
+trigger2= movetype=H
+first=5
+last=10
 value=-1
 ignorehitpause=1
-
-[State -2, P2 Recovery]
-type=TargetState
-trigger1=NumTarget(200)
-trigger1=(Target(200), StateNo=5020) && (Target(200), Alive) && (Target(200), HitFall)
-ID=200
-value=5025
-ignoreHitPause=1
-[State -2, P2 Facing]
-type=TargetFacing
-trigger1=MoveContact=1 && NumTarget
-trigger1=!(Target, HitShakeOver) && !(Target, HitFall) && (Target, Time <= 1)
-value=Ifelse(P2Dist x >= 0, -1, 1)
-ignoreHitPause=1
-
-[State -2, P2 Safe Fall]
-type=TargetState
-trigger1=NumTarget=1
-trigger1=Target, command="recovery"
-trigger1=Target, pos y >= -20 && Target, vel y > 0
-trigger1=Target, Alive && Target, HitFall && Target, GetHitVar(fall.recover)
-trigger1=Target, StateNo=5030 || Target, StateNo=5035 || Target, StateNo=5050 || Target, StateNo=5071
-value=5210
-ignoreHitPause=1
 
 [State -2, Assert: UnGuardable]
 type=AssertSpecial
@@ -2778,10 +2416,23 @@ ignorehitpause=1
 text="Damp=%d Limit=%d juggle=%d hit=%d  Front =%d Back=%d"
 params=fvar(10) , fvar(8), var(15) , var(13) , frontedgebodydist , backedgebodydist
 ignorehitpause=1
-[State -2, Debug 2]
-type=AppendToClipboard
-trigger1=1
-text="\nBy Infinite"
-ignoreHitPause=1
 
 [Statedef -3]
+[State -3, Prevent Crossup]
+type = width
+trigger1 = movetype != H
+edge = 8, 0
+ignorehitpause = 1
+
+[State -3, Variable Height]
+type = playerpush
+triggerall = statetype = A && movetype != H && numenemy = 1
+triggerall = p2bodydist x = [ -(enemynear, const(size.ground.back) + enemynear, const(size.ground.front)) , 0]
+trigger1 = p2statetype = S
+trigger1 = p2dist y >= (enemynear, const(size.height) - 30)
+trigger2 = p2statetype = C
+trigger2 = p2dist y >= (enemynear, const(size.height) - 56)
+trigger3 = p2statetype = L
+trigger3 = p2dist y >= 12
+value = 0
+ignorehitpause = 1

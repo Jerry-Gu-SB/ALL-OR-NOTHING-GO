@@ -346,17 +346,18 @@ time = -1
 [State 1100, Velocity]
 type = VelSet
 trigger1 = Time = 0
-x = 60
+x = 25
 y = -4
 
 [State 3100, VelAdd]
 type = veladd
 trigger1 = 1
-y = .8
+y = .5
 
 [State 1510,1]
 type = ChangeState
-trigger1 = Pos Y >= 0 && Time >= 5
+trigger1 = Pos Y >= 0 
+trigger2 =  Time >= 55
 value = 1012
 ;---------------------------------------------------------------------------
 ;Lariat Hit
@@ -611,7 +612,25 @@ p1stateno = 1610
 p2stateno = 1620
 guard.dist = 0
 fall = 1
-
+[State 1000, 1]
+type = HitDef
+nochainID = 8000
+trigger1 = !movehit && !movereversed
+triggerall = enemynear,movetype = H
+attr = S, ST         
+hitflag = MAFD
+guardflag = MA     
+guard.pausetime = 10,10  
+priority = 1, Miss    
+sparkno = -1        
+sparkxy = 0,-50
+guardsound = S6, 0   
+p1sprpriority = 1     
+p1facing = 1          
+p1stateno = 1610      
+p2stateno = 1620           
+fall = 1  
+fall.recover = 0
 
 [State 1, ]
 type = veladd
@@ -715,12 +734,14 @@ type = TargetLifeAdd
 trigger1 = AnimElem = 8
 value = -2500
 
-[State 1610, Zoom] 
+[State 0, Zoom] 
 type = Zoom
 trigger1 = time = [0,32] 
-scale = 1.25
-pos = 0, 35
+scale = 1.29
+pos = cond(facing = 1, enemynear,pos x -34, enemynear,pos x +34)
+postype = P2
 ignorehitpause = 1
+
 
 [State 1610, Grab Sound]
 type = PlaySnd

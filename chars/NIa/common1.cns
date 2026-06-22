@@ -239,13 +239,38 @@ type = VarSet
 trigger1 = Time = 0
 sysvar(1) = 0
 
+[State 230, 1]
+type = PlaySnd
+trigger1 = Time = 0
+value = 50, 0
+
+[State 50, 1]
+type = VelAdd
+triggerall = prevstateno = 40
+triggerall = anim = 41
+trigger1 = Time = [12,26]
+trigger1 = Vel X <= 2
+trigger1 = command != "holdup" && command != "holddown"
+trigger1 = command = "holdfwd"
+x = .15
+
+[State 50, 1]
+type = VelAdd
+triggerall = prevstateno = 40
+triggerall = anim = 41
+trigger1 = Time = [12,26]
+trigger1 = Vel X >= -2
+trigger1 = command != "holdup" && command != "holddown"
+trigger1 = command = "holdback"
+x = -.15
+
 [State 50, 2]
 type = ChangeAnim
 trigger1 = Time = 0
 value = ifelse((vel x)=0, 41, ifelse((vel x)>0, 42, 43))
 
 [State 50, 3]
-type = ChangeAnim
+type = null;ChangeAnim
 trigger1 = Vel y > Const720p(-8)
 trigger1 = SelfAnimExist(anim + 3)
 trigger1 = anim >= 41 && anim <= 43
@@ -1959,7 +1984,7 @@ value = 5201
 type    = A
 movetype= H
 physics = A
-anim = 5240 ;5200
+anim = 5040 ;5200
 
 [State 5201, 1] ;Turn if not facing opponent
 type = Turn
@@ -1993,10 +2018,9 @@ add = 128,128,128 ;256,256,256
 type = Explod
 trigger1 = Time = 0
 anim = F60
-postype = none
-pos = pos x + camerapos x, (pos y) - floor(vel y)
-facing = facing
+pos = 0, -floor(vel y)
 sprpriority = -10
+
 ;---------------------------------------------------------------------------
 ; Air get-hit (fall recovery in air)
 [Statedef 5210]

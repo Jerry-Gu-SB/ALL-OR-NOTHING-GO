@@ -14,7 +14,7 @@ command.time = 15
 
 ; Default value for the "buffer.time" parameter of a Command. Minimum 1,
 ; maximum 30.
-command.buffer.time = 1
+command.buffer.time = 2
 
 ;-| Super Motions |--------------------------------------------------------
 ;The following two have the same name, but different motion.
@@ -378,7 +378,8 @@ trigger1=ctrl
 type = ChangeState
 value = 200
 triggerall = command = "x" && command != "holddown"
-trigger1 = statetype = S && ctrl
+triggerall = statetype = S 
+trigger1 = ctrl
 trigger2 = stateno = 101
 trigger3 = stateno = 200 && movecontact
 trigger4 = stateno = 400 && movecontact
@@ -388,7 +389,8 @@ trigger4 = stateno = 400 && movecontact
 type = ChangeState
 value = 210
 triggerall = command = "y" && command != "holddown"
-trigger1 = statetype = S && ctrl
+triggerall = statetype = S 
+trigger1 = ctrl
 trigger2 = stateno = 101
 trigger3 = stateno = 200 && movecontact
 trigger4 = (stateno = [230,240])&& movecontact
@@ -399,7 +401,8 @@ trigger5 = (stateno = [400,410])&& movecontact
 type = ChangeState
 value = 230
 triggerall = command = "a" && command != "holddown"
-trigger1 = statetype = S && ctrl
+triggerall = statetype = S 
+trigger1 = ctrl
 trigger2 = stateno = 101
 trigger3 = stateno = 200 && movecontact
 trigger4 = (stateno = [400,450])&& movecontact
@@ -408,7 +411,8 @@ trigger4 = (stateno = [400,450])&& movecontact
 type = ChangeState
 value = 240
 triggerall = command = "b" && command != "holddown"
-trigger1 = statetype = S && ctrl
+triggerall = statetype = S 
+trigger1 = ctrl
 trigger2 = stateno = 101
 trigger3 = (stateno = [200,430])&& movecontact
 trigger4 = (stateno = [400,450])&& movecontact
@@ -448,7 +452,8 @@ trigger4 = stateno = 410 && movecontact
 type = ChangeState
 value = 600
 triggerall = command = "x"
-trigger1 = statetype = A && ctrl
+triggerall = statetype = A 
+trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 600 && movecontact
 ;Jump Medium Punch
@@ -456,7 +461,8 @@ trigger3 = stateno = 600 && movecontact
 type = ChangeState
 value = 610
 triggerall = command = "y"
-trigger1 = statetype = A && ctrl
+triggerall = statetype = A 
+trigger1 = ctrl
 trigger2 = stateno = 600 && movecontact
 trigger3 = stateno = 630 && movecontact
 ;Jump Strong Punch
@@ -464,7 +470,8 @@ trigger3 = stateno = 630 && movecontact
 type = ChangeState
 value = 620
 triggerall = command = "z"
-trigger1 = statetype = A && ctrl
+triggerall = statetype = A 
+trigger1 = ctrl
 trigger2 = stateno = 600 && movecontact
 trigger3 = stateno = 610 && movecontact
 trigger4 = stateno = 630 && movecontact
@@ -475,7 +482,8 @@ trigger5 = stateno = 640 && movecontact
 type = ChangeState
 value = 630
 triggerall = command = "a"
-trigger1 = statetype = A && ctrl
+triggerall = statetype = A 
+trigger1 = ctrl
 trigger2 = stateno = 600 && movecontact
 
 ;Jump Medium Kick
@@ -483,7 +491,8 @@ trigger2 = stateno = 600 && movecontact
 type = ChangeState
 value = 640
 triggerall = command = "b"
-trigger1 = statetype = A && ctrl
+triggerall = statetype = A 
+trigger1 = ctrl
 trigger2 = stateno = 600 && movecontact
 trigger3 = stateno = 610 && movecontact
 trigger4 = stateno = 630 && movecontact
@@ -505,14 +514,16 @@ trigger6 = stateno = 640 && movecontact
 type = ChangeState
 value = 100
 trigger1 = command = "FF"
-trigger1 = statetype = S && ctrl
+triggerall = statetype = S 
+trigger1 = ctrl
 
 ;Dash Backwards
 [State -1]
 type = ChangeState
 value = 105
 trigger1 = command = "BB"
-trigger1 = statetype = S && ctrl
+triggerall = statetype = S 
+trigger1 = ctrl
 
 ;Super Jump
 [State -1]
@@ -534,7 +545,6 @@ trigger2 = stateno = [200,450] && movecontact
 [State -1, Jump Cancel]
 type = ChangeState
 value = 40
-triggerall = !ishelper
 triggerall = !AIlevel
 triggerall = command = "holdup"
 trigger1 = stateno = 400 && movehit
