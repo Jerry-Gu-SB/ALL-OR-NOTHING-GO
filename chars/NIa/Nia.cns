@@ -20,7 +20,7 @@ ground.front = 11    ;Player width (front, ground)
 air.back = 8        ;Player width (back, air)
 air.front = 10       ;Player width (front, air)
 height = 60          ;Height of player (for opponent to jump over)
-attack.dist = 160    ;Default attack distance
+attack.dist = 100    ;Default attack distance
 proj.attack.dist = 90 ;Default attack distance for projectiles
 proj.doscale = 0     ;Set to 1 to scale projectiles too
 head.pos = -5, -90   ;Approximate position of head
@@ -605,7 +605,7 @@ value = 0,4
 [State 0, Vel]
 type = velset
 trigger1 = animelem=2
-x = 3
+x = 0
 
 [State 610, Camera Shake]
 type = EnvShake
@@ -653,7 +653,7 @@ value = 11
 ctrl = 1
  
 
-;Jumping Light
+;Jumping Heavy
 [Statedef 600]
 type = A
 movetype= A
@@ -705,7 +705,7 @@ type = changestate
 trigger1 = AnimTime = 0
 value = 51
 ;---------------------------------------------------------------------------
-;Jumping Heavy
+;Jumping 2H
 [Statedef 610]
 type = A
 movetype= A
@@ -725,7 +725,7 @@ value = 0,4
 type = velset
 trigger1 = prevstateno = 600
 trigger1 = animelem=2
-x = 1
+x = 0
 y = 1
 
 [State 5050, 3] ;Gravity

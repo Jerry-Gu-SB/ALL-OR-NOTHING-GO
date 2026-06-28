@@ -421,7 +421,7 @@ trigger4 = (stateno = [400,450])&& movecontact
 [State -1]
 type = ChangeState
 value = 400
-triggerall = command = "x" && command = "holddown"
+triggerall = command = "x" 
 trigger1 = statetype = C && ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 400 && movecontact
@@ -430,7 +430,7 @@ trigger3 = stateno = 400 && movecontact
 [State -1]
 type = ChangeState
 value = 410
-triggerall = command = "y" && command = "holddown"
+triggerall = command = "y" 
 trigger1 = statetype = C && ctrl
 trigger2 = (stateno = [200,409])&& movecontact
 
@@ -448,23 +448,27 @@ trigger4 = stateno = 410 && movecontact
 
  
 ;Jump Light Punch
-[State -1]
-type = ChangeState
-value = 600
-triggerall = command = "x"
-triggerall = statetype = A 
-trigger1 = ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 600 && movecontact
-;Jump Medium Punch
+
+;Jump Down Medium Punch
 [State -1]
 type = ChangeState
 value = 610
-triggerall = command = "y"
+triggerall = command = "y" && command = "holddown"
 triggerall = statetype = A 
 trigger1 = ctrl
 trigger2 = stateno = 600 && movecontact
 trigger3 = stateno = 630 && movecontact
+
+;Jump Medium Punch
+[State -1]
+type = ChangeState
+value = 600
+triggerall = command = "y"
+triggerall = statetype = A 
+trigger1 = ctrl
+trigger3 = stateno = 630 && movecontact
+
+
 ;Jump Strong Punch
 [State -1]
 type = ChangeState
