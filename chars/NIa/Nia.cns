@@ -237,7 +237,7 @@ x = 0
 [State 0, Vel]
 type = velset
 trigger1 = animelem=3
-x = 3
+x = 0
 
 [State 210, 2]
 type = varset
@@ -723,10 +723,8 @@ value = 0,4
 
 [State 0, Vel]
 type = velset
-trigger1 = prevstateno = 600
-trigger1 = animelem=2
-x = 0
-y = 1
+trigger1 = !time
+y = -4
 
 [State 5050, 3] ;Gravity
 type = VelAdd

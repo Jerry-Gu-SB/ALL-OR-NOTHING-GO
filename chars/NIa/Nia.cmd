@@ -56,6 +56,10 @@ command = ~D, DF, F, z
 [Command] 
 name = "QCB_x"
 command = ~D, DB, B, x
+
+[Command] 
+name = "QCB_y"
+command = ~D, DB, B, y
 ;---------------------------------------------------
 ;Super Jump
 ;---------------------------------------------------
@@ -351,6 +355,22 @@ trigger4 = stateno = 230 && movecontact
 trigger5 = stateno = 400 && movecontact
 trigger6 = stateno = 410 && movecontact
 trigger7 = stateno = 430 && movecontact
+trigger8 = stateno = 440 && movecontact
+
+;Hug of Destruction heavy!
+[State -1]
+type = ChangeState
+value = 1604
+triggerall = command = "QCB_y"
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 210 && movecontact
+trigger4 = stateno = 230 && movecontact
+trigger5 = stateno = 400 && movecontact
+trigger6 = stateno = 410 && movecontact
+trigger7 = stateno = 430 && movecontact
+trigger8 = stateno = 440 && movecontact
 
 ;Sweap
 [State -1]
