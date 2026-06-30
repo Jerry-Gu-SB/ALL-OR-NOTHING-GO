@@ -397,7 +397,7 @@ trigger1=ctrl
 [State -1]
 type = ChangeState
 value = 200
-triggerall = command = "x" && command != "holddown"
+triggerall = command = "x" 
 triggerall = statetype = S 
 trigger1 = ctrl
 trigger2 = stateno = 101
@@ -416,27 +416,6 @@ trigger3 = stateno = 200 && movecontact
 trigger4 = (stateno = [230,240])&& movecontact
 trigger5 = (stateno = [400,410])&& movecontact
 trigger6 = stateno = 620
-
-;Stand Light Kick
-[State -1]
-type = ChangeState
-value = 230
-triggerall = command = "a" && command != "holddown"
-triggerall = statetype = S 
-trigger1 = ctrl
-trigger2 = stateno = 101
-trigger3 = stateno = 200 && movecontact
-trigger4 = (stateno = [400,450])&& movecontact
-;Stand Heavy Kick
-[State -1]
-type = ChangeState
-value = 240
-triggerall = command = "b" && command != "holddown"
-triggerall = statetype = S 
-trigger1 = ctrl
-trigger2 = stateno = 101
-trigger3 = (stateno = [200,430])&& movecontact
-trigger4 = (stateno = [400,450])&& movecontact
 
 ;Crouch Light Punch
 [State -1]
@@ -494,8 +473,8 @@ value = 600
 triggerall = command = "y"
 triggerall = statetype = A 
 trigger1 = ctrl
-trigger3 = stateno = 630 && movecontact
-trigger4 = stateno = 620 && movecontact
+trigger2 = stateno = 630 && movecontact
+trigger3 = stateno = 620 && movecontact
 
 ;Jump Strong Punch
 

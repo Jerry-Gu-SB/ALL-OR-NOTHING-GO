@@ -177,7 +177,13 @@ trigger1 = prevstateno = 100 ;RUN_FWD
 trigger1 = sysvar(1) = 1
 x = const(velocity.runjump.fwd.x)
 
-[State 40, 6]
+[State 40, 6] ;Can't be thrown right after getting up
+type = NotHitBy
+trigger1 = AnimElem = 1
+value = , NT,ST,HT
+time = 12
+
+[State 40, 7]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 50
@@ -644,6 +650,8 @@ trigger1 = command != "holdback"
 trigger2 = !inguarddist
 value = 140
 
+
+
 ;---------------------------------------------------------------------------
 ; Guard (end)
 [Statedef 140]
@@ -682,6 +690,12 @@ type = StateTypeSet
 trigger1 = statetype = C && command != "holddown"
 statetype = S
 physics = S
+
+[State 40, 6] ;Can't be thrown right after getting up
+type = NotHitBy
+trigger1 = AnimElem = 1
+value = , NT,ST,HT
+time = 6
 
 ;[State 140, 5] ;Implemented within engine
 ;type = ChangeState
@@ -1093,11 +1107,19 @@ type = DefenceMulSet
 trigger1 = HitOver
 value = 1
 
+[State 40, 6] ;Can't be thrown right after getting up
+type = NotHitBy
+trigger1 = AnimElem = 1
+value = , NT,ST,HT
+time = 12
+
 [State 5001, 6]
 type = ChangeState
 trigger1 = HitOver
 value = 0
 ctrl = 1
+
+
 
 ;---------------------------------------------------------------------------
 ; Crouch get-hit (shaking)
@@ -1202,6 +1224,12 @@ x = 0
 type = DefenceMulSet
 trigger1 = HitOver
 value = 1
+
+[State 40, 6] ;Can't be thrown right after getting up
+type = NotHitBy
+trigger1 = AnimElem = 1
+value = , NT,ST,HT
+time = 6
 
 [State 5011, 6]
 type = ChangeState

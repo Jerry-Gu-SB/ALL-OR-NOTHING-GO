@@ -1,0 +1,33 @@
+Version: nightly
+Build Time: 2026.05.10
+Platform: windows (amd64)
+OpenGL 3.3
+RAM in Use: 243 MB / OS Reserved: 261 MB
+Active Goroutines: 3
+Timestamp: 2026-06-30 04:07:32
+
+Engine error
+
+Error: external/script/main.lua:851: chars/ffs_0/Nia.cns:2236:
+NT,ST,HT
+value: Invalid attr value: N
+stack traceback:
+	[G]: in function 'game'
+	external/script/main.lua:851: in function 'f_commandLine'
+	external/script/main.lua:860: in main chunk
+	[G]: ?
+
+Go stack traceback:
+goroutine 1 [running, locked to thread]:
+runtime/debug.Stack()
+	runtime/debug/stack.go:24 +0x65
+main.handlePanic({0x7ff75fd4a400?, 0xc0016c6680})
+	github.com/ikemen-engine/Ikemen-GO/src/main.go:362 +0x3e5
+main.realMain.func1()
+	github.com/ikemen-engine/Ikemen-GO/src/main.go:66 +0x2a
+panic({0x7ff75fd4a400, 0xc0016c6680})
+	runtime/panic.go:884 +0x213
+main.realMain()
+	github.com/ikemen-engine/Ikemen-GO/src/main.go:206 +0x573
+main.main()
+	github.com/ikemen-engine/Ikemen-GO/src/main.go:59 +0x17

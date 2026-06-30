@@ -371,8 +371,7 @@ ignorehitpause = 1
 
 [State 211, 3]
 type = HitDef
-trigger1 = !movecontact && !movereversed
-triggerall = enemynear,movetype != A
+trigger1 = !time
 attr = S, NA
 guardflag = M
 animtype = Hard
@@ -405,8 +404,7 @@ id = 1
 
 [State 211, 3]
 type = HitDef
-trigger1 = !movecontact && !movereversed
-triggerall = enemynear,movetype = A
+trigger1 = !time
 attr = S, NA
 guardflag = M
 animtype = Hard
@@ -892,11 +890,12 @@ animtype = Med
 ground.type = High
 ground.slidetime = 8
 ground.hittime = 16 + 2 * var(9)
-air.hittime = 12
+air.hittime = 13
 ground.velocity = -3.5,0
 ground.cornerpush.veloff = -8
 air.velocity = 0,-3
 airguard.velocity = -3,-2
+airguard.ctrltime = 13
 fall.xvelocity = 0
 fall.yvelocity = -2
 air.fall = 1
@@ -2223,20 +2222,15 @@ time=2
 add=64 + ceil(sin(var(20) / 8.0 * pi) * 64), 64 + ceil(sin(var(20) / 8.0 * pi) * 64), 64 + ceil(sin(var(20) / 8.0 * pi) * 64)
 ignoreHitPause=1
 
-[State -2, Throws Disallowed]
-type=varset
-trigger1= 1
-var(38)= 0
-[State -2, Throws Disallowed]
-type=varset
-trigger1= (enemynear,stateno=[150,155])
-trigger2= (enemynear,movetype=H && enemynear,statetype!=A) && !var(20) && !var(21) && !var(22)
-trigger3= (enemynear,stateno=[5020,5040]) && !(enemynear,hitfall)
-trigger4= ((enemynear,stateno=0) || (enemynear,stateno=52)) && (enemynear,prevstateno=[5000,5040]) && ((enemynear,time<=0) || !(enemynear,ctrl))
-trigger5= (enemynear,stateno=0) && (enemynear,prevstateno=52) && ((enemynear,time<=0) || !(enemynear,ctrl))
-trigger6= (enemynear,stateno=40) && (enemynear,time>=1 || enemynear,prevstateno=0 || enemynear,prevstateno=52)
-trigger7= var(20)||Numhelper(3205)
-var(38)= 1
+[State -2, Throw Protection]
+type = NotHitBy
+trigger1 = StateNo = 140 && AnimTime = 0
+trigger2 = StateNo = 5001 && HitOver
+trigger3 = StateNo = 5011 && HitOver
+value = , NT,ST,HT
+time = 7
+ignorehitpause = 1 
+
 ;-------------------------------------------------------------------
 [State -2, Voice Position]
 type=SndPan
