@@ -14,8 +14,7 @@ command.time = 15
 
 ; Default value for the "buffer.time" parameter of a Command. Minimum 1,
 ; maximum 30.
-command.buffer.time = 2
-
+command.buffer.time = 4
 ;-| Super Motions |--------------------------------------------------------
 ;The following two have the same name, but different motion.
 ;Either one will be detected by a "command = TripleKFPalm" trigger.
