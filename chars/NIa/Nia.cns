@@ -846,7 +846,7 @@ value = 0
 ctrl = 1
 
 
-
+;jump light
 [Statedef 620]
 type = A
 movetype= A
@@ -873,69 +873,76 @@ trigger1 = var(1)
 trigger1 = animelem = 8
 value = 1
 
-[State 620, HitDef] ;Not a Aerial Rave finisher
+[State 620, 2]
 type = HitDef
-trigger1 = !var(6) && animelem = 3
-attr = A,NA
+trigger1 = !movecontact && !movereversed
+trigger1 = enemynear,movetype != A
+attr = A, NA
+damage    = ceil(600),0
 hitflag = MAF
 guardflag = HA
-animtype = Hard
-damage = 40,0
-getpower = 50,0
-givepower = 20,0
-pausetime = 8,7
-guard.pausetime = 8,7
-sparkno = S8002
-guard.sparkno = S8050
-sparkxy = -10, -76* const(size.yscale)
-hitsound = S5,2
+priority = 1
+pausetime = 8,8
+sparkNo= s8010
+guard.sparkNo=-1 + 0 * (var(34) := 8000)
+sparkXY=-1 + 0 * (var(35) := 70), var(36):=-10
+hitsound   = S5,1
 guardsound = S6,0
+animtype = Med
 ground.type = High
-ground.slidetime = 12
-ground.hittime = 14
+ground.slidetime = 8
+ground.hittime = 16 + 2 * var(9)
 air.hittime = 12
-yaccel = .82
-ground.velocity = -7,0
+ground.velocity = -3.5,0
 ground.cornerpush.veloff = -8
-air.velocity = -14,14
-airguard.velocity = -6,-2
-fall.xvelocity = 0
-fall.yvelocity = -2
-air.fall = 1
-id = 2+4
-
-[State 620, HitDef] ;Aerial Rave Finisher
-type = HitDef
-trigger1 = var(6) && animelem = 3
-attr = A,NA
-hitflag = MAF
-guardflag = HA
-animtype = Hard
-damage = 40,0
-getpower = 50,0
-givepower = 20,0
-pausetime = 8,7
-guard.pausetime = 8,7
-sparkno = S8002
-guard.sparkno = S8050
-sparkxy = -10, -76* const(size.yscale)
-hitsound = S5,2
-guardsound = S6,0
-ground.type = High
-ground.slidetime = 12
-ground.hittime = 14
-air.hittime = 12
-yaccel = .82
-ground.velocity = -7,0
-ground.cornerpush.veloff = 0
-air.velocity = -20,12
-airguard.velocity = -6,-2
+air.velocity = 0,-3
+airguard.velocity = -3,-2
 fall.xvelocity = 0
 fall.yvelocity = -2
 air.fall = 1
 fall.recover = 0
-fall.envshake.time = 10
-id = 4+64
+
+[State 620, 2]
+type = HitDef
+trigger1 = !movecontact && !movereversed
+trigger1 = enemynear,movetype = A
+attr = A, NA
+damage    = ceil(600),0
+hitflag = MAF
+guardflag = HA
+priority = 1
+pausetime = 8,8
+sparkno = 1
+sparkxy = -10,-97
+hitsound   = S5,1
+guardsound = S6,0
+animtype = Med
+ground.type = High
+ground.slidetime = 8
+ground.hittime = 16 + 2 * var(9)
+air.hittime = 12
+ground.velocity = -3.5,0
+ground.cornerpush.veloff = -8
+air.velocity = 0,-3
+airguard.velocity = -3,-2
+fall.xvelocity = 0
+fall.yvelocity = -2
+air.fall = 1
+fall.recover = 0
+
+[State 200, Damage Scaling]
+type = varset
+trigger1 = movehit
+trigger1 = !moveguarded
+fvar(4) = fvar(4)*0.95
+ignorehitpause = 1
+persistent = 0
+
+[State 600, 3]
+type = changestate
+trigger1 = AnimTime = 0
+value = 57
+
  
 
 [Statedef 630]
