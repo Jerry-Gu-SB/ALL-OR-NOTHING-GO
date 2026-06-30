@@ -11,7 +11,6 @@ poweradd = 50
 juggle = 1
 
 
-
 [State 210, PlaySnd]
 type = PlaySnd
 trigger1 = time = 3
@@ -588,7 +587,7 @@ value = 50
 ctrl = 1
 
 
-
+; Hug of Destruction Attempt
 [Statedef 1600]
 type = S
 movetype= A
@@ -612,11 +611,12 @@ p1stateno = 1610
 p2stateno = 1620
 guard.dist = 0
 fall = 1
-[State 1000, 1]
+
+[State 1600, HOD Heavy]
 type = HitDef
 nochainID = 8000
 trigger1 = !movehit && !movereversed
-triggerall = enemynear,movetype = H
+triggerall = enemynear, movetype = H
 attr = S, ST         
 hitflag = MAFD
 guardflag = MA     
@@ -633,31 +633,10 @@ fall = 1
 fall.recover = 0
 
 [State 1, ]
-type = veladd
-trigger1 = animelem = 3
-y = -4
-
-[State 1, ]
 type = velset
-trigger1 = animelem <= 3 || animelem >= 5
-x = 10
+trigger1 = animelem <= 1 || animelem >= 5
+x = 7.5
 
-[State 1, ]
-type = veladd
-trigger1 = animelemtime(4) > 0 && animelem <= 6
-y = 0.55
-
-[State 1600, ]
-type = PosSet
-trigger1 = animelem = 6
-y = 0
-x = 0
-
-[State 1600, Stop]
-type = VelSet
-trigger1 = animelem = 6
-x = 0
-y = 0
 
 [State 1600, 2]
 type = ChangeState
