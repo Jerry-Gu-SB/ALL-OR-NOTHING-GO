@@ -420,7 +420,7 @@ trigger6 = stateno = 620
 [State -1]
 type = ChangeState
 value = 400
-triggerall = command = "x" 
+triggerall = command = "x" && command = "holddown"
 trigger1 = statetype = C && ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 400 && movecontact
@@ -429,7 +429,7 @@ trigger3 = stateno = 400 && movecontact
 [State -1]
 type = ChangeState
 value = 410
-triggerall = command = "y" 
+triggerall = command = "y" && command = "holddown"
 trigger1 = statetype = C && ctrl
 trigger2 = (stateno = [200,409])&& movecontact
 
