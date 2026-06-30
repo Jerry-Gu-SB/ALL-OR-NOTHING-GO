@@ -181,7 +181,7 @@ x = const(velocity.runjump.fwd.x)
 type = NotHitBy
 trigger1 = AnimElem = 1
 value = , NT,ST,HT
-time = 12
+time = 4
 
 [State 40, 7]
 type = ChangeState

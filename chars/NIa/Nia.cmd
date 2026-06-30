@@ -259,6 +259,16 @@ name = "dash"
 command = y+z
 time = 1
 
+
+;---------------------------------------------------
+;direction plus button
+;---------------------------------------------------
+
+[Command]
+name = "down_x"
+command = /$D,x
+time = 1
+
 ;---------------------------------------------------------------------------
 ; 2. State entry
 ;---------------------------------------------------------------------------
@@ -396,7 +406,7 @@ trigger1=ctrl
 [State -1]
 type = ChangeState
 value = 200
-triggerall = command = "x" 
+triggerall = command = "x" && command != "holddown"
 triggerall = statetype = S 
 trigger1 = ctrl
 trigger2 = stateno = 101
@@ -420,7 +430,7 @@ trigger6 = stateno = 620
 [State -1]
 type = ChangeState
 value = 400
-triggerall = command = "x" && command = "holddown"
+triggerall = command = "x" 
 trigger1 = statetype = C && ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 400 && movecontact
@@ -429,7 +439,7 @@ trigger3 = stateno = 400 && movecontact
 [State -1]
 type = ChangeState
 value = 410
-triggerall = command = "y" && command = "holddown"
+triggerall = command = "y" 
 trigger1 = statetype = C && ctrl
 trigger2 = (stateno = [200,409])&& movecontact
 
@@ -548,11 +558,11 @@ type = ChangeState
 value = 40
 triggerall = !AIlevel
 triggerall = command = "holdup"
-trigger1 = stateno = 400 && movehit
-trigger2 = stateno = 410 && movehit
-trigger3 = stateno = 450 && movehit
-trigger4 = stateno = 200 && movehit
-trigger5 = stateno = 210 && movehit
+trigger1 = stateno = 400 && movecontact && !moveguarded
+trigger2 = stateno = 410 && movecontact && !moveguarded
+trigger3 = stateno = 450 && movecontact && !moveguarded
+trigger4 = stateno = 200 && movecontact && !moveguarded
+trigger5 = stateno = 210 && movecontact && !moveguarded
 
 [State -1, PerfectBlock Stand]
 type = HitOverride
