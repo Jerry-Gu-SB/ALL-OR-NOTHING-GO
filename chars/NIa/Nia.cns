@@ -169,8 +169,7 @@ ownpal = 1
 
 [State 200, HitDef]
 type = HitDef
-trigger1 = !movecontact && !movereversed
-trigger1 = enemynear,movetype != A
+trigger1 = !time
 attr = S,NA
 hitflag = MAF
 guardflag = M

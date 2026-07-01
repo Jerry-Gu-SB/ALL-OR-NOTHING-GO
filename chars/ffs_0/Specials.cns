@@ -822,8 +822,8 @@ sparkno = -1
 sparkxy = 0,-50
 p1sprpriority = 1     
 p1facing = 1          
-p1stateno = 1610      
-p2stateno = 1620           
+p1stateno = 1614      
+p2stateno = 1624         
 fall = 1  
 fall.recover = 0
 
