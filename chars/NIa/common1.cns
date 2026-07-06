@@ -470,11 +470,12 @@ anim = 105
 sprpriority = 1
 Facep2 = 1
 
-[State ]
-Type = NotHitBy
-Trigger1 = Time < 9
-Value = , ST, HT ,NA, SA, HA ,NP, SP, HP
-Time = 1
+[State 40, 6] ;Can't be thrown right after getting up
+type = NotHitBy
+trigger1 = AnimTime = 0
+value = ,  SCA
+time = 9
+
 
 [State 101, PlaySnd]
 type = PlaySnd
@@ -1911,7 +1912,7 @@ value = 1
 type = NotHitBy
 trigger1 = AnimTime = 0
 value = , NT,ST,HT
-time = 12
+time = 8
 
 [State 5120, 6] ;Can't be hit right after getting up (short time)
 type = NotHitBy

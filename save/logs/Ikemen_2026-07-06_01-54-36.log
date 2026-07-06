@@ -1,0 +1,42 @@
+Version: nightly
+Build Time: 2026.05.10
+Platform: windows (amd64)
+OpenGL 3.3
+RAM in Use: 97 MB / OS Reserved: 115 MB
+Active Goroutines: 4
+Timestamp: 2026-07-06 01:54:36
+
+Application error
+
+Error: runtime error: index out of range [1] with length 1
+
+Go stack traceback:
+goroutine 10 [running]:
+runtime/debug.Stack()
+	runtime/debug/stack.go:24 +0x65
+main.handlePanic({0x7ff72beb4340?, 0xc0063996b0})
+	github.com/ikemen-engine/Ikemen-GO/src/main.go:362 +0x3e5
+main.SafeGo.func1.1()
+	github.com/ikemen-engine/Ikemen-GO/src/common.go:1770 +0x2a
+panic({0x7ff72beb4340, 0xc0063996b0})
+	runtime/panic.go:884 +0x213
+main.(*StateCompiler).stateCompileCNS.func2({0xc006298be5, 0x8}, {0xc006298bf0, 0x13})
+	github.com/ikemen-engine/Ikemen-GO/src/compiler.go:6839 +0x879
+main.(*StateCompiler).parseSection(0xc000aec2d0, 0xc00631f308)
+	github.com/ikemen-engine/Ikemen-GO/src/compiler.go:5985 +0x683
+main.(*StateCompiler).stateCompileCNS(0xc000aec2d0, 0xc0000bb9d8?, {0xc00025d170, 0x13}, {0xc00627c000?, 0x0?}, 0x1, 0x30?)
+	github.com/ikemen-engine/Ikemen-GO/src/compiler.go:6792 +0x958
+main.(*StateCompiler).stateCompile(0x7ff72be58780?, 0xc000f35860?, {0xc00025d170, 0x13}, {0xc0000bb9d8, 0x4, 0x4}, 0x0?, 0xc000368f50?)
+	github.com/ikemen-engine/Ikemen-GO/src/compiler.go:6705 +0x273
+main.(*StateCompiler).Compile(0xc000aec2d0, 0x0, {0xc00025c3d8, 0x15}, 0x1?)
+	github.com/ikemen-engine/Ikemen-GO/src/compiler.go:8254 +0x180b
+main.(*Loader).loadCharacter(0x7ff72bdbf418, 0x0, 0x0)
+	github.com/ikemen-engine/Ikemen-GO/src/system.go:5119 +0xefe
+main.(*Loader).load(0x7ff72bdbf418)
+	github.com/ikemen-engine/Ikemen-GO/src/system.go:5395 +0x305
+main.(*Loader).runTread.func1()
+	github.com/ikemen-engine/Ikemen-GO/src/system.go:5454 +0x1d
+main.SafeGo.func1()
+	github.com/ikemen-engine/Ikemen-GO/src/common.go:1773 +0x3f
+created by main.SafeGo
+	github.com/ikemen-engine/Ikemen-GO/src/common.go:1767 +0x56

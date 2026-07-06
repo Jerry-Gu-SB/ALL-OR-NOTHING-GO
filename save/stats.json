@@ -12,6 +12,10 @@
         "nia": 1,
         "mika": 1
       }
+    },
+    "freebattle": {
+      "playtime": 0,
+      "clear": 0
     }
   }
 }
