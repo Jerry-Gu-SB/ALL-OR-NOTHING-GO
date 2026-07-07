@@ -550,19 +550,19 @@ type = ChangeState
 value = 40
 triggerall = command = "holdup" && !var(1) && prevstateno != 810
 trigger1 = stateno = [100,102]
-trigger2 = stateno = [200,450] && movecontact
+trigger2 = stateno = [200,450] && MoveHit
 
 ;---------------------------------------------------------------------------
 [State -1, Jump Cancel]
-type = ChangeState
+type = Null;ChangeState
 value = 40
 triggerall = !AIlevel
 triggerall = command = "holdup"
-trigger1 = stateno = 400 && movecontact && !moveguarded
-trigger2 = stateno = 410 && movecontact && !moveguarded
-trigger3 = stateno = 450 && movecontact && !moveguarded
-trigger4 = stateno = 200 && movecontact && !moveguarded
-trigger5 = stateno = 210 && movecontact && !moveguarded
+trigger1 = stateno = 400 && MoveHit 
+trigger2 = stateno = 410 && MoveHit 
+trigger3 = stateno = 450 && MoveHit 
+trigger4 = stateno = 200 && MoveHit 
+trigger5 = stateno = 210 && MoveHit 
 
 [State -1, PerfectBlock Stand]
 type = HitOverride
