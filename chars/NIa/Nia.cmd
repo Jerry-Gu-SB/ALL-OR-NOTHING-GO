@@ -551,6 +551,8 @@ value = 40
 triggerall = command = "holdup" && !var(1) && prevstateno != 810
 trigger1 = stateno = [100,102]
 trigger2 = stateno = [200,450] && MoveHit
+trigger3 = stateno = 410 && MoveHit
+
 
 ;---------------------------------------------------------------------------
 [State -1, Jump Cancel]
