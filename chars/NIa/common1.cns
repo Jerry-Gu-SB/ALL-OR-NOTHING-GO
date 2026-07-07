@@ -177,6 +177,23 @@ trigger1 = prevstateno = 100 ;RUN_FWD
 trigger1 = sysvar(1) = 1
 x = const(velocity.runjump.fwd.x)
 
+[State 6061, Effect]
+type = Explod
+trigger1 = animelem = 2
+anim = 8101
+scale = 0.50,0.50
+postype = p1
+facing = 1
+pos = -3,0
+sprpriority = 3
+ownpal = 1
+removeongethit = 1
+pausemovetime = 99999
+supermovetime = 99999
+ignorehitpause = 1
+persistent = 0
+bindtime = 0
+
 [State 40, 6] ;Can't be thrown right after getting up
 type = NotHitBy
 trigger1 = AnimElem = 1
@@ -249,6 +266,7 @@ sysvar(1) = 0
 type = PlaySnd
 trigger1 = Time = 0
 value = 50, 0
+
 
 [State 50, 1]
 type = VelAdd
