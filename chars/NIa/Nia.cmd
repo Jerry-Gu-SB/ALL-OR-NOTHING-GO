@@ -401,13 +401,34 @@ trigger1=(command = "holdfwd"||command = "holdback")&& command = "x+y"
 trigger1=!AILevel && RoundState=2 && Statetype!=A && !var(20)
 trigger1=ctrl
 
+;Crouch Light Punch
+[State -1]
+type = ChangeState
+value = 400
+triggerall = command = "x" 
+triggerall = command = "holddown"
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 400 && movecontact
+
+;Crouch Heavy Punch
+[State -1]
+type = ChangeState
+value = 410
+triggerall = command = "y" && command = "holddown"
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 210 && movecontact && prevStateNo != 410
+trigger4 = stateno = 400 && movecontact
 
 ;Stand Light Punch
 [State -1]
 type = ChangeState
 value = 200
-triggerall = command = "x" && command != "holddown"
-triggerall = statetype = S 
+triggerall = command = "x" 
+triggerall = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 101
 trigger3 = stateno = 200 && movecontact
@@ -417,31 +438,15 @@ trigger4 = stateno = 400 && movecontact
   [State -1]
 type = ChangeState
 value = 210
-triggerall = command = "y" && command != "holddown"
-triggerall = statetype = S 
+triggerall = command = "y" 
+triggerall = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 101
 trigger3 = stateno = 200 && movecontact
-trigger4 = (stateno = [230,240])&& movecontact
-trigger5 = (stateno = [400,410])&& movecontact
-trigger6 = stateno = 620
+trigger4 = stateno = 400 && movecontact 
+trigger5 = stateno = 410 && movecontact && prevStateNo != 210
 
-;Crouch Light Punch
-[State -1]
-type = ChangeState
-value = 400
-triggerall = command = "x" 
-trigger1 = statetype = C && ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 400 && movecontact
 
-;Crouch Heavy Punch
-[State -1]
-type = ChangeState
-value = 410
-triggerall = command = "y" 
-trigger1 = statetype = C && ctrl
-trigger2 = (stateno = [200,409])&& movecontact
 
 ;Crouch Light Kick
 [State -1]
