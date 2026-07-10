@@ -194,6 +194,11 @@ ignorehitpause = 1
 persistent = 0
 bindtime = 0
 
+[State 50, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 0,2
+
 [State 40, 6] ;Can't be thrown right after getting up
 type = NotHitBy
 trigger1 = AnimElem = 1
@@ -266,7 +271,6 @@ sysvar(1) = 0
 type = PlaySnd
 trigger1 = Time = 0
 value = 50, 0
-
 
 [State 50, 1]
 type = VelAdd
@@ -438,6 +442,11 @@ y = 0
 type = CtrlSet
 trigger1 = Time = 3
 value = 1
+
+[State 52, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = 0,0
 
 [State 52, 4]
 type = VelSet

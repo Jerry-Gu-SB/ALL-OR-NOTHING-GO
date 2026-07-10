@@ -381,6 +381,8 @@ Clsn2Default: 2
 181,3, 0,0, 6
 181,4, 0,0, 6
 181,5, 0,0, 6
+181,2, 0,0, 6
+181,3, 0,0, 6
 
 ; Stand Light Punch
 [Begin Action 200]

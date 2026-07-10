@@ -178,6 +178,12 @@ type = PlaySnd
 trigger1 = time = 0
 value = 0,3
 
+[State 200, Sound]
+type = PlaySnd
+trigger1 = Time = 0
+value = 200, Random % 4
+
+
 [State 200, VelSet]
 type = VelSet
 trigger1 = time = 0
@@ -262,7 +268,7 @@ x = 0
 [State 0, Vel]
 type = velset
 trigger1 = animelem=3
-x = 0
+x = 3
 
 [State 210, 2]
 type = varset
@@ -281,12 +287,19 @@ trigger1 = time = 9
 trigger1 = var(12) >= 9
 value = 211
 
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = animelem=3
+value = 210,0
+
+
 [State 610, Camera Shake]
 type = EnvShake
-trigger1 = AnimElem =2
+trigger1 = AnimElem = 3
 time = 10
 freq = 10
-ampl = 2
+ampl = 3
 
 [State 210, HitDef]
 type = HitDef
@@ -352,6 +365,12 @@ type = velset
 trigger1 = animelem=3
 x = 3
 
+
+[State 211, PlaySnd]
+type = PlaySnd
+trigger1 = animelem=1
+value = 210,1
+
 [State 50, 2]
 type = Explod
 trigger1 = time = 0
@@ -368,7 +387,7 @@ type = EnvShake
 trigger1 = AnimElem =3
 time = 10
 freq = 10
-ampl = 2
+ampl = 4
 
 [State 1, ]
 type = PlaySnd
@@ -909,7 +928,7 @@ pausetime = 8,8
 sparkNo= s8010
 guard.sparkNo=-1 + 0 * (var(34) := 8000)
 sparkXY=-1 + 0 * (var(35) := 70), var(36):=-10
-hitsound   = S5,1
+hitsound = S1,1
 guardsound = S6,0
 animtype = Med
 ground.type = High
