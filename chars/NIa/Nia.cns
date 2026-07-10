@@ -105,6 +105,10 @@ ctrl = 0
 anim = 181
 velset = 0,0
 
+[State 181, 1]
+type = playsnd
+trigger1 =  Time = 0
+value = 180,0
 
 [State 181, AssertSpecial]
 type = AssertSpecial
