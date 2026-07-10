@@ -599,7 +599,7 @@ time = 7
 ;Taunt
 [State -1]
 type = ChangeState
-value = 800
+value = 195
 triggerall = command = "start"
 trigger1 = statetype != A && ctrl
 trigger2 = (stateno = 101 || stateno = 106) && time > 3

@@ -108,7 +108,7 @@ velset = 0,0
 [State 181, 1]
 type = playsnd
 trigger1 =  Time = 0
-value = 180,0
+value = 180, ifelse(Random < 500, 0, 1)
 
 [State 181, AssertSpecial]
 type = AssertSpecial
@@ -137,6 +137,28 @@ flag = Intro
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
+
+;---------------------------------------------------------------------------
+;Taunt
+[Statedef 195]
+type = S
+ctrl = 0
+anim = 195
+velset = 0,0
+movetype = I
+physics = S
+sprpriority = 2
+
+[State 181, 1]
+type = playsnd
+trigger1 =  Time = 0
+value = 180, 0
+
+[State 195, 2]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
 
 ;Light punch
 [Statedef 200]
@@ -1428,6 +1450,12 @@ var(19)=-1
 type = PlaySnd
 trigger1 = AnimElem = 1
 value = 1, 6
+
+[State 810, Grab Sound]
+type = PlaySnd
+trigger1 = time = 0
+value =810, 0
+
 [State 0, Zoom] 
 type = Zoom
 trigger1 = time = [0,32] 

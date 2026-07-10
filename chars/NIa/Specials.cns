@@ -13,7 +13,7 @@ juggle = 1
 [State 1200, sound]
 type = playsnd
 trigger1 =  Time = 0
-value = 1200,0
+value = 1200, ifelse(Random < 500, 0, 2)
 
 
 [State 210, PlaySnd]
@@ -233,7 +233,7 @@ value = S4000,10
 [State 1200, sound]
 type = playsnd
 trigger1 =  Time = 0
-value = 1200, ifelse(Random < 500, 0, 1)
+value = 1200, 1
 
 [State 3001, Width]
 type = Width
