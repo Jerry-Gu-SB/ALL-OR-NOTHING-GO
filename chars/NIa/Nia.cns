@@ -85,11 +85,10 @@ trigger1 = 1
 source = 1,1
 dest = 1,palno
 
-[State 5900, Intro]
+[State 5900, 4] ;Intro for round 1
 type = ChangeState
 triggerall = RoundNo = 1
-triggerall = RoundState = 0
-trigger1 = Time = 0
+trigger1 = RoundsExisted = 0
 value = 190
 
 [Statedef 170]
@@ -148,12 +147,38 @@ type = NotHitBy
 trigger1 = 1
 value = SCA
 
-; End intro when animation finishes
-[State 190, End]
+[State 191, 1] ;Freeze animation until PreIntro is over or after P1 Speak
+type = ChangeAnim
+triggerall = Time < 300
+triggerall = Anim = 190 && AnimElemTime(5) = 0
+trigger1 = RoundState = 0
+trigger2 = (Enemynear,var(19) & 32) && (Enemynear,var(19) & 128) 
+value = 190
+elem = 0
+
+[State 191, Say 1st if P1]
+type = varset
+trigger1 = time = 0
+trigger1 = !(var(19) & 32)
+trigger1 = facing = 1
+var(19) = var(19) + 32
+
+[State 191, Say 1st if P1 release]
+type = varset
+trigger1 = time > 150
+trigger1 = (var(19) & 32)
+var(19) = var(19) - 32
+
+[State 191, 2] ;Assert this until you want "round 1, fight" to begin
+type = AssertSpecial
+trigger1 = 1
+flag = Intro
+
+[State 191, 3] ;Change to stand state when done
 type = ChangeState
+trigger1 = Anim = 190
 trigger1 = AnimTime = 0
 value = 0
-ctrl = 1
 
 [State 190, Voice]
 type = PlaySnd
