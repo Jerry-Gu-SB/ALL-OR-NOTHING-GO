@@ -470,11 +470,11 @@ triggerall = statetype = A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 
-;Jump Down Medium Punch
+;Jump Down Heavy Punch
 [State -1]
 type = ChangeState
 value = 610
-triggerall = command = "y" && command = "holddown"
+triggerall = command = "y" && command = "holddown" && vel y > -5
 triggerall = statetype = A 
 trigger1 = ctrl
 trigger2 = stateno = 600 && movecontact
