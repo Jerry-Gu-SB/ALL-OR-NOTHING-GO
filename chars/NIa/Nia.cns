@@ -74,6 +74,23 @@ victory4 = "i love food"
 victory5 = "i tired now"
 victory6 = "hehe srcub"
 
+[Statedef 5900]
+type = S
+physics = S
+sprpriority = 0
+
+[State 5900, 3] ;Change palette
+type = RemapPal
+trigger1 = 1
+source = 1,1
+dest = 1,palno
+
+[State 5900, Intro]
+type = ChangeState
+triggerall = RoundNo = 1
+triggerall = RoundState = 0
+trigger1 = Time = 0
+value = 190
 
 [Statedef 170]
 type = S
@@ -114,43 +131,34 @@ type = AssertSpecial
 trigger1 = time < 180
 flag = roundnotover
 
+;==================================================
+; Intro
+;==================================================
 [Statedef 190]
 type = S
-ctrl = 0
-velset = 0,0
-
-[State 190, 1]
-type = ChangeAnim
-trigger1 = SelfAnimExist(190)
-value = 190
-
-[State 190, 2] ;Go straight to intro.
-type = ChangeState
-trigger1 = Time = 0
-value = 191
-
-
-; Introduction
-[Statedef 191]
-type = S
-ctrl = 0
+movetype = I
+physics = S
 anim = 190
+ctrl = 0
 velset = 0,0
 
-[State 191, ChangeAnim]
-type = ChangeAnim
-trigger1 = RoundState = 0
-value = 190
-
-[State 191, AssertSpecial]
-type = AssertSpecial
+; Prevent attacks during intro
+[State 190, NotHitBy]
+type = NotHitBy
 trigger1 = 1
-flag = Intro
+value = SCA
 
-[State 200, ステート変更]
+; End intro when animation finishes
+[State 190, End]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
+ctrl = 1
+
+[State 190, Voice]
+type = PlaySnd
+trigger1 = Time = 0
+value = 190,0
 
 
 ;---------------------------------------------------------------------------
@@ -196,7 +204,7 @@ value = 0,3
 [State 200, Sound]
 type = PlaySnd
 trigger1 = Time = 0
-value = 200, Random % 4
+value = 200, Random % 3
 
 
 [State 200, VelSet]
@@ -590,6 +598,12 @@ juggle = 1
 type = PlaySnd
 trigger1 = time = 0
 value = 0,4
+
+[State 410, PlaySnd]
+type = PlaySnd
+trigger1 = time = 9
+value = 410,0
+
 [State 0, Vel]
 type = velset
 trigger1 = animelem=2
@@ -643,7 +657,7 @@ trigger1 = animtime = 0
 value = 11
 ctrl = 1
 
-;Heavy Crouching Kick
+;Sweap
 [Statedef 440]
 type = C
 movetype= A
@@ -658,6 +672,11 @@ poweradd = 50
 type = PlaySnd
 trigger1 = time = 0
 value = 0,4
+
+[State 180, Random Sound]
+type = PlaySnd
+trigger1 = Time = 0
+value = 600, ifelse(Random < 500, 0, 1)
 
 [State 0, Vel]
 type = velset
@@ -726,6 +745,10 @@ type = PlaySnd
 trigger1 = time = 0
 value = 0,3
 
+[State 180, Random Sound]
+type = PlaySnd
+trigger1 = Time = 0
+value = 600, ifelse(Random < 500, 0, 1)
 
 [State 600, HitDef]
 type = HitDef
@@ -751,7 +774,7 @@ ground.hittime = 16 + 2 * var(9)
 air.hittime = 12
 ground.velocity = -3.5,0
 ground.cornerpush.veloff = -8
-air.velocity = 0,-3
+air.velocity = -2,-4
 airguard.velocity = -3,-2
 fall.xvelocity = 0
 fall.yvelocity = -2
@@ -917,6 +940,11 @@ poweradd = 50
 type = PlaySnd
 trigger1 = time = 0
 value = 0,5
+
+[State 180, Random Sound]
+type = PlaySnd
+trigger1 = Time = 0
+value = 610, ifelse(Random < 500, 0, 1)
 
 [State 620, VarSet] ;This for every Aerial Hard Punch/Kick
 type = VarSet
@@ -1584,6 +1612,11 @@ var(19)=-1
 type=TargetFacing
 trigger1=Time <= 1
 value=-1
+
+[State 810, Grab Sound]
+type = PlaySnd
+trigger1 = time = 0
+value =810, 0
 
 [State 810, Grab Sound]
 type = PlaySnd

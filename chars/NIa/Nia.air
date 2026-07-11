@@ -551,7 +551,7 @@ Clsn2: 3
   Clsn2[2] = -52, -176, 213, 35
 400,3, 0,0, 8
 
-; Crouch Medium Punch
+; Crouch heavy  Punch
 [Begin Action 410]
 Clsn2: 2
   Clsn2[0] = -30, -342, 65, -249
