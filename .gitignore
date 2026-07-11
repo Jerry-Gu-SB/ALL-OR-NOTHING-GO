@@ -1,3 +1,5 @@
 lib/
 *.exe
 chars/ffs_0
+*.zip
+*.log
