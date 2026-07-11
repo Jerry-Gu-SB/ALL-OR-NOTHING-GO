@@ -280,7 +280,8 @@ stages/kfm.def
 stages/stage0.def
 stages/stage0-720.def
 stages/MBTL_Moonlit_Altar_TWS.def
-
+stages/Blazblue_Kagutsuchi_PM.def
+stages/Imitation BlazeBlue.def
 ;-------------------------------------------------------------------------------
 [Options]
  ;Here you set the maximum number of matches to fight before game ends in arcade
