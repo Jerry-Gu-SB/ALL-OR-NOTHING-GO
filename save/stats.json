@@ -1,5 +1,5 @@
 {
-  "playtime": 1166.14,
+  "playtime": 2816.96,
   "modes": {
     "training": {
       "playtime": 0,
@@ -16,6 +16,13 @@
     "freebattle": {
       "playtime": 0,
       "clear": 0
+    },
+    "netplayversus": {
+      "playtime": 1650.82,
+      "clear": 10,
+      "clearcount": {
+        "nia": 10
+      }
     }
   }
 }

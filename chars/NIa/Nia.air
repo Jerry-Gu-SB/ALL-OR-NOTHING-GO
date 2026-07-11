@@ -587,7 +587,7 @@ Clsn2: 2
   Clsn2[1] = -35, -335, 82, -215
 12,0, 0,0, 10, , , 1,0.95
 
-; Crouch Heavy Kick
+; Sweap
 [Begin Action 450]
 Clsn2: 4
   Clsn2[0] = -182, -299, -48, -177
