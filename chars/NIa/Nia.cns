@@ -19,7 +19,7 @@ ground.back = 11     ;Player width (back, ground)
 ground.front = 11    ;Player width (front, ground)
 air.back = 8        ;Player width (back, air)
 air.front = 10       ;Player width (front, air)
-height = 60          ;Height of player (for opponent to jump over)
+height = 68         ;Height of player (for opponent to jump over)
 attack.dist = 100    ;Default attack distance
 proj.attack.dist = 90 ;Default attack distance for projectiles
 proj.doscale = 0     ;Set to 1 to scale projectiles too
@@ -565,6 +565,11 @@ type = PlaySnd
 trigger1 = time = 0
 value = 0,3
 
+[State 200, Sound]
+type = PlaySnd
+trigger1 = Time = 0
+value = 200, Random % 3
+
 [State 400, HitDef]
 type = HitDef
 trigger1 = !time
@@ -591,9 +596,9 @@ air.hittime = 16
 yaccel = .53
 ground.velocity = -5,0
 ground.cornerpush.veloff = -7
-air.velocity = -4,-8
+air.velocity = -2,-3
 down.velocity = -4,-6
-airguard.velocity = -6,-2
+airguard.velocity = -4,-2
 fall.xvelocity = 0
 fall.yvelocity = -2
 air.fall = 1
@@ -825,6 +830,7 @@ juggle = 1
 type = PlaySnd
 trigger1 = time = 0
 value = 0,4
+
 
 [State 0, Vel]
 type = velset

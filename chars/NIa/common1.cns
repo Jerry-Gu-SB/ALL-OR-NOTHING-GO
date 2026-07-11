@@ -1094,6 +1094,8 @@ time = 15
 waveform = sinesquare
 ampl = 140
 
+
+
 [State 5000, 6]
 type = ChangeState
 trigger1 = HitShakeOver
@@ -1595,6 +1597,8 @@ type = ChangeAnim
 trigger1 = 1
 value = sysvar(2)
 
+
+
 [State 5080, 4]
 type = ChangeState
 trigger1 = HitShakeOver
@@ -1613,6 +1617,7 @@ value = 5030 ;Air get-hit (knocked away)
 type    = L
 movetype= H
 physics = C
+
 
 [State 5081, 1]
 type = HitVelSet
@@ -1978,6 +1983,8 @@ trigger1 = Time = 0
 trigger1 = (anim = [5111,5119]) || (anim = [5171,5179])
 trigger1 = SelfAnimExist(5140 + (anim % 10))
 value = 5140 + (anim % 10)
+
+
 
 [State 5150, 4] ;Match over anim
 type = ChangeAnim
