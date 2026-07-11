@@ -66,15 +66,15 @@ air.gethit.trip.groundlevel = 15      ;Y-position at which player in the tripped
 
 
 [Quotes]
-victory0 = "Go home and be a family man!"
-victory1 = "Sign up for my dojo later, I'll give you a discount."
-victory2 = "I have no time for you, I must press on."
-victory3 = "Where's Suave Dude hiding?! What do you mean there's no Suave Dude?!"
-victory4 = "Who knew rescuing my girlfriend would be so difficult..."
-victory5 = "What strength! But don't forget there are guys like you all over the world!"
-victory6 = "You must defeat my Kung Fu Palm to stand a chance."
+victory0 = "i want pizza"
+victory1 = "doinkey doinkey do"
+victory2 = "bbc"
+victory3 = "somebod get the door"
+victory4 = "i love food"
+victory5 = "i tired now"
+victory6 = "hehe srcub"
 
-; Lose by Time Over
+
 [Statedef 170]
 type = S
 ctrl = 0
@@ -98,7 +98,6 @@ type = ChangeState
 trigger1 = Time = 0
 value = 181
 
-
 [Statedef 181]
 type = S
 ctrl = 0
@@ -114,6 +113,21 @@ value = 180, ifelse(Random < 500, 0, 1)
 type = AssertSpecial
 trigger1 = time < 180
 flag = roundnotover
+
+[Statedef 190]
+type = S
+ctrl = 0
+velset = 0,0
+
+[State 190, 1]
+type = ChangeAnim
+trigger1 = SelfAnimExist(190)
+value = 190
+
+[State 190, 2] ;Go straight to intro.
+type = ChangeState
+trigger1 = Time = 0
+value = 191
 
 
 ; Introduction
@@ -137,6 +151,7 @@ flag = Intro
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
+
 
 ;---------------------------------------------------------------------------
 ;Taunt

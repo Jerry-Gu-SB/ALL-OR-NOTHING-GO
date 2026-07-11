@@ -208,6 +208,7 @@ value=5000
 type=playsnd
 trigger1= !time
 value=f7,0
+
 [State 1127, fx]
 type=explod
 trigger1= !time

@@ -27,6 +27,8 @@
 ; Hitfall_airrecover (5210): player's defence is restored at time = 0
 
 ;---------------------------------------------------------------------------
+
+
 ; Stand
 [Statedef 0]
 type = S
@@ -1025,7 +1027,7 @@ ctrl = 0
 [State 191, 1]
 type = ChangeState
 trigger1 = Time = 0
-value = 0
+value = 190
 
 ;---------------------------------------------------------------------------
 ; Stand get-hit (shaking)
