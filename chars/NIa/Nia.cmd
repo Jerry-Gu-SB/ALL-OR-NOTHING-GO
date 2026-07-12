@@ -339,7 +339,7 @@ trigger1 = statetype != A && ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 210 && movecontact
 trigger4 = stateno = 220 && movecontact
-trigger5 = stateno = 230 && movecontact
+trigger4 = stateno = [230,233] && movecontact
 trigger6 = stateno = 240 && movecontact
 trigger7 = stateno = 250 && movecontact
 trigger8 = stateno = 400 && movecontact
@@ -360,7 +360,7 @@ triggerall = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 210 && movecontact
-trigger4 = stateno = 230 && movecontact
+trigger4 = stateno = [230,233] && movecontact
 trigger5 = stateno = 400 && movecontact
 trigger6 = stateno = 410 && movecontact
 trigger7 = stateno = 430 && movecontact
@@ -375,7 +375,7 @@ triggerall = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 210 && movecontact
-trigger4 = stateno = 230 && movecontact
+trigger4 = stateno = [230,233] && movecontact
 trigger5 = stateno = 400 && movecontact
 trigger6 = stateno = 410 && movecontact
 trigger7 = stateno = 430 && movecontact
@@ -422,6 +422,38 @@ trigger1 = stateno = 200 && movecontact
 trigger2 = stateno = 210 && movecontact 
 trigger4 = stateno = 400 && movecontact
 trigger4 = stateno = 410 && movecontact
+
+[State -1, 66LL]
+type = ChangeState
+value = 231
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "x"
+triggerall = statetype != A
+trigger1 = stateno = 230
+trigger1 = Movecontact
+
+[State -1, 66LLL]
+type = ChangeState
+value = 232
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "x"
+triggerall = statetype != A
+trigger1 = stateno = 231
+trigger1 = Movecontact
+
+[State -1, 66LLLL]
+type = ChangeState
+value = 233
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "x"
+triggerall = statetype != A
+trigger1 = stateno = 232
+trigger1 = Movecontact
+
+
 
 ;Crouch Light Punch
 [State -1]
