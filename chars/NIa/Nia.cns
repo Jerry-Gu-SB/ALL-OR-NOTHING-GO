@@ -568,7 +568,7 @@ value = 0,3
 [State 180, Random Sound]
 type = PlaySnd
 trigger1 = Time = 0
-value = 600, ifelse(Random < 500, 0, 1)
+value = 610, ifelse(Random < 500, 0, 1)
 
 [State 210, VelSet]
 type = VelSet
@@ -693,7 +693,7 @@ value = 0,3
 [State 180, Random Sound]
 type = PlaySnd
 trigger1 = Time = 0
-value = 600, ifelse(Random < 500, 0, 1)
+value = 610, ifelse(Random < 500, 0, 1)
 
 [State 210, VelSet]
 type = VelSet
@@ -816,7 +816,7 @@ value = 0,3
 [State 180, Random Sound]
 type = PlaySnd
 trigger1 = Time = 0
-value = 600, ifelse(Random < 500, 0, 1)
+value = 610, ifelse(Random < 500, 0, 1)
 
 [State 210, VelSet]
 type = VelSet
@@ -939,7 +939,7 @@ value = 0,3
 [State 180, Random Sound]
 type = PlaySnd
 trigger1 = Time = 0
-value = 600, ifelse(Random < 500, 0, 1)
+value = 610, ifelse(Random < 500, 0, 1)
 
 [State 210, VelSet]
 type = VelSet

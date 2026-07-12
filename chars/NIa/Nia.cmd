@@ -408,7 +408,7 @@ triggerall = !AIlevel
 triggerall = command = "x"
 trigger1 = statetype != A
 trigger1 = Stateno = 100
-trigger2 = Stateno = 101 
+trigger2 = Stateno = 101 && Time < 10
 
 ;dash punch cancel
 [State -1, 66L]
@@ -432,6 +432,8 @@ triggerall = command = "x"
 triggerall = statetype != A
 trigger1 = stateno = 230
 trigger1 = Movecontact
+trigger1 = AnimElemTime(4) >= 0
+trigger1 = AnimElemTime(6) < 5
 
 [State -1, 66LLL]
 type = ChangeState
@@ -441,7 +443,9 @@ triggerall = !AIlevel
 triggerall = command = "x"
 triggerall = statetype != A
 trigger1 = stateno = 231
-trigger1 = Movecontact
+trigger1 = AnimElemTime(4) >= 0
+trigger1 = AnimElemTime(6) < 5
+
 
 [State -1, 66LLLL]
 type = ChangeState
@@ -451,7 +455,8 @@ triggerall = !AIlevel
 triggerall = command = "x"
 triggerall = statetype != A
 trigger1 = stateno = 232
-trigger1 = Movecontact
+trigger1 = AnimElemTime(4) >= 0
+trigger1 = AnimElemTime(6) < 5
 
 
 
