@@ -607,7 +607,7 @@ ground.slidetime = 12
 guard.slidetime = 15
 guard.hittime = 15
 ground.hittime  = 19
-ground.velocity = -2
+ground.velocity = -3
 air.velocity = -2,-2
 air.hittime = 17
 airguard.velocity = -6,-2
@@ -779,8 +779,8 @@ animtype = Medium
 damage = 900,0
 getpower = 30,0
 givepower = 20,0
-pausetime = 8,8
-guard.pausetime = 8,8
+pausetime = 14,14
+guard.pausetime = 14,14
 sparkNo= s8010
 guard.sparkNo=-1 + 0 * (var(34) := 8000)
 sparkXY= -1 + 0 * (var(35) := 200), var(36):= -100
