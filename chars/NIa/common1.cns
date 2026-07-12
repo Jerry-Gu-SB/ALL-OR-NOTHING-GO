@@ -581,6 +581,12 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 130 + (statetype = C) + (statetype = A)*2
 
+[State 40, 6] ;Can't be thrown right after getting up
+type = NotHitBy
+trigger1 = AnimElem = 1
+value = , NT,ST,HT
+
+
 [State 120, Stop Guarding]
 type = ChangeState
 trigger1 = command != "holdback"
@@ -598,6 +604,12 @@ type = ChangeAnim
 trigger1 = Anim != 130
 value = 130
 
+[State 40, 6] ;Can't be thrown right after getting up
+type = NotHitBy
+trigger1 = AnimElem = 1
+value = , NT,ST,HT
+
+
 [State 130, Hi to Lo]
 type = ChangeState
 trigger1 = command = "holddown"
@@ -614,6 +626,11 @@ value = 140
 [Statedef 131]
 type    = C
 physics = C
+
+[State 40, 6] ;Can't be thrown right after getting up
+type = NotHitBy
+trigger1 = AnimElem = 1
+value = , NT,ST,HT
 
 [State 131, 1]
 type = ChangeAnim
