@@ -401,6 +401,27 @@ trigger1=(command = "holdfwd"||command = "holdback")&& command = "x+y"
 trigger1=!AILevel && RoundState=2 && Statetype!=A && !var(20)
 trigger1=ctrl
 
+[State -1, 66L]
+type = ChangeState
+value = 230
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "x"
+trigger1 = statetype != A
+trigger1 = Stateno = 100
+trigger2 = Stateno = 101
+
+;dash punch cancel
+[State -1, 66L]
+type = ChangeState
+value = 230
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "x" && command = "holdfwd"
+trigger1 = stateno = 200 && movecontact
+trigger2 = stateno = 210 && movecontact && prevStateNo != 410
+trigger4 = stateno = 400 && movecontact
+
 ;Crouch Light Punch
 [State -1]
 type = ChangeState
@@ -457,6 +478,7 @@ trigger1 = statetype = C && ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 400 && movecontact
 trigger4 = stateno = 410 && movecontact
+
 
 
 
@@ -570,6 +592,7 @@ trigger2 = stateno = 410 && MoveHit
 trigger3 = stateno = 450 && MoveHit 
 trigger4 = stateno = 200 && MoveHit 
 trigger5 = stateno = 210 && MoveHit 
+trigger1 = stateno = 230 && MoveHit
 
 [State -1, PerfectBlock Stand]
 type = HitOverride
