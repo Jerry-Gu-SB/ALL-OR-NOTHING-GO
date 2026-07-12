@@ -535,9 +535,9 @@ velset = const(velocity.run.back.x),0
 
 [State 106, Invul]
 Type = NotHitBy
-Trigger1 = Time < 9
+Trigger1 = !time
 Value = , NT, ST, NA, SA, NP, SP
-Time = 1
+Time = 10
 
 [State 106, VelSet]
 type = VelSet
@@ -631,7 +631,7 @@ value = 130
 type = NotHitBy
 trigger1 = 1
 value = , NT,ST,HT
-time = 60
+
 
 
 [State 130, Hi to Lo]
@@ -730,6 +730,12 @@ value = 140
 type = U    ;Leave state type unchanged
 physics = U ;Leave physics unchanged
 ctrl = 1
+
+[State 5120, 5] ;Can't be thrown right after getting up
+type = NotHitBy
+trigger1 = AnimTime = 0
+value = , NT,ST,HT
+time = 8
 
 [State 140, 1]
 type = ChangeAnim

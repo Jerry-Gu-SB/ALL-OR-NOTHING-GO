@@ -595,7 +595,7 @@ attr = S, NA
 animtype  = Hard
 damage    = ceil(700)
 hitflag = MAF
-guardflag = M
+guardflag = L
 pausetime = 12,12
 sparkNo= s8010
 guard.sparkNo=-1 + 0 * (var(34) := 8000)
