@@ -408,7 +408,7 @@ triggerall = !AIlevel
 triggerall = command = "x"
 trigger1 = statetype != A
 trigger1 = Stateno = 100
-trigger2 = Stateno = 101
+trigger2 = Stateno = 101 
 
 ;dash punch cancel
 [State -1, 66L]
