@@ -630,7 +630,7 @@ hitflag = MAF
 guardflag = M
 pausetime = 16,16
 sparkno = 3
-sparkxy = -10,-60
+sparkxy = -1 + 0 * (var(35) := 200), var(36):=-10
 hitsound   = S1,26
 guardsound = S6,0
 ground.type = Low
