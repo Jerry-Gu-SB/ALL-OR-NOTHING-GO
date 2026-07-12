@@ -203,9 +203,9 @@ value = 0,2
 
 [State 40, 6] ;Can't be thrown right after getting up
 type = NotHitBy
-trigger1 = AnimElem = 1
+trigger1 = 1
 value = , NT,ST,HT
-time = 4
+time = 10
 
 [State 40, 7]
 type = ChangeState
@@ -603,10 +603,11 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 130 + (statetype = C) + (statetype = A)*2
 
-[State 40, 6] ;Can't be thrown right after getting up
+[State 40, 6] ;Can't be thrown
 type = NotHitBy
-trigger1 = AnimElem = 1
+trigger1 = 1
 value = , NT,ST,HT
+time = 30
 
 
 [State 120, Stop Guarding]
@@ -628,8 +629,9 @@ value = 130
 
 [State 40, 6] ;Can't be thrown right after getting up
 type = NotHitBy
-trigger1 = AnimElem = 1
+trigger1 = 1
 value = , NT,ST,HT
+time = 60
 
 
 [State 130, Hi to Lo]
@@ -651,8 +653,9 @@ physics = C
 
 [State 40, 6] ;Can't be thrown right after getting up
 type = NotHitBy
-trigger1 = AnimElem = 1
+trigger1 = 1
 value = , NT,ST,HT
+time = 60
 
 [State 131, 1]
 type = ChangeAnim
@@ -759,12 +762,6 @@ type = StateTypeSet
 trigger1 = statetype = C && command != "holddown"
 statetype = S
 physics = S
-
-[State 40, 6] ;Can't be thrown right after getting up
-type = NotHitBy
-trigger1 = AnimElem = 1
-value = , NT,ST,HT
-time = 6
 
 ;[State 140, 5] ;Implemented within engine
 ;type = ChangeState
