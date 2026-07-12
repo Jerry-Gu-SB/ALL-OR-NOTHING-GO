@@ -418,9 +418,11 @@ value = 230
 triggerall = !ishelper
 triggerall = !AIlevel
 triggerall = command = "x" && command = "holdfwd"
+triggerall = statetype != A
 trigger1 = stateno = 200 && movecontact
-trigger2 = stateno = 210 && movecontact && prevStateNo != 410
+trigger2 = stateno = 210 && movecontact 
 trigger4 = stateno = 400 && movecontact
+trigger4 = stateno = 410 && movecontact
 
 ;Crouch Light Punch
 [State -1]
@@ -469,15 +471,7 @@ trigger5 = stateno = 410 && movecontact && prevStateNo != 210
 
 
 
-;Crouch Light Kick
-[State -1]
-type = ChangeState
-value = 430
-triggerall = command = "a" && command = "holddown"
-trigger1 = statetype = C && ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 400 && movecontact
-trigger4 = stateno = 410 && movecontact
+
 
 
 
