@@ -607,7 +607,7 @@ guardsound = S6,0
 ground.type = Low
 ground.slidetime = 12
 guard.slidetime = 15
-guard.hittime = 15
+guard.hittime = 18
 ground.hittime  = 19
 ground.velocity = -3
 air.velocity = -2,-2
@@ -2888,6 +2888,33 @@ trigger3=(stateno=[810,860]) && movetype!=H
 trigger4=enemynear,stateno=[0,155]
 fvar(12)=0
 ignorehitpause=1
+
+[State -2, ActionWindow Tick Up]
+type         = Mapadd
+trigger1     = ctrl && (stateno != 150 || stateno != 152 || stateno != 154)
+trigger1    = stateno != [10, 11]
+trigger1    = map(ActionWindow) < 30
+map         = "ActionWindow"
+value         = 1
+ignorehitpause     = 1
+[State -2, ActionWindow Reset]
+type         = MapSet
+trigger1    = (stateno = 0 || stateno = [10,11]) && time >= 30
+map         = "ActionWindow"
+value         = 0
+ignorehitpause     = 0
+
+[State -2, ActionWindow ValueFreeze]
+type         = MapSet
+trigger1     = !ctrl
+map         = "AWFreeze"
+value         = cond(MAP(actionwindow) = 0, map(ActionWindow),map(ActionWindow)+1)
+ignorehitpause     = 1
+[State -2, ActionWindow ValueFreeze]
+type         = MapSet
+trigger1     = stateno = 0 && time >= 30
+map         = "AWFreeze"
+value         = 0
 
 [State -2, Ctrl Set]
 type = VarSet

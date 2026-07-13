@@ -647,6 +647,15 @@ type = velset
 trigger1 = animelem = 5 
 x = 7
 
+[State 52, PlaySnd]
+type = PlaySnd
+trigger1 = time = 20
+value = 0,0
+
+[State 52, PlaySnd]
+type = PlaySnd
+trigger1 = time = 20
+value = 1600,4
 
 [State 1600, 2]
 type = ChangeState
@@ -844,6 +853,16 @@ p1stateno = 1614
 p2stateno = 1624         
 fall = 1  
 fall.recover = 0
+
+[State 52, PlaySnd]
+type = PlaySnd
+trigger1 = time = 30
+value = 0,0
+
+[State 52, PlaySnd]
+type = PlaySnd
+trigger1 = time = 30
+value = 1600,4
 
 [State 1, ]
 type = velset

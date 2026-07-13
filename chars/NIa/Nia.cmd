@@ -432,8 +432,7 @@ triggerall = command = "x"
 triggerall = statetype != A
 trigger1 = stateno = 230
 trigger1 = Movecontact
-trigger1 = AnimElemTime(4) >= 0
-trigger1 = AnimElemTime(6) < 5
+
 
 [State -1, 66LLL]
 type = ChangeState
@@ -443,8 +442,8 @@ triggerall = !AIlevel
 triggerall = command = "x"
 triggerall = statetype != A
 trigger1 = stateno = 231
-trigger1 = AnimElemTime(4) >= 0
-trigger1 = AnimElemTime(6) < 5
+trigger1 = Movecontact
+
 
 
 [State -1, 66LLLL]
@@ -455,8 +454,7 @@ triggerall = !AIlevel
 triggerall = command = "x"
 triggerall = statetype != A
 trigger1 = stateno = 232
-trigger1 = AnimElemTime(4) >= 0
-trigger1 = AnimElemTime(6) < 5
+trigger1 = Movecontact
 
 
 
