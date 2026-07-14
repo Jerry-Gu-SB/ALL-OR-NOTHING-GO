@@ -1335,8 +1335,6 @@ type = PlaySnd
 trigger1 = AnimElem = 5 || animelem = 13 || animelem = 21
 value = S0, 5
 
-
-
 [State 1, ]
 type = velset
 trigger1 = animelem = 5 
@@ -1417,15 +1415,15 @@ type = TargetBind
 trigger1 = AnimElem = 6
 pos = -19.874999748543, -112.37499807216
 
-[State 1601, Bind 7]
+[State 1621, Bind 7]
 type = TargetBind
 trigger1 = AnimElem = 7
-pos = -19.187499594875, -112.749999124557
+pos = 5.0, -122.25
 
-[State 1601, Bind 8]
+[State 1621, Bind 8]
 type = TargetBind
 trigger1 = AnimElem = 8
-pos = 75.0, 0.0
+pos = 65.0, -73.25
 
 [State 1621, Hurt]
 type = TargetLifeAdd
