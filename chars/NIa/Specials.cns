@@ -789,13 +789,6 @@ triggerall = CanRecover
 trigger1 = Command = "recovery"
 value = 5200 ;HITFALL_RECOVER
 
-[State 1603, 3] ; Recover in mid air (use SelfState)
-type = SelfState
-triggerall = Vel Y > 0
-triggerall = alive
-triggerall = CanRecover
-trigger1 = Command = "recovery"
-value = 5210 ;HITFALL_AIRRECOVER
 
 [State 1603, 4] ;Hit ground
 type = SelfState
@@ -804,12 +797,216 @@ trigger1 = Pos Y >= 0
 value = 5100 ;Hit ground
 
 
+;HOD Heavy Attempt
+[Statedef 1610]
+type = S
+movetype= A
+physics = S
+juggle = 0
+velset = 0, 0
+anim = 1600
+ctrl = 0
+
+[State 1610, 1]
+type = HitDef
+trigger1 = Time = 0
+attr = S, NT
+hitflag = M-
+priority = 1, Miss
+sparkno = -1
+p1sprpriority = 1
+p1facing = 1
+p2facing = 1
+p1stateno = 1611
+p2stateno = 1612
+guard.dist = 0
+fall = 1
+
+[State 1610, HOD Heavy]
+type = HitDef
+nochainID = 8000
+trigger1 = !movehit && !movereversed
+triggerall = enemynear, movetype = H
+attr = S, ST         
+hitflag = MAF
+priority = 1, Miss    
+sparkno = -1        
+sparkxy = 0,-50
+p1sprpriority = 1     
+p1facing = -1          
+p1stateno = 1611
+p2stateno = 1612
+fall = 1  
+fall.recover = 0
+
+
+[State 1, ]
+type = velset
+trigger1 = animelem = 5 
+x = 7
+
+
+[State 1610, 2]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+; Hug of Destruction Hit Heavy
+[Statedef 1611]
+type = S
+movetype= A
+physics = N
+anim = 1602
+poweradd = 60
+
+[State 1611, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 0
+y = 0
+
+[State 1611, PosSet]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 1611, Sound]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1600, Random % 4
+
+
+[State 1611, Grab Sound]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 1, 6
+
+[State 1611, Bind 1]
+type = TargetBind
+trigger1 = AnimElem = 1
+pos = -30.75, -83.5
+
+[State 1611, Bind 2]
+type = TargetBind
+trigger1 = AnimElem = 2
+pos = -34.5, -89.5
+
+[State 1611, Bind 3]
+type = TargetBind
+trigger1 = AnimElem = 3
+pos = -14.5, -106.25
+
+[State 1611, Bind 4]
+type = TargetBind
+trigger1 = AnimElem = 4
+pos = -15.75, -113.75
+
+[State 1611, Bind 5]
+type = TargetBind
+trigger1 = AnimElem = 5
+pos = -21.25, -119.75
+
+[State 1611, Bind 6]
+type = TargetBind
+trigger1 = AnimElem = 6
+pos = -22.5, -116.75
+
+[State 1611, Bind 7]
+type = TargetBind
+trigger1 = AnimElem = 7
+pos = -9.5, -115.5
+
+[State 1611, Bind 8]
+type = TargetBind
+trigger1 = AnimElem = 8
+pos = 78.5, 8.5
+
+
+[State 1611, Hurt]
+type = TargetLifeAdd
+trigger1 = AnimElem = 8
+value = -3500
+
+
+[State 0, Zoom] 
+type = Zoom
+trigger1 = time = [0,32] 
+scale = 1.29
+pos = cond(facing = 1, enemynear,pos x -34, enemynear,pos x +34)
+postype = P2
+ignorehitpause = 1
+
+
+[State 1611, Grab Sound]
+type = PlaySnd
+trigger1 = AnimElem = 8
+value = 1, 4
+
+[State 1611, Throw]
+type = TargetState
+trigger1 = AnimElem = 8
+value = 1613
+
+[State 1611, State End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+; HOD Heavy Getting Grabbed
+[Statedef 1612]
+type = A
+movetype = H
+physics = N
+velset = 0,0
+
+[State 1612, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 1603
+
+; HOD Heavy Grab Aftermath
+[Statedef 1613] 
+type = A
+movetype = H
+physics = N
+velset = -14, -3
+poweradd = 40
+
+[State 1613, 1] ;Gravity
+type = VelAdd
+trigger1 = 1
+y = .4
+
+[State 1613, 2] ; Recover near ground (use ChangeState)
+type = ChangeState
+triggerall = Vel Y > 0
+triggerall = Pos Y >= -20
+triggerall = alive
+triggerall = CanRecover
+triggerall = Time > 5
+trigger1 = Command = "recovery"
+value = 5200 ;HITFALL_RECOVER
+
+
+[State 1623, Hit wall]
+type = ChangeState
+trigger1 = BackEdgeBodyDist <= 10
+trigger2 = FrontEdgeBodyDist <= 10
+value = 1127
+
+[State 1613, 4] ;Hit ground
+type = SelfState
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 5100 ;Hit ground
 
 
 
 
-
-;EX Hug of Destruction Attempt
+;Hug of Destruction Attempt EX 
 [Statedef 1620]
 type = S
 movetype= A
@@ -863,7 +1060,7 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
-; EX Hug of Destruction Hit
+; Hug of Destruction Hit EX
 [Statedef 1621]
 type = S
 movetype= A
@@ -963,7 +1160,7 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
-; EX Getting Grabbed
+; Getting Grabbed EX
 [Statedef 1622]
 type = A
 movetype = H
@@ -975,7 +1172,7 @@ type = ChangeAnim2
 trigger1 = Time = 0
 value = 1603
 
-; EX Grab Aftermath
+; Grab Aftermath EX
 [Statedef 1623]
 type = A
 movetype = H
@@ -1001,7 +1198,7 @@ type = ChangeState
 triggerall = Pos y < -15
 trigger1 = BackEdgeBodyDist <= 20
 trigger2 = FrontEdgeBodyDist <= 20
-value = 1127
+value = 1132 ; untechable wall bounce
 
 [State 1623, 4] ;Hit ground
 type = SelfState

@@ -60,6 +60,10 @@ command = ~D, DB, B, x
 name = "QCB_y"
 command = ~D, DB, B, y
 
+[Command] 
+name = "HCB_y"
+command = ~F, DF, D, DB, B, y
+
 ;---------------------------------------------------
 ;Super Jump
 ;---------------------------------------------------
@@ -352,7 +356,24 @@ trigger13 = stateno = 450 && movecontact
 trigger14 = stateno = 1000 && movecontact
 trigger15 = stateno = 1010 && movecontact
 
-;Hug of Destruction!
+
+;Hug of Destruction EX! 
+[State -1]
+type = ChangeState
+value = 1620
+triggerall = command = "HCB_y"  ; NO COMMAND ASSOCIATED WITH THIS YET. HCB_y IS JUS TA PLACEHOLDER. Note that HCB_y must be placed above QCB_y to register
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 210 && movecontact
+trigger4 = stateno = 230 && movecontact
+trigger5 = stateno = 400 && movecontact
+trigger6 = stateno = 410 && movecontact
+trigger7 = stateno = 430 && movecontact
+trigger8 = stateno = 440 && movecontact
+
+
+;Hug of Destruction Light!
 [State -1]
 type = ChangeState
 value = 1600
@@ -367,12 +388,10 @@ trigger6 = stateno = 410 && movecontact
 trigger7 = stateno = 430 && movecontact
 trigger8 = stateno = 440 && movecontact
 
-
-
-;Hug of Destruction EX! 
+;Hug of Destruction Heavy!
 [State -1]
 type = ChangeState
-value = 1620
+value = 1610
 triggerall = command = "QCB_y"
 triggerall = statetype != A
 trigger1 = ctrl
@@ -383,6 +402,9 @@ trigger5 = stateno = 400 && movecontact
 trigger6 = stateno = 410 && movecontact
 trigger7 = stateno = 430 && movecontact
 trigger8 = stateno = 440 && movecontact
+
+
+
 
 ;Sweap
 [State -1]
@@ -473,11 +495,6 @@ trigger5 = stateno = 410 && movecontact && prevStateNo != 210
 
 
 
-
-
-
-
-
  
 ;Jump Light Punch
 [State -1]
@@ -507,8 +524,6 @@ triggerall = statetype = A
 trigger1 = ctrl
 trigger2 = stateno = 630 && movecontact
 trigger3 = stateno = 620 && movecontact
-
-;Jump Strong Punch
 
 
 ;Jump Light Kick
