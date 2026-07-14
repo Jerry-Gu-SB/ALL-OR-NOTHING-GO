@@ -363,6 +363,7 @@ type=screenbound
 trigger1= 1
 value=1
 movecamera=0,1
+
 [State 1132, push]
 type=playerpush
 trigger1= 1

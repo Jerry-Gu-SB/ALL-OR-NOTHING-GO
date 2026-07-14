@@ -2453,6 +2453,8 @@ type = ScreenBound
 triggerall=Numenemy
 trigger1 = enemy,stateno=4020 && enemy,movetype=H && (enemy,animelemtime(5)>0||enemy,time>15)
 value = p2bodydist x < 30 && BackEdgeDist < 30
+
+
 [State -2,screen]
 type = ChangeState
 triggerall = roundstate = 2 && (enemy,stateno=4020)

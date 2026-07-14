@@ -59,6 +59,7 @@ command = ~D, DB, B, x
 [Command] 
 name = "QCB_y"
 command = ~D, DB, B, y
+
 ;---------------------------------------------------
 ;Super Jump
 ;---------------------------------------------------
@@ -366,10 +367,12 @@ trigger6 = stateno = 410 && movecontact
 trigger7 = stateno = 430 && movecontact
 trigger8 = stateno = 440 && movecontact
 
-;Hug of Destruction heavy!
+
+
+;Hug of Destruction EX! 
 [State -1]
 type = ChangeState
-value = 1604
+value = 1620
 triggerall = command = "QCB_y"
 triggerall = statetype != A
 trigger1 = ctrl
