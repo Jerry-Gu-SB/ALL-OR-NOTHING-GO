@@ -116,14 +116,23 @@ sprpriority = 2
 poweradd = 50
 juggle = 1
 
-[State 3000, Helper]
-type = Helper
-trigger1 = animelem = 2
-stateno = 8500
-supermovetime = 99999999
-pos = ceil(30*const(size.xscale)),ceil(-25*const(size.yscale))
-ownpal = 1
-id = 8500
+[State 1120, Width]
+type = Width
+trigger1 = AnimElemTime(4) >= 0 && AnimElemTime(6) < 0
+value = 5,0
+
+[State 1120, Afterimage]
+type = AfterImage
+trigger1 = Time = 0
+length = 13
+PalBright   =  30, 30,  0
+PalContrast =  70, 70, 20
+PalAdd      = -10,-10,-10
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 2
+Trans = Add
+time = 2
 
 [State 3000, SuperPause]
 type = SuperPause
@@ -134,6 +143,23 @@ darken = 0
 anim = -1
 p2defmul = 1
 poweradd = -1000
+
+[State 1120, Afterimage]
+type = AfterImageTime
+trigger1 = AnimTime < -2
+time = 2
+
+[State 1120, Blink Yellow]
+type = PalFX
+trigger1 = Time = 0
+time = 20
+add = 32,16,0
+sinadd = 64,32,5,3
+
+[State 1120, 1]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 0, 2
 
 [State 3000, 1]
 type = PlaySnd
@@ -162,12 +188,13 @@ y = 0
 
 [State 1100, Velocity]
 type = VelSet
-trigger1 = AnimElem = 3
+trigger1 = AnimElem = 4
 x = 26
 y= -4
+
 [State 1200, Vel]
 type = velset
-trigger1 = time >= 21
+trigger1 = time >= 30
 x = 2
 y = 14
 
@@ -1259,14 +1286,23 @@ p2stateno = 1622
 fall = 1  
 fall.recover = 0
 
-[State 3000, Helper]
-type = Helper
-trigger1 = animelem = 2
-stateno = 8500
-supermovetime = 99999999
-pos = ceil(30*const(size.xscale)),ceil(-25*const(size.yscale))
-ownpal = 1
-id = 8500
+[State 1120, Width]
+type = Width
+trigger1 = AnimElemTime(4) >= 0 && AnimElemTime(6) < 0
+value = 5,0
+
+[State 1120, Afterimage]
+type = AfterImage
+trigger1 = Time = 0
+length = 13
+PalBright   =  30, 30,  0
+PalContrast =  70, 70, 20
+PalAdd      = -10,-10,-10
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 2
+Trans = Add
+time = 2
 
 [State 3000, SuperPause]
 type = SuperPause
@@ -1278,10 +1314,29 @@ anim = -1
 p2defmul = 1
 poweradd = -1000
 
+[State 1120, Afterimage]
+type = AfterImageTime
+trigger1 = AnimTime < -2
+time = 2
+
+[State 1120, Blink Yellow]
+type = PalFX
+trigger1 = Time = 0
+time = 20
+add = 32,16,0
+sinadd = 64,32,5,3
+
+[State 1120, 1]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 0, 2
+
 [State 3000, 1]
 type = PlaySnd
 trigger1 = AnimElem = 5 || animelem = 13 || animelem = 21
 value = S0, 5
+
+
 
 [State 1, ]
 type = velset
