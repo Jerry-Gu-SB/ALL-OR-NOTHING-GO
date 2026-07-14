@@ -25,16 +25,8 @@ command.buffer.time = 4
 ;---------------------------------------------------
 
 [Command] 
-name = "Hyper1"
+name = "QCf_x+y"
 command = ~D, DF, F, x+y
-
-[Command]
-name = "Hyper1"
-command = ~D, DF, F, x+z
-
-[Command]
-name = "Hyper1"
-command = ~D, DF, F, y+z
 
 ;---------------------------------------------------
 ;Special Moves
@@ -282,11 +274,11 @@ time = 1
 ;Hyper Moves
 ;---------------------------------------------------
 
-;Hyper Move 1
+;Ex Lariat
 [State -1]
-type = Null;ChangeState
-value = 3000
-triggerall = command = "Hyper1"
+type = ChangeState
+value = 1019
+triggerall = command = "QCf_x+y"
 triggerall = power >= 1000
 trigger1 = statetype != A && ctrl
 trigger2 = stateno = 200 && movecontact
