@@ -59,6 +59,10 @@ command = ~D, DB, B, x
 [Command] 
 name = "QCB_y"
 command = ~D, DB, B, y
+
+[Command] 
+name = "QCB_x+y"
+command = ~D, DB, B, x+y
 ;---------------------------------------------------
 ;Super Jump
 ;---------------------------------------------------
@@ -280,7 +284,7 @@ time = 1
 
 ;Hyper Move 1
 [State -1]
-type = ChangeState
+type = Null;ChangeState
 value = 3000
 triggerall = command = "Hyper1"
 triggerall = power >= 1000
@@ -351,6 +355,23 @@ trigger13 = stateno = 450 && movecontact
 trigger14 = stateno = 1000 && movecontact
 trigger15 = stateno = 1010 && movecontact
 
+
+;EX Hug of Destruction!
+[State -1]
+type = ChangeState
+value = 1620
+triggerall = command = "QCB_x+y"
+triggerall = statetype != A
+triggerall = power >= 1000
+trigger1 = ctrl
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 210 && movecontact
+trigger4 = stateno = [230,233] && movecontact
+trigger5 = stateno = 400 && movecontact
+trigger6 = stateno = 410 && movecontact
+trigger7 = stateno = 430 && movecontact
+trigger8 = stateno = 440 && movecontact
+
 ;Hug of Destruction!
 [State -1]
 type = ChangeState
@@ -365,6 +386,8 @@ trigger5 = stateno = 400 && movecontact
 trigger6 = stateno = 410 && movecontact
 trigger7 = stateno = 430 && movecontact
 trigger8 = stateno = 440 && movecontact
+
+
 
 ;Hug of Destruction heavy!
 [State -1]

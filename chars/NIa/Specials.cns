@@ -647,6 +647,15 @@ type = velset
 trigger1 = animelem = 5 
 x = 7
 
+[State 52, PlaySnd]
+type = PlaySnd
+trigger1 = time = 20
+value = 0,0
+
+[State 52, PlaySnd]
+type = PlaySnd
+trigger1 = time = 20
+value = 1600,4
 
 [State 1600, 2]
 type = ChangeState
@@ -804,7 +813,7 @@ movetype= A
 physics = S
 juggle = 0
 velset = 0, 0
-anim = 1600
+anim = 1604
 ctrl = 0
 
 [State 1610, 1]
@@ -843,8 +852,17 @@ fall.recover = 0
 [State 1, ]
 type = velset
 trigger1 = animelem = 5 
-x = 7
+x = 10
 
+[State 52, PlaySnd]
+type = PlaySnd
+trigger1 = time = 30
+value = 0,0
+
+[State 52, PlaySnd]
+type = PlaySnd
+trigger1 = time = 30
+value = 1600,4
 
 [State 1610, 2]
 type = ChangeState
@@ -1013,7 +1031,7 @@ movetype= A
 physics = S
 juggle = 0
 velset = 0, 0
-anim = 1604
+anim = 1605
 ctrl = 0
 
 [State 1620, 1]
@@ -1048,11 +1066,44 @@ p2stateno = 1622
 fall = 1  
 fall.recover = 0
 
-[State 1620, ]
-type = velset
-trigger1 = animelem = 5
-x = 9
+[State 3000, Helper]
+type = Helper
+trigger1 = animelem = 2
+stateno = 8500
+supermovetime = 99999999
+pos = ceil(30*const(size.xscale)),ceil(-25*const(size.yscale))
+ownpal = 1
+id = 8500
 
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = animelem = 2
+time = 20
+movetime = 36
+darken = 0
+anim = -1
+p2defmul = 1
+poweradd = -1000
+
+[State 3000, 1]
+type = PlaySnd
+trigger1 = AnimElem = 5 || animelem = 13 || animelem = 21
+value = S0, 5
+
+[State 1, ]
+type = velset
+trigger1 = animelem = 5 
+x = 10
+
+[State 52, PlaySnd]
+type = PlaySnd
+trigger1 = time = 26
+value = 0,0
+
+[State 52, PlaySnd]
+type = PlaySnd
+trigger1 = time = 26
+value = 1600,4
 
 [State 1620, 2]
 type = ChangeState
