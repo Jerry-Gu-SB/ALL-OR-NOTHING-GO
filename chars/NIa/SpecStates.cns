@@ -354,8 +354,8 @@ y=1
 [State 1132, EnvShake]
 type = EnvShake
 trigger1 = !time
-time =44
-ampl = 9
+time =10
+ampl = 4
 ignorehitpause =1
 
 [State 1132, screen]
