@@ -369,7 +369,7 @@ trigger8 = stateno = 440 && movecontact
 ;Hug of Destruction heavy!
 [State -1]
 type = ChangeState
-value = 1604
+value = 1610
 triggerall = command = "QCB_y"
 triggerall = statetype != A
 trigger1 = ctrl

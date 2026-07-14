@@ -103,7 +103,7 @@ type = changeanim2
 trigger1 = time = 0
 value = 1207
 ;========================<HIT WALL>=============================
-;---Hit Pause---
+;---Hit Pause ---
 [Statedef 1125]
 type=A
 movetype=H
@@ -161,7 +161,7 @@ trigger1= vel y>0 && pos y>=0
 value=5100
 
 
-;---Hitting Wall---
+;---Hitting Wall DEFAULT WALL BOUNCE ---
 [Statedef 1127]
 type=A
 movetype=H
@@ -224,7 +224,7 @@ trigger1= time>=4
 value=1128
 
 
-;---Falling---
+;---Falling DEFAULT TECHABLE ---
 [Statedef 1128]
 type=A
 movetype=H
@@ -267,12 +267,22 @@ type=playerpush
 trigger1= 1
 value=0
 
+[State 1613, 2] ; Recover near ground (use ChangeState)
+type = ChangeState
+triggerall = Vel Y > 0
+triggerall = Pos Y >= -20
+triggerall = alive
+triggerall = CanRecover
+triggerall = Time > 5
+trigger1 = Command = "recovery"
+value = 5200 ;HITFALL_RECOVER
+
 [State 1128, end]
 type=selfstate
 trigger1= vel y>0 && pos y>=0
 value=5100
 ;========================<HIT WALL>=============================
-;---Hit Pause---
+;---Hit Pause ---
 [Statedef 1130]
 type=A
 movetype=H
@@ -288,7 +298,7 @@ trigger1= hitshakeover
 value=1131
 
 
-;---Falling---
+;---Falling ---
 [Statedef 1131]
 type=A
 movetype=H
@@ -329,7 +339,7 @@ trigger1= vel y>0 && pos y>=0
 value=5100
 
 
-;---Hitting Wall---
+;---Hitting Wall UNTECHABLE ---
 [Statedef 1132]
 type=A
 movetype=H
@@ -363,6 +373,7 @@ type=screenbound
 trigger1= 1
 value=1
 movecamera=0,1
+
 [State 1132, push]
 type=playerpush
 trigger1= 1
@@ -391,7 +402,7 @@ trigger1= time>=4
 value=1133
 
 
-;---Falling---
+;---Falling UNTECHABLE---
 [Statedef 1133]
 type=A
 movetype=H
@@ -438,6 +449,7 @@ value=0
 type=selfstate
 trigger1= vel y>0 && pos y>=0
 value=5100
+
 
 ;CAMERA FOCUS
 [Statedef 6001]
