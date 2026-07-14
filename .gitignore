@@ -3,3 +3,7 @@ lib/
 chars/ffs_0
 *.zip
 *.log
+*.exe  # this will ignore ANY .exe folder
+chars/ffs_0  # this will ignore this folder
+*.zip   # this will ignore ANY .zip file
+*.log   # this will ignore ANY .log file
