@@ -254,6 +254,7 @@ attr = S,NA
 hitflag = MAF
 guardflag = M
 animtype = Light
+priority = 1, Hit 
 damage = 600,0
 getpower = 20,0
 givepower = 20,0
@@ -356,6 +357,7 @@ attr = S,NA
 hitflag = MAF
 guardflag = M
 animtype = Medium
+priority = 3, Hit 
 damage = 1400,0
 getpower = 30,0
 givepower = 20,0
@@ -467,6 +469,7 @@ trigger1 = !time
 attr = S, NA
 guardflag = M
 animtype = Hard
+priority = 4, Hit 
 damage = ceil(1500),0
 getpower = 30,0
 givepower = 20,0
@@ -591,14 +594,14 @@ x = 0
 
 [State 230, 2]
 type = HitDef
-triggerall = animelem = 4
-trigger1 = enemynear,movetype != A
+trigger1 = animelem = 4
 attr = S, NA
 animtype  = Hard
 damage    = ceil(700)
 hitflag = MAF
 guardflag = L
 pausetime = 12,12
+priority = 3, Hit  
 sparkNo= s8010
 guard.sparkNo=-1 + 0 * (var(34) := 8000)
 sparkXY=-1 + 0 * (var(35) := 200), var(36):=-75
@@ -623,41 +626,6 @@ fall.recovertime = 3
 envshake.time = 10
 envshake.freq = 10
 envshake.ampl = 4
-
-[State 230, 2]
-type = HitDef
-triggerall = animelem = 4
-trigger1 = enemynear,movetype = A
-attr = S, NA
-animtype  = Hard
-damage    = ceil(700)
-hitflag = MAF
-guardflag = M
-pausetime = 16,16
-sparkno = 3
-sparkxy = -1 + 0 * (var(35) := 200), var(36):=-10
-hitsound   = S1,26
-guardsound = S6,0
-ground.type = Low
-ground.slidetime = 12
-ground.hittime  = 30
-guard.slidetime = 15
-guard.hittime = 15
-ground.velocity = -7
-air.velocity = -7,0
-fall.recover = 0
-p2stateno = 8999
-ground.cornerpush.veloff = -35
-air.cornerpush.veloff = -35
-envshake.time = 7
-envshake.freq = 60
-envshake.ampl = -4
-fall.xvelocity = 0
-fall.yvelocity = -2
-air.fall = 1
-fall.recover = 1
-fall.recovertime = 3
-fall.envshake.time = 90
 
 [State 200, Damage Scaling]
 type = varset
@@ -714,14 +682,14 @@ x = 0
 
 [State 230, 2]
 type = HitDef
-triggerall = !time
-trigger1 = enemynear,movetype != A
+trigger1 = !time
 attr = S, NA
 animtype  = Hard
 damage    = ceil(700)
 hitflag = MAF
 guardflag = L
 pausetime = 12,12
+priority = 3, Hit 
 sparkNo= s8010
 guard.sparkNo=-1 + 0 * (var(34) := 8000)
 sparkXY=-1 + 0 * (var(35) := 200), var(36):=-75
@@ -733,7 +701,7 @@ guard.slidetime = 15
 guard.hittime = 15
 ground.hittime  = 19
 ground.velocity = -3
-air.velocity = -2,-2
+air.velocity = -2,-4
 air.hittime = 17
 airguard.velocity = -6,-2
 ground.cornerpush.veloff = -6
@@ -746,41 +714,6 @@ fall.recovertime = 3
 envshake.time = 10
 envshake.freq = 10
 envshake.ampl = 4
-
-[State 230, 2]
-type = HitDef
-triggerall = !time
-trigger1 = enemynear,movetype = A
-attr = S, NA
-animtype  = Hard
-damage    = ceil(700)
-hitflag = MAF
-guardflag = M
-pausetime = 16,16
-sparkno = 3
-sparkxy = -1 + 0 * (var(35) := 200), var(36):=-10
-hitsound   = S1,26
-guardsound = S6,0
-ground.type = Low
-ground.slidetime = 12
-ground.hittime  = 30
-guard.slidetime = 15
-guard.hittime = 15
-ground.velocity = -7
-air.velocity = -7,0
-fall.recover = 0
-p2stateno = 8999
-ground.cornerpush.veloff = -35
-air.cornerpush.veloff = -35
-envshake.time = 7
-envshake.freq = 60
-envshake.ampl = -4
-fall.xvelocity = 0
-fall.yvelocity = -2
-air.fall = 1
-fall.recover = 1
-fall.recovertime = 3
-fall.envshake.time = 90
 
 [State 200, Damage Scaling]
 type = varset
@@ -837,14 +770,14 @@ x = 0
 
 [State 230, 2]
 type = HitDef
-triggerall = !time
-trigger1 = enemynear,movetype != A
+trigger1 = !time
 attr = S, NA
 animtype  = Hard
 damage    = ceil(700)
 hitflag = MAF
 guardflag = L
 pausetime = 12,12
+priority = 3, Hit 
 sparkNo= s8010
 guard.sparkNo=-1 + 0 * (var(34) := 8000)
 sparkXY=-1 + 0 * (var(35) := 200), var(36):=-75
@@ -856,7 +789,7 @@ guard.slidetime = 15
 guard.hittime = 15
 ground.hittime  = 19
 ground.velocity = -3
-air.velocity = -2,-2
+air.velocity = -2,-5
 air.hittime = 17
 airguard.velocity = -6,-2
 ground.cornerpush.veloff = -6
@@ -869,41 +802,6 @@ fall.recovertime = 3
 envshake.time = 10
 envshake.freq = 10
 envshake.ampl = 4
-
-[State 230, 2]
-type = HitDef
-triggerall = !time
-trigger1 = enemynear,movetype = A
-attr = S, NA
-animtype  = Hard
-damage    = ceil(700)
-hitflag = MAF
-guardflag = M
-pausetime = 16,16
-sparkno = 3
-sparkxy = -1 + 0 * (var(35) := 200), var(36):=-10
-hitsound   = S1,26
-guardsound = S6,0
-ground.type = Low
-ground.slidetime = 12
-ground.hittime  = 30
-guard.slidetime = 15
-guard.hittime = 15
-ground.velocity = -7
-air.velocity = -7,0
-fall.recover = 0
-p2stateno = 8999
-ground.cornerpush.veloff = -35
-air.cornerpush.veloff = -35
-envshake.time = 7
-envshake.freq = 60
-envshake.ampl = -4
-fall.xvelocity = 0
-fall.yvelocity = -2
-air.fall = 1
-fall.recover = 1
-fall.recovertime = 3
-fall.envshake.time = 90
 
 [State 200, Damage Scaling]
 type = varset
@@ -960,14 +858,14 @@ x = 0
 
 [State 230, 2]
 type = HitDef
-triggerall = !time
-trigger1 = enemynear,movetype != A
+trigger1 = !time
 attr = S, NA
 animtype  = Hard
 damage    = ceil(700)
 hitflag = MAF
 guardflag = L
 pausetime = 12,12
+priority = 3, Hit 
 sparkNo= s8010
 guard.sparkNo=-1 + 0 * (var(34) := 8000)
 sparkXY=-1 + 0 * (var(35) := 200), var(36):=-75
@@ -979,7 +877,7 @@ guard.slidetime = 15
 guard.hittime = 15
 ground.hittime  = 19
 ground.velocity = -3
-air.velocity = -2,-2
+air.velocity = -2,-5
 air.hittime = 17
 airguard.velocity = -6,-2
 ground.cornerpush.veloff = -6
@@ -992,41 +890,6 @@ fall.recovertime = 3
 envshake.time = 10
 envshake.freq = 10
 envshake.ampl = 4
-
-[State 230, 2]
-type = HitDef
-triggerall = !time
-trigger1 = enemynear,movetype = A
-attr = S, NA
-animtype  = Hard
-damage    = ceil(700)
-hitflag = MAF
-guardflag = M
-pausetime = 16,16
-sparkno = 3
-sparkxy = -1 + 0 * (var(35) := 200), var(36):=-10
-hitsound   = S1,26
-guardsound = S6,0
-ground.type = Low
-ground.slidetime = 12
-ground.hittime  = 30
-guard.slidetime = 15
-guard.hittime = 15
-ground.velocity = -7
-air.velocity = -7,0
-fall.recover = 0
-p2stateno = 8999
-ground.cornerpush.veloff = -35
-air.cornerpush.veloff = -35
-envshake.time = 7
-envshake.freq = 60
-envshake.ampl = -4
-fall.xvelocity = 0
-fall.yvelocity = -2
-air.fall = 1
-fall.recover = 1
-fall.recovertime = 3
-fall.envshake.time = 90
 
 [State 200, Damage Scaling]
 type = varset
@@ -1069,6 +932,7 @@ type = HitDef
 trigger1 = !time
 attr = C,NA
 hitflag = MAF
+priority = 1, Hit 
 guardflag = L
 animtype = Light
 damage = 400,0
@@ -1147,6 +1011,7 @@ attr = C,NA
 hitflag = MAF
 guardflag = M
 animtype = Medium
+priority = 2, Hit 
 damage = 900,0
 getpower = 30,0
 givepower = 20,0
