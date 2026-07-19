@@ -1,6 +1,6 @@
 # ALL-OR-NOTHING
 
-# Credits:
+## Credits:
 
 ### Director + Art
 - Taedaartist
