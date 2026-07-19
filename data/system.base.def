@@ -62,7 +62,7 @@
 	versiondate = 09,01,2009
 	mugenversion = 1.0
 	ikemenversion = 
-	localcoord = 320, 240
+	localcoord = 1280,720
 
 [Files]
 	spr = system.sff

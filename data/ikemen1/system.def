@@ -261,9 +261,10 @@ bgclearcolor = 255,255,255
 
 [TitleBG Background Sky]
 type = normal
-spriteno = 100,0
+spriteno = 100, 0
 layerno = 0
 start = -640,0
+tile = 0, -1
 
 [TitleBG Background Clouds Top]
 type = normal
@@ -876,49 +877,21 @@ type = normal
 spriteno = 101,0
 layerno = 0
 start = -640,0
+scale =
 
-[SelectBG Background Black Bars]
-type = normal
-spriteno = 100,1
-layerno = 1
-start = -640,0
-trans = add1
-mask = 1
 
 [SelectBG Background PortraitGradient]
 type = normal
 spriteno = 102,0
 layerno = 1
-start = -640,94
-trans = add1
+start = -640,50
 mask = 1
 
 [SelectBG Background PortraitGradient 2]
 type = normal
 spriteno = 102,1
 layerno = 1
-start = 116,94
-trans = add1
-mask = 1
-
-[SelectBG Background Clouds Top]
-type = normal
-spriteno = 101,2
-layerno = 0
-start = -640, -50
-tile = 1,0
-velocity = -0.1, 0
-window = 0,0, 1279,959
-mask = 1
-
-[SelectBG Background Clouds Bottom]
-type = normal
-spriteno = 101,3
-layerno = 0
-start = -640, 0
-tile = 1,0
-velocity = -0.7, 0
-window = 0,0, 1279,959
+start = 160,50
 mask = 1
 
 

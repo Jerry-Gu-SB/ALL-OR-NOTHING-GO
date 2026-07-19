@@ -1,15 +1,15 @@
 {
-  "playtime": 2816.96,
+  "playtime": 5741.51,
   "modes": {
     "training": {
       "playtime": 0,
       "clear": 0
     },
     "versus": {
-      "playtime": 1166.14,
-      "clear": 2,
+      "playtime": 4090.69,
+      "clear": 9,
       "clearcount": {
-        "nia": 1,
+        "nia": 8,
         "mika": 1
       }
     },
