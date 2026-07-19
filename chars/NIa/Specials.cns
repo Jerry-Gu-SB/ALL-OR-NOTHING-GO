@@ -1230,8 +1230,8 @@ value = 5200 ;HITFALL_RECOVER
 
 [State 1623, Hit wall]
 type = ChangeState
-trigger1 = BackEdgeBodyDist <= 10
-trigger2 = FrontEdgeBodyDist <= 10
+trigger1 = StageBackEdgeDist <= 10
+trigger2 = StageFrontEdgeDist <= 10
 value = 1127
 
 [State 1613, 4] ;Hit ground
