@@ -16,7 +16,7 @@
 - bkdyno
 
 ### Voice Actors:
-- Zyra Bisquera
+- Zyra Bisquera - Nia
   - https://www.imdb.com/name/nm15412863/
   - https://zyrabisqueravo.carrd.co/
 
