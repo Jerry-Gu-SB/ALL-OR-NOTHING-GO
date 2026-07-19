@@ -7,8 +7,22 @@
 
 ### Programming
 - Taedaartist
+  - https://x.com/taedaartist
 - SpiralBiscuit
+  - https://jerry-gu.com/
 - Ulti
+
+### Systems Design
+- bkdyno
+
+### Voice Actors:
+- Zyra Bisquera - Nia
+  - https://www.imdb.com/name/nm15412863/
+  - https://zyrabisqueravo.carrd.co/
+
+### Music
+- Benelios
+  - https://www.youtube.com/@Beneliosss
 
 
 
