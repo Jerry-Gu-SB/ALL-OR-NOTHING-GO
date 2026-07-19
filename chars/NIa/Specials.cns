@@ -1262,7 +1262,7 @@ priority = 1, Miss
 sparkno = -1
 p1sprpriority = 1
 p1facing = 1
-p2facing = -1
+p2facing = 1
 p1stateno = 1621
 p2stateno = 1622
 guard.dist = 0
@@ -1472,8 +1472,9 @@ value = 1603
 type = A
 movetype = H
 physics = N
-velset = 10,-2
+velset = -10,-2
 poweradd = 40
+facep2 = 1
 
 [State 1623, 1] ;Gravity
 type = VelAdd
