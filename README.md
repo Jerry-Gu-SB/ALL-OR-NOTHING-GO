@@ -12,7 +12,7 @@
   - https://jerry-gu.com/
 - Ulti
 
-### Systems Design
+### Systems Design & QA
 - bkdyno
 
 ### Voice Actors:
