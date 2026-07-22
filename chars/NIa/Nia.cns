@@ -1036,10 +1036,12 @@ fall.recovertime = 3
 
 [State 0, Saltar]
 type = ChangeState
-triggerall = movecontact
+triggerall = movecontact && !MoveGuarded
 trigger1 = ailevel = 0 && command = "holdup"
 trigger2 = roundstate = 2 && ailevel > 0 && random < (ailevel * 100)
 value = 40
+
+
 [State 410, ChangeState]
 type = ChangeState
 trigger1 = animtime = 0
