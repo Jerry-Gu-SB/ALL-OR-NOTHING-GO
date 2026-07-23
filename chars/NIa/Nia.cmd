@@ -41,9 +41,12 @@ name = "Special1_Y"
 command = ~D, DF, F, y
 
 [Command] 
-name = "Special1_Z"
+name = "QCF_Z"
 command = ~D, DF, F, z
 
+[Command] 
+name = "QCB_Z"
+command = ~D, DB, B, z
 [Command] 
 name = "QCB_x"
 command = ~D, DB, B, x
@@ -278,7 +281,7 @@ time = 1
 [State -1]
 type = ChangeState
 value = 1019
-triggerall = command = "QCf_x+y"
+triggerall = command = "QCF_Z"
 triggerall = power >= 1000
 trigger1 = statetype != A && ctrl
 trigger2 = stateno = 200 && movecontact
@@ -326,31 +329,11 @@ trigger1 = statetype != A && ctrl
 trigger2 = (stateno = [200,430])&& movecontact
 trigger3 = (stateno = [400,450])&& movecontact
 
-[State -1]
-type = ChangeState
-value = 1020
-triggerall = command = "Special1_Z"
-trigger1 = statetype != A && ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 210 && movecontact
-trigger4 = stateno = [230,233] && movecontact
-trigger6 = stateno = 240 && movecontact
-trigger7 = stateno = 250 && movecontact
-trigger8 = stateno = 400 && movecontact
-trigger9 = stateno = 410 && movecontact
-trigger10 = stateno = 420 && movecontact
-trigger11 = stateno = 430 && movecontact
-trigger12 = stateno = 440 && movecontact
-trigger13 = stateno = 450 && movecontact
-trigger14 = stateno = 1000 && movecontact
-trigger15 = stateno = 1010 && movecontact
-
-
 ;EX Hug of Destruction!
 [State -1]
 type = ChangeState
 value = 1620
-triggerall = command = "QCB_x+y"
+triggerall = command = "QCB_Z"
 triggerall = statetype != A
 triggerall = power >= 1000
 trigger1 = ctrl
