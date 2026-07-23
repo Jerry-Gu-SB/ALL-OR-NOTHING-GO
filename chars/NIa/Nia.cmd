@@ -643,7 +643,8 @@ triggerall = !AILevel && roundstate=2 && Statetype != A
 triggerall = command = "fwd" && command != "back" && command != "up" && command != "down"
 trigger1 = Ctrl
 stateno = 6130
-attr = SA, AA, AP
+attr = SCA, AA
+guardflag = H
 ; Slot just sets the order in which State -1 will take precedence, so PerfectBlock has the highest priority of State -1 I guess?
 ; Source: https://mugenfreeforall.com/topic/34752-ricepigeons-coding-tutorial-code-snippet-repository/
 slot = 0
@@ -656,7 +657,10 @@ triggerall = !AILevel && roundstate=2 && Statetype != A
 triggerall = command = "holddown" && command = "holdfwd"
 trigger1 = Ctrl
 stateno = 6131
-attr = C, NA, SA, HA
+attr = SCA, AA
+guardflag = L
+guardflag.not = H
+
 ; Slot just sets the order in which State -1 will take precedence, so PerfectBlock has the highest priority of State -1 I guess?
 ; Source: https://mugenfreeforall.com/topic/34752-ricepigeons-coding-tutorial-code-snippet-repository/
 slot = 0
