@@ -465,7 +465,9 @@ ignorehitpause = 1
 
 [State 211, 3]
 type = HitDef
+nochainID = 8000
 trigger1 = !time
+triggerall = enemynear,movetype != A
 attr = S, NA
 guardflag = M
 animtype = Hard
@@ -483,7 +485,7 @@ guardsound = S6,0
 ground.type = Low
 ground.slidetime = 20
 guard.slidetime = 18
-ground.hittime = 25
+ground.hittime = 24
 guard.hittime =18
 air.hittime = 27
 yaccel = .53
@@ -499,26 +501,29 @@ id = 1
 
 [State 211, 3]
 type = HitDef
+nochainID = 8000
 trigger1 = !time
+triggerall = enemynear,movetype = A
 attr = S, NA
 guardflag = M
 animtype = Hard
+priority = 4, Hit 
 damage = ceil(1500),0
 getpower = 30,0
 givepower = 20,0
-pausetime = 12,12
-guard.pausetime = 12,12
+pausetime = 30,30
+guard.pausetime = 30,30
 sparkNo= s8010
 guard.sparkNo= -1 + 0 * (var(34) := 8000)
 sparkXY= -1 + 0 * (var(35) := 200), var(36):=-75
 hitsound = S1,26
 guardsound = S6,0
 ground.type = Low
-ground.slidetime = 12
-guard.slidetime = 12
-ground.hittime = 18 + 4*var(9)
-guard.hittime =12
-air.hittime = 18
+ground.slidetime = 20
+guard.slidetime = 18
+ground.hittime = 27
+guard.hittime =18
+air.hittime = 27
 yaccel = .53
 ground.velocity = 3,0
 air.velocity = 2,-6
@@ -529,6 +534,7 @@ air.fall = 1
 fall.recover = 1
 fall.recovertime = 3
 id = 1
+
 
 [State 200, Damage Scaling]
 type = null;targetstate
