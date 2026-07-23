@@ -382,13 +382,16 @@ trigger8 = stateno = 440 && movecontact
 [State -1]
 type = ChangeState
 value = 440
+triggerall = !ishelper
+triggerall = !AIlevel
 triggerall = command = "z" && command = "holddown"
 trigger1 = statetype = C && ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 210 && movecontact
-trigger5 = stateno = 400 && movecontact
-trigger6 = stateno = 410 && movecontact
-trigger7 = stateno = 430 && movecontact
+trigger4 = stateno = 400 && movecontact
+trigger5 = stateno = 410 && movecontact
+trigger6 = stateno = 430 && movecontact
+trigger7 = stateno = 101 
 
 [State -1, Throw]
 type=ChangeState
@@ -498,7 +501,7 @@ trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 400 && movecontact
-trigger3 = stateno = 101 
+trigger4 = stateno = 101 
 
 
 ;Crouch Heavy Punch
@@ -514,6 +517,7 @@ trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 210 && movecontact && prevStateNo != 410
 trigger4 = stateno = 400 && movecontact
+trigger5 = stateno = 101 
 
 ;Universal overhead
 [State -1]
