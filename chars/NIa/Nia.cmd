@@ -301,7 +301,7 @@ trigger16 = stateno = 1020 && movecontact
 ;Special Moves
 ;---------------------------------------------------
 
-;Air Lariat
+; Lariat
 [State -1]
 type = ChangeState
 value = 1002
@@ -314,10 +314,10 @@ type = ChangeState
 value = 1000
 triggerall = command = "Special1_X"
 trigger1 = statetype != A && ctrl
-trigger2 = (stateno = [200,430])&& movecontact
+trigger2 = (stateno = [200,233])&& movecontact
 trigger3 = (stateno = [400,450])&& movecontact
 
-;Special1_Y
+;heavylariat
 [State -1]
 type = ChangeState
 value = 1010
@@ -326,7 +326,6 @@ trigger1 = statetype != A && ctrl
 trigger2 = (stateno = [200,430])&& movecontact
 trigger3 = (stateno = [400,450])&& movecontact
 
-;Special1_Z
 [State -1]
 type = ChangeState
 value = 1020
@@ -334,7 +333,6 @@ triggerall = command = "Special1_Z"
 trigger1 = statetype != A && ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 210 && movecontact
-trigger4 = stateno = 220 && movecontact
 trigger4 = stateno = [230,233] && movecontact
 trigger6 = stateno = 240 && movecontact
 trigger7 = stateno = 250 && movecontact
@@ -363,6 +361,7 @@ trigger5 = stateno = 400 && movecontact
 trigger6 = stateno = 410 && movecontact
 trigger7 = stateno = 430 && movecontact
 trigger8 = stateno = 440 && movecontact
+
 
 ;Hug of Destruction!
 [State -1]
@@ -400,7 +399,7 @@ trigger8 = stateno = 440 && movecontact
 [State -1]
 type = ChangeState
 value = 440
-triggerall = command = "x+y" && command = "holddown"
+triggerall = command = "z" && command = "holddown"
 trigger1 = statetype = C && ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 210 && movecontact
@@ -473,33 +472,16 @@ trigger1 = Movecontact
 
 
 
-;Crouch Light Punch
-[State -1]
-type = ChangeState
-value = 400
-triggerall = command = "x" 
-triggerall = command = "holddown"
-triggerall = statetype != A
-trigger1 = ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 400 && movecontact
 
-;Crouch Heavy Punch
-[State -1]
-type = ChangeState
-value = 410
-triggerall = command = "y" && command = "holddown"
-triggerall = statetype != A
-trigger1 = ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 210 && movecontact && prevStateNo != 410
-trigger4 = stateno = 400 && movecontact
 
 ;Stand Light Punch
 [State -1]
 type = ChangeState
 value = 200
-triggerall = command = "x" 
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "x"
+triggerall = command != "holddown"
 triggerall = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 101
@@ -507,25 +489,64 @@ trigger3 = stateno = 200 && movecontact
 trigger4 = stateno = 400 && movecontact
 
 ;Stand Heavy Punch
-  [State -1]
+[State -1]
 type = ChangeState
 value = 210
-triggerall = command = "y" 
-triggerall = statetype != A
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "y"
+triggerall = command != "holddown"
+trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 101
 trigger3 = stateno = 200 && movecontact
 trigger4 = stateno = 400 && movecontact 
 trigger5 = stateno = 410 && movecontact && prevStateNo != 210
 
+;Crouch Light Punch
+[State -1]
+type = ChangeState
+value = 400
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "x"
+triggerall = command = "holddown"
+trigger1 = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 400 && movecontact
+trigger3 = stateno = 101 
 
 
+;Crouch Heavy Punch
+[State -1]
+type = ChangeState
+value = 410
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "y"
+triggerall = command = "holddown"
+trigger1 = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 210 && movecontact && prevStateNo != 410
+trigger4 = stateno = 400 && movecontact
 
+;Universal overhead
+[State -1]
+type = ChangeState
+value = 220
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "z"
+triggerall = command != "holddown"
+trigger1 = statetype != A
+trigger1 = ctrl
+trigger2 = (Stateno = [200,210]) && Movecontact
+trigger3 = (Stateno = [210,211]) && Movecontact
+trigger4 = (Stateno = [400,410]) && Movecontact
+trigger5 = stateno = 101
 
-
-
-
- 
 ;Jump Light Punch
 [State -1]
 type = ChangeState

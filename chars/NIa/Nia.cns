@@ -552,6 +552,165 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
+;Overhead
+[Statedef 220]
+type    = S
+movetype= I
+physics = S
+juggle  = 4
+poweradd= 30
+ctrl = 0
+velset = 0,0
+anim = 42
+sprpriority = 2
+
+
+[State 1120, Afterimage]
+type = AfterImage
+trigger1 = Time = 0
+length = 13
+PalBright   =  30, 30,  0
+PalContrast =  70, 70, 20
+PalAdd      = -10,-10,-10
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 2
+Trans = Add
+time = 2
+
+[State 1120, Afterimage]
+type = AfterImageTime
+trigger1 = AnimTime < -2
+time = 2
+
+[State 1120, Blink Yellow]
+type = PalFX
+trigger1 = Time = 0
+time = 20
+add = 32,16,0
+sinadd = 64,32,5,3
+
+[State 50, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 1
+value = 0,2
+
+[State 220]
+type = statetypeset
+trigger1 = 1
+statetype = A
+
+[State 220]
+type = Velset
+trigger1 = 1
+x = P2Dist X/40
+y = -3
+
+[State 220]
+type = ChangeState
+trigger1 = Time = 12
+value = 221
+ctrl = 0
+
+;---------------------------------------------------------------------------
+[Statedef 221]
+type    = A
+movetype= A
+physics = A
+juggle  = 4
+poweradd= 60
+ctrl = 0
+anim = 600
+sprpriority = 2
+
+[State -2, Var]
+type = varset
+trigger1 = !time
+var(36) = 0
+
+[State 1, ]
+type = PlaySnd
+trigger1 = animelem = 1
+value = 600, ifelse(Random < 500, 0, 1)
+
+
+[State 1200, 6]
+type = explod
+trigger1 = AnimElemtime(5) = 0
+anim = 6610
+id = 6610
+pos = 0,0
+facing = 1
+sprpriority = 3
+bindtime = 4
+ownpal = 1
+ignorehitpause = 1
+scale = 0.33,0.33
+
+[State 610, 3]
+type = HitDef
+nochainID = 8000
+trigger1 = !time
+triggerall = enemynear,movetype != A
+attr = A, NA
+damage = ceil(200)
+hitflag = MAF
+guardflag = HA
+priority = 4
+pausetime = 12,12
+sparkno = 3
+sparkxy = -10,-75+ceil(p2dist y)
+hitsound   = S1,26
+guardsound = S6,0
+animtype = Hard
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 25
+ground.velocity = -5
+air.velocity = -3,0
+air.hittime  = 30
+air.fall = 1
+fall.recovertime = 37
+
+[State 610, 3]
+type = HitDef
+nochainID = 8000
+trigger1 = !time
+triggerall = enemynear,movetype = A
+attr = A, NA
+damage = ceil(200)
+hitflag = MAF
+guardflag = HA
+priority = 4
+pausetime = 12,12
+sparkno = 3
+sparkxy = -10,-75+ceil(p2dist y)
+hitsound   = S1,26
+guardsound = S6,0
+animtype = Hard
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 29
+ground.velocity = -5
+air.velocity = -3,0
+air.hittime  = 30
+air.fall = 1
+fall.recovertime = 43
+
+[State 200, Damage Scaling]
+type = varset
+trigger1 = movehit
+trigger1 = !moveguarded
+fvar(4) = fvar(4)*0.88
+ignorehitpause = 1
+persistent = 0
+
+[State 600, 3]
+type = changestate
+trigger1 = AnimTime = 0
+value = 51
+
+;---------------------------------------------------------------------------
 ;Dash light
 [Statedef 230]
 type    = S
@@ -2479,6 +2638,7 @@ size.yscale =1.0
 pauseMoveTime=65535
 superMoveTime=65535
 ignoreHitPause=1
+
 
 [State -2, Counter FX]
 type=Helper
