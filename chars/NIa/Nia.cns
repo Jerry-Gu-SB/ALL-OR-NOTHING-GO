@@ -626,7 +626,7 @@ physics = A
 juggle  = 4
 poweradd= 60
 ctrl = 0
-anim = 600
+anim = 601
 sprpriority = 2
 
 [State -2, Var]
