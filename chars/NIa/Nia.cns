@@ -1212,7 +1212,7 @@ trigger1 = animtime = 0
 value = 11
 ctrl = 1
 
-;Sweap
+;Sweep
 [Statedef 440]
 type = C
 movetype= A
@@ -1249,7 +1249,7 @@ ampl = 2
 type = HitDef
 trigger1 = !time
 attr = C,NA
-hitflag = MAFD
+hitflag = MAF
 guardflag = LA
 animtype = Medium
 damage = 950,0
@@ -1266,7 +1266,7 @@ ground.type = High
 ground.slidetime = 12
 ground.hittime = 14
 air.hittime = 12
-ground.velocity = -1,-6
+ground.velocity = -1,
 air.velocity = -2,-5
 down.velocity = -4,-6
 airguard.velocity = -6,-2
