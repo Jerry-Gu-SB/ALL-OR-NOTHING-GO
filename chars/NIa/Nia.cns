@@ -1884,7 +1884,7 @@ value=0
 
 [State 800, Throw 2]
 type=Hitdef
-trigger1=AnimElem=3 && command="holdback"
+trigger1=!time && command="holdback"
 attr=S, NT
 priority=1,Miss
 getpower=35 * !var(20)
@@ -1899,7 +1899,7 @@ fall.recover=1
 
 [State 800, Throw 2]
 type=Hitdef
-trigger1=AnimElem=3 && command="holdfwd"
+trigger1=!time && command="holdfwd"
 attr=S, NT
 priority=1,Miss
 getpower=35 * !var(20)

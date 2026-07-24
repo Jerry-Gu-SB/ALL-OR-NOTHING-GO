@@ -547,7 +547,7 @@ trigger2 = stateno = 200 && movecontact
 [State -1]
 type = ChangeState
 value = 610
-triggerall = command = "z" 
+triggerall = command = "y" 
 triggerall = statetype = A 
 trigger1 = ctrl
 trigger2 = stateno = 600 && movecontact
@@ -593,8 +593,9 @@ type = ChangeState
 value = 40
 triggerall = command = "holdup" && !var(1) && prevstateno != 810
 trigger1 = stateno = [100,102]
-trigger2 = stateno = [200,450] && MoveHit
-trigger3 = stateno = 410 && MoveHit
+trigger2 = stateno = [200,210] && MoveHit
+trigger3 = stateno = [400,450] && MoveHit
+trigger4 = stateno = 410 && MoveHit
 
 
 ;---------------------------------------------------------------------------
