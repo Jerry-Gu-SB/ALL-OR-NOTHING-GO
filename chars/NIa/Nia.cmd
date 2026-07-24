@@ -567,17 +567,20 @@ trigger3 = stateno = 620 && movecontact
 [State -1]
 type = ChangeState
 value = 100
-trigger1 = command = "FF"
-triggerall = statetype = S 
-trigger1 = ctrl
+triggerall = statetype = S
+trigger1 = command = "FF" && stateno = 52
+trigger2 = command = "FF"
+trigger2 = ctrl
+
 
 ;Dash Backwards
 [State -1]
 type = ChangeState
 value = 105
-trigger1 = command = "BB"
-triggerall = statetype = S 
-trigger1 = ctrl
+triggerall = statetype = S
+trigger1 = command = "BB" && stateno = 52
+trigger2 = command = "BB"
+trigger2 = ctrl
 
 ;Super Jump
 [State -1]
