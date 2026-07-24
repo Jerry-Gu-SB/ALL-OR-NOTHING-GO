@@ -1362,10 +1362,10 @@ type = velset
 trigger1 = !time
 y = -4
 
-[State 5050, 3] ;Gravity
-type = VelAdd
-trigger1 = 1
-y = .4
+[State 610, 2]
+type = veladd
+trigger1 = animelemtime(3) > 0
+y = .5
 
 [State 610, ChangeState]
 type = ChangeState
