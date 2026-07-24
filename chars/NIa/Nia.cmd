@@ -563,41 +563,6 @@ trigger1 = ctrl
 trigger2 = stateno = 630 && movecontact
 trigger3 = stateno = 620 && movecontact
 
-;Jump Strong Punch
-
-
-;Jump Light Kick
-[State -1]
-type = ChangeState
-value = 630
-triggerall = command = "a"
-triggerall = statetype = A 
-trigger1 = ctrl
-trigger2 = stateno = 600 && movecontact
-
-;Jump Medium Kick
-[State -1]
-type = ChangeState
-value = 640
-triggerall = command = "b"
-triggerall = statetype = A 
-trigger1 = ctrl
-trigger2 = stateno = 600 && movecontact
-trigger3 = stateno = 610 && movecontact
-trigger4 = stateno = 630 && movecontact
-
-;Jump Strong Kick
-[State -1]
-type = ChangeState
-value = 650
-triggerall = command = "c"
-trigger1 = statetype = A && ctrl
-trigger2 = stateno = 600 && movecontact
-trigger3 = stateno = 610 && movecontact
-trigger4 = stateno = 620 && movecontact
-trigger5 = stateno = 630 && movecontact
-trigger6 = stateno = 640 && movecontact
-
 ;Dash Forwards
 [State -1]
 type = ChangeState

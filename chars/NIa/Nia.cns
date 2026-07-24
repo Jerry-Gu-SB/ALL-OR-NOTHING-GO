@@ -1198,7 +1198,6 @@ fall = 1
 fall.recover = 20
 fall.recovertime = 3
 
-
 [State 0, Saltar]
 type = ChangeState
 triggerall = movecontact && !MoveGuarded
