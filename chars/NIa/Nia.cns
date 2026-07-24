@@ -1325,11 +1325,12 @@ hitsound = S1,1
 guardsound = S6,0
 ground.type = High
 ground.slidetime = 8
+guard.hittime =12
 ground.hittime = 16 + 2 * var(9)
 air.hittime = 12
 ground.velocity = -3.5,0
 ground.cornerpush.veloff = -8
-air.velocity = -2,-4
+air.velocity = -2,-6
 airguard.velocity = -3,-2
 fall.xvelocity = 0
 fall.yvelocity = -2
@@ -1362,10 +1363,10 @@ type = velset
 trigger1 = !time
 y = -4
 
-[State 610, 2]
-type = veladd
-trigger1 = animelemtime(3) > 0
-y = .5
+[State 5050, 3] ;Gravity
+type = VelAdd
+trigger1 = 1
+y = .4
 
 [State 610, ChangeState]
 type = ChangeState
@@ -1394,12 +1395,12 @@ ground.type = High
 ground.slidetime = 20
 guard.slidetime = 20
 ground.hittime = 18 + 4*var(9)
-guard.hittime =18
+guard.hittime =8
 air.hittime = 19
 ground.cornerpush.veloff = -8
 yaccel = .53
 ground.velocity = -5,0
-air.velocity = 0,-6
+air.velocity = 0,-7
 airguard.velocity = -6,-2
 fall.xvelocity = 0
 fall.yvelocity = -2
@@ -1532,6 +1533,7 @@ guardsound = S6,0
 animtype = Med
 ground.type = High
 ground.slidetime = 8
+guard.hittime =10
 ground.hittime = 16 + 2 * var(9)
 air.hittime = 13
 ground.velocity = -3.5,0

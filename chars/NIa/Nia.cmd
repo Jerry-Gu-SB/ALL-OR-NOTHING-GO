@@ -547,7 +547,7 @@ trigger2 = stateno = 200 && movecontact
 [State -1]
 type = ChangeState
 value = 610
-triggerall = command = "y" 
+triggerall = command = "z"
 triggerall = statetype = A 
 trigger1 = ctrl
 trigger2 = stateno = 600 && movecontact
