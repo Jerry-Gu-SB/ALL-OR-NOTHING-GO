@@ -1,0 +1,34 @@
+[Info]
+name ="jam"
+displayname ="Jam"
+versiondate =02,23,2006
+mugenversion =04,14,2002
+author ="muteki" 
+pal.defaults =1
+
+[Files]
+cmd     =jam_xx.cmd
+cns     =jam_xx.cns
+st      =jam_xx.cns
+stcommon =common1.cns
+sprite  =jam_xx.sff
+anim    =jam_xx.air
+sound   =jam.snd
+pal1=jam01.act
+pal2=jam02.act
+pal3=jam03.act
+pal4=jam04.act
+pal5=jam05.act
+pal6=jam06.act
+pal7=jam07.act
+pal8=jam08.act
+pal9=jam09.act
+pal10=jam10.act
+pal11=jam11.act
+pal12=jam12.act
+st1=-2&-3.cns
+;st2=AI.txt
+
+[Arcade]
+intro.storyboard=
+ending.storyboard=jam_ggs_ending.def
