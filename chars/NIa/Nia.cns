@@ -281,7 +281,7 @@ fall.xvelocity = 0
 fall.yvelocity = -2
 air.fall = 1
 fall.recover = 1
-fall.recovertime = 3
+fall.recovertime = 16
 id = 1
 
 [State 200, ChangeState]
@@ -382,7 +382,7 @@ fall.xvelocity = 0
 fall.yvelocity = -2
 air.fall = 1
 fall.recover = 1
-fall.recovertime = 3
+fall.recovertime = 18
 id = 1
 
 
@@ -496,7 +496,7 @@ fall.xvelocity = 0
 fall.yvelocity = -2
 air.fall = 1
 fall.recover = 1
-fall.recovertime = 3
+fall.recovertime = 30
 id = 1
 
 [State 211, 3]
@@ -532,7 +532,7 @@ fall.xvelocity = 0
 fall.yvelocity = -2
 air.fall = 1
 fall.recover = 1
-fall.recovertime = 3
+fall.recovertime = 30
 id = 1
 
 
@@ -1126,7 +1126,7 @@ fall.xvelocity = 0
 fall.yvelocity = -2
 air.fall = 1
 fall.recover = 1
-fall.recovertime = 3
+fall.recovertime = 16
 id = 1
 
 [State 400, ChangeState]
@@ -1196,7 +1196,7 @@ air.velocity = -2,-7
 airguard.velocity = -6,-2
 fall = 1
 fall.recover = 20
-fall.recovertime = 3
+fall.recovertime = 18
 
 [State 0, Saltar]
 type = ChangeState
@@ -1266,7 +1266,7 @@ ground.type = High
 ground.slidetime = 12
 ground.hittime = 14
 air.hittime = 12
-ground.velocity = -1,
+ground.velocity = -1,-6
 air.velocity = -2,-5
 down.velocity = -4,-6
 airguard.velocity = -6,-2
@@ -1274,8 +1274,8 @@ fall.xvelocity = 0
 fall.yvelocity = -2
 air.fall = 1
 fall = 1
-fall.recover = 0
-
+fall.recover = 1
+fall.recovertime = 20
 
 [State 440, ChangeState]
 type = ChangeState
@@ -1307,8 +1307,7 @@ value = 600, ifelse(Random < 500, 0, 1)
 
 [State 600, HitDef]
 type = HitDef
-trigger1 = !movecontact && !movereversed
-trigger1 = enemynear,movetype != A
+trigger1 = !time
 attr = A,NA
 hitflag = MAF
 guardflag = HA
@@ -1335,7 +1334,8 @@ airguard.velocity = -3,-2
 fall.xvelocity = 0
 fall.yvelocity = -2
 air.fall = 1
-fall.recover = 0
+fall.recover = 1
+fall.recovertime = 18
 [State 600, 3]
 type = changestate
 trigger1 = AnimTime = 0
@@ -1405,8 +1405,8 @@ airguard.velocity = -6,-2
 fall.xvelocity = 0
 fall.yvelocity = -2
 air.fall = 1
-fall.recover = 0
-fall.recovertime = 16
+fall.recover = 1
+fall.recovertime = 20
 id = 1
 
 [State 610, HitDef]
@@ -1544,7 +1544,8 @@ airguard.ctrltime = 13
 fall.xvelocity = 0
 fall.yvelocity = -2
 air.fall = 1
-fall.recover = 0
+fall.recover = 1
+fall.recovertime = 16
 
 [State 620, 2]
 type = HitDef
