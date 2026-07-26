@@ -4,7 +4,7 @@
 
 [Data]
 ;Amount of life to start with
-life = 1000
+life = 16000
 ;attack power (more is stronger)
 attack = 100
 ;defensive power (more is stronger)
@@ -12,7 +12,7 @@ defence = 100
 ;Percentage to increase defense everytime player is knocked down
 fall.defence_up = 50
 ;Time which player lies down for, before getting up
-liedown.time = 60
+liedown.time = 20
 ;Number of points for juggling
 airjuggle = 15
 ;Default hit spark number for HitDefs
@@ -41,7 +41,7 @@ ground.front = 16    ;Player width (front, ground)
 air.back = 12        ;Player width (back, air)
 air.front = 12       ;Player width (front, air)
 height = 60          ;Height of player (for opponent to jump over)
-attack.dist = 160    ;Default attack distance
+attack.dist = 100    ;Default attack distance
 proj.attack.dist = 90 ;Default attack distance for projectiles
 proj.doscale = 0     ;Set to 1 to scale projectiles too
 head.pos = -5, -90   ;Approximate position of head
