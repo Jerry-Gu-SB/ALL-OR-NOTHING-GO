@@ -555,7 +555,7 @@ p2.face.done.anim = 181
 
 ;Secondary big portraits
 p1.face2.spr = 9000,1              ;Secondary portrait
-p1.face2.projection = perspective
+p1.face2.projection = 
 p1.face2.yangle = 70
 p1.face2.layerno = 2
 p1.face2.focallength = 400

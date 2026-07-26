@@ -139,7 +139,7 @@ fvalue = 0
 [State 5900, 3] ;Change palette
 type = RemapPal
 trigger1 = 1
-source = 0,0
+source = 1,1
 dest = 1,palno
 
 [State 5900, 4] ;Intro for round 1
