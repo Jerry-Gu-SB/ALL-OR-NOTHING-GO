@@ -6,15 +6,10 @@ a = a
 b = b
 c = c
 s = s
-
 ;-| Default Values |-------------------------------------------------------
 [Defaults]
-; Default value for the "time" parameter of a Command. Minimum 1.
 command.time = 15
-
-; Default value for the "buffer.time" parameter of a Command. Minimum 1,
-; maximum 30.
-command.buffer.time = 4
+command.buffer.time = 3
 ;-| Super Motions |--------------------------------------------------------
 ;The following two have the same name, but different motion.
 ;Either one will be detected by a "command = TripleKFPalm" trigger.
@@ -378,6 +373,24 @@ trigger6 = stateno = 410 && movecontact
 trigger7 = stateno = 430 && movecontact
 trigger8 = stateno = 440 && movecontact
 
+[State -1, 3H]
+type = ChangeState
+value = 700
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "z"
+triggerall = command = "holddown"
+triggerall = command = "holdfwd"
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 210 && movecontact
+trigger4 = stateno = 400 && movecontact
+trigger5 = stateno = 410 && movecontact
+trigger6 = stateno = 440 && movecontact
+trigger7 = stateno = [230,233] && movecontact
+trigger8 = stateno = 101 
+
 ;Sweap
 [State -1]
 type = ChangeState
@@ -399,6 +412,7 @@ value =800
 trigger1=(command = "holdfwd"||command = "holdback")&& command = "x+y"
 trigger1=!AILevel && RoundState=2 && Statetype!=A && !var(20)
 trigger1=ctrl
+
 
 [State -1, 66L]
 type = ChangeState

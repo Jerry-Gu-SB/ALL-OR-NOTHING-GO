@@ -118,9 +118,9 @@ Clsn2Default: 2
 ; Jump start frame
 [Begin Action 40]
 Clsn2: 2
- Clsn2[0] = -15,  0, 16,-67
- Clsn2[1] =  -6,-83,  6,-67
-11,0, 0,0, 3
+  Clsn2[0] = 14, -471, 115, -361
+  Clsn2[1] = -93, -428, 80, -9
+12,0, 0,0, 3
 
 ; Starting Jumping up
 [Begin Action 41]
