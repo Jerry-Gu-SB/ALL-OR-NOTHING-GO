@@ -1184,6 +1184,7 @@ type = HitDef
 nochainid = 8000
 trigger1 = !Time
 trigger1 = enemynear,movetype != A
+priority = 3, Hit 
 attr = S, NA
 damage    = ceil(520)
 animtype  = Hard
@@ -1208,6 +1209,7 @@ type = HitDef
 nochainid = 8000
 trigger1 = !time
 trigger1 = enemynear,movetype = A
+priority = 3, Hit 
 attr =  S, NA
 damage    = ceil(700)
 animtype  = Hard
