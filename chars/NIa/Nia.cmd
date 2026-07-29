@@ -437,6 +437,30 @@ trigger2 = stateno = 210 && movecontact
 trigger4 = stateno = 400 && movecontact
 trigger4 = stateno = 410 && movecontact
 
+
+[State -1, 66H]
+type = ChangeState
+value = 320
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "y"
+trigger1 = statetype != A
+trigger1 = Stateno = 100
+trigger2 = Stateno = 101 && Time < 10
+
+;dash punch cancel
+[State -1, 66L]
+type = ChangeState
+value = 320
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "y" && command = "holdfwd"
+triggerall = statetype != A
+trigger1 = stateno = 200 && movecontact
+trigger2 = stateno = 210 && movecontact 
+trigger4 = stateno = 400 && movecontact
+trigger4 = stateno = 410 && movecontact
+
 [State -1, 66LL]
 type = ChangeState
 value = 231
