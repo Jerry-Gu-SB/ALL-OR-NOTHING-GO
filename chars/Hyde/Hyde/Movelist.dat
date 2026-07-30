@@ -1,0 +1,67 @@
+<#f0f000>Command Normals and Basic Chains</>
+							^A (while dashing)
+							^A^A^A^A
+							_AIR^A^A
+							^B (while dashing)
+							^B^B^B
+
+<#f0f000>Special Moves</>
+Black Orbiter						_D_DF_F^A/^B
+_!Dark Lotus						_D_DF_F^A
+_!Bend Sinister						_D_DF_F^B
+Vacant Shift						_D_DB_B^A^A^A/^B^B^B (Air OK)
+Red Clad Cleaver					_DSF^A/^B (Air OK)
+
+<#f0f000>Force Breaks</>
+<#bebebe>(500 meter required)</>
+EX Black Orbiter					_D_DF_F^C
+_!EX Bend Sinister					_D_DF_F^C
+Vacant Shift Sediment					_D_DB_B^C  (Air OK)
+
+<#f0f000>Exceed Accel</>
+<#bebebe>(Ultra Burst required)</>
+Dark Lotus Anthesis					^Y_+^Z
+
+<#f0f000>Distortion Drives</>
+<#bebebe>(1000 meter required)</>
+Gyre Vortex						_D_DF_F^A_+^B
+Pale Bringer Arose					_D_DB_B^A_+^B
+
+<#f0f000>Astral Heat</>
+<#bebebe>(2000 meter + foe HP < 25% required)</>
+Raging Roar						_D_D^A_+^B 
+
+<#f0f000>Character-Specific Mechanics</>
+Reverse Beat
+<#bebebe>Hyde can chain his normal attacks in any given 
+order, assuming that the attack hasn't already 
+been used in the same chain.
+
+For instance, he can make a chain that goes like this:
+_D^C > ^A > ^B > _D^B
+
+However, he CANNOT make a chain that goes like this:
+^B > ^A > ^B > ^A</>
+
+<#c92e31>Insulator</>
+<#bebebe>All of Hyde's normals that use his sword deal chip damage. 
+This chip damage will never KO the opponent, however.</>
+
+<#f0f000>Universal Mechanics</>
+Dash				_XFF/~F^A_+^B
+Back Dash			_XBB/~B^A_+^B
+Super Jump			_TAP_D,_TAP_U
+Air Jump			_AIR_U
+Air Dash			_AIR_XFF/_XBB
+Dead Angle Attack 		_F_+^X while blocking
+<#bebebe>(1000 meter required)</>
+Rapid Cancel			^X while attacking
+<#bebebe>(1000 meter required; 500 for Distortion Drives)</>
+Dodge				^Y
+Dodge Roll			_B_+^Y/_F_+^Y
+Grab				^Z (Air OK)
+<#bebebe>Can be used while dashing</>
+Burst				^Y_+^Z when hit
+Ultra Burst			^Y_+^Z in neutral
+Ultra Dead Angle		^Y_+^Z while blocking
+<#bebebe>Can only be used if Burst is available</>

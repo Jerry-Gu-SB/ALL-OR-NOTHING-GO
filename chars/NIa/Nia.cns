@@ -3,7 +3,7 @@ life = 18000
 attack = 100
 defence = 100
 fall.defence_up = 50
-liedown.time = 20
+liedown.time = 25
 airjuggle = 15
 sparkno = 2
 guard.sparkno = 40
@@ -1070,6 +1070,177 @@ persistent = 0
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;Dash Heavy
+[Statedef 320]
+type    = S
+movetype= A
+physics = S
+anim = 320
+poweradd = 65
+ctrl = 0
+sprpriority = 2
+
+[State 50, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 1
+value = 0,2
+
+
+[State 0,]
+type = StateTypeSet
+trigger1 = animelem = 3
+statetype = A       
+movetype = A        
+physics = N 
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = animelem = 3
+x = 4
+y = -6
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 13
+x = 2
+y = 11
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = animelemtime(8) >= 0
+x = 0
+y = 0
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = animelemtime(8) >= 0
+y = 0
+
+[State 0,]
+type = StateTypeSet
+trigger1 = animelem = 8
+statetype = C       
+movetype = A        
+physics = C
+
+[State 0, Pick Random]
+type = VarRandom
+trigger1 = Time = 1
+v = 0
+range = 0,3
+
+[State 0]
+type = PlaySnd
+trigger1 = Time = 1
+value = 320,var(0)
+
+
+[State 1200, 6]
+type = explod
+trigger1 = time = 16
+anim = 6000
+id = 6000
+pos = 0,5
+facing = 1
+sprpriority = -1
+bindtime = 1
+ownpal = 1
+sprpriority = 3
+ignorehitpause = 1
+persistent = 0
+scale = .20,.22
+
+[State 1200, 6]
+type = explod
+trigger1 = time = 16
+anim = 6001
+id = 6001
+pos = 0,5
+facing = 1
+sprpriority = -1
+bindtime = 1
+ownpal = 1
+ignorehitpause = 1
+persistent = 0
+scale = .20,.22
+
+[State 3000,]
+type = envshake
+trigger1 = animelem = 8
+freq = 60
+ampl = -5
+time = 10
+
+[State 50, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 8
+value = 0,7
+
+[State 1200, 2]
+type = HitDef
+nochainid = 8000
+trigger1 = !Time
+trigger1 = enemynear,movetype != A
+priority = 3, Hit 
+attr = S, NA
+damage    = ceil(520)
+animtype  = Hard
+hitflag = MAFD
+guardflag = M
+pausetime = 9,9
+sparkno = s8010
+sparkxy = -10,-11
+hitsound   = s1,10
+guardsound = S6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 17
+guard.hittime =12
+ground.velocity = -4,-4.5
+air.velocity = -.5,-6.5
+fall = 1
+fall.recovertime = 20
+
+[State 1200, 2]
+type = HitDef
+nochainid = 8000
+trigger1 = !time
+trigger1 = enemynear,movetype = A
+priority = 3, Hit 
+attr =  S, NA
+damage    = ceil(700)
+animtype  = Hard
+hitflag = MAFD
+guardflag = M
+pausetime = 9,9
+sparkno = s8010
+sparkxy = -10,-11
+hitsound   = s1,10
+guardsound = S6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 17
+guard.hittime =12
+ground.velocity = -.2,-6.5
+air.velocity = -.2,-6.5
+fall = 1
+
+
+[State 200, Damage Scaling]
+type = varset
+trigger1 = movehit
+trigger1 = !moveguarded
+fvar(4) = fvar(4)*0.95
+ignorehitpause = 1
+persistent = 0
+
+[State 1200, 4]
+type = ChangeState
+trigger1 = animtime = 0
+value = 11
 ctrl = 1
 
 ;Crouching Light Punch
