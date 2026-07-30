@@ -872,7 +872,7 @@ fall.recover = 0
 
 [State 1, ]
 type = velset
-trigger1 = animelem = 5 
+trigger1 = animelem = 3
 x = 7
 
 [State 52, PlaySnd]
@@ -1079,8 +1079,8 @@ fall.recover = 0
 
 [State 1, ]
 type = velset
-trigger1 = animelem = 5 
-x = 10
+trigger1 = animelem = 3 
+x = 13
 
 [State 52, PlaySnd]
 type = PlaySnd
@@ -1345,8 +1345,8 @@ value = S0, 5
 
 [State 1, ]
 type = velset
-trigger1 = animelem = 5 
-x = 10
+trigger1 = animelem = 3
+x = 19
 
 [State 52, PlaySnd]
 type = PlaySnd

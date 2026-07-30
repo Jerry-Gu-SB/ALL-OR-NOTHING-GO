@@ -1130,7 +1130,7 @@ physics = C
 type = VarRandom
 trigger1 = Time = 1
 v = 0
-range = 0,3
+range = 0,2
 
 [State 0]
 type = PlaySnd
@@ -1148,7 +1148,7 @@ facing = 1
 sprpriority = -1
 bindtime = 1
 ownpal = 1
-sprpriority = 3
+sprpriority = 5
 ignorehitpause = 1
 persistent = 0
 scale = .20,.22
@@ -1448,7 +1448,7 @@ fall.yvelocity = -2
 air.fall = 1
 fall = 1
 fall.recover = 1
-fall.recovertime = 20
+fall.recovertime = 40
 
 [State 440, ChangeState]
 type = ChangeState
