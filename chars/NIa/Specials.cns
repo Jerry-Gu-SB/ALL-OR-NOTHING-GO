@@ -450,6 +450,11 @@ type = PlaySnd
 trigger1 = animelem = 1
 value = S4000,10
 
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 4
+value = 5,19
+
 [State 1200, sound]
 type = playsnd
 trigger1 =  Time = 0
@@ -467,14 +472,15 @@ y = 0
 
 [State 1100, Velocity]
 type = VelSet
-trigger1 = AnimElem = 3
+trigger1 = AnimElem = 4
 x = 19
 y= -4
-[State 1200, Vel]
+
+[State 1010, Vel]
 type = velset
-trigger1 = time >= 21
-x = 2
-y = 14
+trigger1 = anim = 1001 && time > 31
+x = 3
+y = 4
 
 [State 1200, 1]
 type = HitDef
@@ -532,9 +538,14 @@ trigger1 = time > 1 && numtarget && movehit
 value = 1011
 persistent = 0
 
-[State 200, ChangeState]
+[State 1010, Anim]
+type = changeanim
+trigger1 = anim = 1003 && pos y < 0
+value = 1001
+
+[State 1010, ChangeState]
 type = ChangeState
-trigger1 = time >= 13 && pos y > 0
+trigger1 = AnimTime = 0 && pos y < 0
 value = 1001
 ctrl = 0
 
@@ -552,10 +563,7 @@ sprPriority = 4
 type = TargetFacing
 trigger1 = time = 0
 value = -1
-[State 210, PlaySnd]
-type = PlaySnd
-trigger1 = animelem =1
-value = 5,19
+
 [State 1100, Effect]
 type = PlaySnd
 trigger1 = AnimElem = 1
