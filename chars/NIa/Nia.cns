@@ -15,8 +15,8 @@ FloatPersistIndex = 40
 [Size]
 xscale = 0.22         ;Horizontal scaling factor.
 yscale = 0.22
-ground.back = 11     ;Player width (back, ground)
-ground.front = 11    ;Player width (front, ground)
+ground.back = 15     ;Player width (back, ground)
+ground.front = 15    ;Player width (front, ground)
 air.back = 8        ;Player width (back, air)
 air.front = 10       ;Player width (front, air)
 height = 60          ;Height of player (for opponent to jump over)
