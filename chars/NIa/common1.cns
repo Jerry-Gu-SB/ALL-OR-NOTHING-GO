@@ -550,12 +550,12 @@ Time = 10
 [State 106, VelSet]
 type = VelSet
 trigger1 = Time < 8
-x = -3
+x = -2
 
 [State 106, VelSet]
 type = VelSet
 trigger1 = Time = 16
-x = -2
+x = -1
 
 [State 106, VelSet]
 type = VelSet

@@ -30,8 +30,8 @@ draw.offset = 0,0    ;Player drawing offset in pixels (x, y). Recommended 0,0
 
 
 [Velocity]
-walk.fwd  = 2.3      ;Walk forward
-walk.back = -2.1    ;Walk backward
+walk.fwd  = 2.2     ;Walk forward
+walk.back = -1.9    ;Walk backward
 run.fwd  = 7.0, 0   ;Run forward (x, y)
 run.back = -3,0   ;Hop backward (x, y)
 jump.neu = 0,-10.55
