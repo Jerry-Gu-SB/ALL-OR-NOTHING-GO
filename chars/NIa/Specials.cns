@@ -858,7 +858,7 @@ nochainID = 8000
 trigger1 = !movehit && !movereversed
 triggerall = enemynear, movetype = H
 attr = S, ST         
-hitflag = MAFD
+hitflag = MAF
 priority = 1, Miss    
 sparkno = -1        
 sparkxy = 0,-50
@@ -1065,7 +1065,7 @@ nochainID = 8000
 trigger1 = !movehit && !movereversed
 triggerall = enemynear, movetype = H
 attr = S, ST         
-hitflag = MAFD
+hitflag = MAF
 priority = 1, Miss    
 sparkno = -1        
 sparkxy = 0,-50
@@ -1282,7 +1282,7 @@ nochainID = 8000
 trigger1 = !movehit && !movereversed
 triggerall = enemynear, movetype = H
 attr = S, ST         
-hitflag = MAFD
+hitflag = MAF
 priority = 1, Miss    
 sparkno = -1        
 sparkxy = 0,-50

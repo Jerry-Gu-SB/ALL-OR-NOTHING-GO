@@ -9,7 +9,7 @@ s = s
 ;-| Default Values |-------------------------------------------------------
 [Defaults]
 command.time = 15
-command.buffer.time = 3
+command.buffer.time = 1
 ;-| Super Motions |--------------------------------------------------------
 ;The following two have the same name, but different motion.
 ;Either one will be detected by a "command = TripleKFPalm" trigger.

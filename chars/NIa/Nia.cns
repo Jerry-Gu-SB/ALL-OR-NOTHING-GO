@@ -2097,6 +2097,18 @@ ctrl=0
 anim=800
 facep2=1
 
+
+[State 0, Pick  Voice]
+type = VarRandom
+trigger1 = AnimElem = 4
+v = 0
+range = 0,4
+
+[State 0, Play  Voice]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 800,var(0)
+
 [State 800, Strength]
 type=varset
 trigger1=!time && !AIlevel
@@ -2169,6 +2181,18 @@ physics=S
 anim=805
 ctrl=0
 sprpriority=-1
+
+
+[State 0, Pick  Voice]
+type = VarRandom
+trigger1 = AnimElem = 4
+v = 0
+range = 0,4
+
+[State 0, Play  Voice]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 800,var(0)
 
 [State 805, Throw]
 type=targetstate
@@ -2628,6 +2652,26 @@ velset = const(velocity.run.fwd.x),0
 type = PlaySnd
 trigger1 = time = 0
 value = 0,1
+
+[State 0, Play Voice 0]
+type = PlaySnd
+trigger1 = Time = 0
+trigger1 = Random < 33
+value = 100,0
+
+[State 0, Play Voice 1]
+type = PlaySnd
+trigger1 = Time = 0
+trigger1 = Random >= 33
+trigger1 = Random < 66
+value = 100,1
+
+[State 0, Play Voice 2]
+type = PlaySnd
+trigger1 = Time = 0
+trigger1 = Random >= 66
+trigger1 = Random < 100
+value = 100,2
 
 [State 6061, Effect]
 type = Explod
