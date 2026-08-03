@@ -575,10 +575,10 @@ sprpriority = 2
 type = AfterImage
 trigger1 = Time = 0
 length = 13
-PalBright   =  30, 30,  0
-PalContrast =  70, 70, 20
-PalAdd      = -10,-10,-10
-PalMul      = .85,.85,.50
+PalBright   = 0,0,80
+PalContrast = 0,30,180
+PalAdd      = -20,-20,0
+PalMul      = .35,.50,1.30
 TimeGap  = 1
 FrameGap = 2
 Trans = Add
@@ -589,12 +589,12 @@ type = AfterImageTime
 trigger1 = AnimTime < -2
 time = 2
 
-[State 1120, Blink Yellow]
+[State 1120, Blink BLue]
 type = PalFX
 trigger1 = Time = 0
 time = 20
-add = 32,16,0
-sinadd = 64,32,5,3
+add = 0,0,48
+sinadd = 0,0,96,3
 
 [State 50, PlaySnd]
 type = PlaySnd
@@ -609,7 +609,7 @@ statetype = A
 [State 220]
 type = Velset
 trigger1 = 1
-x = P2Dist X/40
+x = ifelse(P2Dist X/80 > 3.5, 3.5, P2Dist X/80)
 y = -3
 
 [State 220]

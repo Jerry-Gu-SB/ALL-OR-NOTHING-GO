@@ -281,7 +281,6 @@ triggerall = power >= 1000
 trigger1 = statetype != A && ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 210 && movecontact
-trigger4 = stateno = 220 && movecontact
 trigger5 = stateno = 230 && movecontact
 trigger6 = stateno = 240 && movecontact
 trigger7 = stateno = 250 && movecontact
@@ -301,7 +300,7 @@ trigger16 = stateno = 1020 && movecontact
 
 ; Lariat
 [State -1]
-type = ChangeState
+type = null;ChangeState
 value = 1002
 triggerall = command = "Special1_X" && var(6) = 0
 trigger1 = statetype = A && ctrl
@@ -312,8 +311,17 @@ type = ChangeState
 value = 1000
 triggerall = command = "Special1_X"
 trigger1 = statetype != A && ctrl
-trigger2 = (stateno = [200,233])&& movecontact
-trigger3 = (stateno = [400,450])&& movecontact
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 210 && movecontact
+trigger5 = stateno = 230 && movecontact
+trigger6 = stateno = 240 && movecontact
+trigger7 = stateno = 250 && movecontact
+trigger8 = stateno = 400 && movecontact
+trigger9 = stateno = 410 && movecontact
+trigger10 = stateno = 420 && movecontact
+trigger11 = stateno = 430 && movecontact
+trigger12 = stateno = 440 && movecontact
+trigger13 = stateno = 450 && movecontact
 
 ;heavylariat
 [State -1]
