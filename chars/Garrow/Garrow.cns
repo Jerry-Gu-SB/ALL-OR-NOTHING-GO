@@ -375,11 +375,12 @@ value = 0, 4
 
 [State 210, 2]
 type = HitDef
-trigger1 = AnimElem = 3
+trigger1 = !MoveContact && !MoveReversed
 attr = S, NA
-animtype  = Medium
-damage    = 57
+hitflag = MAF
 guardflag = MA
+animtype  = Medium
+damage    = 1100
 pausetime = 12,12
 sparkno = 1
 sparkxy = -10,-70
@@ -387,10 +388,14 @@ hitsound   = 5,2
 guardsound = 6,0
 ground.type = High
 ground.slidetime = 12
-ground.hittime  = 16
-ground.velocity = -5.5
+ground.hittime  = 18
+ground.velocity = -4.5
 air.velocity = -2.5,-4
-forcenofall = 1
+air.fall = 1
+fall.recovertime = 45
+guard.hittime = 12
+ground.cornerpush.veloff = -.5
+air.cornerpush.veloff = -.5
 
 [State 210, 3]
 type = ChangeAnim

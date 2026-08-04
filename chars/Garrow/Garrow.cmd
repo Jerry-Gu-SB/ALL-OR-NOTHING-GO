@@ -634,8 +634,8 @@ triggerall = command = "x"
 triggerall = command != "holddown"
 trigger1 = statetype = S
 trigger1 = ctrl
-trigger2 = stateno = 200
-trigger2 = time > 6
+trigger2 = stateno = 200 && movecontact
+
 
 ;---------------------------------------------------------------------------
 ;Stand Strong Punch
@@ -646,8 +646,8 @@ triggerall = command = "y"
 triggerall = command != "holddown"
 trigger1 = statetype = S
 trigger1 = ctrl
-trigger2 = (stateno = 200) && time > 5
-trigger3 = (stateno = 230) && time > 6
+trigger2 = (stateno = 200)
+trigger3 = (stateno = 230) 
 
 ;---------------------------------------------------------------------------
 ;Stand Light Kick
@@ -691,6 +691,7 @@ triggerall = command = "x"
 triggerall = command = "holddown"
 trigger1 = statetype = C
 trigger1 = ctrl
+trigger2 = stateno = 200 && movecontact
 
 ;---------------------------------------------------------------------------
 ;Crouching Strong Punch
@@ -773,3 +774,12 @@ trigger1 = ctrl
 trigger2 = stateno = 600 || stateno = 630 ;jump_x or jump_a
 trigger2 = movecontact
 trigger3 = stateno = 1350 ;Air blocking
+
+
+[State -1, Jump Cancel]
+type = ChangeState
+value = 40
+triggerall = !ishelper
+triggerall = !ailevel
+triggerall = command = "holdup"
+trigger1 = (Stateno = [200,201]) && Movehit

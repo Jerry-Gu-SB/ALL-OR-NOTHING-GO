@@ -300,7 +300,7 @@ trigger16 = stateno = 1020 && movecontact
 
 ; Lariat
 [State -1]
-type = null;ChangeState
+type = ChangeState
 value = 1002
 triggerall = command = "Special1_X" && var(6) = 0
 trigger1 = statetype = A && ctrl
