@@ -348,6 +348,15 @@ trigger6 = stateno = 410 && movecontact
 trigger7 = stateno = 430 && movecontact
 trigger8 = stateno = 440 && movecontact
 
+;Jump Air Grab
+[State -1]
+type = ChangeState
+value = 840
+triggerall = command = "QCB_x"
+triggerall = statetype = A
+trigger1 = ctrl
+trigger2 = stateno = 600 && movecontact
+trigger3 = stateno = 620 && movecontact
 
 ;Hug of Destruction!
 [State -1]
