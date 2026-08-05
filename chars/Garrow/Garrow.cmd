@@ -698,7 +698,7 @@ triggerall = command = "holddown"
 trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
-trigger2 = stateno = 400 && movecontact
+trigger3 = stateno = 400 && movecontact
 
 ;---------------------------------------------------------------------------
 ;Crouching Strong Punch
