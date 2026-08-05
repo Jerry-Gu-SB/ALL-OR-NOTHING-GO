@@ -280,19 +280,20 @@ ctrl = 1
 
 
 ;---------------------------------------------------------------------------
-; Stand Light Punch
-; CNS difficulty: easy
+; 5A
 [Statedef 200]
 type    = S                      ;State-type: S-stand, C-crouch, A-air, L-liedown
 movetype= A                      ;Move-type: A-attack, I-idle, H-gethit
 physics = S                      ;Physics: S-stand, C-crouch, A-air
-juggle  = 1                      ;Number of air juggle points move takes
+juggle  = 5                     ;Number of air juggle points move takes
 ;Commonly-used controllers:
 velset = 0,0                     ;Set velocity (x,y) (Def: no change)
 ctrl = 0                         ;Set ctrl (Def: no change)
 anim = 200                       ;Change animation (Def: no change)
 poweradd = 10                    ;Power to add (Def: 0)
 sprpriority = 2                  ;Set p1's sprite layering priority to 2 (in front)
+
+
 
 [State 200, 1]
 type = HitDef
@@ -315,16 +316,17 @@ ground.type = High               ;Type: High, Low, Trip (def: Normal)
 ground.slidetime = 5             ;Time that the opponent slides back
 ground.hittime  = 16              ;Time opponent is in hit state
 guard.hittime = 12
-ground.velocity = -4             ;Velocity at which opponent is pushed
-airguard.velocity = -1.9,-.8     ;Guard velocity in air (def: (air.xvel*1.5, air.yvel/2))
+ground.velocity = -6             ;Velocity at which opponent is pushed
+airguard.velocity = -7     ;Guard velocity in air (def: (air.xvel*1.5, air.yvel/2))
 air.type = High                  ;Type: High, Low, Trip (def: same as ground.type)
-air.velocity = -1.2,-1.5           ;X-velocity at which opponent is pushed,
+air.velocity = -1.2,-1.5
+air.fall = 1           ;X-velocity at which opponent is pushed,
 ;Y-velocity at which opponent is pushed
 air.hittime = 15                 ;Time before opponent regains control in air
 fall.recovertime = 25
 guard.ctrltime = 15
-ground.cornerpush.veloff = -.5
-air.cornerpush.veloff = -.5                ;Time before opponent regains control in air
+ground.cornerpush.veloff = -7
+air.cornerpush.veloff = -7                ;Time before opponent regains control in air
 
 [State 200, 2]
 type = PlaySnd
@@ -352,6 +354,7 @@ ctrl = 1
 ; opponent during that frame, and switches to the next animation element
 ; (notice the elem=6 parameter). If you don't see what I mean, try commenting
 ; out that controller, then hit someone with this attack.
+;5b
 [Statedef 210]
 type    = S
 movetype= A
@@ -382,6 +385,7 @@ guardflag = MA
 animtype  = Medium
 damage    = 1100
 pausetime = 12,12
+priority = 2, Hit 
 sparkno = 1
 sparkxy = -10,-70
 hitsound   = 5,2
@@ -390,12 +394,12 @@ ground.type = High
 ground.slidetime = 12
 ground.hittime  = 18
 ground.velocity = -4.5
+guard.hittime = 12
 air.velocity = -2.5,-4
 air.fall = 1
 fall.recovertime = 45
-guard.hittime = 12
-ground.cornerpush.veloff = -.5
-air.cornerpush.veloff = -.5
+ground.cornerpush.veloff = -5
+air.cornerpush.veloff = -5
 
 [State 210, 3]
 type = ChangeAnim
@@ -509,7 +513,7 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-;Crouching light punch
+
 ; CNS difficulty: easy
 ; Description: Simple crouching attack. The HitDef's guardflag parameter
 ;     is set to "L", meaning that the move can only be guarded low
@@ -524,6 +528,8 @@ ctrl = 1
 ;     KFM will get hit instead of trading hits with his opponent if
 ;     their attack collision boxes (Clsn1) intersect each other's Clsn2
 ;     boxes at the same time.
+
+;2A
 [Statedef 400]
 type    = C
 movetype= A
@@ -534,30 +540,44 @@ ctrl = 0
 anim = 400
 sprpriority = 2
 
+
 [State 400, 1]
 type = PlaySnd
 trigger1 = Time = 1
 value = 0, 0
 
-[State 400, 2]
+[State 400, 1]
 type = HitDef
-trigger1 = Time = 0
-attr = C, NA
-damage    = 23
-priority  = 3
-animtype  = Light
-hitflag = MAF
-guardflag = L
-pausetime = 10,11
-sparkno = 0
-sparkxy = -10,-42
-hitsound   = 5,0
-guardsound = 6,0
-ground.type = Low
-ground.slidetime = 4
-ground.hittime  = 9
-ground.velocity = -4
-air.velocity = -1.5,-3
+trigger1 = !movecontact && !movereversed
+attr = c, NA                     ;Attribute: Standing, Normal Attack
+damage = 400                  ;Damage that move inflicts, guard damage
+animtype = Light                 ;Animation type: Light, Medium, Heavy, Back (def: Light)
+guardflag = L                  ;Flags on how move is to be guarded against
+hitflag = MAF                    ;Flags of conditions that move can hit
+priority = 1, Hit                ;Attack priority: 0 (least) to 7 (most), 4 default
+;Hit/Miss/Dodge type (Def: Hit)
+pausetime = 10, 10                ;Time attacker pauses, time opponent shakes
+sparkno = 0                      ;Spark anim no (Def: set above)
+sparkxy = -10, -76               ;X-offset for the "hit spark" rel. to p2,
+;Y-offset for the spark rel. to p1
+hitsound = 5, 0                  ;Sound to play on hit
+guardsound = 6, 0                ;Sound to play on guard
+ground.type = Low               ;Type: High, Low, Trip (def: Normal)
+              ;Type: High, Low, Trip (def: Normal)
+ground.slidetime = 5             ;Time that the opponent slides back
+ground.hittime  = 16              ;Time opponent is in hit state
+guard.hittime = 12
+ground.velocity = -6            ;Velocity at which opponent is pushed
+airguard.velocity = -6,-.8     ;Guard velocity in air (def: (air.xvel*1.5, air.yvel/2))
+                ;Type: High, Low, Trip (def: same as ground.type)
+air.velocity = -1.2,-1.5
+air.fall = 1           ;X-velocity at which opponent is pushed,
+;Y-velocity at which opponent is pushed
+air.hittime = 15                 ;Time before opponent regains control in air
+fall.recovertime = 25
+guard.ctrltime = 15
+ground.cornerpush.veloff = -7
+air.cornerpush.veloff = -7   
 
 [State 400, 3]
 type = CtrlSet

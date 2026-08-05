@@ -626,28 +626,32 @@ trigger2 = p2movetype != H
 
 ;===========================================================================
 ;---------------------------------------------------------------------------
-;Stand Light Punch
-[State -1, Stand Light Punch]
+;5A
+[State -1]
 type = ChangeState
 value = 200
+triggerall = stateno!=40
+triggerall = !AIlevel
 triggerall = command = "x"
 triggerall = command != "holddown"
-trigger1 = statetype = S
+trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 400 && movecontact
 
 
 ;---------------------------------------------------------------------------
-;Stand Strong Punch
-[State -1, Stand Strong Punch]
+;5B
+[State -1]
 type = ChangeState
 value = 210
+triggerall = stateno!=40
 triggerall = command = "y"
 triggerall = command != "holddown"
-trigger1 = statetype = S
+trigger1 = statetype != A
 trigger1 = ctrl
-trigger2 = (stateno = 200)
-trigger3 = (stateno = 230) 
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 400 && movecontact
 
 ;---------------------------------------------------------------------------
 ;Stand Light Kick
@@ -683,15 +687,18 @@ trigger1 = statetype != A
 trigger1 = ctrl
 
 ;---------------------------------------------------------------------------
-;Crouching Light Punch
-[State -1, Crouching Light Punch]
+;2A
+[State -1]
 type = ChangeState
 value = 400
+triggerall = stateno!=40
+triggerall = !AIlevel
 triggerall = command = "x"
 triggerall = command = "holddown"
-trigger1 = statetype = C
+trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
+trigger2 = stateno = 400 && movecontact
 
 ;---------------------------------------------------------------------------
 ;Crouching Strong Punch
@@ -782,4 +789,5 @@ value = 40
 triggerall = !ishelper
 triggerall = !ailevel
 triggerall = command = "holdup"
-trigger1 = (Stateno = [200,201]) && Movehit
+trigger1 = (Stateno = [200,210]) && Movehit
+trigger1 = (Stateno = [400,410]) && Movehit
