@@ -1102,6 +1102,11 @@ trigger1 = animelem = 3
 x = 4
 y = -6
 
+[State 210, Width]
+type = Width
+trigger1 = animelem = 3
+value = 11,60
+
 [State 0, VelSet]
 type = VelSet
 trigger1 = time = 13

@@ -605,16 +605,15 @@ trigger1 = statetype = S
 trigger1 = ctrl
 
 ;---------------------------------------------------------------------------
-;Kung Fu Throw
-[State -1, Kung Fu Throw]
+; Throw
+[State -1, Throw]
 type = ChangeState
 value = 800
-triggerall = command = "y"
+triggerall = command = "b"
 triggerall = statetype = S
 triggerall = ctrl
 triggerall = stateno != 100
 trigger1 = command = "holdfwd"
-trigger1 = p2bodydist X < 3
 trigger1 = (p2statetype = S) || (p2statetype = C)
 trigger1 = p2movetype != H
 trigger2 = command = "holdback"

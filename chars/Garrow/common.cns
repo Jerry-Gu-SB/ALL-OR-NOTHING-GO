@@ -1,0 +1,101 @@
+;---------------------------------------------------------------------------
+; Run forward
+[Statedef 100]
+type    = S
+physics = S
+anim = 100
+sprpriority = 1
+ctrl = 0
+
+[State 621, 1]
+type = playsnd
+trigger1 = !time
+trigger2 = animelem = 4
+trigger3 = animelem = 8
+value = 100,0
+
+[State 100, 1]
+type = VelSet
+trigger1 = 1
+x = const(velocity.run.fwd.x)
+
+[State 100, 2] ;Prevent run from canceling into walk
+type = AssertSpecial
+trigger1 = 1
+flag = NoWalk
+
+[State 100, 3] ;Prevent from turning
+type = AssertSpecial
+trigger1 = 1
+flag = NoAutoTurn
+
+[State 100, 4]
+type = ChangeState
+triggerall = !ailevel
+trigger1 = command != "holdfwd"
+value = 101
+
+[State 100, 4]
+type = ChangeState
+triggerall = ailevel && numenemy
+trigger1 = p2bodydist x <= 40
+value = 101
+
+
+;---------------------------------------------------------------------------
+; Run Stop
+[Statedef 101]
+type    = S
+physics = S
+anim = 101
+sprpriority = 1
+ctrl = 1
+
+[State 100, 1]
+type = playsnd
+trigger1 = time = 0
+value = 101,0
+
+[State 100, 1]
+type = VelSet
+trigger1 = 1
+x = 1
+
+[State 6061, Effect]
+type = Explod
+trigger1 = time = 0
+anim = 6005
+scale = .3,.3
+postype = p1
+facing = -1
+pos = 45,0
+sprpriority = 3
+ownpal = 1
+removeongethit = 1
+pausemovetime = 99999
+supermovetime = 99999
+ignorehitpause = 1
+persistent = 0
+bindtime = 1
+
+[State 100, 2] ;Prevent run from canceling into walk
+type = AssertSpecial
+trigger1 = 1
+flag = NoWalk
+
+[State 100, 3] ;Prevent from turning
+type = AssertSpecial
+trigger1 = 1
+flag = NoAutoTurn
+
+[State 100, 2]
+type = ctrlset
+trigger1 = animtime = 0
+value = 1
+
+[State 100, 4]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+
+;---------------------------------------------------------------------------

@@ -71,7 +71,7 @@ air.gethit.airrecover.up = -2         ;Extra y-velocity for holding up during ai
 air.gethit.airrecover.down = 1.5      ;Extra y-velocity for holding down during air recovery **MUGEN 1.0**
 
 [Movement]
-airjump.num = 1       ;Number of air jumps allowed (opt)
+airjump.num = 0       ;Number of air jumps allowed (opt)
 airjump.height = 35   ;Minimum distance from ground before you can air jump (opt)
 yaccel = .44          ;Vertical acceleration
 stand.friction = .85  ;Friction coefficient when standing
@@ -278,7 +278,6 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
-
 ;---------------------------------------------------------------------------
 ; 5A
 [Statedef 200]
@@ -289,8 +288,7 @@ juggle  = 5                     ;Number of air juggle points move takes
 ;Commonly-used controllers:
 velset = 0,0                     ;Set velocity (x,y) (Def: no change)
 ctrl = 0                         ;Set ctrl (Def: no change)
-anim = 200                       ;Change animation (Def: no change)
-poweradd = 10                    ;Power to add (Def: 0)
+anim = 200                       ;Change animation (Def: no change)                   ;Power to add (Def: 0)
 sprpriority = 2                  ;Set p1's sprite layering priority to 2 (in front)
 
 [State 200, 1]
@@ -358,16 +356,11 @@ type    = S
 movetype= A
 physics = S
 juggle  = 4
-poweradd= 30
 ctrl = 0
 velset = 0,0
 anim = 210
 sprpriority = -1
 
-[State 210, Width]
-type = Width
-trigger1 = (AnimElemTime (2) >= 0) && (AnimElemTime (7) < 0)
-value = 15,0
 
 [State 210, 1]
 type = PlaySnd
@@ -533,7 +526,6 @@ type    = C
 movetype= A
 physics = C
 juggle  = 5
-poweradd= 8
 ctrl = 0
 anim = 400
 sprpriority = 2
@@ -930,7 +922,7 @@ sprpriority = 2
 ;   1 or 2, so that the throw does not take precedence over normal attacks.
 ;   The type of priority must always be set to "Miss" or "Dodge" for throws,
 ;   otherwise strange behavior can result.
-[State 800, 1]
+
 type = HitDef
 Trigger1 = Time = 0
 attr = S, NT          ;Attributes: Standing, Normal Throw
