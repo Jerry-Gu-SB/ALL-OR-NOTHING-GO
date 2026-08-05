@@ -783,7 +783,7 @@ trigger3 = stateno = 1350 ;Air blocking
 [State -1]
 type = ChangeState
 value = 40
-triggerall = command = "holdup" && !var(1) && prevstateno != 810
+triggerall = command = "holdup" && prevstateno != 810
 trigger1 = stateno = [100,102]
 trigger2 = stateno = [200,210] && MoveHit
 trigger3 = stateno = [400,450] && MoveHit
