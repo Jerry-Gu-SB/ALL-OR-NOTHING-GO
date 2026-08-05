@@ -122,6 +122,12 @@ type = VelSet
 trigger1 = command = "holdfwd"
 x = const(velocity.walk.fwd.x)
 
+[State 20, Build Meter]
+type = PowerAdd
+trigger1 = command = "holdfwd"
+trigger1 = Vel X > 0
+value = 1
+
 [State 20, 2]
 type = VelSet
 trigger1 = command = "holdback"
