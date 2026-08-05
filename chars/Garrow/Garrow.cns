@@ -293,8 +293,6 @@ anim = 200                       ;Change animation (Def: no change)
 poweradd = 10                    ;Power to add (Def: 0)
 sprpriority = 2                  ;Set p1's sprite layering priority to 2 (in front)
 
-
-
 [State 200, 1]
 type = HitDef
 trigger1 = !movecontact && !movereversed
@@ -540,7 +538,6 @@ ctrl = 0
 anim = 400
 sprpriority = 2
 
-
 [State 400, 1]
 type = PlaySnd
 trigger1 = Time = 1
@@ -549,7 +546,7 @@ value = 0, 0
 [State 400, 1]
 type = HitDef
 trigger1 = !movecontact && !movereversed
-attr = c, NA                     ;Attribute: Standing, Normal Attack
+attr = C, NA                     ;Attribute: Standing, Normal Attack
 damage = 400                  ;Damage that move inflicts, guard damage
 animtype = Light                 ;Animation type: Light, Medium, Heavy, Back (def: Light)
 guardflag = L                  ;Flags on how move is to be guarded against
@@ -579,15 +576,11 @@ guard.ctrltime = 15
 ground.cornerpush.veloff = -7
 air.cornerpush.veloff = -7   
 
-[State 400, 3]
-type = CtrlSet
-trigger1 = Time = 6
-value = 1
-
-[State 400, 4]
+[State 400, ChangeState]
 type = ChangeState
-trigger1 = AnimTime = 0
+trigger1 = animtime = 0
 value = 11
+ctrl = 1
 
 ;---------------------------------------------------------------------------
 ;Crouching strong punch

@@ -630,8 +630,6 @@ trigger2 = p2movetype != H
 [State -1]
 type = ChangeState
 value = 200
-triggerall = stateno!=40
-triggerall = !AIlevel
 triggerall = command = "x"
 triggerall = command != "holddown"
 trigger1 = statetype != A
@@ -691,8 +689,6 @@ trigger1 = ctrl
 [State -1]
 type = ChangeState
 value = 400
-triggerall = stateno!=40
-triggerall = !AIlevel
 triggerall = command = "x"
 triggerall = command = "holddown"
 trigger1 = statetype != A
@@ -783,11 +779,12 @@ trigger2 = movecontact
 trigger3 = stateno = 1350 ;Air blocking
 
 
-[State -1, Jump Cancel]
+;Jump/Super Jump
+[State -1]
 type = ChangeState
 value = 40
-triggerall = !ishelper
-triggerall = !ailevel
-triggerall = command = "holdup"
-trigger1 = (Stateno = [200,210]) && Movehit
-trigger1 = (Stateno = [400,410]) && Movehit
+triggerall = command = "holdup" && !var(1) && prevstateno != 810
+trigger1 = stateno = [100,102]
+trigger2 = stateno = [200,210] && MoveHit
+trigger3 = stateno = [400,450] && MoveHit
+trigger4 = stateno = 410 && MoveHit
