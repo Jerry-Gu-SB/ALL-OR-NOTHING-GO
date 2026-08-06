@@ -265,7 +265,7 @@ time = 1
 name = "down"
 command = D
 time = 1
-
+ 
 
 ;-| Double Tap |-----------------------------------------------------------
 [Command]
@@ -673,6 +673,7 @@ trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 400 && movecontact
+trigger4 = stateno = 410 && movecontact
 
 ;---------------------------------------------------------------------------
 ;Stand Light Kick
@@ -721,15 +722,16 @@ trigger3 = stateno = 400 && movecontact
 
 ;---------------------------------------------------------------------------
 ;Crouching Strong Punch
-[State -1, Crouching Strong Punch]
+[State -1, 2B]
 type = ChangeState
 value = 410
 triggerall = command = "y"
 triggerall = command = "holddown"
-trigger1 = statetype = C
+trigger1 = statetype != A
 trigger1 = ctrl
-trigger2 = (stateno = 400) || (stateno = 430)
-trigger2 = (time > 9) || (movecontact && time > 5)
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 210 && movecontact
+trigger4 = stateno = 400 && movecontact
 
 ;---------------------------------------------------------------------------
 ;Crouching Light Kick

@@ -541,7 +541,7 @@ trigger1 = !movecontact && !movereversed
 attr = C, NA                     ;Attribute: Standing, Normal Attack
 damage = 400                  ;Damage that move inflicts, guard damage
 animtype = Light                 ;Animation type: Light, Medium, Heavy, Back (def: Light)
-guardflag = L                  ;Flags on how move is to be guarded against
+guardflag = M                 ;Flags on how move is to be guarded against
 hitflag = MAF                    ;Flags of conditions that move can hit
 priority = 1, Hit                ;Attack priority: 0 (least) to 7 (most), 4 default
 ;Hit/Miss/Dodge type (Def: Hit)
@@ -583,12 +583,12 @@ ctrl = 1
 ;     air, because of the "M" in the guardflag, meaning it can only
 ;     be guarded "middle". The second hit has an "MA" guardflag, so
 ;     it can be guarded both on the ground and in the air.
+;2B
 [Statedef 410]
 type    = C
 movetype= A
 physics = C
 juggle  = 6
-poweradd= 25
 ctrl = 0
 anim = 410
 sprpriority = 2
@@ -601,12 +601,12 @@ value = 0, 0
 ;This is the first hit, triggered on the 3rd element of animation.
 [State 410, 2]
 type = HitDef
-trigger1 = AnimElem = 3
+trigger1 = !MoveContact && !MoveReversed
 attr = C, NA
-damage    = 37
+damage    = 800
 animtype  = Medium
 hitflag = MAF
-guardflag = M
+guardflag = L
 pausetime = 12,12
 sparkno = 1
 sparkxy = -10,-55
@@ -614,9 +614,14 @@ hitsound   = 5,2
 guardsound = 6,0
 ground.type = Low
 ground.slidetime = 12
-ground.hittime  = 17
-ground.velocity = -4
-air.velocity = -3,-4
+ground.hittime  = 18
+ground.velocity = -4.5
+guard.hittime = 12
+air.velocity = -2.5,-4
+air.fall = 1
+fall.recovertime = 45
+ground.cornerpush.veloff = -5
+air.cornerpush.veloff = -5
 
 ;This is the second hit, triggered on the 4th element of animation.
 [State 410, 3]
