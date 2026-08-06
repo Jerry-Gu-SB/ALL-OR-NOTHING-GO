@@ -372,7 +372,7 @@ type = HitDef
 trigger1 = !MoveContact && !MoveReversed
 attr = S, NA
 hitflag = MAF
-guardflag = MA
+guardflag = M
 animtype  = Medium
 damage    = 1100
 pausetime = 12,12
@@ -607,6 +607,7 @@ damage    = 800
 animtype  = Medium
 hitflag = MAF
 guardflag = L
+priority = 2, Hit 
 pausetime = 12,12
 sparkno = 1
 sparkxy = -10,-55
@@ -622,25 +623,6 @@ air.fall = 1
 fall.recovertime = 45
 ground.cornerpush.veloff = -5
 air.cornerpush.veloff = -5
-
-;This is the second hit, triggered on the 4th element of animation.
-[State 410, 3]
-type = HitDef
-trigger1 = AnimElem = 4
-attr = C, NA
-damage    = 36
-animtype  = Medium
-hitflag = MAF
-guardflag = MA
-pausetime = 12,12
-sparkxy = -10,-83
-hitsound   = 5,2
-guardsound = 6,0
-ground.type = High
-ground.slidetime = 12
-ground.hittime  = 17
-ground.velocity = -7
-air.velocity = -3,-4
 
 [State 410, 4]
 type = ChangeState
