@@ -2481,6 +2481,7 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
+;Grab Safeguard
 [Statedef 820]
 type    = A
 movetype= H
@@ -2498,6 +2499,126 @@ value = 5001
 type = SelfState
 trigger1 = !gethitvar(isbound)
 value = 5050
+
+
+;Air Grab
+[Statedef 840]
+type = A
+movetype = A
+physics = A
+juggle = 0 
+anim = 840
+ctrl = 0
+
+[State 840, 1]
+type = HitDef
+trigger1 = Time = 0
+attr = S, NT
+hitflag = M-
+priority = 1, Miss
+sparkno = -1
+p1sprpriority = 1
+p1facing = 1
+p2facing = 1
+p1stateno = 1601
+p2stateno = 1602
+guard.dist = 0
+fall = 1
+
+[State 840, Velset]
+type = VelSet
+trigger1 = MoveHit
+x = 0
+y = 0
+
+[State 52, PlaySnd]
+type = PlaySnd
+trigger1 = time = 20
+value = 0,0
+
+[State 52, PlaySnd]
+type = PlaySnd
+trigger1 = time = 20
+value = 1600,4
+
+
+
+
+
+
+
+
+
+
+
+
+
+;===================================
+
+[Statedef 1600]
+type = S
+movetype= A
+physics = S
+juggle = 0
+velset = 0, 0
+anim = 1600
+ctrl = 0
+
+[State 1600, 1]
+type = HitDef
+trigger1 = Time = 0
+attr = S, NT
+hitflag = M-
+priority = 1, Miss
+sparkno = -1
+p1sprpriority = 1
+p1facing = 1
+p2facing = 1
+p1stateno = 1601
+p2stateno = 1602
+guard.dist = 0
+fall = 1
+
+[State 1600, HOD Heavy]
+type = HitDef
+nochainID = 8000
+trigger1 = !movehit && !movereversed
+triggerall = enemynear, movetype = H
+attr = S, ST         
+hitflag = MAFD
+priority = 1, Miss    
+sparkno = -1        
+sparkxy = 0,-50
+p1sprpriority = 1     
+p1facing = 1          
+p1stateno = 1601
+p2stateno = 1602
+fall = 1  
+fall.recover = 0
+
+
+[State 1, ]
+type = velset
+trigger1 = animelem = 5 
+x = 7
+
+[State 52, PlaySnd]
+type = PlaySnd
+trigger1 = time = 20
+value = 0,0
+
+[State 52, PlaySnd]
+type = PlaySnd
+trigger1 = time = 20
+value = 1600,4
+
+[State 1600, 2]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;======================
 
 ; Triple Kung Fu Palm
 [Statedef 3000] 
