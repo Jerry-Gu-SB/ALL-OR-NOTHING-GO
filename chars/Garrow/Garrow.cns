@@ -41,7 +41,7 @@ ground.front = 15   ;Player width (front, ground)
 air.back = 12        ;Player width (back, air)
 air.front = 12       ;Player width (front, air)
 height = 60          ;Height of player (for opponent to jump over)
-attack.dist = 100    ;Default attack distance
+attack.dist = 80   ;Default attack distance
 proj.attack.dist = 90 ;Default attack distance for projectiles
 proj.doscale = 0     ;Set to 1 to scale projectiles too
 head.pos = -5, -90   ;Approximate position of head
@@ -71,7 +71,7 @@ air.gethit.airrecover.up = -2         ;Extra y-velocity for holding up during ai
 air.gethit.airrecover.down = 1.5      ;Extra y-velocity for holding down during air recovery **MUGEN 1.0**
 
 [Movement]
-airjump.num = 1       ;Number of air jumps allowed (opt)
+airjump.num = 0       ;Number of air jumps allowed (opt)
 airjump.height = 35   ;Minimum distance from ground before you can air jump (opt)
 yaccel = .44          ;Vertical acceleration
 stand.friction = .85  ;Friction coefficient when standing
@@ -278,7 +278,6 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
-
 ;---------------------------------------------------------------------------
 ; 5A
 [Statedef 200]
@@ -289,11 +288,8 @@ juggle  = 5                     ;Number of air juggle points move takes
 ;Commonly-used controllers:
 velset = 0,0                     ;Set velocity (x,y) (Def: no change)
 ctrl = 0                         ;Set ctrl (Def: no change)
-anim = 200                       ;Change animation (Def: no change)
-poweradd = 10                    ;Power to add (Def: 0)
+anim = 200                       ;Change animation (Def: no change)                   ;Power to add (Def: 0)
 sprpriority = 2                  ;Set p1's sprite layering priority to 2 (in front)
-
-
 
 [State 200, 1]
 type = HitDef
@@ -360,16 +356,11 @@ type    = S
 movetype= A
 physics = S
 juggle  = 4
-poweradd= 30
 ctrl = 0
 velset = 0,0
 anim = 210
 sprpriority = -1
 
-[State 210, Width]
-type = Width
-trigger1 = (AnimElemTime (2) >= 0) && (AnimElemTime (7) < 0)
-value = 15,0
 
 [State 210, 1]
 type = PlaySnd
@@ -381,7 +372,7 @@ type = HitDef
 trigger1 = !MoveContact && !MoveReversed
 attr = S, NA
 hitflag = MAF
-guardflag = MA
+guardflag = M
 animtype  = Medium
 damage    = 1100
 pausetime = 12,12
@@ -535,11 +526,9 @@ type    = C
 movetype= A
 physics = C
 juggle  = 5
-poweradd= 8
 ctrl = 0
 anim = 400
 sprpriority = 2
-
 
 [State 400, 1]
 type = PlaySnd
@@ -549,10 +538,10 @@ value = 0, 0
 [State 400, 1]
 type = HitDef
 trigger1 = !movecontact && !movereversed
-attr = c, NA                     ;Attribute: Standing, Normal Attack
+attr = C, NA                     ;Attribute: Standing, Normal Attack
 damage = 400                  ;Damage that move inflicts, guard damage
 animtype = Light                 ;Animation type: Light, Medium, Heavy, Back (def: Light)
-guardflag = L                  ;Flags on how move is to be guarded against
+guardflag = M                 ;Flags on how move is to be guarded against
 hitflag = MAF                    ;Flags of conditions that move can hit
 priority = 1, Hit                ;Attack priority: 0 (least) to 7 (most), 4 default
 ;Hit/Miss/Dodge type (Def: Hit)
@@ -579,15 +568,11 @@ guard.ctrltime = 15
 ground.cornerpush.veloff = -7
 air.cornerpush.veloff = -7   
 
-[State 400, 3]
-type = CtrlSet
-trigger1 = Time = 6
-value = 1
-
-[State 400, 4]
+[State 400, ChangeState]
 type = ChangeState
-trigger1 = AnimTime = 0
+trigger1 = animtime = 0
 value = 11
+ctrl = 1
 
 ;---------------------------------------------------------------------------
 ;Crouching strong punch
@@ -598,12 +583,12 @@ value = 11
 ;     air, because of the "M" in the guardflag, meaning it can only
 ;     be guarded "middle". The second hit has an "MA" guardflag, so
 ;     it can be guarded both on the ground and in the air.
+;2B
 [Statedef 410]
 type    = C
 movetype= A
 physics = C
 juggle  = 6
-poweradd= 25
 ctrl = 0
 anim = 410
 sprpriority = 2
@@ -616,12 +601,13 @@ value = 0, 0
 ;This is the first hit, triggered on the 3rd element of animation.
 [State 410, 2]
 type = HitDef
-trigger1 = AnimElem = 3
+trigger1 = !MoveContact && !MoveReversed
 attr = C, NA
-damage    = 37
+damage    = 800
 animtype  = Medium
 hitflag = MAF
-guardflag = M
+guardflag = L
+priority = 2, Hit 
 pausetime = 12,12
 sparkno = 1
 sparkxy = -10,-55
@@ -629,28 +615,14 @@ hitsound   = 5,2
 guardsound = 6,0
 ground.type = Low
 ground.slidetime = 12
-ground.hittime  = 17
-ground.velocity = -4
-air.velocity = -3,-4
-
-;This is the second hit, triggered on the 4th element of animation.
-[State 410, 3]
-type = HitDef
-trigger1 = AnimElem = 4
-attr = C, NA
-damage    = 36
-animtype  = Medium
-hitflag = MAF
-guardflag = MA
-pausetime = 12,12
-sparkxy = -10,-83
-hitsound   = 5,2
-guardsound = 6,0
-ground.type = High
-ground.slidetime = 12
-ground.hittime  = 17
-ground.velocity = -7
-air.velocity = -3,-4
+ground.hittime  = 18
+ground.velocity = -4.5
+guard.hittime = 12
+air.velocity = -2.5,-4
+air.fall = 1
+fall.recovertime = 45
+ground.cornerpush.veloff = -5
+air.cornerpush.veloff = -5
 
 [State 410, 4]
 type = ChangeState
@@ -937,7 +909,7 @@ sprpriority = 2
 ;   1 or 2, so that the throw does not take precedence over normal attacks.
 ;   The type of priority must always be set to "Miss" or "Dodge" for throws,
 ;   otherwise strange behavior can result.
-[State 800, 1]
+
 type = HitDef
 Trigger1 = Time = 0
 attr = S, NT          ;Attributes: Standing, Normal Throw

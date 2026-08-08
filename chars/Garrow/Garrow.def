@@ -17,6 +17,7 @@ localcoord = 320,240        ;Local coordinate space width and height
 cmd     = Garrow.cmd           ;Command set
 cns     = Garrow.cns           ;Constants
 st      = Garrow.cns           ;States
+st1      = common.cns           ;States
 stcommon = common1.cns      ;Common states (from data/ or motif)
 sprite  = Garrow.sff           ;Sprite
 anim    = Garrow.air           ;Animation

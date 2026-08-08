@@ -20,7 +20,7 @@ ground.front = 15    ;Player width (front, ground)
 air.back = 8        ;Player width (back, air)
 air.front = 10       ;Player width (front, air)
 height = 60          ;Height of player (for opponent to jump over)
-attack.dist = 100    ;Default attack distance
+attack.dist = 80    ;Default attack distance
 proj.attack.dist = 90 ;Default attack distance for projectiles
 proj.doscale = 0     ;Set to 1 to scale projectiles too
 head.pos = -5, -90   ;Approximate position of head
@@ -217,7 +217,6 @@ ctrl = 0
 anim = 200
 velset = 0,0
 sprpriority = 2
-poweradd = 20
 juggle = 10
 
 
@@ -300,7 +299,6 @@ ctrl = 0
 anim = 210
 velset = 0,0
 sprpriority = 2
-poweradd = 50
 juggle = 1
 
 [State 210, PlaySnd]
@@ -398,7 +396,6 @@ type    = S
 movetype= A
 physics = S
 juggle  = 4
-poweradd= 0
 velset = 0,0 
 ctrl = 0
 anim = 211
@@ -564,7 +561,6 @@ type    = S
 movetype= I
 physics = S
 juggle  = 4
-poweradd= 30
 ctrl = 0
 velset = 0,0
 anim = 42
@@ -624,7 +620,6 @@ type    = A
 movetype= A
 physics = A
 juggle  = 4
-poweradd= 60
 ctrl = 0
 anim = 601
 sprpriority = 2
@@ -725,7 +720,6 @@ type    = S
 movetype= A
 physics = N
 juggle  = 5
-poweradd= 54
 ctrl = 0
 anim = 230
 sprpriority = 1
@@ -815,7 +809,6 @@ type    = S
 movetype= A
 physics = N
 juggle  = 5
-poweradd= 54
 ctrl = 0
 anim = 231
 sprpriority = 1
@@ -903,7 +896,6 @@ type    = S
 movetype= A
 physics = N
 juggle  = 5
-poweradd= 54
 ctrl = 0
 anim = 232
 sprpriority = 1
@@ -991,7 +983,6 @@ type    = S
 movetype= A
 physics = N
 juggle  = 5
-poweradd= 54
 ctrl = 0
 anim = 233
 sprpriority = 1
@@ -1079,7 +1070,6 @@ type    = S
 movetype= A
 physics = S
 anim = 320
-poweradd = 65
 ctrl = 0
 sprpriority = 2
 
@@ -1101,6 +1091,11 @@ type = VelSet
 trigger1 = animelem = 3
 x = 4
 y = -6
+
+[State 210, Width]
+type = Width
+trigger1 = animelem = 3
+value = 11,60
 
 [State 0, VelSet]
 type = VelSet
@@ -1252,7 +1247,6 @@ ctrl = 0
 anim = 400
 velset = 0,0
 sprpriority = 2
-poweradd = 20
 juggle = 1
 
 [State 400, PlaySnd]
@@ -1317,7 +1311,6 @@ ctrl = 0
 anim = 410
 velset = 0,0
 sprpriority = 2
-poweradd = 50
 juggle = 1
 
 [State 410, PlaySnd]
@@ -1394,7 +1387,6 @@ ctrl = 0
 anim = 450
 velset = 0,0
 sprpriority = 2
-poweradd = 50
 
 [State 440, PlaySnd]
 type = PlaySnd
@@ -1465,7 +1457,6 @@ physics = A
 ctrl = 0
 anim = 600
 sprpriority = 2
-poweradd = 20
 juggle = 1
 
 [State 600, PlaySnd]
@@ -1522,7 +1513,6 @@ physics = N
 ctrl = 0
 anim = 610
 sprpriority = 2
-poweradd = 50
 juggle = 1
 
 [State 610, PlaySnd]
@@ -1664,7 +1654,6 @@ physics = A
 ctrl = 0
 anim = 620
 sprpriority = 2
-poweradd = 50
 
 [State 620, PlaySnd]
 type = PlaySnd
@@ -2767,6 +2756,7 @@ type    = S
 physics = N
 anim = 101
 sprpriority = 1
+poweradd = 20
 velset = const(velocity.run.fwd.x),0
 
 [State 101, PlaySnd]

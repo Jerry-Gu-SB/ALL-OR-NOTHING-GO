@@ -243,6 +243,30 @@ command = F, F, a
 name = "FF_b"
 command = F, F, b
 
+;---------------------------------------------------
+;Direction Tap
+;---------------------------------------------------
+[Command]
+name = "fwd"
+command = F
+time = 1
+
+[Command]
+name = "back"
+command = B
+time = 1
+
+[Command]
+name = "up"
+command = U
+time = 1
+
+[Command]
+name = "down"
+command = D
+time = 1
+ 
+
 ;-| Double Tap |-----------------------------------------------------------
 [Command]
 name = "FF"     ;Required (do not remove)
@@ -605,16 +629,15 @@ trigger1 = statetype = S
 trigger1 = ctrl
 
 ;---------------------------------------------------------------------------
-;Kung Fu Throw
-[State -1, Kung Fu Throw]
+; Throw
+[State -1, Throw]
 type = ChangeState
 value = 800
-triggerall = command = "y"
+triggerall = command = "b"
 triggerall = statetype = S
 triggerall = ctrl
 triggerall = stateno != 100
 trigger1 = command = "holdfwd"
-trigger1 = p2bodydist X < 3
 trigger1 = (p2statetype = S) || (p2statetype = C)
 trigger1 = p2movetype != H
 trigger2 = command = "holdback"
@@ -630,8 +653,6 @@ trigger2 = p2movetype != H
 [State -1]
 type = ChangeState
 value = 200
-triggerall = stateno!=40
-triggerall = !AIlevel
 triggerall = command = "x"
 triggerall = command != "holddown"
 trigger1 = statetype != A
@@ -652,6 +673,7 @@ trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 400 && movecontact
+trigger4 = stateno = 410 && movecontact
 
 ;---------------------------------------------------------------------------
 ;Stand Light Kick
@@ -691,8 +713,6 @@ trigger1 = ctrl
 [State -1]
 type = ChangeState
 value = 400
-triggerall = stateno!=40
-triggerall = !AIlevel
 triggerall = command = "x"
 triggerall = command = "holddown"
 trigger1 = statetype != A
@@ -702,15 +722,16 @@ trigger3 = stateno = 400 && movecontact
 
 ;---------------------------------------------------------------------------
 ;Crouching Strong Punch
-[State -1, Crouching Strong Punch]
+[State -1, 2B]
 type = ChangeState
 value = 410
 triggerall = command = "y"
 triggerall = command = "holddown"
-trigger1 = statetype = C
+trigger1 = statetype != A
 trigger1 = ctrl
-trigger2 = (stateno = 400) || (stateno = 430)
-trigger2 = (time > 9) || (movecontact && time > 5)
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 210 && movecontact
+trigger4 = stateno = 400 && movecontact
 
 ;---------------------------------------------------------------------------
 ;Crouching Light Kick
@@ -783,11 +804,41 @@ trigger2 = movecontact
 trigger3 = stateno = 1350 ;Air blocking
 
 
-[State -1, Jump Cancel]
+;Jump/Super Jump
+[State -1]
 type = ChangeState
 value = 40
-triggerall = !ishelper
-triggerall = !ailevel
-triggerall = command = "holdup"
-trigger1 = (Stateno = [200,210]) && Movehit
-trigger1 = (Stateno = [400,410]) && Movehit
+triggerall = command = "holdup" && prevstateno != 810
+trigger1 = stateno = [100,102]
+trigger2 = stateno = [200,210] && MoveHit
+trigger3 = stateno = [400,450] && MoveHit
+trigger4 = stateno = 410 && MoveHit
+
+[State -1, PerfectBlock Stand]
+type = HitOverride
+triggerall = !AILevel && roundstate=2 && Statetype != A
+triggerall = command = "fwd" && command != "back" && command != "up" && command != "down"
+trigger1 = Ctrl
+stateno = 6130
+attr = SCA, AA
+guardflag = H
+; Slot just sets the order in which State -1 will take precedence, so PerfectBlock has the highest priority of State -1 I guess?
+; Source: https://mugenfreeforall.com/topic/34752-ricepigeons-coding-tutorial-code-snippet-repository/
+slot = 0
+time = 7
+
+[State -1, PerfectBlock Crouch]
+type = HitOverride
+triggerall = !AILevel && roundstate=2 && Statetype != A
+;triggerall = command = "fwd" && command = "down" && command != "back" && command != "up" 
+triggerall = command = "holddown" && command = "holdfwd"
+trigger1 = Ctrl
+stateno = 6131
+attr = SCA, AA
+guardflag = L
+guardflag.not = H
+
+; Slot just sets the order in which State -1 will take precedence, so PerfectBlock has the highest priority of State -1 I guess?
+; Source: https://mugenfreeforall.com/topic/34752-ricepigeons-coding-tutorial-code-snippet-repository/
+slot = 0
+time = 7
