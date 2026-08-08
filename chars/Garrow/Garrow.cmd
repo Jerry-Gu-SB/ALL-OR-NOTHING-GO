@@ -352,6 +352,45 @@ name = "holddown";Required (do not remove)
 command = /$D
 time = 1
 
+;---------------------------------------------------
+;Hold Buttons
+;---------------------------------------------------
+
+[Command]
+name = "hold_a"
+command = /a
+time = 1
+
+[Command]
+name = "hold_b"
+command = /b
+time = 1
+
+[Command]
+name = "hold_c"
+command = /c
+time = 1
+
+[Command]
+name = "hold_x"
+command = /x
+time = 1
+
+[Command]
+name = "hold_y"
+command = /y
+time = 1
+
+[Command]
+name = "hold_z"
+command = /z
+time = 1
+
+[Command]
+name = "hold_start"
+command = /s
+time = 1
+
 ;---------------------------------------------------------------------------
 ; 2. State entry
 ; --------------

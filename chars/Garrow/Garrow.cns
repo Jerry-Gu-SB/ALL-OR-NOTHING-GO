@@ -300,8 +300,11 @@ animtype = Light                 ;Animation type: Light, Medium, Heavy, Back (de
 guardflag = M                  ;Flags on how move is to be guarded against
 hitflag = MAF                    ;Flags of conditions that move can hit
 priority = 1, Hit                ;Attack priority: 0 (least) to 7 (most), 4 default
+getpower = 20,0
+givepower = 20,0
 ;Hit/Miss/Dodge type (Def: Hit)
-pausetime = 10, 10                ;Time attacker pauses, time opponent shakes
+pausetime = 10, 10 
+guard.pausetime = 10,10              ;Time attacker pauses, time opponent shakes
 sparkno = 0                      ;Spark anim no (Def: set above)
 sparkxy = -10, -76               ;X-offset for the "hit spark" rel. to p2,
 ;Y-offset for the spark rel. to p1
@@ -359,13 +362,44 @@ juggle  = 4
 ctrl = 0
 velset = 0,0
 anim = 210
-sprpriority = -1
+sprpriority = 2
 
 
 [State 210, 1]
 type = PlaySnd
 trigger1 = Time = 2
 value = 0, 4
+
+[State 0, Vel]
+type = velset
+trigger1 = animelem=2
+x = 2
+
+[State 210, 2]
+type = varset
+trigger1 = !time
+var(12) = 0
+
+[State 210, 2]
+type = varadd
+triggerall = !ailevel
+trigger1 = command = "hold_y"
+var(12) = 1
+
+[State 210, 2]
+type = changestate
+trigger1 = time = 12
+trigger1 = var(12) >= 12
+value = 211
+
+[State 610, Camera Shake]
+type = EnvShake
+trigger1 = AnimElem = 4
+trigger2 = MoveHit || MoveGuarded
+persistent = 0
+time = 10
+freq = 10
+ampl = 4
 
 [State 210, 2]
 type = HitDef
@@ -376,6 +410,9 @@ guardflag = M
 animtype  = Medium
 damage    = 1100
 pausetime = 12,12
+guard.pausetime = 12,12
+getpower = 20,0
+givepower = 20,0
 priority = 2, Hit 
 sparkno = 1
 sparkxy = -10,-70
@@ -392,19 +429,79 @@ fall.recovertime = 45
 ground.cornerpush.veloff = -5
 air.cornerpush.veloff = -5
 
-[State 210, 3]
-type = ChangeAnim
-trigger1 = AnimElemTime(5) > 0 && AnimElemTime(6) <= 0
-trigger1 = movecontact
+
+[State 210, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; 5[B]
+[Statedef 211]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+velset = 0,0 
+ctrl = 0
+anim = 211
+sprpriority = 2
+
+[State 0, Vel]
+type = velset
+trigger1 = animelem=2
+x = 10
+
+
+[State 50, 2]
+type = Explod
+trigger1 = time = 0
+anim = 10700
+pos = 19,-47
+ownpal = 1
 ignorehitpause = 1
 persistent = 0
-value = 210
-elem = 6
+sprpriority = 3
+scale = 0.50,0.50
 
-[State 210, 4]
-type = SprPriority
-trigger1 = AnimElem = 5
-value = 2
+[State 610, Camera Shake]
+type = EnvShake
+trigger1 = AnimElem = 2
+trigger2 = MoveHit || MoveGuarded
+persistent = 0
+time = 10
+freq = 10
+ampl = 4
+
+[State 210, 2]
+type = HitDef
+trigger1 = !MoveContact && !MoveReversed
+attr = S, NA
+hitflag = MAF
+guardflag = M
+animtype  = Medium
+damage    = 1100
+pausetime = 12,12
+guard.pausetime = 12,12
+getpower = 20,0
+givepower = 20,0
+priority = 2, Hit 
+sparkno = 1
+sparkxy = -10,-70
+hitsound   = 5,2
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 18
+ground.velocity = -4.5
+guard.hittime = 15
+air.velocity = -2.5,-4
+air.fall = 1
+fall.recovertime = 45
+ground.cornerpush.veloff = -5
+air.cornerpush.veloff = -5
+
 
 [State 210, 5]
 type = ChangeState
@@ -544,8 +641,11 @@ animtype = Light                 ;Animation type: Light, Medium, Heavy, Back (de
 guardflag = M                 ;Flags on how move is to be guarded against
 hitflag = MAF                    ;Flags of conditions that move can hit
 priority = 1, Hit                ;Attack priority: 0 (least) to 7 (most), 4 default
+getpower = 20,0
+givepower = 20,0
 ;Hit/Miss/Dodge type (Def: Hit)
 pausetime = 10, 10                ;Time attacker pauses, time opponent shakes
+guard.pausetime = 10,10
 sparkno = 0                      ;Spark anim no (Def: set above)
 sparkxy = -10, -76               ;X-offset for the "hit spark" rel. to p2,
 ;Y-offset for the spark rel. to p1
@@ -598,6 +698,16 @@ type = PlaySnd
 trigger1 = Time = 1
 value = 0, 0
 
+[State 610, Camera Shake]
+type = EnvShake
+trigger1 = AnimElem = 4
+trigger2 = MoveHit || MoveGuarded
+persistent = 0
+time = 10
+freq = 10
+ampl = 4
+
+
 ;This is the first hit, triggered on the 3rd element of animation.
 [State 410, 2]
 type = HitDef
@@ -607,8 +717,11 @@ damage    = 800
 animtype  = Medium
 hitflag = MAF
 guardflag = L
-priority = 2, Hit 
+priority = 2, Hit
+getpower = 20,0
+givepower = 20,0 
 pausetime = 12,12
+guard.pausetime = 12,12
 sparkno = 1
 sparkxy = -10,-55
 hitsound   = 5,2
