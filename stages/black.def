@@ -1,18 +1,16 @@
-; Definition of Interactive Stage
-; This stage adds Attached Chars
+; Definition of Stage Z (Training stage)
+; This stage allows characters to move in the Z axis
 ; The term "background" is used to mean both backgrounds and foregrounds.
 ; Licensed under CC BY 3.0.
 
 ; ----------------------------------------------------------
 [Info]
-name = "Interactive Training Stage"							; Internal name of the stage.
-displayName = "Interactive Training Stage"					; Name to display on the select screen.
-versionDate = 2026.01.22									; Version / Date of stage.
-ikemenVersion = 1.0											; Version of Ikemen GO the stage is made for.
-author = "Lasombra Demon, Phantom.of.the.Server"			; Stage author name.
-attachedChar = interactivestage/interactivestageChar.def	; Location of attached character's DEF file.
-;AttachedChar2 = AnotherAttachedChar.def					; Location of another character's DEF file,
-															; you can have up to 4.
+name = "DEFAULT STAGE - BLACK"           ; Internal name of the stage.
+displayName = "DEFAULT STAGE - BLACK"    ; Name to display on the select screen.
+versionDate = 2025.03.07            ; Version / Date of stage.
+ikemenVersion = 1.0                 ; Version of Ikemen GO the stage is made for
+author = "Phantom.of.the.Server"    ; Stage author name.
+
 ; ----------------------------------------------------------
 [Camera]
 ; Camera starting position: Usually 0 for both
@@ -21,26 +19,26 @@ startY = 0
 
 ; Left and right bounds of camera
 ; You may want to fiddle a bit with these values to make sure the
-background doesn't move too far or too little
-boundLeft = -30;
-boundRight = 30;
+; background doesn't move too far or too little
+boundLeft = -500
+boundRight = 500
 
 ; High and low bound of camera
 ; High is a negative number. Make is more negative if you want to
 ; camera to be able to move higher.
 ; Low should usually be 0.
 ; If omitted, defaults to -25 and 0 respectively
-boundHigh = -240
+boundHigh = -340
 boundLow = 0
 
 ; Horizontal distance player is from edge before camera starts to move
 ; left or right. Typically 50 or 60.
-tension = 50
+tension = 120
 
 ; These parameters control the distance between the highest and lowest
 ; characters where the camera will begin to move or zoom out
 tensionhigh = 120
-tensionlow = 0
+tensionlow = 120
 
 ; Number of pixels beyond the top and bottom of the screen that may
 ; be drawn.  Overdraw specifies the how much can be seen during an
@@ -58,8 +56,11 @@ cutlow = 0
 
 ; Zoom parameters
 startzoom = 1.00
-zoomout = 0.75
-zoomin = 1.00
+zoomout = 0.65
+zoomin = 0.90
+zoomanchor = bottom
+zoominspeed = 0.5
+zoomoutspeed = 0.5
 
 ; ----------------------------------------------------------
 [PlayerInfo]
@@ -79,17 +80,21 @@ p2Facing = -1
 ; --- Common ---
 ; Absolute limit that any player can move on the X axis.
 ; These values should be larger than boundLeft and boundRight
-leftBound = -1000
-rightBound =  1000
+leftBound = -2000
+rightBound =  2000
+
+;--- Z-axis boundaries ---
+topbound = -30         ; Top z-ccordinate that players are allowed to reach
+botbound = 30          ; Bottom z-ccordinate that players are allowed to reach
 
 ;--------------------------------------------------------
 ; Returning from DOS: Z-axis scaling
-;[Scaling]
-;topz = 0               ; Top z-coordinate for scaling reference
-;botz = 30              ; Bottom z-coordinate for scaling reference
-;topscale = 1.00        ; Scale to use at top z-coordinate
-;botscale = 1.10        ; Scale to use at bottom z-coordinate
-;depthtoscreen = 1.0    ; z-coordinate to y-offset conversion factor
+[Scaling]
+topz = 0               ; Top z-coordinate for scaling reference
+botz = 30              ; Bottom z-coordinate for scaling reference
+topscale = 1.00        ; Scale to use at top z-coordinate
+botscale = 1.10        ; Scale to use at bottom z-coordinate
+depthtoscreen = 1.0    ; z-coordinate to y-offset conversion factor
 
 ; ----------------------------------------------------------
 [Bound]
@@ -124,7 +129,7 @@ yScale = 1
 [Shadow]
 ; This is the shadow darkening intensity. Valid values range from
 ; 0 (lightest) to 256 (darkest). Defaults to 128 if omitted.
-intensity = 128
+intensity = 0
 
 ; This is the shadow color given in r,g,b. Valid values for each
 ; range from 0 (lightest) to 255 (darkest).
@@ -158,7 +163,7 @@ offset = 0, 0
 intensity = 128
 
 ; See shadow color
-color = 256, 128, 0
+color = 128, 128, 128
 
 ; See shadow yScale
 yScale = 0.67
@@ -166,17 +171,17 @@ yScale = 0.67
 offset = 0, 0
 
 ; ----------------------------------------------------------
-[Music]
+;[Music]
 ; Put a filename for a MOD, MP3 or MIDI here, or just leave it
 ; blank if you don't want music. If an invalid filename is
 ; given, then no music will play.
-bgMusic =
-
+;bgMusic = phoneoff.mp3
+;
 ; bgmLoopstart = <sample number>
 ; bgmloopend = <sample number>
-
- ;Adjust the volume. 100 is for 100%.
-bgmVolume = 100
+;
+; ;Adjust the volume. 100 is for 100%.
+;bgmVolume = 50
 
 ; ==========================================================
 
@@ -208,7 +213,7 @@ bgmVolume = 100
 ; Main background definition
 [BGdef]
 ; Filename of sprite data.
-spr = interactivestage.sff
+spr = black.sff
 
 ; Set to 1 if you want to clear the screen to magenta before
 ; drawing layer 0 (the default background).
@@ -220,74 +225,22 @@ debugBg = 0
 [BG Colour]
 type = normal
 spriteNo = 1, 1
-layerNo = -1
+layerNo = 0
 start = 0, 0
 delta = 1, 1
 tile = 1, 0
 tileSpacing = 0, 0
 mask = 0
-ID = 1
 
-[BG BackWallGrid]
+[BG Wall]
 type = normal
 spriteNo = 1, 0
-layerNo = -1
-start = 0, -12
-delta = 0.6, 0.6
-tile = 1, 1
-tileSpacing = 0, 0
-mask = 1
-layerno = -1
-scalestart = 0.8,0.8
-ID = 2
-
-[BG BackBannerMature]
-type = normal
-spriteNo = 5, 1
-layerNo = -1
-start = 0, 57
-delta = 0.6, 0.6
-mask = 1
-ID = 51
-scalestart = 0.65,0.45
-trans=addalpha
-alpha = 0,256
-[BG BackBannerTeen]
-type = normal
-spriteNo = 5, 0
-layerNo = -1
-start = 0, 57
-delta = 0.6, 0.6
-mask = 1
-ID = 50
-scalestart = 0.65,0.45
-trans=addalpha
-alpha = 0,256
-
-[BG WallWithHole]
-type = normal
-spriteNo = 3, 2
 layerNo = 0
 start = 0, -12
 delta = 0.8667, 1
-tileSpacing = 0, 0
-mask = 1
-layerno = 0
 tile = 1, 1
 tileSpacing = 0, 0
-ID = 3
-[BG WallWithHoleGrid]
-type = normal
-spriteNo = 4, 2
-layerNo = 0
-start = 0, -12
-delta = 0.8667, 1
-tileSpacing = 0, 0
 mask = 1
-layerno = 0
-tile = 1, 1
-tileSpacing = 0, 0
-ID = 3
 
 [BG Floor]
 type = parallax
@@ -297,127 +250,17 @@ start = 0, 160
 delta = 0.8667, 1.0
 tile = 1, 0
 tilespacing = 0, 0
-width = 43,63.15;775, 1141; 0.8667, 1.2667
+width = 775, 1141; 0.8667, 1.2667
 mask = 0
-ID = 4
-[BG FloorFront]
-type = parallax
-spriteno = 0, 2
-layerno = 0
+
+[BG Wall Reflection]
+type = normal
+spriteNo = 2, 0
+layerNo = 0
 start = 0, 160
-delta = 0.8667, 1.0
+delta = 0.8667, 1
 tile = 1, 0
-tilespacing = 0, 0
-width = 43,63.15;775, 1141; 0.8667, 1.2667
-mask = 0
-ID = 4
-
-[BG ColumnLeft]
-type  = anim
-actionno = 0
-layerNo = 0
-start = -230, 200
-delta = 1, 1
-mask = 1
-ID = 101
-
-[BG ColumnLeftReflection]
-type = normal
-spriteNo = 3, 0
-layerNo = 0
-start = -230, 350
-delta = 1, 1
-mask = 1
+tileSpacing = 0, 0
 trans = addalpha
-alpha = 128,128
-ID = 201
+alpha = 16, 256
 
-[BGCtrlDef Left]
-looptime = -1;No loop reset
-CTRLID=201;-> SAME AS ID IN BG ELEMENT
-[BGCtrl ReflectionRight]
-type=Enable
-time=1,99999,-1
-value=1
-SCTRLID=301;-> SAME AS NUMBER IN ATTACHEDCHAR SCTRL
-
-[BG ColumnRight]
-type  = anim
-actionno = 0
-layerNo = 0
-start = 230, 200
-delta = 1, 1
-mask = 1
-ID = 102
-
-[Begin Action 0];Healthy Pillar 
-0,1, 0,0, -1
-
-[Begin Action 1];Broken Pillar 
--1,-1, 0,0, -1
-
-[BG ColumnRightReflection]
-type = normal
-spriteNo = 3, 0
-layerNo = 0
-start = 230, 350
-delta = 1, 1
-mask = 1
-trans = addalpha
-alpha = 128,128
-ID = 202
-
-[BGCtrlDef Right]
-looptime = -1;No loop reset
-CTRLID=202;-> SAME AS ID IN BG ELEMENT
-[BGCtrl ReflectionRight]
-type=Enable
-time=1,99999,-1
-value=1
-SCTRLID=302;-> SAME AS NUMBER IN ATTACHEDCHAR SCTRL
-
-[BG Window]
-type = normal
-spriteNo = 3, 1
-layerNo = 0
-start = 0, 11800
-delta = 0.8667, 1
-mask = 1
-scalestart = 0.5,0.5
-trans = addalpha
-alpha = 196,196
-scalestart = 0.5,0.5
-[BG WindowReflection]
-type = normal
-spriteNo = 3, 1
-layerNo = 0
-start = 0, 282
-delta = 0.8667, 1
-mask = 1
-trans = addalpha
-alpha = 128,128
-scalestart = 0.65,0.65
-ID = 200
-
-[BG WindowGrid]
-type = normal
-spriteNo = 4, 1
-layerNo = 0
-start = 0, 11800
-delta = 0.8667, 1
-mask = 1
-scalestart = 0.5,0.5
-trans = addalpha
-alpha = 196,196
-scalestart = 0.5,0.5
-[BG WindowGridReflection]
-type = normal
-spriteNo = 4, 1
-layerNo = 0
-start = 0, 282
-delta = 0.8667, 1
-mask = 1
-trans = addalpha
-alpha = 128,128
-scalestart = 0.65,0.65
-ID = 2

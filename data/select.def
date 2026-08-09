@@ -264,14 +264,9 @@ Garrow
  ;
  ;Insert your stages below.
 
-stages/stage1.def
-stages/stage3d.def
-stages/stage3d_outline.def
-stages/stageZ.def
-stages/interactivestage.def
-stages/kfm.def
-stages/stage0.def
-stages/stage0-720.def
+stages/black.def
+stages/dark.def
+stages/purple.def
 
 ;-------------------------------------------------------------------------------
 [Options]

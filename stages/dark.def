@@ -1,15 +1,34 @@
-; Definition of Stage1 (Training stage)
+; Definition of Stage Z (Training stage)
+; This stage allows characters to move in the Z axis
 ; The term "background" is used to mean both backgrounds and foregrounds.
 ; Licensed under CC BY 3.0.
 
 ; ----------------------------------------------------------
 [Info]
-name = "Training Stage"        ; Internal name of the stage.
-displayName = "Training Stage" ; Name to display on the select screen.
-versionDate = 1.0              ; Version / Date of stage.
-mugenVersion = 1.1             ; Version of MUGEN the stage made for, use the (1.0 / 1.1) format
-;ikemenVersion = 1.0           ; Not yet implemented
-author = "Gacel"               ; Stage author name.
+name = "DEFAULT STAGE - DARK"           ; Internal name of the stage.
+displayName = "DEFAULT STAGE - DARK"    ; Name to display on the select screen.
+versionDate = 2025.03.07            ; Version / Date of stage.
+ikemenVersion = 1.0                 ; Version of Ikemen GO the stage is made for
+author = "PXN"    ; Stage author name.
+attachedchar = data/dynamiclight/DynamicLight.def
+
+
+[Constants]
+Rimlight = 1
+RimLightR = 150
+RimLightG = 150
+RimLightB = 200
+RimLightAlpha = 120
+InnerShadow = 1
+InnerShadowR = 200
+InnerShadowG = 150
+InnerShadowB = 200
+InnerShadowAlpha = 30
+DynamicShadow = 1
+ShadowMulValue = 0.15
+ShadowRComponent = 50
+ShadowGComponent = 50
+ShadowBComponent = 50
 
 ; ----------------------------------------------------------
 [Camera]
@@ -17,37 +36,28 @@ author = "Gacel"               ; Stage author name.
 startX = 0
 startY = 0
 
-; Left and right bound of camera
+; Left and right bounds of camera
 ; You may want to fiddle a bit with these values to make sure the
 ; background doesn't move too far or too little
-boundLeft = -125
-boundRight = 125
+boundLeft = -500
+boundRight = 500
 
 ; High and low bound of camera
 ; High is a negative number. Make is more negative if you want to
 ; camera to be able to move higher.
 ; Low should usually be 0.
 ; If omitted, defaults to -25 and 0 respectively
-boundHigh = -76
+boundHigh = -340
 boundLow = 0
-
-; This is how much the camera will move vertically towards the
-; highest player. Valid values are from 0 to 1. A value of 0 will mean
-; the camera does not move up at all. A value of 1 will makes the camera
-; follow the highest player.
-; Typically .2 for normal-sized backgrounds. You may need to pull this
-; value up for taller backgrounds.
-verticalfollow = .2
-
-; Minimum vertical distance the highest player has to be from the floor,
-; before the camera starts to move up to follow him. For extremely
-; tall stages, a floor tension of about 20-30 coupled with a
-; vertical-follow of .8 allows the camera to follow the action.
-floortension = 0
 
 ; Horizontal distance player is from edge before camera starts to move
 ; left or right. Typically 50 or 60.
-tension = 50
+tension = 120
+
+; These parameters control the distance between the highest and lowest
+; characters where the camera will begin to move or zoom out
+tensionhigh = 120
+tensionlow = 120
 
 ; Number of pixels beyond the top and bottom of the screen that may
 ; be drawn.  Overdraw specifies the how much can be seen during an
@@ -60,9 +70,16 @@ overdrawlow = 50
 ; cut from drawing when the screen aspect is shorter than the stage
 ; aspect.  These parameters suggest a guideline, and the actual
 ; number of pixels cut depends on the difference in aspect.
-cuthigh = 35
-cutlow = 25
+cuthigh = 60
+cutlow = 0
 
+; Zoom parameters
+startzoom = 1.00
+zoomout = 0.65
+zoomin = 0.90
+zoomanchor = bottom
+zoominspeed = 0.5
+zoomoutspeed = 0.5
 
 ; ----------------------------------------------------------
 [PlayerInfo]
@@ -80,28 +97,38 @@ p2StartY = 0
 p2Facing = -1
 
 ; --- Common ---
-; Absolute limit that any object can move on the X axis.
-; Normally you do not want to change these values
-; unless you make a very very wide stage. (Over 700 in screenLeft/screenRight)
-leftBound = -1000
-rightBound =  1000
+; Absolute limit that any player can move on the X axis.
+; These values should be larger than boundLeft and boundRight
+leftBound = -2000
+rightBound =  2000
+
+;--- Z-axis boundaries ---
+topbound = -30         ; Top z-ccordinate that players are allowed to reach
+botbound = 30          ; Bottom z-ccordinate that players are allowed to reach
+
+;--------------------------------------------------------
+; Returning from DOS: Z-axis scaling
+[Scaling]
+topz = 0               ; Top z-coordinate for scaling reference
+botz = 30              ; Bottom z-coordinate for scaling reference
+topscale = 1.00        ; Scale to use at top z-coordinate
+botscale = 1.10        ; Scale to use at bottom z-coordinate
+depthtoscreen = 1.0    ; z-coordinate to y-offset conversion factor
 
 ; ----------------------------------------------------------
 [Bound]
-; Distance from left/right edge of screen that camera can move to.
+; Distance from left/right edge of screen that players can move to.
 ; Typically 15
-screenLeft = 15
-screenRight = 15
+screenLeft = 30
+screenRight = 30
 
 ; ----------------------------------------------------------
 [StageInfo]
-; "Ground" level where players stand at, measured in pixels from the
-; top of the screen.
-; Adjust this value to move the ground level up/down in the screen.
-; ***
-zoffset = 204
+; "Ground" level where players stand at, measured in pixels from the top of the screen.
+; Adjust this value to move the ground level up or down in the screen.
+zoffset = 200
 
-; Leave this at 1. It makes the players face each other
+; Leave this at 1. It makes the players automatically face each other
 autoturn = 1
 
 ; Set the following to 1 to have the background reset itself between rounds.
@@ -109,7 +136,9 @@ resetBG = 1
 
 ; Width and height of the local coordinate space of the stage.
 localCoord = 320, 240
-portraitScale = 0.41666
+
+; Scale of the stage portrait in the select screen
+portraitScale = 0.5
 
 ;  Horizontal and vertical scaling factor for drawing.
 xScale = 1
@@ -125,13 +154,13 @@ intensity = 0
 ; range from 0 (lightest) to 255 (darkest).
 ; Defaults to "0, 0, 0" if omitted.
 ; intensity and color's effects add up to give the final shadow result.
-color = 0, 0, 0
+color = 16, 16, 0
 
 ; This is the scale factor of the shadow. Use a big scale factor
 ; to make the shadow longer. You can use a NEGATIVE scale factor
 ; to make the shadow fall INTO the screen.
 ; Defaults to 0.4 if omitted.
-yScale = .3
+yScale = -0.25
 
 ; This parameter lets you set the range over which the shadow is
 ; visible. The first value is the high level, and the second is
@@ -142,32 +171,42 @@ yScale = .3
 ; shadow fading away as the player gets farther away from the
 ; ground. If omitted, defaults to no level effects (shadow is
 ; always fully visible).
-fade.range = 0, 0
+fade.range = -120, 0
+
+offset = 0, 0
 
 ; ----------------------------------------------------------
 [Reflection]
- ;Intensity of reflection (from 0 to 256). Set to 0 to have no
- ;reflection. Defaults to 0.
+; Intensity of reflection (from 0 to 256).
+; Set to 0 to have no reflection. Defaults to 0.
 intensity = 128
 
+; See shadow color
+color = 128, 128, 128
+
+; See shadow yScale
+yScale = 0.67
+
+offset = 0, 0
+
 ; ----------------------------------------------------------
-[Music]
+;[Music]
 ; Put a filename for a MOD, MP3 or MIDI here, or just leave it
 ; blank if you don't want music. If an invalid filename is
 ; given, then no music will play.
-bgMusic =
-
+;bgMusic = phoneoff.mp3
+;
 ; bgmLoopstart = <sample number>
 ; bgmloopend = <sample number>
-
- ;Adjust the volume. 100 is for 100%.
-bgmVolume = 100
+;
+; ;Adjust the volume. 100 is for 100%.
+;bgmVolume = 50
 
 ; ==========================================================
 
 ; ----------------------------------------------------------
 ; Background definition
-; -------------------------------------
+; ----------------------------------------------------------
 ; [BG x]
 ; type = ?       "Normal"/"Parallax"  (def: "normal")
 ; spriteNo = ?, ? Sprite group and number: groupno, imgno  (req'd)
@@ -185,15 +224,15 @@ bgmVolume = 100
 ; width = ?, ?     Top width, bottom width (int)  (use either this or above, but not both)
 ; yScaleStart = ?  Starting y-scale (float, in percent)  (def: 100)
 ; yScaleDelta = ?  Change in y-scale per unit (float, in percent)  (def: 0)
-; -------------------------------------
+; ----------------------------------------------------------
 
-; For more info check the stage docs.
+; For more information check the stage docs.
 
-; -------------------------------------
+; ----------------------------------------------------------
 ; Main background definition
 [BGdef]
 ; Filename of sprite data.
-spr = stage1.sff
+spr = dark.sff
 
 ; Set to 1 if you want to clear the screen to magenta before
 ; drawing layer 0 (the default background).
@@ -202,39 +241,45 @@ spr = stage1.sff
 ; because it slows down performance.
 debugBg = 0
 
-;-------------------------------------
-; IKEMEN GO ONLY, preview animation used in the Select screen
-[Begin Action 9000]
-9000,1, 0,0,-1
-;-------------------------------------
-
-; BG Colour
-[BG 1]
+[BG Colour]
 type = normal
 spriteNo = 1, 1
 layerNo = 0
 start = 0, 0
 delta = 1, 1
-tile = 1, 1
+tile = 1, 0
 tileSpacing = 0, 0
+mask = 0
 
-
-; Wall BG
-[BG 1]
+[BG Wall]
 type = normal
 spriteNo = 1, 0
 layerNo = 0
-start = 0, -46
-delta = 1, 1
+start = 0, -12
+delta = 0.8667, 1
+tile = 1, 1
+tileSpacing = 0, 0
+mask = 1
+
+[BG Floor]
+type = parallax
+spriteno = 0, 0
+layerno = 0
+start = 0, 160
+delta = 0.8667, 1.0
+tile = 1, 0
+tilespacing = 0, 0
+width = 775, 1141; 0.8667, 1.2667
+mask = 0
+
+[BG Wall Reflection]
+type = normal
+spriteNo = 2, 0
+layerNo = 0
+start = 0, 160
+delta = 0.8667, 1
 tile = 1, 0
 tileSpacing = 0, 0
+trans = addalpha
+alpha = 16, 256
 
-; Floor BG
-[BG 0]
-type = normal
-spriteNo = 0, 0
-layerNo = 0
-start = 12, 190
-delta = 1, 1
-tile  = 1, 0
-tileSpacing = 0, 0

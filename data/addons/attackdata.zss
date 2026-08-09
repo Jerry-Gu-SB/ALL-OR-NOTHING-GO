@@ -17,7 +17,7 @@ mapset{map: "_pots_attackdata_cfg_layer"; value: 1}						# Layer number for text
 mapset{map: "_pots_attackdata_cfg_text_x"; value: 125}					# X offset. Default 125
 mapset{map: "_pots_attackdata_cfg_text_y"; value: 35}					# Y offset. Default 35
 mapset{map: "_pots_attackdata_cfg_text_scale"; value: 0.25}				# Font scale. Default 0.50
-mapset{map: "_pots_attackdata_cfg_text_linespacing"; value: 3}			# Text line spacing. Default 7
+mapset{map: "_pots_attackdata_cfg_text_linespacing"; value: 7}			# Text line spacing. Default 7
 mapset{map: "_pots_attackdata_cfg_text_columnspacing"; value: 70}		# Text column spacing. Default 70
 mapset{map: "_pots_attackdata_cfg_advantage_color"; value: 1}			# Color coded frame advantage value
 
@@ -196,10 +196,10 @@ if numenemy {
 
 	#Display Damage Scaling - PXN Modification
 	if root, map(_iksys_trainingAtkDataDisp) = 2 {
-		# Juggle Decay
+		# Hitstun Decay
 			text{
 			font: F map(_pots_attackdata_cfg_font);
-			text: "Juggle Decay";
+			text: "Hitstun Decay";
 			removetime: 1;
 			layerno: map(_pots_attackdata_cfg_layer);
 			align: 1;
@@ -207,11 +207,11 @@ if numenemy {
 			pos: map(_pots_attackdata_cfg_text_x), map(_pots_attackdata_cfg_text_y) + 6 * map(_pots_attackdata_cfg_text_linespacing);
 			scale: map(_pots_attackdata_cfg_text_scale), map(_pots_attackdata_cfg_text_scale);
 			}
-		# Juggle Decay Value
+		# Hitstun Decay Value
 			text{
 			font: F map(_pots_attackdata_cfg_font);
-			text: "%f";
-			params: (root, enemy, map(JuggleScale));
+			text: "%d%%";
+			params: ceil(root, enemy, map(UntechMOD) * 100);
 			removetime: 1;
 			layerno: map(_pots_attackdata_cfg_layer);
 			align: -1;
