@@ -1,28 +1,9 @@
 {
-  "playtime": 6047.28,
+  "playtime": 0,
   "modes": {
     "training": {
       "playtime": 0,
       "clear": 0
-    },
-    "versus": {
-      "playtime": 4396.46,
-      "clear": 9,
-      "clearcount": {
-        "nia": 8,
-        "mika": 1
-      }
-    },
-    "freebattle": {
-      "playtime": 0,
-      "clear": 0
-    },
-    "netplayversus": {
-      "playtime": 1650.82,
-      "clear": 10,
-      "clearcount": {
-        "nia": 10
-      }
     }
   }
 }

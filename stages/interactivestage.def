@@ -1,16 +1,18 @@
-; Definition of Stage Z (Training stage)
-; This stage allows characters to move in the Z axis
+; Definition of Interactive Stage
+; This stage adds Attached Chars
 ; The term "background" is used to mean both backgrounds and foregrounds.
 ; Licensed under CC BY 3.0.
 
 ; ----------------------------------------------------------
 [Info]
-name = "Interactive Training Stage"           ; Internal name of the stage.
-displayName = "Interactive Training Stage"    ; Name to display on the select screen.
-versionDate = 2026.01.22            ; Version / Date of stage.
-ikemenVersion = 1.0                 ; Version of Ikemen GO the stage is made for
-author = "Lasombra Demon, Phantom.of.the.Server"    ; Stage author name.
-AttachedChar = attachedchar\interactivestagechar.def
+name = "Interactive Training Stage"							; Internal name of the stage.
+displayName = "Interactive Training Stage"					; Name to display on the select screen.
+versionDate = 2026.01.22									; Version / Date of stage.
+ikemenVersion = 1.0											; Version of Ikemen GO the stage is made for.
+author = "Lasombra Demon, Phantom.of.the.Server"			; Stage author name.
+attachedChar = interactivestage/interactivestageChar.def	; Location of attached character's DEF file.
+;AttachedChar2 = AnotherAttachedChar.def					; Location of another character's DEF file,
+															; you can have up to 4.
 ; ----------------------------------------------------------
 [Camera]
 ; Camera starting position: Usually 0 for both
@@ -238,6 +240,29 @@ mask = 1
 layerno = -1
 scalestart = 0.8,0.8
 ID = 2
+
+[BG BackBannerMature]
+type = normal
+spriteNo = 5, 1
+layerNo = -1
+start = 0, 57
+delta = 0.6, 0.6
+mask = 1
+ID = 51
+scalestart = 0.65,0.45
+trans=addalpha
+alpha = 0,256
+[BG BackBannerTeen]
+type = normal
+spriteNo = 5, 0
+layerNo = -1
+start = 0, 57
+delta = 0.6, 0.6
+mask = 1
+ID = 50
+scalestart = 0.65,0.45
+trans=addalpha
+alpha = 0,256
 
 [BG WallWithHole]
 type = normal

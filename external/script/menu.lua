@@ -214,7 +214,7 @@ menu.t_itemname = {
 			sndPlay(motif.Snd, sec.cursor.done.snd[1], sec.cursor.done.snd[2])
 			--togglePause(false)
 			resetRound()
-			main.pauseMenu = false
+			main.pauseMenuActive = false
 			return false
 		end
 		return true
@@ -225,7 +225,7 @@ menu.t_itemname = {
 			sndPlay(motif.Snd, sec.cursor.done.snd[1], sec.cursor.done.snd[2])
 			--togglePause(false)
 			reload()
-			main.pauseMenu = false
+			main.pauseMenuActive = false
 			return false
 		end
 		return true
@@ -246,7 +246,7 @@ menu.t_itemname = {
 			--togglePause(false)
 			endMatch()
 			start.characterchange = true
-			main.pauseMenu = false
+			main.pauseMenuActive = false
 			start.f_selectReset(false)
 			return false
 		end
@@ -259,7 +259,7 @@ menu.t_itemname = {
 			--togglePause(false)
 			endMatch()
 			start.exit = true
-			main.pauseMenu = false
+			main.pauseMenuActive = false
 			return false
 		end
 		return true
@@ -287,8 +287,8 @@ function menu.f_createMenu(tbl, sec, bg, bool_main)
 		else
 			main.f_menuCommonDraw(t, tbl.item, tbl.cursorPosY, tbl.moveTxt, sec, bg, true)
 		end
-		-- Skip everything else during pause exit delay
-		if menu.pauseExitDelay >= 0 then
+		-- Draw during fades, but don't accept menu input until they finish.
+		if not main.pauseMenuActive or fadeActive() or menu.pauseExitDelay >= 0 then
 			return
 		end
 		tbl.cursorPosY, tbl.moveTxt, tbl.item = main.f_menuCommonCalc(t, tbl.item, tbl.cursorPosY, tbl.moveTxt, sec, sec.cursor)
@@ -557,8 +557,7 @@ end
 menu.movelistChar = 1
 function menu.f_init()
 	esc(false)
-	togglePause(true)
-	main.pauseMenu = true
+	main.pauseMenuActive = true
 	bgReset(motif.optionbgdef.BGDef)
 	local id = f_pauseMenuIdFromKey(f_pauseMenuKey(gameMode()))
 	if id == '' or menu.t_menuIndex == nil or menu.t_menuIndex[id] == nil then
@@ -568,7 +567,6 @@ function menu.f_init()
 		local entry = menu.t_menuIndex[id]
 		sndPlay(motif.Snd, entry.sec.enter.snd[1], entry.sec.enter.snd[2])
 		bgReset(entry.bg.BGDef)
-		fadeInInit(entry.sec.fadein.FadeData)
 		if menu[id] ~= nil and menu[id].loop ~= nil then
 			menu.currentMenu = {menu[id].loop, menu[id].loop}
 			menu.currentMenuId = id
@@ -579,7 +577,6 @@ function menu.f_init()
 	else
 		sndPlay(motif.Snd, motif.pause_menu.pause_menu.enter.snd[1], motif.pause_menu.pause_menu.enter.snd[2])
 		bgReset(motif.pausebgdef.pausebgdef.BGDef)
-		fadeInInit(motif.pause_menu.pause_menu.fadein.FadeData)
 		menu.currentMenu = {menu.menu.loop, menu.menu.loop}
 		menu.currentMenuId = 'menu'
 	end
@@ -614,10 +611,8 @@ function menu.f_run()
 		if menu.pauseExitDelay > 0 then
 			menu.pauseExitDelay = menu.pauseExitDelay - 1
 		else
-			menu.pauseExitDelay = -1 --prevent retriggering at 0
-			togglePause(false)
-			main.pauseMenu = false
-			return false
+			-- Keep the game paused. Go owns the fade-out/fade-in handoff and unpauses afterwards.
+			main.pauseMenuActive = false
 		end
 	end
 	--Button Config
@@ -634,7 +629,11 @@ function menu.f_run()
 	else
 		menu.currentMenu[1]()
 	end
-	return main.pauseMenu
+	local active = main.pauseMenuActive
+	if not active then
+		menu.pauseExitDelay = -1
+	end
+	return active
 end
 
 -- Reset selection/scroll state recursively for a menu table (root + submenus)
@@ -762,9 +761,11 @@ function menu.f_commandlistParse()
 				pn = pn + (member - 1) * 2
 			end
 			if player(pn) and aiLevel() == 0 then
-				local ref = getSelectNo()
-				if start.f_getCharData(ref).commandlist == nil then
-					local movelist = getCharMovelist(ref)
+				local movelist = getMovelist()
+				if sel.movelistText ~= movelist then
+					sel.movelistText = movelist
+					sel.commandlist = nil
+					sel.movelistLine = 1
 					if movelist ~= '' then
 						-- Replace glyph tokens with <token> for later lookup in motif.glyphs.
 						for k, v in main.f_sortKeys(motif.glyphs, function(t, a, b) return string.len(a) > string.len(b) end) do
@@ -801,14 +802,14 @@ function menu.f_commandlistParse()
 							table.insert(t, subt)
 						end
 						t[#t] = nil --blank line produced by regexp matching
-						start.f_getCharData(ref).commandlist = t
+						sel.commandlist = t
 					end
 				end
 				table.insert(menu.t_movelists, {
 					pn = pn,
-					name = start.f_getCharData(ref).name,
+					name = displayName(),
 					tbl = sel,
-					commandlist = start.f_getCharData(ref).commandlist,
+					commandlist = sel.commandlist,
 				})
 			end
 		end

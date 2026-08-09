@@ -124,22 +124,24 @@
  ;   3: cell behaves like randomselect slot until character is unlocked
  ;
  ; - order
- ;   Set the paramvalue to the ordering priority to give the character in
- ;   Arcade and Time Attack modes. A smaller value means you will fight the
- ;   character sooner. The default order value is 1, if you omit this param.
- ;   Edit *.maxmatches settings under [Options] to customize amount of matches
- ;   per order priority.
+ ;   Set the paramvalue to the default ordering priority to give the
+ ;   character in roster-building modes. A smaller value means you will fight
+ ;   the character sooner. The default order value is 1, if you omit this
+ ;   param. Edit *.maxmatches settings under [Options] to customize amount of
+ ;   matches per order priority.
  ;   IKEMEN feature: Max 30 orders mugen limitation is lifted. Negative order
  ;   is reversed if character becomes unlocked (see 'unlock' parameter)
  ;
- ; - ordersurvival
+ ; - order<gamemode>
  ;   IKEMEN feature: Set the paramvalue to the ordering priority to give the
- ;   character in survival mode. The default order value is 1, if you omit this
- ;   param. It works like 'order' parameter, just for different game modes
- ;   (survival / survival co-op / netplay survival co-op). To exclude character
- ;   from showing up in survival modes you can set it to order group outside
- ;   configured survival.maxmatches range (e.g. ordersurvival=0) Negative order
- ;   is reversed if character becomes unlocked (see 'unlock' parameter)
+ ;   character in a specific game mode, for example ordersurvival or
+ ;   ordertimeattack. Roster generation checks order<active mode>, then
+ ;   order<base mode>, then order. If none is found, default order value is 1.
+ ;   Base modes are used by aliases, for example survivalcoop uses survival.
+ ;   To exclude a character from a mode, set it to an order group outside the
+ ;   configured <gamemode>.maxmatches range, for example ordersurvival=0.
+ ;   Negative order is reversed if character becomes unlocked (see 'unlock'
+ ;   parameter)
  ;
  ; - arcadepath
  ;   IKEMEN feature: Set the paramvalue to the lua file (file path relative to
@@ -190,18 +192,8 @@
  ;
  ;Insert your characters below.
 
-kfm_zss, stages/kfm.def
-kfm720, stages/kfm.def, order=0
-kfm_zaxis, stages/kfm.def, order=0
 Nia
 Garrow
-cvs2_zangief
-SF2_zangief
-mika
-Waldstein
-Carmine
-SOL BADGUY
-randomselect
 
 ;-------------------------------------------------------------------------------
 [ExtraStages]
@@ -252,10 +244,10 @@ randomselect
  ;
  ; - order
  ;   IKEMEN feature: Set the paramvalue to the ordering priority to give the
- ;   stage in Arcade and Time Attack modes. If there is at least 1 stage with
- ;   assigned order, facing opponent with the exact order paramvalue will result
- ;   in stage being randomly chosen from stages with the matching order. Stages
- ;   can have multiple order parameters assigned at the same time.
+ ;   stage in modes where stage order is enabled. If there is at least 1 stage
+ ;   with assigned order, facing opponent with the exact order paramvalue will
+ ;   result in stage being randomly chosen from stages with the matching order.
+ ;   Stages can have multiple order parameters assigned at the same time.
  ;
  ; - unlock
  ;   IKEMEN feature: paramvalue is executed as Lua code condition, right after
@@ -280,18 +272,18 @@ stages/interactivestage.def
 stages/kfm.def
 stages/stage0.def
 stages/stage0-720.def
-stages/MBTL_Moonlit_Altar_TWS.def
-stages/Blazblue_Kagutsuchi_PM.def
-stages/Imitation BlazeBlue.def
-stages/Trainning room v3.def
+
 ;-------------------------------------------------------------------------------
 [Options]
- ;Here you set the maximum number of matches to fight before game ends in arcade
- ;mode. The first number is the number of matches against characters with
- ;order=1, followed by order=2 and order=3 respectively. For example, for 4,3,1
- ;you will fight up to 4 randomly-picked characters who have order=1, followed
- ;by 3 with order=2 and 1 with order=3.
+ ;Here you set the maximum number of matches to fight before the game ends in
+ ;roster-building modes. Each value maps to an order priority from the order
+ ;table selected for the active mode. For example, for 4,3,1 you will fight up
+ ;to 4 randomly-picked characters with order=1, followed by 3 with order=2 and
+ ;1 with order=3.
  ;IKEMEN feature: Max 30 orders mugen limitation is lifted.
+ ;IKEMEN feature: Characters can use mode-specific order<gamemode> parameters.
+ ;Roster generation checks order<active mode>, then order<base mode>, then
+ ;order. If no mode-specific order exists, the default order parameter is used.
  ;IKEMEN feature: Characters can use individual maxmatches settings (see
  ;'maxmatches' parameter in [Characters] section)
 
@@ -302,9 +294,11 @@ arcade.maxmatches = 6,1,1,0,0,0,0,0,0,0
 team.maxmatches = 4,1,1,0,0,0,0,0,0,0
 
  ;Maximum number of matches to fight before game ends in Time Attack mode.
+ ;Uses ordertimeattack if defined, otherwise falls back to order.
 timeattack.maxmatches = 6,1,1,0,0,0,0,0,0,0
 
- ;IKEMEN feature: Similar to arcade.maxmatches, but applies to Survival mode.
+ ;IKEMEN feature: Similar to arcade.maxmatches, but applies to Survival modes.
+ ;Uses ordersurvival if defined, otherwise falls back to order.
  ;Use -1 value to choose which order number should have unlimited matches.
  ;By omitting -1 survival mode will end after particular amount of matches set
  ;below (in such case you can actually "complete" the mode).

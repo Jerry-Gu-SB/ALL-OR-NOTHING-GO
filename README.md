@@ -1,32 +1,9 @@
-# ALL-OR-NOTHING
 
-## Credits:
-
-### Director + Art
-- Taedaartist
-
-### Programming
-- Taedaartist
-  - https://x.com/taedaartist
-- SpiralBiscuit
-  - https://jerry-gu.com/
-- Ulti
-
-### Systems Design & QA
-- bkdyno
-
-### Voice Actors:
-- Zyra Bisquera - Nia
-  - https://www.imdb.com/name/nm15412863/
-  - https://zyrabisqueravo.carrd.co/
-
-### Music
-- Benelios
-  - https://www.youtube.com/@Beneliosss
-
-
-
-# Ikemen GO
+<p align="center">
+  <a href="https://ikemen-engine.github.io/">
+    <img src="https://github.com/user-attachments/assets/0dcd7ae1-5c9d-44e1-aa32-9ec4b9ed3952" style="width: 699px; alt="IKEMEN GO Logo"/>
+  </a>
+</p>
 
 Ikemen GO is an open source fighting game engine that supports resources from the [M.U.G.E.N](https://en.wikipedia.org/wiki/Mugen_(game_engine)) engine, written in Google’s programming language, [Go](https://go.dev/). It is a complete rewrite of a prior engine known simply as Ikemen.
 
@@ -36,7 +13,7 @@ Ikemen GO aims for backwards-compatibility on par with M.U.G.E.N version 1.1 Bet
 Refer to [our wiki](https://github.com/ikemen-engine/Ikemen-GO/wiki) to see a comprehensive list of new features that have been added in Ikemen GO.
 
 ## Installing
-Ready to use builds for Windows, macOS and Linux can be found in the [releases section](https://github.com/ikemen-engine/Ikemen-GO/releases) of this repository. You can find nightly builds [here](https://github.com/ikemen-engine/Ikemen-GO/releases/tag/nightly) as well, which update on every commit.
+Ready-to-use builds are available in the [releases section](https://github.com/ikemen-engine/Ikemen-GO/releases). Stable releases use tags such as `v1.0.0`, while release candidates use tags such as `v1.0.0-rc.1` and are marked as pre-releases. [Nightly builds](https://github.com/ikemen-engine/Ikemen-GO/releases/tag/nightly) are updated after each commit to `develop` and may be less stable.
 
 ## Running
 Download the ZIP archive that matches your operating system and extract its contents to your preferred location.
@@ -71,7 +48,7 @@ If you run into any issues with Ikemen Go, you can report it on our [issue track
 ## License
 Ikemen GO engine is under the MIT License.
 Bundled screenpack assets are under Creative Commons licenses.
-See [LICENSE.txt](LICENSE.txt) for more details.
-This program statically links FFmpeg (LGPL v2.1).
+See [LICENCE.txt](LICENCE.txt) for more details.
+This program dynamically links FFmpeg (LGPL v2.1).
 
-The exact corresponding source for the FFmpeg build is provided on the [release page](https://github.com/ikemen-engine/Ikemen-GO/releases/latest) as Source-code-FFmpeg.tar.gz. You may rebuild this application against a modified FFmpeg.
+The exact corresponding source for the FFmpeg build is provided on the [release page](https://github.com/ikemen-engine/Ikemen-GO/releases/latest) as `src_ffmpeg.tar.gz`. You may rebuild this application against a modified FFmpeg.

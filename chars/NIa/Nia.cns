@@ -1405,19 +1405,51 @@ x = 0
 
 [State 610, Camera Shake]
 type = EnvShake
-trigger1 = animelem=3
+trigger1 = animelem=5
 time = 10
 freq = 10
 ampl = 2
 
 [State 440, HitDef]
 type = HitDef
-trigger1 = !time
+trigger1 = AnimElem = 4
 attr = C,NA
 hitflag = MAF
 guardflag = LA
 animtype = Medium
-damage = 950,0
+damage = 475,0
+getpower = 30,0
+givepower = 20,0
+pausetime = 7,8
+guard.pausetime = 7,8
+sparkNo= s8010
+guard.sparkNo=-1 + 0 * (var(34) := 8000)
+sparkXY=-1 + 0 * (var(35) := 200), var(36):=-50
+hitsound = S1,26
+guardsound = S6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime = 14
+air.hittime = 12
+ground.velocity = -1,
+air.velocity = -2,-5
+down.velocity = -4,-9
+airguard.velocity = -6,-2
+fall.xvelocity = 0
+fall.yvelocity = -2
+air.fall = 1
+fall = 1
+fall.recover = 0
+fall.recovertime = 40
+
+[State 440, HitDef]
+type = HitDef
+trigger1 = AnimElem = 5
+attr = C,NA
+hitflag = MAF
+guardflag = LA
+animtype = Medium
+damage = 475,0
 getpower = 30,0
 givepower = 20,0
 pausetime = 7,8
