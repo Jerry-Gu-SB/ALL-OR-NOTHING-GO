@@ -50,12 +50,7 @@ trigger1 = var(1)
 ;Special Moves
 ;---------------------------------------------------
 
-;Air Lariat
-[State -1]
-type = ChangeState
-value = 1002
-triggerall = command = "236A" && statetype = A
-trigger1 = var(1)
+
 
 ;236A
 [State -1]
