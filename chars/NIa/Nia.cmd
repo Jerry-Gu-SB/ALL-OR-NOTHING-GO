@@ -6,269 +6,8 @@ a = a
 b = b
 c = c
 s = s
-;-| Default Values |-------------------------------------------------------
-[Defaults]
-command.time = 15
-command.buffer.time = 1
-;-| Super Motions |--------------------------------------------------------
-;The following two have the same name, but different motion.
-;Either one will be detected by a "command = TripleKFPalm" trigger.
-;Time is set to 20 (instead of default of 15) to make the move
-;---------------------------------------------------
 
-;Hyper Moves
-;---------------------------------------------------
-
-[Command] 
-name = "QCf_x+y"
-command = ~D, DF, F, x+y
-
-;---------------------------------------------------
-;Special Moves
-;---------------------------------------------------
-
-[Command] 
-name = "Special1_X"
-command = ~D, DF, F, x
-
-[Command] 
-name = "Special1_Y"
-command = ~D, DF, F, y
-
-[Command] 
-name = "QCF_Z"
-command = ~D, DF, F, z
-
-[Command] 
-name = "QCB_Z"
-command = ~D, DB, B, z
-[Command] 
-name = "QCB_x"
-command = ~D, DB, B, x
-
-[Command] 
-name = "QCB_y"
-command = ~D, DB, B, y
-
-[Command] 
-name = "QCB_x+y"
-command = ~D, DB, B, x+y
-;---------------------------------------------------
-;Super Jump
-;---------------------------------------------------
-
-[Command] 
-name = "highjump"
-command = $D, $U
-time = 10
-
-;---------------------------------------------------
-;Recovery
-;---------------------------------------------------
-
-[Command]
-name = "recovery"
-command = x
-time = 1
-
-[Command]
-name = "recovery"
-command = y
-time = 1
-
-[Command]
-name = "recovery";Required (do not remove)
-command = /x
-time = 1
-
-[Command]
-name = "recovery";Required (do not remove)
-command = /y
-time = 1
-
-;---------------------------------------------------
-;Double Tap
-;---------------------------------------------------
-
-[Command]
-name = "FF"
-command = F, F
-time = 10
-
-[Command]
-name = "BB"
-command = B, B
-time = 10
-
-[Command]
-name = "DD"     
-command = D, D
-time = 10
-;---------------------------------------------------
-;Single Buttons
-;---------------------------------------------------
-
-[Command]
-name = "a"
-command = a
-time = 1
-
-[Command]
-name = "b"
-command = b
-time = 1
-
-[Command]
-name = "c"
-command = c
-time = 1
-
-[Command]
-name = "x"
-command = x
-time = 1
-
-[Command]
-name = "y"
-command = y
-time = 1
-
-[Command]
-name = "z"
-command = z
-time = 1
-
-[Command]
-name = "start"
-command = s
-time = 1
-
-[Command]
-name = "x+y"
-command = x+y
-time = 1
-;---------------------------------------------------
-;Hold Directions
-;---------------------------------------------------
-
-[Command]
-name = "holdfwd"
-command = /$F
-time = 1
-
-[Command]
-name = "holdback"
-command = /$B
-time = 1
-
-[Command]
-name = "holdup"
-command = /$U
-time = 1
-
-[Command]
-name = "holddown"
-command = /$D
-time = 1
-
-;---------------------------------------------------
-;Hold Buttons
-;---------------------------------------------------
-
-[Command]
-name = "hold_a"
-command = /a
-time = 1
-
-[Command]
-name = "hold_b"
-command = /b
-time = 1
-
-[Command]
-name = "hold_c"
-command = /c
-time = 1
-
-[Command]
-name = "hold_x"
-command = /x
-time = 1
-
-[Command]
-name = "hold_y"
-command = /y
-time = 1
-
-[Command]
-name = "hold_z"
-command = /z
-time = 1
-
-[Command]
-name = "hold_start"
-command = /s
-time = 1
-
-;---------------------------------------------------
-;Direction Tap
-;---------------------------------------------------
-[Command]
-name = "fwd"
-command = F
-time = 1
-
-[Command]
-name = "back"
-command = B
-time = 1
-
-[Command]
-name = "up"
-command = U
-time = 1
-
-[Command]
-name = "down"
-command = D
-time = 1
-
-;---------------------------------------------------
-;Dashing
-;---------------------------------------------------
-
-[Command]
-name = "dash"
-command = x+y
-time = 1
-
-
-[Command]
-name = "dash"
-command = x+z
-time = 1
-
-[Command]
-name = "dash"
-command = y+z
-time = 1
-
-
-;---------------------------------------------------
-;direction plus button
-;---------------------------------------------------
-
-[Command]
-name = "down_x"
-command = /$D,x
-time = 1
-
-;---------------------------------------------------------------------------
-; 2. State entry
-;---------------------------------------------------------------------------
 [Statedef -1]
-
-
 
 [State -1, Combo condition Reset]
 type = VarSet
@@ -584,18 +323,16 @@ trigger2 = stateno = [600,610] && movecontact
 type = ChangeState
 value = 101
 triggerall = statetype != A
-triggerall = command = "FF"
-trigger1 = ctrl
+triggerall = command = "66"
+trigger1 = ctrl || stateno = 211 && MoveContact
 
 
 ;Dash Backwards
 [State -1]
 type = ChangeState
 value = 105
-triggerall = statetype != A
-trigger1 = command = "BB" && stateno = 52
-trigger2 = command = "BB"
-trigger2 = ctrl
+triggerall = statetype != A && command = "44"
+trigger1 = ctrl
 
 ;Super Jump
 [State -1]
@@ -628,6 +365,30 @@ trigger3 = stateno = 450 && MoveHit
 trigger4 = stateno = 200 && MoveHit 
 trigger5 = stateno = 210 && MoveHit 
 trigger1 = stateno = 230 && MoveHit
+
+[State -1, PerfectBlock Stand]
+type = HitOverride
+triggerall = !AILevel && roundstate=2 && Statetype != A
+triggerall = command = "fwd" && command != "back" && command != "up" && command != "down"
+trigger1 = Ctrl
+stateno = 6130
+attr = SCA, AA
+guardflag = H
+slot = 0
+time = 7
+
+[State -1, PerfectBlock Crouch]
+type = HitOverride
+triggerall = !AILevel && roundstate=2 && Statetype != A
+;triggerall = command = "fwd" && command = "down" && command != "back" && command != "up" 
+triggerall = command = "holddown" && command = "holdfwd"
+trigger1 = Ctrl
+stateno = 6131
+attr = SCA, AA
+guardflag = L
+guardflag.not = H
+slot = 0
+time = 7
 
 ;Taunt
 [State -1]

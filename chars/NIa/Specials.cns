@@ -51,17 +51,16 @@ type = velset
 trigger1 = anim = 1001
 x = 10
 y = -4
-
+persistent = 0
 [State 1200, Vel]
-type = velset
-trigger1 = anim = 1001 && animelem =3
-x = 5
-
+type = velmul
+trigger1 = anim = 1001
+x = 0.98
 [State 1200, Vel]
-type = velset
-trigger1 = anim = 1001 && time >= 18
-x = 3
-y = 8
+type = velAdd
+trigger1 = anim = 1001
+y = .44
+
 
 [State 210, HitDef]
 type = HitDef
@@ -473,14 +472,24 @@ y = 0
 [State 1100, Velocity]
 type = VelSet
 trigger1 = AnimElem = 4
-x = 19
+x = 18
 y= -4
 
-[State 1010, Vel]
+[State 1200, Vel]
 type = velset
-trigger1 = anim = 1001 && time > 31
-x = 3
-y = 4
+trigger1 = anim = 1001
+x = 18
+y = -4
+persistent = 0
+[State 1200, Vel]
+type = velmul
+trigger1 = anim = 1001
+x = 0.98
+[State 1200, Vel]
+type = velAdd
+trigger1 = anim = 1001
+y = .44
+
 
 [State 1200, 1]
 type = HitDef
@@ -545,7 +554,7 @@ value = 1001
 
 [State 1010, ChangeState]
 type = ChangeState
-trigger1 = AnimTime = 0 && pos y < 0
+trigger1 = AnimTime = 0 && pos y >= 0
 value = 1001
 ctrl = 0
 
@@ -732,19 +741,6 @@ sprpriority = 2
 poweradd = 50
 juggle = 1
 
-[State 0, Limiter]
-type = Helper
-trigger1 = Time = 0
-helpertype = normal
-name = "Limiter"
-ID = 93
-stateno = 93
-pos = 0,0
-postype = p1
-facing = 1
-keyctrl = 0
-ownpal = 1
-
 [State 210, PlaySnd]
 type = PlaySnd
 trigger1 = time = 0
@@ -811,13 +807,13 @@ id = 1
  [State 200, End]
 type = ChangeState
 triggerall= movehit
-trigger1 = ailevel = 0 && command = "x"
+trigger1 = ailevel = 0 && command = "A"
 trigger2 = roundstate = 2 && ailevel > 0 
 value = 600
  [State 200, End]
 type = ChangeState
 triggerall=  movehit
-trigger1 = ailevel = 0 && command = "y"
+trigger1 = ailevel = 0 && command = "B"
 trigger2 = roundstate = 2 && ailevel > 0 
 value = 630
 [State 200, ChangeState]
@@ -1193,8 +1189,8 @@ air.type	= TRIP
 animtype 		= medium
 ground.slidetime 	= 14
 ground.hittime  	= 999
-ground.velocity 	= -20,-11
-air.velocity 		= -20,-10
+ground.velocity 	= -20,-5
+air.velocity 		= -20,-5
 air.hittime 		= 999
 fall 			= 1
 fall.yvelocity 	= 0
@@ -1475,7 +1471,7 @@ animtype 		= medium
 ground.slidetime 	= 14
 ground.hittime  	= 999
 ground.velocity 	= -20,-11
-air.velocity 		= -20,-10 / map(JuggleScale)
+air.velocity 		= -20,-10
 air.hittime 		= 999
 fall 			= 1
 fall.yvelocity 	= 0

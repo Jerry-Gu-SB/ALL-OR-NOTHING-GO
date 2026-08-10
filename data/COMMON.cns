@@ -358,6 +358,7 @@ physics = S
 ctrl = 1
 anim = 47
 velset = vel x, 0
+facep2 = 1
 
 [State 52, 2]
 type = PosSet
@@ -5504,22 +5505,108 @@ type = ChangeState
 trigger1 = 1
 value = 0
 
-;----------------------
-;Projectile Disspate
-[Statedef 999]
-type    		= U
-movetype		= A
-physics 		= N
-velset 		= 4, 0
-ctrl 		= 0
-anim 		= -1
-facep2 		= 0
-poweradd 		= 0
-sprpriority 	= 10
+; ======================== PERFECT GUARD STATES =======================
+;Perfect Guard Stand
+[StateDef 6130, Perfect Guard Stand]
+type = S
+movetype = I
+physics = S
+anim = 6130
+velset = 0, 0
+ctrl = 0
+sprpriority = 2
+poweradd = 70  ; TODO: tweak value, should be 2x meter gain from normal blocking
 
-[State 200, 3]
-type = DestroySelf
+[State 6130, EnvShake]
+type = EnvShake
 trigger1 = time = 1
+persistent = 0  ; This means you can only activate this once during this state. See "Trigger Persistency" in the cns docs
+ignorehitpause = 1
+time = 10
+ampl = 5
+
+[State 6130, Explod]
+type = Explod
+trigger1 = 1
+anim = 8020
+scale = 1, 1
+pos = 25, -80
+sprpriority = 4
+ownpal = 1
+
+[State 6130, Pause]
+type = Pause
+trigger1 = !Time
+time = 12
+movetime = 12  ; allows player to move within all 12/time frames of the start of the pause. I believe this is effectively the frame advantage lever for perfect guard?
+
+[State 6130, Hitby]
+type = NotHitBy
+trigger1 = 1
+time = 1
+value = SCA
+
+[State 6130, ChangeState]
+type = ChangeState
+value = 0
+ctrl = 1
+trigger1 = AnimTime = 0
+
+[State 6130, PlaySound]
+type = PlaySnd
+trigger1 = time = 1
+value = 0, 13
+
+;Perfect Guard Crouch
+[StateDef 6131, Perfect Guard Crouch]
+type = C
+movetype = I
+physics = C
+anim = 6131
+velset = 0, 0
+ctrl = 0
+sprpriority = 2
+poweradd = 70  ; TODO: tweak value, should be 2x meter gain from normal blocking
+
+[State 6131, EnvShake]
+type = EnvShake
+trigger1 = time = 1
+persistent = 0  ; This means you can only activate this once during this state. See "Trigger Persistency" in the cns docs
+ignorehitpause = 1
+time = 10
+ampl = 5
+
+[State 6131, Explod]
+type = Explod
+trigger1 = 1
+anim = 8020
+scale = 1, 1
+pos = 25, -10
+sprpriority = 4
+ownpal = 1
+
+[State 6131, Pause]
+type = Pause
+trigger1 = !Time
+time = 12
+movetime = 12  
+
+[State 6131, Hitby]
+type = NotHitBy
+trigger1 = 1
+time = 1
+value = SCA
+
+[State 6131, ChangeState]
+type = ChangeState
+value = 11
+ctrl = 1
+trigger1 = AnimTime = 0
+
+[State 6131, PlaySound]
+type = PlaySnd
+trigger1 = time = 1
+value = 0, 13
 
 
 [Statedef -1] ;Common CMD actions. Mostly utilized for system mechanics and universal actions.
