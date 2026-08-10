@@ -268,6 +268,33 @@ time = 1
 ;---------------------------------------------------------------------------
 [Statedef -1]
 
+
+
+[State -1, Combo condition Reset]
+type = VarSet
+trigger1 = 1
+var(1) = 0
+[State -1, Combo condition Reset]
+type = VarSet
+trigger1 = 1
+var(2) = 0
+
+[State -1, Special Cancel Normal Attacks]
+type = VarSet
+trigger1 = ctrl
+trigger2 = (stateno = [200,299]) || (stateno = [400,499] || stateno = [600,700]) 
+trigger2 = movecontact
+var(1) = 1
+ignorehitpause = 1
+[State -1, Super Cancel Special Attacks]
+type = VarSet
+trigger1 = var(1)
+trigger2 = stateno = [1000,3000) && MoveContact
+trigger3 = (stateno = [1000, 1001] || stateno = 2000 ) && animelemno(0) > 3
+trigger4 = stateno = 2100 && animelemno(0) >= 2
+var(2) = 1
+ignorehitpause = 1
+
 ;---------------------------------------------------
 ;Hyper Moves
 ;---------------------------------------------------
@@ -276,137 +303,80 @@ time = 1
 [State -1]
 type = ChangeState
 value = 1019
-triggerall = command = "QCF_Z"
-triggerall = power >= 1000
-trigger1 = statetype != A && ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 210 && movecontact
-trigger5 = stateno = 230 && movecontact
-trigger6 = stateno = 240 && movecontact
-trigger7 = stateno = 250 && movecontact
-trigger8 = stateno = 400 && movecontact
-trigger9 = stateno = 410 && movecontact
-trigger10 = stateno = 420 && movecontact
-trigger11 = stateno = 430 && movecontact
-trigger12 = stateno = 440 && movecontact
-trigger13 = stateno = 450 && movecontact
-trigger14 = stateno = 1000 && movecontact
-trigger15 = stateno = 1010 && movecontact
-trigger16 = stateno = 1020 && movecontact
+triggerall = command = "236C"
+triggerall = power >= 1000 && statetype != A
+trigger1 = var(1)
 
 ;---------------------------------------------------
 ;Special Moves
 ;---------------------------------------------------
 
-; Lariat
+;Air Lariat
 [State -1]
 type = ChangeState
 value = 1002
-triggerall = command = "Special1_X" && var(6) = 0
-trigger1 = statetype = A && ctrl
-trigger2 = stateno = 1000 && movecontact && time >=3
-trigger3 = (stateno = [600,650])&& var(6) = 0 && movehit 
+triggerall = command = "236A" && statetype = A
+trigger1 = var(1)
+
+;236A
 [State -1]
 type = ChangeState
 value = 1000
-triggerall = command = "Special1_X"
-trigger1 = statetype != A && ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 210 && movecontact
-trigger5 = stateno = 230 && movecontact
-trigger6 = stateno = 240 && movecontact
-trigger7 = stateno = 250 && movecontact
-trigger8 = stateno = 400 && movecontact
-trigger9 = stateno = 410 && movecontact
-trigger10 = stateno = 420 && movecontact
-trigger11 = stateno = 430 && movecontact
-trigger12 = stateno = 440 && movecontact
-trigger13 = stateno = 450 && movecontact
+triggerall = command = "236A" && statetype != A
+trigger1 = var(1) || ctrl
 
-;heavylariat
+;236B
 [State -1]
 type = ChangeState
 value = 1010
-triggerall = command = "Special1_Y"
-trigger1 = statetype != A && ctrl
-trigger2 = (stateno = [200,430])&& movecontact
-trigger3 = (stateno = [400,450])&& movecontact
+triggerall = command = "236B" && statetype != A
+trigger1 = var(1)
 
 ;EX Hug of Destruction!
 [State -1]
 type = ChangeState
 value = 1620
-triggerall = command = "QCB_Z"
-triggerall = statetype != A
+triggerall = command = "214C" && statetype != A
 triggerall = power >= 1000
-trigger1 = ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 210 && movecontact
-trigger4 = stateno = [230,233] && movecontact
-trigger5 = stateno = 400 && movecontact
-trigger6 = stateno = 410 && movecontact
-trigger7 = stateno = 430 && movecontact
-trigger8 = stateno = 440 && movecontact
+trigger1 = var(1)
 
 ;Jump Air Grab
 [State -1]
 type = ChangeState
 value = 840
-triggerall = command = "QCB_x"
+triggerall = command = "214A"
 triggerall = statetype = A
 trigger1 = ctrl
 trigger2 = stateno = 600 && movecontact
 trigger3 = stateno = 620 && movecontact
 
-;Hug of Destruction!
+;214A - Hug of Destruction
 [State -1]
 type = ChangeState
 value = 1600
-triggerall = command = "QCB_x"
+triggerall = command = "214A"
 triggerall = statetype != A
-trigger1 = ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 210 && movecontact
-trigger4 = stateno = [230,233] && movecontact
-trigger5 = stateno = 400 && movecontact
-trigger6 = stateno = 410 && movecontact
-trigger7 = stateno = 430 && movecontact
-trigger8 = stateno = 440 && movecontact
+trigger1 = var(1)
 
-
-
-;Hug of Destruction heavy!
+;214B - Hug of Destruction
 [State -1]
 type = ChangeState
 value = 1610
-triggerall = command = "QCB_y"
+triggerall = command = "214B"
 triggerall = statetype != A
-trigger1 = ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 210 && movecontact
-trigger4 = stateno = [230,233] && movecontact
-trigger5 = stateno = 400 && movecontact
-trigger6 = stateno = 410 && movecontact
-trigger7 = stateno = 430 && movecontact
-trigger8 = stateno = 440 && movecontact
+trigger1 = var(1)
 
 [State -1, 3H]
 type = ChangeState
 value = 700
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "z"
+triggerall = command = "C"
 triggerall = command = "holddown"
 triggerall = command = "holdfwd"
 triggerall = statetype != A
-trigger1 = ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 210 && movecontact
-trigger4 = stateno = 400 && movecontact
-trigger5 = stateno = 410 && movecontact
-trigger6 = stateno = 440 && movecontact
-trigger7 = stateno = [230,233] && movecontact
-trigger8 = stateno = 101 
+trigger1 = (stateno = [200,233] || stateno = [400,440]) && movecontact
+trigger2 = stateno = 101 
 
 ;Sweap
 [State -1]
@@ -414,7 +384,7 @@ type = ChangeState
 value = 440
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "z" && command = "holddown"
+triggerall = command = "C" && command = "holddown"
 trigger1 = statetype = C && ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 210 && movecontact
@@ -423,20 +393,12 @@ trigger5 = stateno = 410 && movecontact
 trigger6 = stateno = 430 && movecontact
 trigger7 = stateno = 101 
 
-[State -1, Throw]
-type=ChangeState
-value =800
-trigger1=(command = "holdfwd"||command = "holdback")&& command = "x+y"
-trigger1=!AILevel && RoundState=2 && Statetype!=A && !var(20)
-trigger1=ctrl
-
-
 [State -1, 66L]
 type = ChangeState
 value = 230
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "x"
+triggerall = command = "A"
 trigger1 = statetype != A
 trigger1 = Stateno = 100
 trigger2 = Stateno = 101 && Time < 10
@@ -447,7 +409,7 @@ type = ChangeState
 value = 230
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "x" && command = "holdfwd"
+triggerall = command = "A" && command = "holdfwd"
 triggerall = statetype != A
 trigger1 = stateno = 200 && movecontact
 trigger2 = stateno = 210 && movecontact 
@@ -460,7 +422,7 @@ type = ChangeState
 value = 320
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "y"
+triggerall = command = "B"
 trigger1 = statetype != A
 trigger1 = Stateno = 100
 trigger2 = Stateno = 101 && Time < 10
@@ -471,7 +433,7 @@ type = ChangeState
 value = 320
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "y" && command = "holdfwd"
+triggerall = command = "B" && command = "holdfwd"
 triggerall = statetype != A
 trigger1 = stateno = 200 && movecontact
 trigger2 = stateno = 210 && movecontact 
@@ -483,7 +445,7 @@ type = ChangeState
 value = 231
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "x"
+triggerall = command = "A"
 triggerall = statetype != A
 trigger1 = stateno = 230
 trigger1 = Movecontact
@@ -494,7 +456,7 @@ type = ChangeState
 value = 232
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "x"
+triggerall = command = "A"
 triggerall = statetype != A
 trigger1 = stateno = 231
 trigger1 = Movecontact
@@ -506,7 +468,7 @@ type = ChangeState
 value = 233
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "x"
+triggerall = command = "A"
 triggerall = statetype != A
 trigger1 = stateno = 232
 trigger1 = Movecontact
@@ -521,7 +483,7 @@ type = ChangeState
 value = 200
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "x"
+triggerall = command = "A"
 triggerall = command != "holddown"
 triggerall = statetype != A
 trigger1 = ctrl
@@ -535,7 +497,7 @@ type = ChangeState
 value = 210
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "y"
+triggerall = command = "B"
 triggerall = command != "holddown"
 trigger1 = statetype != A
 trigger1 = ctrl
@@ -550,7 +512,7 @@ type = ChangeState
 value = 400
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "x"
+triggerall = command = "A"
 triggerall = command = "holddown"
 trigger1 = statetype != A
 trigger1 = ctrl
@@ -565,7 +527,7 @@ type = ChangeState
 value = 410
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "y"
+triggerall = command = "B"
 triggerall = command = "holddown"
 trigger1 = statetype != A
 trigger1 = ctrl
@@ -580,7 +542,7 @@ type = ChangeState
 value = 220
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "z"
+triggerall = command = "C"
 triggerall = command != "holddown"
 trigger1 = statetype != A
 trigger1 = ctrl
@@ -589,50 +551,48 @@ trigger3 = (Stateno = [210,211]) && Movecontact
 trigger4 = (Stateno = [400,410]) && Movecontact
 trigger5 = stateno = 101
 
-;Jump Light Punch
-[State -1]
-type = ChangeState
-value = 620
-triggerall = command = "x"
-triggerall = statetype = A 
-trigger1 = ctrl
-trigger2 = stateno = 200 && movecontact
-
-;Jump Cross up
-[State -1]
-type = ChangeState
-value = 610
-triggerall = command = "z"
-triggerall = statetype = A 
-trigger1 = ctrl
-trigger2 = stateno = 600 && movecontact
-trigger3 = stateno = 620 && movecontact
-
-;Jump Medium Punch
+;j.A
 [State -1]
 type = ChangeState
 value = 600
-triggerall = command = "y"
+triggerall = command = "A"
 triggerall = statetype = A 
 trigger1 = ctrl
-trigger2 = stateno = 630 && movecontact
-trigger3 = stateno = 620 && movecontact
+trigger2 = stateno = 600 && movecontact && prevstateno != 600
+
+;j.B
+[State -1]
+type = ChangeState
+value = 610
+triggerall = command = "B"
+triggerall = statetype = A 
+trigger1 = ctrl
+trigger2 = stateno = 600 && movecontact
+
+;j.C
+[State -1]
+type = ChangeState
+value = 620
+triggerall = command = "C"
+triggerall = statetype = A 
+trigger1 = ctrl
+trigger2 = stateno = [600,610] && movecontact
+
 
 ;Dash Forwards
 [State -1]
 type = ChangeState
-value = 100
-triggerall = statetype = S
-trigger1 = command = "FF" && stateno = 52
-trigger2 = command = "FF"
-trigger2 = ctrl
+value = 101
+triggerall = statetype != A
+triggerall = command = "FF"
+trigger1 = ctrl
 
 
 ;Dash Backwards
 [State -1]
 type = ChangeState
 value = 105
-triggerall = statetype = S
+triggerall = statetype != A
 trigger1 = command = "BB" && stateno = 52
 trigger2 = command = "BB"
 trigger2 = ctrl
@@ -668,35 +628,6 @@ trigger3 = stateno = 450 && MoveHit
 trigger4 = stateno = 200 && MoveHit 
 trigger5 = stateno = 210 && MoveHit 
 trigger1 = stateno = 230 && MoveHit
-
-[State -1, PerfectBlock Stand]
-type = HitOverride
-triggerall = !AILevel && roundstate=2 && Statetype != A
-triggerall = command = "fwd" && command != "back" && command != "up" && command != "down"
-trigger1 = Ctrl
-stateno = 6130
-attr = SCA, AA
-guardflag = H
-; Slot just sets the order in which State -1 will take precedence, so PerfectBlock has the highest priority of State -1 I guess?
-; Source: https://mugenfreeforall.com/topic/34752-ricepigeons-coding-tutorial-code-snippet-repository/
-slot = 0
-time = 7
-
-[State -1, PerfectBlock Crouch]
-type = HitOverride
-triggerall = !AILevel && roundstate=2 && Statetype != A
-;triggerall = command = "fwd" && command = "down" && command != "back" && command != "up" 
-triggerall = command = "holddown" && command = "holdfwd"
-trigger1 = Ctrl
-stateno = 6131
-attr = SCA, AA
-guardflag = L
-guardflag.not = H
-
-; Slot just sets the order in which State -1 will take precedence, so PerfectBlock has the highest priority of State -1 I guess?
-; Source: https://mugenfreeforall.com/topic/34752-ricepigeons-coding-tutorial-code-snippet-repository/
-slot = 0
-time = 7
 
 ;Taunt
 [State -1]

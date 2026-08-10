@@ -1,0 +1,108 @@
+;StepDash 
+[Statedef 101] 
+type    = S
+physics = S
+movetype = I
+anim = 101
+sprpriority = 1
+poweradd = 20
+velset = const(velocity.run.fwd.x),0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = animelemno(0) = 1
+x = const(velocity.run.fwd.x)
+[State 0, VelSet]
+type = VelMul
+trigger1 = animelemno(0) = 2
+x = 0.8
+
+[State 0, AssertSpecial]
+type = AssertSpecial
+trigger1 = 1
+flag = NoWalk
+;flag = TimerFreeze
+;flag = Unguardable
+
+
+[State 101, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = 0,1
+
+[State 0, Play Voice 0]
+type = PlaySnd
+trigger1 = Time = 0
+trigger1 = Random < 33
+value = 100,0
+
+[State 0, Play Voice 1]
+type = PlaySnd
+trigger1 = Time = 0
+trigger1 = Random >= 33
+trigger1 = Random < 66
+value = 100,1
+
+[State 0, Play Voice 2]
+type = PlaySnd
+trigger1 = Time = 0
+trigger1 = Random >= 66
+trigger1 = Random < 100
+value = 100,2
+
+[State 6061, Effect]
+type = Explod
+trigger1 = animelem = 1
+anim = 8103
+scale = 0.60,0.60
+postype = p1
+facing = 1
+pos = -30,0
+sprpriority = 3
+ownpal = 1
+removeongethit = 1
+pausemovetime = 99999
+supermovetime = 99999
+ignorehitpause = 1
+persistent = 0
+bindtime = 0
+
+[State 6061, Effect]
+type = Explod
+trigger1 = animelem = 2
+anim = 8104
+scale = 0.22,0.22
+postype = p1
+facing = 1
+pos = 60,0
+sprpriority = 3
+ownpal = 1
+removeongethit = 1
+pausemovetime = 99999
+supermovetime = 99999
+ignorehitpause = 1
+persistent = 0
+bindtime = 0
+
+[State 6061, Effect]
+type = Explod
+trigger1 = animelem = 2
+anim = 8100
+scale = 0.80,0.80
+postype = p1
+facing = 1
+pos = 43,0
+sprpriority = 3
+ownpal = 1
+removeongethit = 1
+pausemovetime = 99999
+supermovetime = 99999
+ignorehitpause = 1
+persistent = 0
+bindtime = 0
+
+[State 106, ChangeState]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1

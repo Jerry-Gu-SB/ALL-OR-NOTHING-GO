@@ -966,12 +966,11 @@ type = TargetLifeAdd
 trigger1 = AnimElem = 8
 value = -2500
 
-[State 0, Zoom] 
+[State 0]
 type = Zoom
-trigger1 = time = [0,32] 
-scale = 1.29
-pos = cond(facing = 1, enemynear,pos x -34, enemynear,pos x +34)
-postype = P2
+trigger1 = !movehit
+scale = exp(0.080 * ln(time))
+pos = pos x,0
 ignorehitpause = 1
 
 
@@ -1168,30 +1167,53 @@ type = TargetBind
 trigger1 = AnimElem = 8
 pos = 75.0, 0.0
 
-[State 1611, Hurt]
-type = TargetLifeAdd
-trigger1 = AnimElem = 8
-value = -3500
-
-
-[State 0, Zoom] 
+[State 0]
 type = Zoom
-trigger1 = time = [0,32] 
-scale = 1.29
-pos = cond(facing = 1, enemynear,pos x -34, enemynear,pos x +34)
-postype = P2
+trigger1 = !movehit
+scale = exp(0.080 * ln(time))
+pos = pos x,0
 ignorehitpause = 1
 
+[State 630, 2]
+type = HitDef 
+p2facing = 1
+trigger1 = !movecontact && !movereversed
+hitonce = 1
+attr = S, SA
+damage = 1800, 10
+hitflag = MAFD
+guardflag = MAF
+pausetime 	= 0,0
+sparkno 		= 3
+sparkxy 		= -10,-45
+hitsound   	= 5,4
+guardsound 	= 6,0
+ground.type 	= TRIP
+air.type	= TRIP
+animtype 		= medium
+ground.slidetime 	= 14
+ground.hittime  	= 999
+ground.velocity 	= -20,-11
+air.velocity 		= -20,-10
+air.hittime 		= 999
+fall 			= 1
+fall.yvelocity 	= 0
+guard.slidetime 	= 12
+guard.hittime 		= 21
+guard.ctrltime 	= 10
+envshake.time 	= 8
+envshake.freq 	= 10
+envshake.ampl 	= 5
+envshake.phase 	= 1
+getpower 		= 200
+p2stateno 	= 5220
+p2getp1state 	= 0
+missonoverride			= 0
 
 [State 1611, Grab Sound]
 type = PlaySnd
 trigger1 = AnimElem = 8
 value = 1, 4
-
-[State 1611, Throw]
-type = TargetState
-trigger1 = AnimElem = 8
-value = 1613
 
 [State 1611, State End]
 type = ChangeState
@@ -1370,7 +1392,7 @@ type = S
 movetype= A
 physics = N
 anim = 1602
-poweradd = 60
+poweradd = 0
 
 [State 1621, VelSet]
 type = VelSet
@@ -1433,17 +1455,47 @@ type = TargetBind
 trigger1 = AnimElem = 8
 pos = 65.0, -73.25
 
-[State 1621, Hurt]
-type = TargetLifeAdd
-trigger1 = AnimElem = 8
-value = -2500
+[State 630, 2]
+type = HitDef 
+p2facing = 1
+trigger1 = !movecontact && !movereversed
+hitonce = 1
+attr = S, SA
+damage = 2500, 10
+hitflag = MAFD
+guardflag = MAF
+pausetime 	= 0,0
+sparkno 		= 3
+sparkxy 		= -10,-45
+hitsound   	= 5,4
+guardsound 	= 6,0
+ground.type 	= TRIP
+air.type	= TRIP
+animtype 		= medium
+ground.slidetime 	= 14
+ground.hittime  	= 999
+ground.velocity 	= -20,-11
+air.velocity 		= -20,-10 / map(JuggleScale)
+air.hittime 		= 999
+fall 			= 1
+fall.yvelocity 	= 0
+guard.slidetime 	= 12
+guard.hittime 		= 21
+guard.ctrltime 	= 10
+envshake.time 	= 8
+envshake.freq 	= 10
+envshake.ampl 	= 5
+envshake.phase 	= 1
+getpower 		= 200
+p2stateno 	= 5220
+p2getp1state 	= 0
+missonoverride			= 0
 
-[State 0, Zoom] 
+[State 0]
 type = Zoom
-trigger1 = time = [0,32] 
-scale = 1.29
-pos = cond(facing = 1, enemynear,pos x -34, enemynear,pos x +34)
-postype = P2
+trigger1 = !movehit
+scale = exp(0.080 * ln(time))
+pos = pos x,0
 ignorehitpause = 1
 
 
@@ -1451,11 +1503,6 @@ ignorehitpause = 1
 type = PlaySnd
 trigger1 = AnimElem = 8
 value = 1, 4
-
-[State 1621, Throw]
-type = TargetState
-trigger1 = AnimElem = 8
-value = 1623
 
 [State 1621, State End]
 type = ChangeState
