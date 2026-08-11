@@ -61,7 +61,7 @@ trigger2 = Map(JC)
 [State -1,JC]
 type = ChangeState
 value = 40
-triggerall = statetype != A
+triggerall = statetype != A && stateno != 40
 triggerall = command = "holdup" || command = "up"
 trigger1 = map(JC)
 trigger2 = ctrl ||stateno = 100 && time > 3

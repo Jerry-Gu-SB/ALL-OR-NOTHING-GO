@@ -561,6 +561,15 @@ ctrl = 0
 anim = 230
 sprpriority = 1
 
+[State 700, True Dash Attack Flash]
+type 		= PalFX
+triggerall	= !time
+trigger1 		= prevstateno = 101
+add         	= 0, 105, 155
+sinadd      	= 0, -105, -155, 60
+time        	= 15
+ignoreHitPause = 1
+
 [State 200, PlaySnd]
 type = PlaySnd
 trigger1 = time = 0
@@ -882,6 +891,15 @@ physics = S
 anim = 240
 ctrl = 0
 sprpriority = 2
+
+[State 700, True Dash Attack Flash]
+type 		= PalFX
+triggerall	= !time
+trigger1 		= prevstateno = 101
+add         	= 0, 105, 155
+sinadd      	= 0, -105, -155, 60
+time        	= 15
+ignoreHitPause = 1
 
 [State 50, PlaySnd]
 type = PlaySnd

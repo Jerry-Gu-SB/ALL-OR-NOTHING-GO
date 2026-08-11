@@ -129,7 +129,7 @@ value = 21
 ;---------------------------------------------------------------------------
 ; Jump Start
 [Statedef 40]
-type    = S
+type    = A
 physics = S
 anim = 40
 ctrl = 0
