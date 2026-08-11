@@ -767,11 +767,13 @@ priority = 1, Miss
 sparkno = -1        
 sparkxy = 0,-50
 p1sprpriority = 1     
-p1facing = 1          
+p1facing = 1    
+p2facing = 1      
 p1stateno = 1601
 p2stateno = 1602
 fall = 1  
 fall.recover = 0
+guard.dist = 0
 
 
 [State 1, ]
@@ -1218,6 +1220,7 @@ p1stateno = 1621
 p2stateno = 1622        
 fall = 1  
 fall.recover = 0
+guard.dist = 0
 
 [State 1120, Width]
 type = Width

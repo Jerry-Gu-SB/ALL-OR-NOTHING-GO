@@ -297,6 +297,14 @@ buffer.time = 1
 name = "holdup" ;Required (do not remove)
 command = /$U
 buffer.time = 0
+[Command]
+name = "holdleft" ;Required (do not remove)
+command = /L
+buffer.time = 1
+[Command]
+name = "holdright" ;Required (do not remove)
+command = /R
+buffer.time = 1
 
 [Command]
 name = "holdfwd_r" ; Raw hold forward (REQUIRED for command buffering)

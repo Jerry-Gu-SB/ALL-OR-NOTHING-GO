@@ -34,6 +34,38 @@ trigger4 = stateno = 2100 && animelemno(0) >= 2
 var(2) = 1
 ignorehitpause = 1
 
+;Dash Forwards
+[State -1]
+type = ChangeState
+value = 101
+triggerall = statetype != A
+triggerall = command = "66"
+trigger1 = ctrl || stateno = 211 && MoveContact
+
+;Dash Backwards
+[State -1]
+type = ChangeState
+value = 105
+triggerall = statetype != A && command = "44"
+trigger1 = ctrl
+
+;Super Jump
+[State -1, Super Jump]
+type = ChangeState
+value = 55
+triggerall = statetype != A
+triggerall = command = "28" || command = "27" || command = "29"
+trigger1 = ctrl
+trigger2 = Map(JC)
+
+[State -1,JC]
+type = ChangeState
+value = 40
+triggerall = statetype != A
+triggerall = command = "holdup" || command = "up"
+trigger1 = map(JC)
+trigger2 = ctrl ||stateno = 100 && time > 3
+
 ;---------------------------------------------------
 ;Hyper Moves
 ;---------------------------------------------------
@@ -132,7 +164,7 @@ type = ChangeState
 value = 230
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "A"
+triggerall = command = "A" && command = "holdfwd"
 trigger1 = statetype != A
 trigger1 = Stateno = 100
 trigger2 = Stateno = 101 && Time < 10
@@ -141,38 +173,27 @@ trigger2 = Stateno = 101 && Time < 10
 [State -1, 66L]
 type = ChangeState
 value = 230
-triggerall = !ishelper
-triggerall = !AIlevel
 triggerall = command = "A" && command = "holdfwd"
 triggerall = statetype != A
-trigger1 = stateno = 200 && movecontact
-trigger2 = stateno = 210 && movecontact 
-trigger4 = stateno = 400 && movecontact
-trigger4 = stateno = 410 && movecontact
+trigger1 = (stateno = [200,210] || stateno = [400,410]) && movecontact
 
 
 [State -1, 66H]
 type = ChangeState
-value = 320
-triggerall = !ishelper
-triggerall = !AIlevel
-triggerall = command = "B"
-trigger1 = statetype != A
-trigger1 = Stateno = 100
-trigger2 = Stateno = 101 && Time < 10
+value = 240
+triggerall = command = "B" && command = "holdfwd"
+triggerall = statetype != A
+trigger1 = stateno = 101
 
 ;dash punch cancel
 [State -1, 66L]
 type = ChangeState
-value = 320
+value = 240
 triggerall = !ishelper
 triggerall = !AIlevel
 triggerall = command = "B" && command = "holdfwd"
 triggerall = statetype != A
-trigger1 = stateno = 200 && movecontact
-trigger2 = stateno = 210 && movecontact 
-trigger4 = stateno = 400 && movecontact
-trigger4 = stateno = 410 && movecontact
+trigger1 = (stateno = [200,210] || stateno = [400,410]) && movecontact
 
 [State -1, 66LL]
 type = ChangeState
@@ -313,57 +334,11 @@ trigger1 = ctrl
 trigger2 = stateno = [600,610] && movecontact
 
 
-;Dash Forwards
-[State -1]
-type = ChangeState
-value = 101
-triggerall = statetype != A
-triggerall = command = "66"
-trigger1 = ctrl || stateno = 211 && MoveContact
 
 
-;Dash Backwards
-[State -1]
-type = ChangeState
-value = 105
-triggerall = statetype != A && command = "44"
-trigger1 = ctrl
-
-;Super Jump
-[State -1]
-type = ChangeState
-value = 45
-trigger1 = command = "holdup"
-trigger1 = statetype = A && ctrl
-trigger1 = vel y > 0 && var(2) && !var(3)
-
-;Jump/Super Jump
-[State -1]
-type = ChangeState
-value = 40
-triggerall = command = "holdup" && !var(1) && prevstateno != 810
-trigger1 = stateno = [100,102]
-trigger2 = stateno = [200,210] && MoveHit
-trigger3 = stateno = [400,450] && MoveHit
-trigger4 = stateno = 410 && MoveHit
-
-
-;---------------------------------------------------------------------------
-[State -1, Jump Cancel]
-type = Null;ChangeState
-value = 40
-triggerall = !AIlevel
-triggerall = command = "holdup"
-trigger1 = stateno = 400 && MoveHit 
-trigger2 = stateno = 410 && MoveHit 
-trigger3 = stateno = 450 && MoveHit 
-trigger4 = stateno = 200 && MoveHit 
-trigger5 = stateno = 210 && MoveHit 
-trigger1 = stateno = 230 && MoveHit
-
-[State -1, PerfectBlock Stand]
+[State -1, Stand Parry]
 type = HitOverride
-triggerall = !AILevel && roundstate=2 && Statetype != A
+triggerall = roundstate = 2 && Statetype != A
 triggerall = command = "fwd" && command != "back" && command != "up" && command != "down"
 trigger1 = Ctrl
 stateno = 6130
@@ -372,11 +347,10 @@ guardflag = H
 slot = 0
 time = 7
 
-[State -1, PerfectBlock Crouch]
+[State -1, Crouch Parry]
 type = HitOverride
-triggerall = !AILevel && roundstate=2 && Statetype != A
-;triggerall = command = "fwd" && command = "down" && command != "back" && command != "up" 
-triggerall = command = "holddown" && command = "holdfwd"
+triggerall = roundstate = 2 && Statetype != A
+triggerall = command = "holddown"
 trigger1 = Ctrl
 stateno = 6131
 attr = SCA, AA

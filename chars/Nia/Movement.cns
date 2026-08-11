@@ -5,8 +5,18 @@ physics = S
 movetype = I
 anim = 101
 sprpriority = 1
-poweradd = 20
 velset = const(velocity.run.fwd.x),0
+ctrl = 1
+
+[State 0, Mapadd]
+type 		= MapSet
+triggerall      = combocount
+trigger1 	    = !time
+Trigger1        = prevstateno = 211
+map 		    = "BGDarkTime"
+value 		    = 5
+ignorehitpause 	= 1
+persistent 		= 1
 
 [State 0, VelSet]
 type = VelSet
@@ -16,13 +26,13 @@ x = const(velocity.run.fwd.x)
 type = VelMul
 trigger1 = animelemno(0) = 2
 x = 0.8
+persistent = 0
 
 [State 0, AssertSpecial]
 type = AssertSpecial
 trigger1 = 1
 flag = NoWalk
-;flag = TimerFreeze
-;flag = Unguardable
+flag2 = nocrouch
 
 
 [State 101, PlaySnd]
@@ -100,6 +110,12 @@ supermovetime = 99999
 ignorehitpause = 1
 persistent = 0
 bindtime = 0
+
+[State 106, ChangeState]
+type = ChangeState
+trigger1 = command = "holddown"
+value = 10
+ctrl = 1
 
 [State 106, ChangeState]
 type = ChangeState
