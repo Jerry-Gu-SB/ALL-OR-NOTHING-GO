@@ -132,9 +132,9 @@ triggerall = command = "214B"
 triggerall = statetype != A
 trigger1 = var(1)
 
-[State -1, 3H]
+[State -1, 3C]
 type = ChangeState
-value = 700
+value = 690
 triggerall = !ishelper
 triggerall = !AIlevel
 triggerall = command = "C"
@@ -305,6 +305,17 @@ trigger2 = (Stateno = [200,210]) && Movecontact
 trigger3 = (Stateno = [210,211]) && Movecontact
 trigger4 = (Stateno = [400,410]) && Movecontact
 trigger5 = stateno = 101
+
+;overhead
+[State -1]
+type = ChangeState
+value = 500
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "d" 
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 101
 
 ;j.A
 [State -1]

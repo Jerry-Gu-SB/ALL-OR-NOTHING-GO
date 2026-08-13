@@ -399,11 +399,10 @@ trigger1 = Time = 9
 value = 200, Random % 3
 
 
-[State 200, VelSet]
-type = VelSet
-trigger1 = time = 0
-trigger1 = prevstateno = 20
-x = 6
+[State 0, Vel]
+type = velset
+trigger1 = animelem=4
+x = 8
 
 
 
@@ -1209,6 +1208,119 @@ value = 11
 ctrl = 1
  
 
+;---------------------------------------------------------------------------
+;overhead
+[Statedef 500]
+type    = S
+movetype= I
+physics = S
+juggle  = 4
+poweradd= 20
+ctrl = 0
+velset = 0,0
+anim = 42
+sprpriority = 2
+
+[State 220]
+type = PlaySnd
+trigger1 = Time = 0
+value = 50, 0
+
+[State 220]
+type = statetypeset
+trigger1 = 1
+statetype = A
+
+[State 220]
+type = Velset
+trigger1 = 1
+x = P2Dist X/43
+y = -3
+
+[State 220]
+type = ChangeState
+trigger1 = Time = 12
+value = 501
+ctrl = 0
+
+;---------------------------------------------------------------------------
+;overhead attack
+[Statedef 501]
+type    = A
+movetype= A
+physics = A
+juggle  = 2
+poweradd= 25
+ctrl = 0
+anim = 601
+sprpriority = 2
+
+[State 200, 2]
+type = PlaySnd
+trigger1 = time = 0
+value = 0, 4
+
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= !movecontact && !movereversed
+;===============================
+damage 				= 250 * MAP(P4),0
+pausetime 			= 8,8 + 2 * enemy, movetype = A
+getpower 				= 25 * MAP(GEAR.MUL),0
+;===============================
+attr 				= S,NA
+hitflag 				= MAF
+guardflag 			= H
+animtype 				= Light
+air.animtype 			= Light
+ground.TYPE 			= High
+air.TYPE 				= High
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= 5,0
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 10
+ground.slidetime		= 10
+air.hittime 			= 14
+down.hittime 			= 10
+ground.velocity 		= -5
+air.velocity 			= -2,-2
+;===============================
+guard.ctrltime 		= 10
+guard.slidetime		= 8
+guard.velocity 		= -6
+airguard.velocity 		= -1,-1
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 0
+air.fall 				= 1
+;===============================
+envshake.time 			= 8
+envshake.freq 			= 8
+envshake.ampl 			= 1
+envshake.phase 		= 0.5
+
+[State 200, Damage Scaling]
+type = varset
+trigger1 = movehit
+trigger1 = !moveguarded
+fvar(4) = fvar(4)*0.90
+ignorehitpause = 1
+persistent = 0
+
+[State 600, 3]
+type = changestate
+trigger1 = AnimTime = 0
+value = 51
+
+
 ;j.A
 [Statedef 600]
 type = A
@@ -1763,12 +1875,12 @@ id = 4+64
 
 
 ;3C Attempt
-[Statedef 700]
+[Statedef 690]
 type    = S                      ;State-type: S-stand, C-crouch, A-air, L-liedown
 movetype= A                      ;Move-type: A-attack, I-idle, H-gethit
 physics = S
 ctrl = 0                         ;Set ctrl (Def: no change)
-anim = 700                       ;Change animation (Def: no change)
+anim = 700                     ;Change animation (Def: no change)
 sprpriority = 2                  ;Set p1's sprite layering priority to 2 (in front)
 facep2 = 1
 
