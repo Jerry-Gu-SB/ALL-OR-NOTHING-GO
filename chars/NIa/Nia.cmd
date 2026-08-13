@@ -294,7 +294,7 @@ trigger5 = stateno = 101
 ;5C
 [State -1]
 type = ChangeState
-value = 240
+value = 250
 triggerall = !ishelper
 triggerall = !AIlevel
 triggerall = command = "C"
