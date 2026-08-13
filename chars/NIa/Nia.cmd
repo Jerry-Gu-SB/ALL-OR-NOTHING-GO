@@ -232,7 +232,7 @@ trigger1 = Movecontact
 
 
 
-;Stand Light Punch
+;5A
 [State -1]
 type = ChangeState
 value = 200
@@ -246,7 +246,7 @@ trigger2 = stateno = 101
 trigger3 = stateno = 200 && movecontact
 trigger4 = stateno = 400 && movecontact
 
-;Stand Heavy Punch
+;5B
 [State -1]
 type = ChangeState
 value = 210
@@ -261,7 +261,7 @@ trigger3 = stateno = 200 && movecontact
 trigger4 = stateno = 400 && movecontact 
 trigger5 = stateno = 410 && movecontact && prevStateNo != 210
 
-;Crouch Light Punch
+;2A
 [State -1]
 type = ChangeState
 value = 400
@@ -276,7 +276,7 @@ trigger3 = stateno = 400 && movecontact
 trigger4 = stateno = 101 
 
 
-;Crouch Heavy Punch
+;2B
 [State -1]
 type = ChangeState
 value = 410
@@ -291,10 +291,10 @@ trigger3 = stateno = 210 && movecontact && prevStateNo != 410
 trigger4 = stateno = 400 && movecontact
 trigger5 = stateno = 101 
 
-;Universal overhead
+;5C
 [State -1]
 type = ChangeState
-value = 220
+value = 240
 triggerall = !ishelper
 triggerall = !AIlevel
 triggerall = command = "C"

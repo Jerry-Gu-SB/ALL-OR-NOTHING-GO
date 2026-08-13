@@ -27,14 +27,6 @@ trigger1 = time = 0
 trigger1 = prevstateno = 20
 x = 0
 
-[State 200, Explod]
-type = Explod
-trigger1 = abs(vel x) > 1 && time % 3 = 0
-anim = 8200
-scale = 2,2
-pos = -20,0
-sprpriority = 4
-ownpal = 1
 
 [State -2, Starter Level]
 type 		= MapSet
@@ -94,7 +86,7 @@ down.hittime 			= 10
 ground.velocity 		= -5
 air.velocity 			= -2,-2
 ;===============================
-guard.ctrltime 		= 8
+guard.ctrltime 		= 10
 guard.slidetime		= 8
 guard.velocity 		= -6
 airguard.velocity 		= -1,-1
@@ -385,175 +377,101 @@ ctrl = 1
 
 ;---------------------------------------------------------------------------
 ;5C
-[Statedef 220]
-type    = S
-movetype= I
+[Statedef 240]
+type = S
+movetype= A
 physics = S
 ctrl = 0
-velset = 0,0
-anim = 42
+anim = 250
+velset = vel x,0
 sprpriority = 2
 facep2 = 1
 
-[State 1120, Afterimage]
-type = AfterImage
-trigger1 = Time = 0
-length = 13
-PalBright   = 0,0,80
-PalContrast = 0,30,180
-PalAdd      = -20,-20,0
-PalMul      = .35,.50,1.30
-TimeGap  = 1
-FrameGap = 2
-Trans = Add
-time = 2
 
-[State 1120, Afterimage]
-type = AfterImageTime
-trigger1 = AnimTime < -2
-time = 2
-
-[State 1120, Blink BLue]
-type = PalFX
-trigger1 = Time = 0
-time = 20
-add = 0,0,48
-sinadd = 0,0,96,3
-
-[State 50, PlaySnd]
+[State 200, PlaySnd]
 type = PlaySnd
-trigger1 = animelem = 1
-value = 0,2
+trigger1 = time = 0
+value = 0,3
 
-[State 220]
-type = statetypeset
-trigger1 = 1
-statetype = A
+[State 200, Sound]
+type = PlaySnd
+trigger1 = Time = 9
+value = 200, Random % 3
 
-[State 0, PosAdd]
-type = PosAdd
-trigger1 = !time
-y = -20
-[State 220]
-type = Velset
-trigger1 = 1
-x = cond(p2dist x * 0.05 >= 6, 8, p2dist x * 0.05 + 2)
-y = -3
-[State 0, CtrlSet]
-type = CtrlSet
-triggerall = time = 8
-trigger1 = combocount > 0
-value = 1
-ignorehitpause = 1
-persistent = 1
 
-[State 220]
+[State 200, VelSet]
+type = VelSet
+trigger1 = time = 0
+trigger1 = prevstateno = 20
+x = 6
+
+
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= !movecontact && !movereversed
+;===============================
+damage 				= 250 * MAP(P4),0
+pausetime 			= 8,8 + 2 * enemy, movetype = A
+getpower 				= 25 * MAP(GEAR.MUL),0
+;===============================
+attr 				= S,NA
+hitflag 				= MAF
+guardflag 			= M
+animtype 				= Light
+air.animtype 			= Light
+ground.TYPE 			= High
+air.TYPE 				= High
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= 5,0
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 10
+ground.slidetime		= 10
+air.hittime 			= 14
+down.hittime 			= 10
+ground.velocity 		= -5
+air.velocity 			= -2,-2
+;===============================
+guard.ctrltime 		= 12
+guard.slidetime		= 8
+guard.velocity 		= -6
+airguard.velocity 		= -1,-1
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 0
+air.fall 				= 1
+;===============================
+envshake.time 			= 8
+envshake.freq 			= 8
+envshake.ampl 			= 1
+envshake.phase 		= 0.5
+
+[State 0, Jump Cancel]
+type 		= MapSet
+trigger1 		= movehit
+map 		= "JC"
+value 		= 1
+ignorehitpause 	= 1
+
+[State 200, ChangeState]
 type = ChangeState
-trigger1 = Time = 12
-value = 50
-ctrl = 0
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+;---------------------------------------------------------------------------
 
 ;---------------------------------------------------------------------------
-[Statedef 221]
-type    = A
-movetype= A
-physics = A
-ctrl = 0
-anim = 601
-sprpriority = 2
-
-[State -2, Var]
-type = varset
-trigger1 = !time
-var(36) = 0
-
-[State 1, ]
-type = PlaySnd
-trigger1 = animelem = 1
-value = 600, ifelse(Random < 500, 0, 1)
-
-
-[State 1200, 6]
-type = explod
-trigger1 = AnimElemtime(5) = 0
-anim = 6610
-id = 6610
-pos = 0,0
-facing = 1
-sprpriority = 3
-bindtime = 4
-ownpal = 1
-ignorehitpause = 1
-scale = 0.33,0.33
-
-[State 610, 3]
-type = HitDef
-nochainID = 8000
-trigger1 = !time
-triggerall = enemynear,movetype != A
-attr = A, NA
-damage = ceil(200)
-hitflag = MAF
-guardflag = HA
-priority = 1, Hit
-pausetime = 12,12
-sparkno = 3
-sparkxy = -10,-75+ceil(p2dist y)
-hitsound   = S1,26
-guardsound = S6,0
-animtype = Hard
-ground.type = High
-ground.slidetime = 12
-ground.hittime  = 25
-guard.ctrltime = 3
-ground.velocity = -5
-air.velocity = -3,0
-air.hittime  = 30
-air.fall = 1
-fall.recovertime = 37
-
-[State 610, 3]
-type = HitDef
-nochainID = 8000
-trigger1 = !time
-triggerall = enemynear,movetype = A
-attr = A, NA
-damage = ceil(200)
-hitflag = MAF
-guardflag = HA
-priority = 1, Hit
-pausetime = 12,12
-sparkno = 3
-sparkxy = -10,-75+ceil(p2dist y)
-hitsound   = S1,26
-guardsound = S6,0
-animtype = Hard
-ground.type = High
-ground.slidetime = 12
-ground.hittime  = 29
-guard.ctrltime = 9
-ground.velocity = -5
-air.velocity = -3,0
-air.hittime  = 30
-air.fall = 1
-fall.recovertime = 43
-
-[State 200, Damage Scaling]
-type = varset
-trigger1 = movehit
-trigger1 = !moveguarded
-fvar(4) = fvar(4)*0.88
-ignorehitpause = 1
-persistent = 0
-
-[State 600, 3]
-type = changestate
-trigger1 = AnimTime = 0
-value = 51
 
 ;---------------------------------------------------------------------------
 ;66A
-[Statedef 230]
+[Statedef 250]
 type    = S
 movetype= A
 physics = S
