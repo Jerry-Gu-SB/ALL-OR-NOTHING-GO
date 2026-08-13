@@ -195,7 +195,7 @@ hitsound = S1,26
 guardsound = S6,0
 ground.type = Low
 ground.slidetime = 12
-guard.ctrltime 		= 13
+guard.hittime 	= 13
 ground.hittime = 18 + 4*var(9)
 guard.hittime =12
 air.hittime = 18
@@ -410,7 +410,7 @@ x = 8
 type 				= HitDef
 trigger1 				= !movecontact && !movereversed
 ;===============================
-damage 				= 250 * MAP(P4),0
+damage 				= 750 * MAP(P4),0
 pausetime 			= 8,8 + 2 * enemy, movetype = A
 getpower 				= 25 * MAP(GEAR.MUL),0
 ;===============================
@@ -419,8 +419,8 @@ hitflag 				= MAF
 guardflag 			= M
 animtype 				= Hard
 air.animtype 			= Hard
-ground.TYPE 			= Low
-air.TYPE 				= Low
+ground.TYPE 			= High
+air.TYPE 				= High
 ;===============================
 sparkno 				= 1
 sparkxy 				= -p2dist x * 0.25, -50
@@ -434,8 +434,8 @@ down.hittime 			= 10
 ground.velocity 		= -5
 air.velocity 			= -2,-2
 ;===============================
-guard.ctrltime 		= 12
-guard.slidetime		= 12
+guard.hittime 		= 12
+guard.slidetime		= 10
 guard.velocity 		= -6
 airguard.velocity 		= -1,-1
 ;===============================
@@ -470,7 +470,7 @@ ctrl = 1
 
 ;---------------------------------------------------------------------------
 ;66A
-[Statedef 250]
+[Statedef 230]
 type    = S
 movetype= A
 physics = S
