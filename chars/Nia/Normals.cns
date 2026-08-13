@@ -80,7 +80,7 @@ hitsound 				= 5,0
 guardsound 			= 6,0
 ;===============================
 ground.hittime 		= 10
-ground.slidetime		= 10
+ground.slidetime		= 16
 air.hittime 			= 14
 down.hittime 			= 10
 ground.velocity 		= -5
