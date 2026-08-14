@@ -358,17 +358,6 @@ guardflag = H
 slot = 0
 time = 7
 
-[State -1, Crouch Parry]
-type = HitOverride
-triggerall = roundstate = 2 && Statetype != A
-triggerall = command = "holddown"
-trigger1 = Ctrl
-stateno = 6131
-attr = SCA, AA
-guardflag = L
-guardflag.not = H
-slot = 0
-time = 7
 
 ;Taunt
 [State -1]

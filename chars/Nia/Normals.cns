@@ -62,8 +62,8 @@ persistent 		= 0
 type 				= HitDef
 trigger1 				= !movecontact && !movereversed
 ;===============================
-damage 				= 250 * MAP(P4),0
-pausetime 			= 8,8 + 2 * enemy, movetype = A
+damage 				= 300 * MAP(P4),0
+pausetime 			= 10,10 + 2 * enemy, movetype = A
 getpower 				= 25 * MAP(GEAR.MUL),0
 ;===============================
 attr 				= S,NA
@@ -188,11 +188,10 @@ getpower = 30,0
 givepower = 20,0
 pausetime = 12,12
 guard.pausetime = 12,12
-sparkNo= s8010
-guard.sparkNo= -1 + 0 * (var(34) := 8000)
-sparkXY= -1 + 0 * (var(35) := 200), var(36):=-75
-hitsound = S1,26
-guardsound = S6,0
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound                = S1,26
+guardsound 			= 6,0
 ground.type = Low
 ground.slidetime = 12
 guard.hittime 	= 13
@@ -306,11 +305,10 @@ getpower = 30,0
 givepower = 20,0
 pausetime = 12,12
 guard.pausetime = 12,12
-sparkNo= s8010
-guard.sparkNo= -1 + 0 * (var(34) := 8000)
-sparkXY= -1 + 0 * (var(35) := 200), var(36):=-75
-hitsound = S1,26
-guardsound = S6,0
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound                = S1,26
+guardsound 			= 6,0
 ground.type = Low
 ground.slidetime = 20
 guard.slidetime = 18
@@ -404,15 +402,21 @@ type = velset
 trigger1 = animelem=4
 x = 8
 
+[State 610, Camera Shake]
+type = EnvShake
+trigger1 = AnimElem =4
+time = 10
+freq = 10
+ampl = 4
 
 
 [State 0, JORMUNGANDR DEFAULT HITDEF]
 type 				= HitDef
 trigger1 				= !movecontact && !movereversed
 ;===============================
-damage 				= 7 50 * MAP(P4),0
-pausetime 			= 8,8 + 2 * enemy, movetype = A
-getpower 				= 25 * MAP(GEAR.MUL),0
+damage 				= 750 
+pausetime 			= 12,12 + 2 * enemy, movetype = A
+getpower 				= 25 
 ;===============================
 attr 				= S,NA
 hitflag 				= MAF
@@ -424,7 +428,7 @@ air.TYPE 				= High
 ;===============================
 sparkno 				= 1
 sparkxy 				= -p2dist x * 0.25, -50
-hitsound 				= 5,0
+hitsound                = S1,26
 guardsound 			= 6,0
 ;===============================
 ground.hittime 		= 10
@@ -447,10 +451,7 @@ guard.cornerpush.veloff 	= -8
 fall 				= 0
 air.fall 				= 1
 ;===============================
-envshake.time 			= 8
-envshake.freq 			= 8
-envshake.ampl 			= 1
-envshake.phase 		= 0.5
+
 
 [State 0, Jump Cancel]
 type 		= MapSet
@@ -510,12 +511,12 @@ animtype  = Hard
 damage    = 700
 hitflag = MAF
 guardflag = L
-pausetime = 8,8
+pausetime = 10,10
 priority = 3, Hit  
-sparkNo= s8010
-guard.sparkNo=-1 + 0 * (var(34) := 8000)
-sparkXY=-1 + 0 * (var(35) := 200), var(36):=-75
-hitsound = S1,26
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= 5,0
+guardsound 			= 6,0
 guardsound = S6,0
 ground.type = Low
 ground.slidetime = 12
@@ -586,13 +587,12 @@ animtype  = Hard
 damage    = ceil(700)
 hitflag = MAF
 guardflag = L
-pausetime = 8,8
+pausetime = 10,10
 priority = 3, Hit 
-sparkNo= s8010
-guard.sparkNo=-1 + 0 * (var(34) := 8000)
-sparkXY=-1 + 0 * (var(35) := 200), var(36):=-75
-hitsound = S1,26
-guardsound = S6,0
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= 5,0
+guardsound 			= 6,0
 ground.type = Low
 ground.slidetime = 12
 guard.slidetime = 15
@@ -672,13 +672,12 @@ animtype  = Hard
 damage    = ceil(700)
 hitflag = MAF
 guardflag = L
-pausetime = 8,8
+pausetime = 10,10
 priority = 3, Hit 
-sparkNo= s8010
-guard.sparkNo=-1 + 0 * (var(34) := 8000)
-sparkXY=-1 + 0 * (var(35) := 200), var(36):=-75
-hitsound = S1,26
-guardsound = S6,0
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= 5,0
+guardsound 			= 6,0
 ground.type = Low
 ground.slidetime = 12
 guard.slidetime = 15
@@ -758,13 +757,12 @@ animtype  = Hard
 damage    = ceil(700)
 hitflag = MAF
 guardflag = L
-pausetime = 8,8
+pausetime = 10,10
 priority = 3, Hit 
-sparkNo= s8010
-guard.sparkNo=-1 + 0 * (var(34) := 8000)
-sparkXY=-1 + 0 * (var(35) := 200), var(36):=-75
-hitsound = S1,26
-guardsound = S6,0
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= 5,0
+guardsound 			= 6,0
 ground.type = Low
 ground.slidetime = 12
 guard.slidetime = 15
@@ -881,7 +879,7 @@ value = 320,var(0)
 
 [State 1200, 6]
 type = explod
-trigger1 = time = 16
+trigger1 = time = 17
 anim = 6000
 id = 6000
 pos = 0,5
@@ -892,11 +890,12 @@ ownpal = 1
 sprpriority = 5
 ignorehitpause = 1
 persistent = 0
+pos = 0,0
 scale = .20,.22
 
 [State 1200, 6]
 type = explod
-trigger1 = time = 16
+trigger1 = time = 17
 anim = 6001
 id = 6001
 pos = 0,0
@@ -906,6 +905,7 @@ bindtime = 1
 ownpal = 1
 ignorehitpause = 1
 persistent = 0
+pos = 0,0
 scale = .20,.22
 
 [State 3000,]
@@ -929,9 +929,10 @@ damage    = ceil(520)
 animtype  = Hard
 hitflag = MAFD
 guardflag = M
-pausetime = 9,9
-sparkno = s8010
-sparkxy = -10,-11
+pausetime = 12,12
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+guardsound 			= 6,0
 hitsound   = s1,10
 guardsound = S6,0
 ground.type = Low
@@ -1098,17 +1099,19 @@ getpower = 30,0
 givepower = 20,0
 pausetime = 14,14
 guard.pausetime = 14,14
-sparkNo= s8010
-guard.sparkNo=-1 + 0 * (var(34) := 8000)
-sparkXY= -1 + 0 * (var(35) := 200), var(36):= -100
-hitsound = S1,26
-guardsound = S6,0
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound                = S1,26
+guardsound 			= 6,0
 ground.type = High
 ground.slidetime = 30
 ground.hittime = 20
 air.hittime = 20
 ground.velocity = -2,-7
 air.velocity = -2,-5
+guard.ctrltime = 14
+guard.slidetime		= 10
+guard.velocity 		= -5
 airguard.velocity = -6,-2
 fall = 1
 fall.recover = 20
@@ -1172,13 +1175,12 @@ animtype = Medium
 damage = 475,0
 getpower = 30,0
 givepower = 20,0
-pausetime = 7,8
-guard.pausetime = 7,8
+pausetime = 12,12 
 sparkNo= s8010
-guard.sparkNo=-1 + 0 * (var(34) := 8000)
-sparkXY=-1 + 0 * (var(35) := 200), var(36):=-50
-hitsound = S1,26
-guardsound = S6,0
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound                = S1,26
+guardsound 			= 6,0
 ground.type = Trip
 ground.slidetime = 12
 ground.hittime = 14
@@ -1289,7 +1291,7 @@ down.hittime 			= 10
 ground.velocity 		= -5
 air.velocity 			= -2,-2
 ;===============================
-guard.ctrltime 		= 8
+guard.ctrltime 		= 2
 guard.slidetime		= 8
 guard.velocity 		= -6
 airguard.velocity 		= -1,-1
