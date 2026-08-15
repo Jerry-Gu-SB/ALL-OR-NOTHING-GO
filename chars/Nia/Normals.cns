@@ -17,7 +17,8 @@ value = 0,3
 
 [State 200, Sound]
 type = PlaySnd
-trigger1 = Time = 0
+trigger1 = Anim = 200
+trigger1 = Time = 1
 value = 200, Random % 3
 
 

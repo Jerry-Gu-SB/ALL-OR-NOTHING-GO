@@ -346,19 +346,6 @@ trigger2 = stateno = [600,610] && movecontact
 
 
 
-
-[State -1, Stand Parry]
-type = HitOverride
-triggerall = roundstate = 2 && Statetype != A
-triggerall = command = "fwd" && command != "back" && command != "up" && command != "down"
-trigger1 = Ctrl
-stateno = 6130
-attr = SCA, AA
-guardflag = H
-slot = 0
-time = 7
-
-
 ;Taunt
 [State -1]
 type = ChangeState
