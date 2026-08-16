@@ -110,7 +110,7 @@ trigger1 = var(1)
 [State -1]
 type = ChangeState
 value = 840
-triggerall = command = "214A"
+triggerall = command = "AB"
 triggerall = statetype = A
 trigger1 = ctrl
 trigger2 = stateno = 600 && movecontact
@@ -158,6 +158,18 @@ trigger4 = stateno = 400 && movecontact
 trigger5 = stateno = 410 && movecontact
 trigger6 = stateno = 430 && movecontact
 trigger7 = stateno = 101 
+
+
+;overhead
+[State -1]
+type = ChangeState
+value = 500
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "B" && command = "holdback"
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 101
 
 [State -1, 66L]
 type = ChangeState
@@ -306,16 +318,7 @@ trigger3 = (Stateno = [210,211]) && Movecontact
 trigger4 = (Stateno = [400,410]) && Movecontact
 trigger5 = stateno = 101
 
-;overhead
-[State -1]
-type = ChangeState
-value = 500
-triggerall = !ishelper
-triggerall = !AIlevel
-triggerall = command = "d" 
-triggerall = statetype != A
-trigger1 = ctrl
-trigger2 = stateno = 101
+
 
 ;j.A
 [State -1]
