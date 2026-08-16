@@ -17,11 +17,21 @@ sparkno = -1
 p1sprpriority = 1
 p1facing = 1
 p2facing = 1
-p1stateno = 841
 p2stateno = 860
 guard.dist = 0
 fall = 1
 
+[State 840, Drag Reverse]
+type = ChangeState
+trigger1 = MoveHit && command = "holdback"
+value = 842
+ctrl = 0
+
+[State 840, Drag Normal]
+type = ChangeState
+trigger1 = MoveHit
+value = 841
+ctrl = 0
 
 ;Air Grab Drag
 [Statedef 841]
