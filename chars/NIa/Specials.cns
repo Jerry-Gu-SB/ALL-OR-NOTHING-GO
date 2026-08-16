@@ -1,3 +1,164 @@
+;Air Grab
+[Statedef 840]
+type = A
+movetype = A
+physics = A
+juggle = 0 
+anim = 840
+ctrl = 0
+
+[State 840, 1]
+type = HitDef
+trigger1 = Time = 0
+attr = S, NT
+hitflag = A
+priority = 1, Miss
+sparkno = -1
+p1sprpriority = 1
+p1facing = 1
+p2facing = 1
+p1stateno = 841
+p2stateno = 860
+guard.dist = 0
+fall = 1
+
+
+;Air Grab Drag
+[Statedef 841]
+type    = S
+movetype = A
+physics = N
+velset = 0,0
+ctrl = 0
+anim = 850
+sprPriority = 4
+
+[State 841, 0]
+type = TargetFacing
+trigger1 = time = 0
+value = -1
+
+[State 841, Voice Line]
+type = PlaySnd
+trigger1 = time = 0
+value = 1600, Random % 4
+
+[State 841, Grab Sound]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 1, 6
+
+[State 841, Throw]
+type = TargetState
+trigger1 = time = 0
+value = 860
+
+[State 841,1]
+type = TargetBind
+trigger1 = AnimElem = 1
+pos = 50, 0
+postype = P1
+time = -1
+
+[State 841, Vel]
+type = veladd
+trigger1 = animelemno(0) = 3
+y = .4
+
+[State 841]
+type = ChangeState
+trigger1 = Pos Y >= 0 
+trigger2 =  Time >= 55
+value = 851
+
+; Air Grab End
+[Statedef 851]
+type = A
+movetype = A
+physics = N
+juggle = 0
+anim = 851
+ctrl = 0
+velset = 0,0
+
+[State 851, VelAdd Jump Aftermath]
+type = VelAdd
+trigger1 = time = 15
+y = -5
+x = -5
+
+[State 851, TargetDrop]
+type = TargetDrop
+trigger1 = time = 15
+
+[State 851, Set Air Physics]
+type = StateTypeSet
+trigger1 = AnimElem = 4
+physics = A
+
+[State 851, EnvShake]
+type = EnvShake
+trigger1 = AnimElem = 1
+time = 15
+
+[State 851, 1]
+type = HitDef
+trigger1 = AnimElem = 1
+attr = S, SA
+animtype = up
+hitflag = MAF
+guardflag = MA
+snap = 95,0
+priority = 5,Hit
+pausetime = 0,1
+sparkNo= s8010
+guard.sparkNo=-1 + 0 * (var(34) := 8000)
+sparkXY=-1 + 0 * (var(35) := 200), var(36):=-50
+hitsound = S0,17
+guardsound =-1
+damage= 1600
+guard.dist = 0
+givepower = 35, 35
+ground.type = low
+ground.slidetime = 40
+ground.hittime  = 40
+guard.ctrltime = 40
+ground.velocity = -3,0
+air.velocity = -3,0
+yaccel = .55
+fall = 1
+air.fall = 1
+fall.recover = 0
+air.recover = 0
+ID = 851
+numhits=0
+givepower = 24,24
+
+; Air Grabbed
+[Statedef 860]
+type = A
+movetype = H
+physics = N
+velset = 0,0
+anim = 860
+ctrl = 0
+
+[State 861, PlaySnd]
+type = PlaySnd
+trigger1 = HitOver
+value = 1,6
+
+[State 861, PosSet]
+type = PosSet
+trigger1 = HitOver
+x = 0
+y = 0
+
+[State 861, ChangeState]
+type = ChangeState
+trigger1 = HitOver
+value = 5111
+
 ;Light Lariat
 [Statedef 1000]
 type = A
