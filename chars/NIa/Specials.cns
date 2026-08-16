@@ -66,7 +66,7 @@ value = 860
 [State 841,1]
 type = TargetBind
 trigger1 = AnimElem = 1
-pos = 50, 0
+pos = 0, -50
 postype = P1
 time = -1
 
@@ -76,6 +76,58 @@ trigger1 = animelemno(0) = 3
 y = .4
 
 [State 841]
+type = ChangeState
+trigger1 = Pos Y >= 0 
+trigger2 =  Time >= 55
+value = 851
+
+;Air Grab Drag Reversed
+[Statedef 842]
+type    = S
+movetype = A
+physics = N
+velset = 0,0
+ctrl = 0
+anim = 850
+sprPriority = 4
+
+[State 842, Turn]
+type = Turn
+trigger1 = time = 0
+
+[State 842, 0]
+type = TargetFacing
+trigger1 = time = 0
+value = -1
+
+[State 842, Voice Line]
+type = PlaySnd
+trigger1 = time = 0
+value = 1600, Random % 4
+
+[State 842, Grab Sound]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 1, 6
+
+[State 842, Throw]
+type = TargetState
+trigger1 = time = 0
+value = 860
+
+[State 842,1]
+type = TargetBind
+trigger1 = AnimElem = 1
+pos = 0, -50
+postype = P1
+time = -1
+
+[State 842, Vel]
+type = veladd
+trigger1 = animelemno(0) = 3
+y = .4
+
+[State 842]
 type = ChangeState
 trigger1 = Pos Y >= 0 
 trigger2 =  Time >= 55
@@ -96,6 +148,13 @@ type = VelAdd
 trigger1 = time = 15
 y = -5
 x = -5
+
+[State 851]
+type = TargetBind
+trigger1 = AnimElem = 1
+pos = 50, 0
+postype = P1
+time = -1
 
 [State 851, TargetDrop]
 type = TargetDrop
@@ -161,7 +220,6 @@ value = 1,6
 [State 861, PosSet]
 type = PosSet
 trigger1 = HitOver
-x = 0
 y = 0
 
 [State 861, ChangeState]
