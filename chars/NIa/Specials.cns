@@ -78,7 +78,7 @@ y = .4
 [State 841]
 type = ChangeState
 trigger1 = Pos Y >= 0 
-trigger2 =  Time >= 55
+trigger1 = Vel Y > 0
 value = 851
 
 ;Air Grab Drag Reversed
@@ -130,7 +130,6 @@ y = .4
 [State 842]
 type = ChangeState
 trigger1 = Pos Y >= 0 
-trigger2 =  Time >= 55
 value = 851
 
 ; Air Grab End
@@ -142,6 +141,19 @@ juggle = 0
 anim = 851
 ctrl = 0
 velset = 0,0
+
+[State 851, 1]
+type = HitDef
+trigger1 				= !movecontact && !movereversed
+attr 				= A,NT
+hitflag 				= MAFD
+damage = 2000
+priority = 1, Miss
+sparkno = -1
+p1sprpriority = 1
+p1facing = 1
+p2facing = 1
+p2stateno = 5250
 
 [State 851, VelAdd Jump Aftermath]
 type = VelAdd
@@ -158,7 +170,12 @@ time = -1
 
 [State 851, TargetDrop]
 type = TargetDrop
-trigger1 = time = 15
+trigger1 = AnimElem = 2
+
+[State 851, Hit Sound]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 1, 6
 
 [State 851, Set Air Physics]
 type = StateTypeSet
@@ -170,62 +187,14 @@ type = EnvShake
 trigger1 = AnimElem = 1
 time = 15
 
-[State 851, 1]
-type = HitDef
-trigger1 = AnimElem = 1
-attr = S, SA
-animtype = up
-hitflag = MAF
-guardflag = MA
-snap = 95,0
-priority = 5,Hit
-pausetime = 0,1
-sparkNo= s8010
-guard.sparkNo=-1 + 0 * (var(34) := 8000)
-sparkXY=-1 + 0 * (var(35) := 200), var(36):=-50
-hitsound = S0,17
-guardsound =-1
-damage= 1600
-guard.dist = 0
-givepower = 35, 35
-ground.type = low
-ground.slidetime = 40
-ground.hittime  = 40
-guard.ctrltime = 40
-ground.velocity = -3,0
-air.velocity = -3,0
-yaccel = .55
-fall = 1
-air.fall = 1
-fall.recover = 0
-air.recover = 0
-ID = 851
-numhits=0
-givepower = 24,24
-
 ; Air Grabbed
 [Statedef 860]
-type = A
+type = L
 movetype = H
-physics = N
+physics = A
 velset = 0,0
 anim = 860
 ctrl = 0
-
-[State 861, PlaySnd]
-type = PlaySnd
-trigger1 = HitOver
-value = 1,6
-
-[State 861, PosSet]
-type = PosSet
-trigger1 = HitOver
-y = 0
-
-[State 861, ChangeState]
-type = ChangeState
-trigger1 = HitOver
-value = 5111
 
 ;Light Lariat
 [Statedef 1000]
