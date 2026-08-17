@@ -166,7 +166,7 @@ type = ChangeState
 value = 500
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "B" && command = "holdback"
+triggerall = command = "c" && command = "holdback"
 triggerall = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 101
