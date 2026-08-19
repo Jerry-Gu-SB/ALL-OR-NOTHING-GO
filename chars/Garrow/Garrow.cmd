@@ -692,7 +692,7 @@ trigger2 = p2movetype != H
 [State -1]
 type = ChangeState
 value = 200
-triggerall = command = "x"
+triggerall = command = "a"
 triggerall = command != "holddown"
 trigger1 = statetype != A
 trigger1 = ctrl
@@ -706,7 +706,7 @@ trigger3 = stateno = 400 && movecontact
 type = ChangeState
 value = 210
 triggerall = stateno!=40
-triggerall = command = "y"
+triggerall = command = "b"
 triggerall = command != "holddown"
 trigger1 = statetype != A
 trigger1 = ctrl
@@ -719,7 +719,7 @@ trigger4 = stateno = 410 && movecontact
 [State -1, Stand Light Kick]
 type = ChangeState
 value = 230
-triggerall = command = "a"
+triggerall = command = "x"
 triggerall = command != "holddown"
 trigger1 = statetype = S
 trigger1 = ctrl
@@ -731,7 +731,7 @@ trigger3 = (stateno = 230) && time > 9
 [State -1, Standing Strong Kick]
 type = ChangeState
 value = 240
-triggerall = command = "b"
+triggerall = command = "y"
 triggerall = command != "holddown"
 trigger1 = statetype = S
 trigger1 = ctrl
@@ -752,7 +752,7 @@ trigger1 = ctrl
 [State -1]
 type = ChangeState
 value = 400
-triggerall = command = "x"
+triggerall = command = "a"
 triggerall = command = "holddown"
 trigger1 = statetype != A
 trigger1 = ctrl
@@ -764,7 +764,7 @@ trigger3 = stateno = 400 && movecontact
 [State -1, 2B]
 type = ChangeState
 value = 410
-triggerall = command = "y"
+triggerall = command = "b"
 triggerall = command = "holddown"
 trigger1 = statetype != A
 trigger1 = ctrl
@@ -777,7 +777,7 @@ trigger4 = stateno = 400 && movecontact
 [State -1, Crouching Light Kick]
 type = ChangeState
 value = 430
-triggerall = command = "a"
+triggerall = command = "x"
 triggerall = command = "holddown"
 trigger1 = statetype = C
 trigger1 = ctrl
@@ -789,7 +789,7 @@ trigger2 = (time > 9) || (movecontact && time > 5)
 [State -1, Crouching Strong Kick]
 type = ChangeState
 value = 440
-triggerall = command = "b"
+triggerall = command = "y"
 triggerall = command = "holddown"
 trigger1 = statetype = C
 trigger1 = ctrl
