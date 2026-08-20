@@ -487,6 +487,23 @@ trigger3 = stateno = 1310 || stateno = 1330 ;From blocking
 var(1) = 1
 
 ;---------------------------------------------------------------------------
+; Throw
+[State -1, Throw]
+type = ChangeState
+value = 800
+triggerall = command = "AB"
+triggerall = statetype = S
+triggerall = ctrl
+triggerall = stateno != 100
+trigger1 = command = "holdfwd"
+trigger1 = (p2statetype = S) || (p2statetype = C)
+trigger1 = p2movetype != H
+trigger2 = command = "holdback"
+trigger2 = (p2statetype = S) || (p2statetype = C)
+trigger2 = p2movetype != H
+
+
+;---------------------------------------------------------------------------
 ;Fast Kung Fu Knee (1/3 super bar)
 [State -1, Fast Kung Fu Knee]
 type = ChangeState
@@ -667,22 +684,6 @@ trigger1 = command = "BB"
 trigger1 = statetype = S
 trigger1 = ctrl
 
-;---------------------------------------------------------------------------
-; Throw
-[State -1, Throw]
-type = ChangeState
-value = 800
-triggerall = command = "b"
-triggerall = statetype = S
-triggerall = ctrl
-triggerall = stateno != 100
-trigger1 = command = "holdfwd"
-trigger1 = (p2statetype = S) || (p2statetype = C)
-trigger1 = p2movetype != H
-trigger2 = command = "holdback"
-trigger2 = p2bodydist X < 5
-trigger2 = (p2statetype = S) || (p2statetype = C)
-trigger2 = p2movetype != H
 
 
 
@@ -758,6 +759,7 @@ trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 400 && movecontact
+
 
 ;---------------------------------------------------------------------------
 ;Crouching Strong Punch
