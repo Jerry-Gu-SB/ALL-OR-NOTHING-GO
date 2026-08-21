@@ -132,19 +132,18 @@ triggerall = command = "214B"
 triggerall = statetype != A
 trigger1 = var(1)
 
+;3C - Antiair Grab
 [State -1, 3C]
 type = ChangeState
-value = 690
+value = 700
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "C"
-triggerall = command = "holddown"
-triggerall = command = "holdfwd"
+triggerall = command = "C" && command = "holddown" && command = "holdfwd"
 triggerall = statetype != A
-trigger1 = (stateno = [200,233] || stateno = [400,440]) && movecontact
+trigger1 = ctrl || (stateno = [200,233] || stateno = [400,440]) && movecontact
 trigger2 = stateno = 101 
 
-;Sweap
+;Sweep
 [State -1]
 type = ChangeState
 value = 440

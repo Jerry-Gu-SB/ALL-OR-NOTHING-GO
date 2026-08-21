@@ -1215,7 +1215,7 @@ Clsn1: 1
 1600,16, -1,1, 8
 1600,17, 0,0, 9
 
-; 3C VICTUM
+; 3C VICTIM
 [Begin Action 715]
 Clsn2: 2
   Clsn2[0] = -79, -44, 99, 197
