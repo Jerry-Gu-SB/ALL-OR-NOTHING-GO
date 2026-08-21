@@ -156,7 +156,8 @@ trigger3 = stateno = 210 && movecontact
 trigger4 = stateno = 400 && movecontact
 trigger5 = stateno = 410 && movecontact
 trigger6 = stateno = 430 && movecontact
-trigger7 = stateno = 101 
+trigger7 = stateno = 220 && movecontact
+trigger8 = stateno = 101 
 
 
 ;overhead
@@ -186,7 +187,7 @@ type = ChangeState
 value = 230
 triggerall = command = "A" && command = "holdfwd"
 triggerall = statetype != A
-trigger1 = (stateno = [200,210] || stateno = [400,410]) && movecontact
+trigger1 = (stateno = [200,220] || stateno = [400,410]) && movecontact
 
 
 [State -1, 66H]
@@ -305,7 +306,7 @@ trigger5 = stateno = 101
 ;5C
 [State -1]
 type = ChangeState
-value = 250
+value = 220
 triggerall = !ishelper
 triggerall = !AIlevel
 triggerall = command = "C"
@@ -314,7 +315,7 @@ trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = (Stateno = [200,210]) && Movecontact
 trigger3 = (Stateno = [210,211]) && Movecontact
-trigger4 = (Stateno = [400,410]) && Movecontact
+trigger4 = (Stateno = [400,440]) && Movecontact
 trigger5 = stateno = 101
 
 

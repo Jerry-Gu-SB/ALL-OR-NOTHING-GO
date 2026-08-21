@@ -74,6 +74,7 @@ animtype 				= Light
 air.animtype 			= Light
 ground.TYPE 			= High
 air.TYPE 				= High
+priority = 1, Hit 
 ;===============================
 sparkno 				= 1
 sparkxy 				= -p2dist x * 0.25, -50
@@ -195,9 +196,8 @@ hitsound                = S1,26
 guardsound 			= 6,0
 ground.type = Low
 ground.slidetime = 12
-guard.hittime 	= 13
+guard.hittime 	= 12
 ground.hittime = 18 + 4*var(9)
-guard.hittime =12
 air.hittime = 18
 yaccel = .53
 ground.velocity = -3,0
@@ -376,7 +376,7 @@ ctrl = 1
 
 ;---------------------------------------------------------------------------
 ;5C
-[Statedef 250]
+[Statedef 220]
 type = S
 movetype= A
 physics = S
@@ -426,6 +426,7 @@ animtype 				= Hard
 air.animtype 			= Hard
 ground.TYPE 			= High
 air.TYPE 				= High
+priority = 3, Hit 
 ;===============================
 sparkno 				= 1
 sparkxy 				= -p2dist x * 0.25, -50
@@ -439,9 +440,9 @@ down.hittime 			= 10
 ground.velocity 		= -5
 air.velocity 			= -2,-2
 ;===============================
-guard.hittime 		= 12
-guard.slidetime		= 10
-guard.velocity 		= -6
+guard.hittime 		= 15
+guard.slidetime		= 15
+guard.velocity 		= -8
 airguard.velocity 		= -1,-1
 ;===============================
 ground.cornerpush.veloff	= -4
@@ -1017,6 +1018,7 @@ air.animtype 			= Light
 ground.TYPE 			= High
 air.TYPE 				= High
 p2facing				= 1
+priority = 1, Hit 
 ;===============================
 sparkno 				= 1
 sparkxy 				= -p2dist x * 0.25, -50
@@ -1279,6 +1281,7 @@ animtype 				= Light
 air.animtype 			= Light
 ground.TYPE 			= High
 air.TYPE 				= High
+priority = 1, Hit 
 ;===============================
 sparkno 				= 1
 sparkxy 				= -p2dist x * 0.25, -50

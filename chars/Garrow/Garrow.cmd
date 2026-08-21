@@ -504,29 +504,6 @@ trigger2 = p2movetype != H
 
 
 ;---------------------------------------------------------------------------
-;Fast Kung Fu Knee (1/3 super bar)
-[State -1, Fast Kung Fu Knee]
-type = ChangeState
-value = 1070
-triggerall = command = "FF_ab"
-triggerall = power >= 330
-trigger1 = var(1) ;Use combo condition (above)
-
-;---------------------------------------------------------------------------
-;Light Kung Fu Knee
-[State -1, Light Kung Fu Knee]
-type = ChangeState
-value = 1050
-triggerall = command = "FF_a"
-trigger1 = var(1) ;Use combo condition (above)
-
-;---------------------------------------------------------------------------
-;Strong Kung Fu Knee
-[State -1, Strong Kung Fu Knee]
-type = ChangeState
-value = 1060
-triggerall = command = "FF_b"
-trigger1 = var(1) ;Use combo condition (above)
 
 ;---------------------------------------------------------------------------
 ;Fast Kung Fu Palm (1/3 super bar)
