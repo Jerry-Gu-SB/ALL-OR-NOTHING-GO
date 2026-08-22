@@ -1887,7 +1887,7 @@ facep2 = 1
 type = HitDef
 trigger1 = Time = 0
 attr = S, NT
-hitflag = A
+hitflag = AF
 priority = 1, Miss
 sparkno = -1
 p1sprpriority = 1
