@@ -955,12 +955,12 @@ guard.dist = 0
 fall = 1
 
 [State 1600, HOD Heavy]
-type = HitDef
+type = HitDef 
 nochainID = 8000
 trigger1 = !movehit && !movereversed
 triggerall = enemynear, movetype = H
 attr = S, ST         
-hitflag = MAF
+hitflag = MAF+
 priority = 1, Miss    
 sparkno = -1        
 sparkxy = 0,-50
@@ -1147,7 +1147,7 @@ velset = 0, 0
 anim = 1604
 ctrl = 0
 
-[State 1610, 1]
+[State 1600, 1]
 type = HitDef
 trigger1 = Time = 0
 attr = S, NT
@@ -1157,27 +1157,29 @@ sparkno = -1
 p1sprpriority = 1
 p1facing = 1
 p2facing = 1
-p1stateno = 1611
-p2stateno = 1612
+p1stateno = 1601
+p2stateno = 1602
 guard.dist = 0
 fall = 1
 
-[State 1610, HOD Heavy]
+[State 1600, HOD Heavy]
 type = HitDef
 nochainID = 8000
 trigger1 = !movehit && !movereversed
 triggerall = enemynear, movetype = H
 attr = S, ST         
-hitflag = MAF
+hitflag = MAF+
 priority = 1, Miss    
 sparkno = -1        
 sparkxy = 0,-50
 p1sprpriority = 1     
-p1facing = 1          
-p1stateno = 1611
-p2stateno = 1612
+p1facing = 1    
+p2facing = 1      
+p1stateno = 1601
+p2stateno = 1602
 fall = 1  
 fall.recover = 0
+guard.dist = 0
 
 
 [State 1, ]
@@ -1386,8 +1388,7 @@ juggle = 0
 velset = 0, 0
 anim = 1605
 ctrl = 0
-
-[State 1620, 1]
+[State 1600, 1]
 type = HitDef
 trigger1 = Time = 0
 attr = S, NT
@@ -1397,25 +1398,26 @@ sparkno = -1
 p1sprpriority = 1
 p1facing = 1
 p2facing = 1
-p1stateno = 1621
-p2stateno = 1622
+p1stateno = 1601
+p2stateno = 1602
 guard.dist = 0
 fall = 1
 
-[State 1620, HOD Heavy]
+[State 1600, HOD Heavy]
 type = HitDef
 nochainID = 8000
 trigger1 = !movehit && !movereversed
 triggerall = enemynear, movetype = H
 attr = S, ST         
-hitflag = MAF
+hitflag = MAF+
 priority = 1, Miss    
 sparkno = -1        
 sparkxy = 0,-50
 p1sprpriority = 1     
-p1facing = 1          
-p1stateno = 1621      
-p2stateno = 1622        
+p1facing = 1    
+p2facing = 1      
+p1stateno = 1601
+p2stateno = 1602
 fall = 1  
 fall.recover = 0
 guard.dist = 0

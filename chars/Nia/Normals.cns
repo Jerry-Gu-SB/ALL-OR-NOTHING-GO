@@ -884,6 +884,7 @@ type = explod
 trigger1 = time = 17
 anim = 6000
 id = 6000
+postype = p1
 pos = 0,5
 facing = 1
 sprpriority = -1
@@ -892,7 +893,6 @@ ownpal = 1
 sprpriority = 5
 ignorehitpause = 1
 persistent = 0
-pos = 0,0
 scale = .20,.22
 
 [State 1200, 6]
@@ -907,6 +907,7 @@ bindtime = 1
 ownpal = 1
 ignorehitpause = 1
 persistent = 0
+postype = p1
 pos = 0,0
 scale = .20,.22
 
@@ -1245,86 +1246,9 @@ y = -3
 [State 220]
 type = ChangeState
 trigger1 = Time = 14
-value = 501
+value = 50
 ctrl = 0
 
-;---------------------------------------------------------------------------
-;overhead attack
-[Statedef 501]
-type    = A
-movetype= A
-physics = A
-juggle  = 2
-poweradd= 25
-ctrl = 0
-anim = 601
-sprpriority = 2
-
-[State 200, 2]
-type = PlaySnd
-trigger1 = time = 0
-value = 0, 4
-
-
-[State 0, JORMUNGANDR DEFAULT HITDEF]
-type 				= HitDef
-trigger1 				= !movecontact && !movereversed
-;===============================
-damage 				= 250 * MAP(P4),0
-pausetime 			= 8,8 + 2 * enemy, movetype = A
-getpower 				= 25 * MAP(GEAR.MUL),0
-;===============================
-attr 				= S,NA
-hitflag 				= MAF
-guardflag 			= H
-animtype 				= Light
-air.animtype 			= Light
-ground.TYPE 			= High
-air.TYPE 				= High
-priority = 1, Hit 
-;===============================
-sparkno 				= 1
-sparkxy 				= -p2dist x * 0.25, -50
-hitsound 				= 5,0
-guardsound 			= 6,0
-;===============================
-ground.hittime 		= 10
-ground.slidetime		= 10
-air.hittime 			= 14
-down.hittime 			= 10
-ground.velocity 		= -5
-air.velocity 			= -2,-2
-;===============================
-guard.ctrltime 		= 2
-guard.slidetime		= 8
-guard.velocity 		= -6
-airguard.velocity 		= -1,-1
-;===============================
-ground.cornerpush.veloff	= -4
-air.cornerpush.veloff 	= -4
-down.cornerpush.veloff 	= -8
-guard.cornerpush.veloff 	= -8
-;===============================
-fall 				= 0
-air.fall 				= 1
-;===============================
-envshake.time 			= 8
-envshake.freq 			= 8
-envshake.ampl 			= 1
-envshake.phase 		= 0.5
-
-[State 200, Damage Scaling]
-type = varset
-trigger1 = movehit
-trigger1 = !moveguarded
-fvar(4) = fvar(4)*0.90
-ignorehitpause = 1
-persistent = 0
-
-[State 600, 3]
-type = changestate
-trigger1 = AnimTime = 0
-value = 51
 
 
 ;j.A
