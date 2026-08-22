@@ -265,7 +265,7 @@ type = HitDef
 trigger1 = anim = 1001 && !movecontact
 attr = S,NA
 hitflag = MAF
-guardflag = M
+guardflag = MA
 animtype = Medium
 damage = 360,0
 getpower = 30,0
