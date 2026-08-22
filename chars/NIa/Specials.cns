@@ -1157,12 +1157,12 @@ sparkno = -1
 p1sprpriority = 1
 p1facing = 1
 p2facing = 1
-p1stateno = 1601
-p2stateno = 1602
+p1stateno = 1611
+p2stateno = 1612
 guard.dist = 0
 fall = 1
 
-[State 1600, HOD Heavy]
+[State 1610, HOD Heavy]
 type = HitDef
 nochainID = 8000
 trigger1 = !movehit && !movereversed
@@ -1175,8 +1175,8 @@ sparkxy = 0,-50
 p1sprpriority = 1     
 p1facing = 1    
 p2facing = 1      
-p1stateno = 1601
-p2stateno = 1602
+p1stateno = 1611
+p2stateno = 1612
 fall = 1  
 fall.recover = 0
 guard.dist = 0
@@ -1388,6 +1388,7 @@ juggle = 0
 velset = 0, 0
 anim = 1605
 ctrl = 0
+
 [State 1600, 1]
 type = HitDef
 trigger1 = Time = 0
@@ -1398,12 +1399,12 @@ sparkno = -1
 p1sprpriority = 1
 p1facing = 1
 p2facing = 1
-p1stateno = 1601
-p2stateno = 1602
+p1stateno = 1611
+p2stateno = 1612
 guard.dist = 0
 fall = 1
 
-[State 1600, HOD Heavy]
+[State 1610, HOD Heavy]
 type = HitDef
 nochainID = 8000
 trigger1 = !movehit && !movereversed
@@ -1414,10 +1415,9 @@ priority = 1, Miss
 sparkno = -1        
 sparkxy = 0,-50
 p1sprpriority = 1     
-p1facing = 1    
-p2facing = 1      
-p1stateno = 1601
-p2stateno = 1602
+p1facing = 1          
+p1stateno = 1611
+p2stateno = 1612
 fall = 1  
 fall.recover = 0
 guard.dist = 0
