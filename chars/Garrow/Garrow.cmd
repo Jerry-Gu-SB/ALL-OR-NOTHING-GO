@@ -693,6 +693,19 @@ trigger3 = stateno = 400 && movecontact
 trigger4 = stateno = 410 && movecontact
 
 ;---------------------------------------------------------------------------
+;assault
+[State -1]
+type = ChangeState
+value = 500
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "d"
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 101
+
+
+;---------------------------------------------------------------------------
 ;Stand Light Kick
 [State -1, Stand Light Kick]
 type = ChangeState

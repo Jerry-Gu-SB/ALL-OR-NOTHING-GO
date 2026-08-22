@@ -1268,7 +1268,7 @@ statetype = A
 [State 220]
 type = Velset
 trigger1 = 1
-x = P2Dist X/43
+x = P2Dist X/30
 y = -3
 
 [State 220]
@@ -1413,7 +1413,7 @@ type = HitDef
 p2facing 	= 1
 trigger1 	= !movecontact && !MoveReversed
 attr 	= A, NA
-damage 	= 350 * MAP(P4)
+damage 	= 450 * MAP(P4)
 hitflag 	= MAF
 guardflag 	= HA
 pausetime 	= 12,12 + 2 * (enemy, movetype = A)
@@ -1503,7 +1503,7 @@ p2facing 	= 1
 trigger1 	= !movecontact && !MoveReversed
 hitonce 	= 1
 attr 	= A, NA
-damage 	= 470 * MAP(P4)
+damage 	= 570 * MAP(P4)
 hitflag 	= MAF
 guardflag 	= MA
 pausetime 	= 14,14 + 4 * (enemy, movetype = A)
