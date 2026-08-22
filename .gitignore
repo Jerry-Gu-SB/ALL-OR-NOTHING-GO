@@ -1,6 +1,6 @@
-cache/*
+cache/
 
 chars/ffs_0  # this will ignore this folder
 *.log   # this will ignore ANY .log file
-save/* # Auto generated file. Needs to not be generated to allow for a fresh pull to work
-cache/* # Also auto generated and should not be versioned
+save/ # Auto generated file. Needs to not be generated to allow for a fresh pull to work
+cache/ # Also auto generated and should not be versioned
