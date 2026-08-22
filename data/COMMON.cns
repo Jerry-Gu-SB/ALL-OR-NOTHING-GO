@@ -6278,7 +6278,7 @@ value = 0
 type = NotHitBy
 trigger1 = (stateno = [120,155]) && stateno != [135,137]
 value = ,NT,ST,HT
-time = 10
+time = 6
 ignorehitpause = 1
 ;persistent = 
 
