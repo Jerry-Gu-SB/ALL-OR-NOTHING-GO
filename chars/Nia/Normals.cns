@@ -1215,7 +1215,7 @@ ctrl = 1
  
 
 ;---------------------------------------------------------------------------
-;overhead
+;assault
 [Statedef 500]
 type    = S
 movetype= I
@@ -1227,10 +1227,35 @@ velset = 0,0
 anim = 42
 sprpriority = 2
 
+[State 1120, Afterimage]
+type = AfterImage
+trigger1 = Time = 0
+length = 13
+PalBright   = 0, 20, 60
+PalContrast = 10, 60, 140
+PalAdd      = -10,-10,-10
+PalMul      = .50,.75,1.00
+TimeGap  = 1
+FrameGap = 2
+Trans = Add
+time = 2
+
+[State 1120, Afterimage]
+type = AfterImageTime
+trigger1 = AnimTime < -2
+time = 2
+
+[State 1120, Blink blue ]
+type = PalFX
+trigger1 = Time = 0
+time = 20
+add = 0,16,32
+sinadd = 5,32,64,3
+
 [State 220]
 type = PlaySnd
 trigger1 = Time = 0
-value = 50, 0
+value = 0, 2
 
 [State 220]
 type = statetypeset

@@ -160,7 +160,7 @@ trigger7 = stateno = 220 && movecontact
 trigger8 = stateno = 101 
 
 
-;overhead
+;assault
 [State -1]
 type = ChangeState
 value = 500
