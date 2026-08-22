@@ -1890,7 +1890,7 @@ facep2 = 1
 type = HitDef
 trigger1 = Time = 0
 attr = S, NT
-hitflag = A
+hitflag = AF
 priority = 1, Miss
 sparkno = -1
 p1sprpriority = 1
@@ -1962,24 +1962,25 @@ type = TargetBind
 trigger1 = AnimElem = 6
 pos = 93.5, 16.75
 
-[State 0]
+[State 710, Deal Damage]
+type = TargetLifeAdd
+trigger1 = AnimElem = 5
+value = -2500
+
+[State 710]
 type = Zoom
 trigger1 = !movehit
 scale = exp(0.080 * ln(time))
 pos = pos x,0
 ignorehitpause = 1
 
-[State 710, Deal Damage]
-type = TargetLifeAdd
-trigger1 = AnimElem = 7
-value = -2500
 
 [State 1611, Grab Sound]
 type = PlaySnd
 trigger1 = AnimElem = 8
 value = 1, 4
 
-[State 710, Throw]
+[State 710, ThrowAftermath Traansition]
 type = TargetState
 trigger1 = AnimElem = 6
 value = 721
