@@ -70,7 +70,7 @@ trigger2 = ctrl ||stateno = 100 && time > 3
 ;Hyper Moves
 ;---------------------------------------------------
 
-;Ex Lariat
+;Ex Maximum Missile
 [State -1]
 type = ChangeState
 value = 1019
@@ -84,14 +84,14 @@ trigger1 = var(1)
 
 
 
-;236A
+;236A - Maximum Missile
 [State -1]
 type = ChangeState
 value = 1000
 triggerall = command = "236A" && statetype != A
 trigger1 = var(1) || ctrl
 
-;236B
+;236B - Maximum Missile
 [State -1]
 type = ChangeState
 value = 1010
@@ -115,6 +115,21 @@ triggerall = statetype = A
 trigger1 = ctrl
 trigger2 = stateno = 600 && movecontact
 trigger3 = stateno = 620 && movecontact
+
+
+;j214A - Crash Landing
+[State -1]
+type = ChangeState
+value = 1300
+triggerall = command = "214A" && statetype = A
+trigger1 = var(1)
+
+;j214B - Crash Landing
+[State -1]
+type = ChangeState
+value = 1310
+triggerall = command = "214B" && statetype = A
+trigger1 = var(1)
 
 ;214A - Hug of Destruction
 [State -1]

@@ -927,8 +927,248 @@ trigger1 = animtime = 0
 value = 0
 ctrl = 1
 
+; Crash Landing Light
+[Statedef 1300]
+type    = A
+movetype= A
+physics = A
+juggle = 0
+sprpriority = 2
+anim = 1300
+ctrl = 0
 
+[State 0, Pick Random]
+type = VarRandom
+trigger1 = Time = 11
+v = 0
+range = 0,1
 
+[State 0]
+type = PlaySnd
+trigger1 = Time = 11
+value = 320,var(0)
+
+[State 620, 2]
+type = velset
+trigger1 = animelemtime(1) >= 0
+trigger1 = animelemTime(4) < 0
+x = -0.6
+y = -1.5
+
+[State 620, 2]
+type = veladd
+trigger1 = animelemTime(5) > 0
+x = 4
+y = 4
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= !movecontact && !movereversed
+;===============================
+damage 				= 300 
+pausetime 			= 10,10 + 2 * enemy, movetype = A
+getpower 				= 25 * MAP(GEAR.MUL),0
+;===============================
+attr 				= A,NA
+hitflag 				= MAF
+guardflag 			= MA
+animtype 				= Light
+air.animtype 			= Light
+ground.TYPE 			= High
+air.TYPE 				= High
+priority = 1, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= 5,0
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 16
+ground.slidetime		= 10
+air.hittime 			= 14
+down.hittime 			= 10
+ground.velocity 		= -5
+air.velocity 			= -2,-2
+;===============================
+guard.ctrltime 		= 11
+guard.slidetime		= 8
+guard.velocity 		= -6
+airguard.velocity 		= -1,-1
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 0
+air.fall 				= 1
+;===============================
+envshake.time 			= 8
+envshake.freq 			= 8
+envshake.ampl 			= 1
+envshake.phase 		= 0.5
+
+[State 600, 3]
+type = changestate
+trigger1 = pos y >= 0 
+value = 1301
+
+;---------------------------------------------------------------------------
+; Landing
+[Statedef 1301]
+type    = L
+movetype= H
+physics = S
+ctrl = 0
+anim = 1301
+
+[State 611, EnvShake]
+type = FallEnvShake
+trigger1 = Time = 0
+
+[State 611, Var] ;Save fall velocity
+type = VarSet
+trigger1 = Time = 0
+sysvar(1) = floor(vel y)
+
+[State 52, 1]
+type = posset
+trigger1 = !time
+y = 0
+
+[State 52, 1]
+type = VelSet
+trigger1 = Time = 0
+x = 0.4
+y = 0
+
+[State 611,2]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Crash Landing medium
+[Statedef 1310]
+type    = A
+movetype= A
+physics = A
+juggle = 0
+sprpriority = 2
+anim = 1310
+ctrl = 0
+
+[State 0, Pick Random]
+type = VarRandom
+trigger1 = Time = 23
+v = 0
+range = 0,1
+
+[State 0]
+type = PlaySnd
+trigger1 = Time = 23
+value = 320,var(0)
+
+[State 620, 2]
+type = velset
+trigger1 = animelemtime(1) >= 0
+trigger1 = animelemTime(4) < 0
+x = -0.6
+y = -1.5
+
+[State 620, 2]
+type = veladd
+trigger1 = animelemTime(5) > 0
+x = 4
+y = 4
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= !movecontact && !movereversed
+;===============================
+damage 				= 300 
+pausetime 			= 10,10 + 2 * enemy, movetype = A
+getpower 				= 25 * MAP(GEAR.MUL),0
+;===============================
+attr 				= A,NA
+hitflag 				= MAF
+guardflag 			= MA
+animtype 				= Light
+air.animtype 			= Light
+ground.TYPE 			= High
+air.TYPE 				= High
+priority = 1, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= 5,0
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 16
+ground.slidetime		= 10
+air.hittime 			= 14
+down.hittime 			= 10
+ground.velocity 		= -5
+air.velocity 			= -2,-2
+;===============================
+guard.ctrltime 		= 11
+guard.slidetime		= 8
+guard.velocity 		= -6
+airguard.velocity 		= -1,-1
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 0
+air.fall 				= 1
+;===============================
+envshake.time 			= 8
+envshake.freq 			= 8
+envshake.ampl 			= 1
+envshake.phase 		= 0.5
+
+[State 600, 3]
+type = changestate
+trigger1 = pos y >= 0 
+value = 1311
+
+;---------------------------------------------------------------------------
+;  Landing
+[Statedef 1301]
+type    = L
+movetype= H
+physics = S
+ctrl = 0
+anim = 1311
+
+[State 611, EnvShake]
+type = FallEnvShake
+trigger1 = Time = 0
+
+[State 611, Var] ;Save fall velocity
+type = VarSet
+trigger1 = Time = 0
+sysvar(1) = floor(vel y)
+
+[State 52, 1]
+type = posset
+trigger1 = !time
+y = 0
+
+[State 52, 1]
+type = VelSet
+trigger1 = Time = 0
+x = 0.4
+y = 0
+
+[State 611,2]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
 ; Hug of Destruction Attempt Light
 [Statedef 1600]
 type = S
