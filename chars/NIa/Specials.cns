@@ -927,7 +927,7 @@ trigger1 = animtime = 0
 value = 0
 ctrl = 1
 
-; Crash Landing Light
+;A Crash Landing
 [Statedef 1300]
 type    = A
 movetype= A
@@ -946,7 +946,7 @@ range = 0,1
 [State 0]
 type = PlaySnd
 trigger1 = Time = 11
-value = 320,var(0)
+value = 1300,var(0)
 
 [State 620, 2]
 type = velset
@@ -1054,14 +1054,13 @@ trigger1 = Time = 0
 x = 1
 y = 0
 
-[State 611,2]
+[State 1200, 4]
 type = ChangeState
 trigger1 = animtime = 0
-value = 0
+value = 11
 ctrl = 1
-
 ;---------------------------------------------------------------------------
-; Crash Landing medium
+; B Crash Landing 
 [Statedef 1310]
 type    = A
 movetype= A
@@ -1080,7 +1079,7 @@ range = 0,1
 [State 0]
 type = PlaySnd
 trigger1 = Time = 23
-value = 320,var(0)
+value = 1300,var(0)
 
 [State 620, 2]
 type = velset
@@ -1154,7 +1153,7 @@ type = ChangeState
 trigger1 = pos y >= 0 && vel y > 0
 value = 1311
 ;---------------------------------------------------------------------------
-;  Landing
+; B  Landing
 [Statedef 1301]
 type    = L
 movetype= H
