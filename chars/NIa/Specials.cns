@@ -225,6 +225,21 @@ type = PlaySnd
 trigger1 = time = 3
 value = 5,19
 
+[State 1,]
+type = explod
+trigger1 = animelemtime(5) = 0
+anim = 2100
+id = 2100
+postype = p1
+pos = -33,-91
+facing = 1
+sprpriority = -1
+bindtime = -1
+ownpal = 1
+ignorehitpause = 1
+scale = 0.16,0.16
+
+
 [State 621, 1]
 type = VelSet
 trigger1 = animelemtime(5) > 0
