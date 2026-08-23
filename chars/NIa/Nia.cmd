@@ -156,7 +156,7 @@ trigger3 = stateno = 210 && movecontact
 trigger4 = stateno = 400 && movecontact
 trigger5 = stateno = 410 && movecontact
 trigger6 = stateno = 430 && movecontact
-trigger7 = stateno = 220 && movecontact
+trigger7 = stateno = 220 && movecontact && prevStateNo != 440
 trigger8 = stateno = 101 
 
 
@@ -300,7 +300,7 @@ trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 210 && movecontact && prevStateNo != 410
-trigger4 = stateno = 400 && movecontact
+trigger4 = stateno = 400 && movecontact 
 trigger5 = stateno = 101 
 
 ;5C
@@ -315,8 +315,9 @@ trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = (Stateno = [200,210]) && Movecontact
 trigger3 = (Stateno = [210,211]) && Movecontact
-trigger4 = (Stateno = [400,440]) && Movecontact
-trigger5 = stateno = 101
+trigger4 = (Stateno = [400,410]) && Movecontact
+trigger5 = stateno = 440 && movecontact && prevStateNo != 220
+trigger6 = stateno = 101
 
 
 
