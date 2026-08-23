@@ -959,7 +959,19 @@ y = -1.5
 type = veladd
 trigger1 = animelemTime(5) > 0
 x = 4
-y = 4
+y = 3
+
+[State 620, 2]
+type = width
+trigger1 = animelemTime(5) > 0
+edge = 40,10
+player = 20,10
+
+[State 0, StateTypeSet]
+type = StateTypeSet
+trigger1 = animelem = 6
+physics = N
+
 
 [State 0, JORMUNGANDR DEFAULT HITDEF]
 type 				= HitDef
@@ -1008,9 +1020,9 @@ envshake.freq 			= 8
 envshake.ampl 			= 1
 envshake.phase 		= 0.5
 
-[State 600, 3]
-type = changestate
-trigger1 = pos y >= 0 
+[State 610, ChangeState]
+type = ChangeState
+trigger1 = pos y >= 0 && vel y > 0
 value = 1301
 
 ;---------------------------------------------------------------------------
@@ -1018,7 +1030,7 @@ value = 1301
 [Statedef 1301]
 type    = L
 movetype= H
-physics = S
+physics = N
 ctrl = 0
 anim = 1301
 
@@ -1039,7 +1051,7 @@ y = 0
 [State 52, 1]
 type = VelSet
 trigger1 = Time = 0
-x = 0.4
+x = 1
 y = 0
 
 [State 611,2]
@@ -1081,7 +1093,14 @@ y = -1.5
 type = veladd
 trigger1 = animelemTime(5) > 0
 x = 4
-y = 4
+y = 3
+
+[State 620, 2]
+type = width
+trigger1 = animelemTime(5) > 0
+edge = 40,10
+player = 20,10
+
 
 [State 0, JORMUNGANDR DEFAULT HITDEF]
 type 				= HitDef
@@ -1130,17 +1149,16 @@ envshake.freq 			= 8
 envshake.ampl 			= 1
 envshake.phase 		= 0.5
 
-[State 600, 3]
-type = changestate
-trigger1 = pos y >= 0 
+[State 610, ChangeState]
+type = ChangeState
+trigger1 = pos y >= 0 && vel y > 0
 value = 1311
-
 ;---------------------------------------------------------------------------
 ;  Landing
 [Statedef 1301]
 type    = L
 movetype= H
-physics = S
+physics = N
 ctrl = 0
 anim = 1311
 
@@ -1161,7 +1179,7 @@ y = 0
 [State 52, 1]
 type = VelSet
 trigger1 = Time = 0
-x = 0.4
+x = 1
 y = 0
 
 [State 611,2]
@@ -1169,6 +1187,8 @@ type = ChangeState
 trigger1 = animtime = 0
 value = 0
 ctrl = 1
+
+;---------------------------------------------------------------------------
 ; Hug of Destruction Attempt Light
 [Statedef 1600]
 type = S
