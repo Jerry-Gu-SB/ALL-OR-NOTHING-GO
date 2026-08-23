@@ -841,7 +841,7 @@ x = vel x + 6
 y = -6
 
 [State 210, Width]
-type = Width
+type = height
 trigger1 = animelem = 3
 value = 11,60
 

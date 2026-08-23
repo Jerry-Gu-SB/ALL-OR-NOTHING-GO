@@ -77,7 +77,15 @@ value = 1019
 triggerall = command = "236C"
 triggerall = power >= 1000 && statetype != A
 trigger1 = var(1)
+trigger2 = stateno = 1000 && movecontact
 
+
+[State -1]
+type = ChangeState
+value = 1019
+triggerall = command = "236C"
+triggerall = power >= 1000 
+trigger1 = stateno = 1000 && movecontact
 ;---------------------------------------------------
 ;Special Moves
 ;---------------------------------------------------

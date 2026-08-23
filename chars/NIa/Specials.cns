@@ -196,17 +196,23 @@ velset = 0,0
 anim = 860
 ctrl = 0
 
-;Light Lariat
+;---------------------------------------------------------------------------
+;Maximun missle
 [Statedef 1000]
-type = A
+type    = S
+movetype= A
 physics = N
-movetype = A
-ctrl = 0
-anim = 1000
+anim = 1200
+poweradd = 40
 velset = 0,0
-sprpriority = 2
-poweradd = 50
-juggle = 1
+ctrl = 0
+sprpriority = 1
+
+
+[State 621, 1]
+type = statetypeset
+trigger1 = !time
+statetype = A
 
 [State 1200, sound]
 type = playsnd
@@ -219,50 +225,14 @@ type = PlaySnd
 trigger1 = time = 3
 value = 5,19
 
-
-[State 1200, Anim]
-type = changeanim
-trigger1 = anim = 1000 && !animtime
-value = 1001
-
-[State 1200, statetype]
-type = statetypeset
-trigger1 = anim = 1000 
-statetype = S
-physics = S
-
-
-[State 1200, statetype]
-type = statetypeset
-trigger1 = anim = 1001
-statetype = A
-physics = N
-
-[State 1200, Vel]
-type = velset
-trigger1 = anim = 1000 && animelem = 1
-x = -1
-
-
-[State 1200, Vel]
-type = velset
-trigger1 = anim = 1001
-x = 10
-y = -4
-persistent = 0
-[State 1200, Vel]
-type = velmul
-trigger1 = anim = 1001
-x = 0.98
-[State 1200, Vel]
-type = velAdd
-trigger1 = anim = 1001
-y = .44
-
+[State 621, 1]
+type = VelSet
+trigger1 = animelemtime(5) > 0
+x = 14
 
 [State 210, HitDef]
 type = HitDef
-trigger1 = anim = 1001 && !movecontact
+trigger1 = !MoveContact && !movereversed
 attr = S,NA
 hitflag = MAF
 guardflag = MA
@@ -281,7 +251,7 @@ ground.type = Low
 ground.slidetime = 19
 guard.slidetime = 19
 ground.hittime = 27
-guard.hittime = 24
+guard.ctrltime 		= 20
 air.hittime = 18
 yaccel = .53
 ground.velocity = -13,0
@@ -293,14 +263,39 @@ air.fall = 1
 fall.recover = 0
 id = 1
 
-[State 200, ChangeState]
+
+[State 1200, 4]
 type = ChangeState
-trigger1 = time >= 13 && pos y > 0
-value = 1001
+trigger1 = animtime = 0
+value = 1201
+
+;---------------------------------------------------------------------------
+;land
+[Statedef 1201]
+type    = S
+physics = S
 ctrl = 0
+anim = 1201
 
 
+[State 52, 1]
+type = VelSet
+trigger1 = Time = 0
+y = 0
 
+[State 52, 2]
+type = PosSet
+trigger1 = Time = 0
+y = 0
+
+
+[State 52, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
 ;EX Lariat (reuse from original code)
 [Statedef 1019]
 type = A
@@ -382,6 +377,11 @@ edge = 1,0
 type = PosSet
 trigger1 = AnimElem = 1
 y = 0
+[State 620, 2]
+type = width
+trigger1 = animelemTime(4) > 0
+edge = 40,10
+player = 20,10
 
 [State 1100, Velocity]
 type = VelSet
@@ -666,6 +666,12 @@ edge = 1,0
 type = PosSet
 trigger1 = AnimElem = 1
 y = 0
+
+[State 620, 2]
+type = width
+trigger1 = animelemTime(4) > 0
+edge = 40,10
+player = 20,10
 
 [State 1100, Velocity]
 type = VelSet
