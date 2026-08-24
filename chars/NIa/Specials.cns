@@ -984,7 +984,7 @@ y = 3
 
 [State 220, Stop]
 type = VelSet
-trigger1 = P2Dist X <= 5
+trigger1 = P2Dist X <= 10
 x = 0
 
 [State 620, 2]
