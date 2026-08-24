@@ -982,6 +982,11 @@ trigger1 = animelemTime(5) > 0
 x = 4
 y = 3
 
+[State 220, Stop]
+type = VelSet
+trigger1 = P2Dist X <= 5
+x = 0
+
 [State 620, 2]
 type = width
 trigger1 = animelemTime(5) > 0
@@ -1114,6 +1119,11 @@ type = veladd
 trigger1 = animelemTime(5) > 0
 x = 4
 y = 3
+
+[State 220, Stop]
+type = VelSet
+trigger1 = P2Dist X <= 10
+x = 0
 
 [State 620, 2]
 type = width

@@ -846,6 +846,12 @@ trigger1 = animelem = 3
 edge = 40,10
 player = 20,10
 
+
+[State 220, Stop]
+type = VelSet
+trigger1 = P2Dist X <= 10
+x = 0
+
 [State 0, VelSet]
 type = VelSet
 trigger1 = animelem = 6
