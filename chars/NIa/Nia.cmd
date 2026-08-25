@@ -194,6 +194,7 @@ triggerall = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 101
 
+
 [State -1, 66L]
 type = ChangeState
 value = 230
