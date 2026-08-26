@@ -15,7 +15,7 @@ sprpriority = 2                  ;Set p1's sprite layering priority to 2 (in fro
 type = HitDef
 trigger1 = !movecontact && !movereversed
 attr = S, NA                     ;Attribute: Standing, Normal Attack
-damage = 600                  ;Damage that move inflicts, guard damage
+damage = 190                 ;Damage that move inflicts, guard damage
 animtype = Light                 ;Animation type: Light, Medium, Heavy, Back (def: Light)
 guardflag = M                  ;Flags on how move is to be guarded against
 hitflag = MAF                    ;Flags of conditions that move can hit
@@ -73,7 +73,7 @@ ctrl = 1
 ; opponent during that frame, and switches to the next animation element
 ; (notice the elem=6 parameter). If you don't see what I mean, try commenting
 ; out that controller, then hit someone with this attack.
-;5b
+;5C
 [Statedef 210]
 type    = S
 movetype= A
@@ -103,7 +103,7 @@ var(12) = 0
 [State 210, 2]
 type = varadd
 triggerall = !ailevel
-trigger1 = command = "hold_y"
+trigger1 = command = "HOLD_C"
 var(12) = 1
 
 [State 210, 2]
@@ -128,7 +128,7 @@ attr = S, NA
 hitflag = MAF
 guardflag = M
 animtype  = Medium
-damage    = 1100
+damage    = 670
 pausetime = 12,12
 guard.pausetime = 12,12
 getpower = 20,0
@@ -142,7 +142,7 @@ ground.type = High
 ground.slidetime = 12
 ground.hittime  = 18
 ground.velocity = -4.5
-guard.hittime = 12
+guard.hittime = 14
 air.velocity = -2.5,-4
 air.fall = 1
 fall.recovertime = 45
@@ -157,7 +157,7 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-; 5[B]
+; 5[C]
 [Statedef 211]
 type    = S
 movetype= A
@@ -201,7 +201,7 @@ attr = S, NA
 hitflag = MAF
 guardflag = M
 animtype  = Medium
-damage    = 1100
+damage    = 720
 pausetime = 12,12
 guard.pausetime = 12,12
 getpower = 20,0
@@ -230,8 +230,7 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-; Standing light kick
-; CNS difficulty: easy
+; 5B
 [Statedef 230]
 type    = S
 movetype= A
@@ -248,23 +247,38 @@ type = PlaySnd
 trigger1 = Time = 2
 value = 0, 1
 
-[State 230, 2]
+[State 0, Vel]
+type = velset
+trigger1 = animelem=4
+x = 2
+
+[State 210, 2]
 type = HitDef
-trigger1 = Time = 0
+trigger1 = !MoveContact && !MoveReversed
 attr = S, NA
+hitflag = MAF
+guardflag = M
 animtype  = Medium
-damage    = 26
-guardflag = MA
+damage    = 490
 pausetime = 12,12
-sparkno = 0
-sparkxy = -10,-37
-hitsound   = 5,1
+guard.pausetime = 12,12
+getpower = 20,0
+givepower = 20,0
+priority = 2, Hit 
+sparkno = 1
+sparkxy = -10,-70
+hitsound   = 5,2
 guardsound = 6,0
-ground.type = Low
-ground.slidetime = 10
-ground.hittime  = 14
-ground.velocity = -5
-air.velocity = -2.5,-3.5
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 18
+ground.velocity = -4.5
+guard.hittime = 12
+air.velocity = -2.5,-4
+air.fall = 1
+fall.recovertime = 45
+ground.cornerpush.veloff = -5
+air.cornerpush.veloff = -5
 
 [State 230, 3]
 type = ChangeState

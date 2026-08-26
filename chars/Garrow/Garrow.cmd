@@ -679,7 +679,7 @@ trigger3 = stateno = 400 && movecontact
 
 
 ;---------------------------------------------------------------------------
-;5B
+;5C
 [State -1]
 type = ChangeState
 value = 210
@@ -689,8 +689,9 @@ triggerall = command != "holddown"
 trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 400 && movecontact
-trigger4 = stateno = 410 && movecontact
+trigger3 = stateno = 230
+trigger4 = stateno = 400 && movecontact
+trigger5 = stateno = 410 && movecontact
 
 ;---------------------------------------------------------------------------
 ;assault
@@ -706,16 +707,18 @@ trigger2 = stateno = 101
 
 
 ;---------------------------------------------------------------------------
-;Stand Light Kick
-[State -1, Stand Light Kick]
+[State -1, 5B]
 type = ChangeState
 value = 230
-triggerall = command = "x"
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "C"
 triggerall = command != "holddown"
-trigger1 = statetype = S
+trigger1 = statetype != A
 trigger1 = ctrl
-trigger2 = (stateno = 200) && time > 7
-trigger3 = (stateno = 230) && time > 9
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 400 && movecontact
+
 
 ;---------------------------------------------------------------------------
 ;Standing Strong Kick
