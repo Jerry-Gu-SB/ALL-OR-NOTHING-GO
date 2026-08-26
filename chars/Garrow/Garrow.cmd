@@ -684,7 +684,7 @@ trigger3 = stateno = 400 && movecontact
 type = ChangeState
 value = 210
 triggerall = stateno!=40
-triggerall = command = "b"
+triggerall = command = "c"
 triggerall = command != "holddown"
 trigger1 = statetype != A
 trigger1 = ctrl
@@ -712,12 +712,13 @@ type = ChangeState
 value = 230
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "C"
+triggerall = command = "b"
 triggerall = command != "holddown"
 trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 400 && movecontact
+trigger4 = stateno = 410 && movecontact && prevStateNo != 230
 
 
 ;---------------------------------------------------------------------------
@@ -755,7 +756,6 @@ trigger3 = stateno = 400 && movecontact
 
 
 ;---------------------------------------------------------------------------
-;Crouching Strong Punch
 [State -1, 2B]
 type = ChangeState
 value = 410
@@ -764,7 +764,7 @@ triggerall = command = "holddown"
 trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 210 && movecontact
+trigger3 = stateno = 230 && movecontact && prevStateNo != 410
 trigger4 = stateno = 400 && movecontact
 
 ;---------------------------------------------------------------------------
