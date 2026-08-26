@@ -677,39 +677,10 @@ trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 400 && movecontact
 
-
-;---------------------------------------------------------------------------
-;5C
-[State -1]
-type = ChangeState
-value = 210
-triggerall = stateno!=40
-triggerall = command = "c"
-triggerall = command != "holddown"
-trigger1 = statetype != A
-trigger1 = ctrl
-trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 230
-trigger4 = stateno = 400 && movecontact
-trigger5 = stateno = 410 && movecontact
-
-;---------------------------------------------------------------------------
-;assault
-[State -1]
-type = ChangeState
-value = 500
-triggerall = !ishelper
-triggerall = !AIlevel
-triggerall = command = "d"
-triggerall = statetype != A
-trigger1 = ctrl
-trigger2 = stateno = 101
-
-
 ;---------------------------------------------------------------------------
 [State -1, 5B]
 type = ChangeState
-value = 230
+value = 210
 triggerall = !ishelper
 triggerall = !AIlevel
 triggerall = command = "b"
@@ -718,29 +689,23 @@ trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 400 && movecontact
-trigger4 = stateno = 410 && movecontact && prevStateNo != 230
-
+trigger4 = stateno = 410 && movecontact && prevStateNo != 210
 
 ;---------------------------------------------------------------------------
-;Standing Strong Kick
-[State -1, Standing Strong Kick]
+;5C
+[State -1]
 type = ChangeState
-value = 240
-triggerall = command = "y"
+value = 220
+triggerall = stateno!=40
+triggerall = command = "c"
 triggerall = command != "holddown"
-trigger1 = statetype = S
-trigger1 = ctrl
-trigger2 = (stateno = 200) && time > 5
-trigger3 = (stateno = 230) && time > 6
-
-;---------------------------------------------------------------------------
-;Taunt
-[State -1, Taunt]
-type = ChangeState
-value = 195
-triggerall = command = "start"
 trigger1 = statetype != A
 trigger1 = ctrl
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 210 && movecontact
+trigger4 = stateno = 400 && movecontact
+trigger5 = stateno = 410 && movecontact
+
 
 ;---------------------------------------------------------------------------
 ;2A
@@ -764,8 +729,43 @@ triggerall = command = "holddown"
 trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 230 && movecontact && prevStateNo != 410
+trigger3 = stateno = 210 && movecontact && prevStateNo != 410
 trigger4 = stateno = 400 && movecontact
+
+
+;---------------------------------------------------------------------------
+;assault
+[State -1]
+type = ChangeState
+value = 500
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "d"
+triggerall = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 101
+
+;---------------------------------------------------------------------------
+;Standing Strong Kick
+[State -1, Standing Strong Kick]
+type = ChangeState
+value = 240
+triggerall = command = "y"
+triggerall = command != "holddown"
+trigger1 = statetype = S
+trigger1 = ctrl
+trigger2 = (stateno = 200) && time > 5
+trigger3 = (stateno = 230) && time > 6
+
+;---------------------------------------------------------------------------
+;Taunt
+[State -1, Taunt]
+type = ChangeState
+value = 195
+triggerall = command = "start"
+trigger1 = statetype != A
+trigger1 = ctrl
+
 
 ;---------------------------------------------------------------------------
 ;Crouching Light Kick

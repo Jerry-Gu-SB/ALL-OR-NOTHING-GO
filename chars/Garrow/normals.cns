@@ -59,6 +59,62 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
+; 5B
+[Statedef 210]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd= 11
+ctrl = 0
+velset = 0,0
+anim = 210
+sprpriority = 2
+
+[State 230, 1]
+type = PlaySnd
+trigger1 = Time = 2
+value = 0, 1
+
+[State 0, Vel]
+type = velset
+trigger1 = animelem=4
+x = 2
+
+[State 210, 2]
+type = HitDef
+trigger1 = !MoveContact && !MoveReversed
+attr = S, NA
+hitflag = MAF
+guardflag = M
+animtype  = Medium
+damage    = 490
+pausetime = 12,12
+guard.pausetime = 12,12
+getpower = 20,0
+givepower = 20,0
+priority = 2, Hit 
+sparkno = 1
+sparkxy = -10,-70
+hitsound   = 5,2
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 18
+ground.velocity = -4.5
+guard.hittime = 12
+air.velocity = -2.5,-4
+air.fall = 1
+fall.recovertime = 45
+ground.cornerpush.veloff = -5
+air.cornerpush.veloff = -5
+
+[State 230, 3]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;---------------------------------------------------------------------------
 ; Standing strong punch
 ; CNS difficulty: easy
 ; Note the width controller. It makes KFM's push box larger, so he doesn't
@@ -74,14 +130,14 @@ ctrl = 1
 ; (notice the elem=6 parameter). If you don't see what I mean, try commenting
 ; out that controller, then hit someone with this attack.
 ;5C
-[Statedef 210]
+[Statedef 220]
 type    = S
 movetype= A
 physics = S
 juggle  = 4
 ctrl = 0
 velset = 0,0
-anim = 210
+anim = 220
 sprpriority = 2
 
 
@@ -110,7 +166,7 @@ var(12) = 1
 type = changestate
 trigger1 = time = 12
 trigger1 = var(12) >= 12
-value = 211
+value = 221
 
 [State 610, Camera Shake]
 type = EnvShake
@@ -158,14 +214,14 @@ ctrl = 1
 
 ;---------------------------------------------------------------------------
 ; 5[C]
-[Statedef 211]
+[Statedef 221]
 type    = S
 movetype= A
 physics = S
 juggle  = 4
 velset = 0,0 
 ctrl = 0
-anim = 211
+anim = 221
 sprpriority = 2
 
 [State 0, Vel]
@@ -178,6 +234,7 @@ x = 10
 type = Explod
 trigger1 = time = 0
 anim = 10700
+postype = p1
 pos = 19,-47
 ownpal = 1
 ignorehitpause = 1
@@ -229,62 +286,7 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
-;---------------------------------------------------------------------------
-; 5B
-[Statedef 230]
-type    = S
-movetype= A
-physics = S
-juggle  = 4
-poweradd= 11
-ctrl = 0
-velset = 0,0
-anim = 230
-sprpriority = 2
 
-[State 230, 1]
-type = PlaySnd
-trigger1 = Time = 2
-value = 0, 1
-
-[State 0, Vel]
-type = velset
-trigger1 = animelem=4
-x = 2
-
-[State 210, 2]
-type = HitDef
-trigger1 = !MoveContact && !MoveReversed
-attr = S, NA
-hitflag = MAF
-guardflag = M
-animtype  = Medium
-damage    = 490
-pausetime = 12,12
-guard.pausetime = 12,12
-getpower = 20,0
-givepower = 20,0
-priority = 2, Hit 
-sparkno = 1
-sparkxy = -10,-70
-hitsound   = 5,2
-guardsound = 6,0
-ground.type = High
-ground.slidetime = 12
-ground.hittime  = 18
-ground.velocity = -4.5
-guard.hittime = 12
-air.velocity = -2.5,-4
-air.fall = 1
-fall.recovertime = 45
-ground.cornerpush.veloff = -5
-air.cornerpush.veloff = -5
-
-[State 230, 3]
-type = ChangeState
-trigger1 = AnimTime = 0
-value = 0
-ctrl = 1
 
 ;---------------------------------------------------------------------------
 ; Standing strong kick
