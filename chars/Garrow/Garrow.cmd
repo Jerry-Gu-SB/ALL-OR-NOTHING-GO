@@ -844,7 +844,7 @@ type = ChangeState
 value = 40
 triggerall = command = "holdup" && prevstateno != 810
 trigger1 = stateno = [100,102]
-trigger2 = stateno = [200,210] && MoveHit
+trigger2 = stateno = [200,221] && MoveHit
 trigger3 = stateno = [400,450] && MoveHit
 trigger4 = stateno = 410 && MoveHit
 
