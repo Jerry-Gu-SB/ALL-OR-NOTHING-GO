@@ -114,6 +114,13 @@ triggerall = command = "214C" && statetype != A
 triggerall = power >= 1000
 trigger1 = var(1)
 
+[State -1]
+type = ChangeState
+value = 1620
+triggerall = command = "214C" 
+triggerall = power >= 1000
+trigger1 = stateno = 1000 && movecontact
+
 ;Jump Air Grab
 [State -1]
 type = ChangeState
