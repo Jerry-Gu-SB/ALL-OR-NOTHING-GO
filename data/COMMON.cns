@@ -4764,13 +4764,13 @@ value = 5110
 ctrl = 0
 
 ;---------------------------------------------------------------------------
-;Crumple/Tumble
+;Crumple
 [Statedef 5250]
-type    = C
-movetype= I
+type    = S
+movetype= H
 physics = N
 velset = 0,0
-anim = 5220
+anim = 5250
 
 [State 0, PosSet]
 type = PosSet
@@ -4780,7 +4780,7 @@ y = 0
 [State 0, VelSet]
 type = VelSet
 trigger1 = time = 0
-x = 0
+x = floor(gethitvar(xvel)) * facing
 
 [State 0, VelMul]
 type = VelMul
@@ -4789,45 +4789,9 @@ x = .9
 
 [State 0, ChangeState]
 type = SelfState
-trigger1 = AnimTime = 0
-value = 5221
+trigger1 = gethitvar(hittime) = 0
+value = 5110
 ctrl = 0
-
-;---------------------------------------------------------------------------
-;Crumple/Tumble Recover
-[Statedef 5221]
-type    = S
-movetype= I
-physics = C
-velset = 0,0
-anim = 5221
-
-[State 0, PosSet]
-type = PosSet
-trigger1 = 1
-y = 0
-
-[State 0, VelSet]
-type = VelSet
-trigger1 = time = 0
-x = 0
-
-[State 0, VelMul]
-type = VelMul
-trigger1 = 1
-x = .9
-
-[State 0, CtrlSet]
-type = CtrlSet
-trigger1 = AnimElem = 3
-value = 1
-
-[State 0, ChangeState]
-type = SelfState
-trigger1 = AnimTime = 0
-value = 0
-ctrl = 0
-
 
 ;-----------------------------------------------------------------------------
 ;Ground Bounce Shake
