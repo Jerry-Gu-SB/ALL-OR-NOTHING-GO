@@ -542,7 +542,7 @@ facing = 1
 sprpriority = 3
 bindtime = -1
 ownpal = 1
-ignorehitpause = 1
+ignorehitpause = 0
 scale = 0.28,0.28
 
 [State 0, JORMUNGANDR DEFAULT HITDEF]
