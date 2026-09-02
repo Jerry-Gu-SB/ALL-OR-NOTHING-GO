@@ -705,6 +705,7 @@ trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 210 && movecontact
 trigger4 = stateno = 400 && movecontact
 trigger5 = stateno = 410 && movecontact
+trigger6 = stateno = 420 && movecontact && prevStateNo != 220
 
 
 ;---------------------------------------------------------------------------
@@ -731,6 +732,20 @@ trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 210 && movecontact && prevStateNo != 410
 trigger4 = stateno = 400 && movecontact
+;---------------------------------------------------------------------------
+[State -1, 2C]
+type = ChangeState
+value = 420
+triggerall = command = "c"
+triggerall = command = "holddown"
+trigger1 = statetype = C
+trigger1 = ctrl
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 210 && movecontact
+trigger4 = stateno = 220 && movecontact && prevStateNo != 420
+trigger5 = stateno = 400 && movecontact
+trigger6 = stateno = 410 && movecontact
+
 
 
 ;---------------------------------------------------------------------------
@@ -766,18 +781,6 @@ triggerall = command = "start"
 trigger1 = statetype != A
 trigger1 = ctrl
 
-
-;---------------------------------------------------------------------------
-;Crouching Light Kick
-[State -1, Crouching Light Kick]
-type = ChangeState
-value = 430
-triggerall = command = "x"
-triggerall = command = "holddown"
-trigger1 = statetype = C
-trigger1 = ctrl
-trigger2 = (stateno = 400) || (stateno = 430)
-trigger2 = (time > 9) || (movecontact && time > 5)
 
 ;---------------------------------------------------------------------------
 ;Crouching Strong Kick
