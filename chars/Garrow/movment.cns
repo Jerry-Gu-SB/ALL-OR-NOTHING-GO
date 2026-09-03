@@ -9,12 +9,22 @@ anim = 100
 sprpriority = 1
 ctrl = 0
 
-[State 621, 1]
-type = playsnd
-trigger1 = !time
-trigger2 = animelem = 4
-trigger3 = animelem = 8
-value = 100,0
+[State 6061, Effect]
+type = Explod
+trigger1 = animelemtime(2) >= 0
+anim = 8103
+scale = 0.60,0.60
+postype = p1
+facing = 1
+pos = -68,0
+sprpriority = 3
+ownpal = 1
+removeongethit = 1
+pausemovetime = 99999
+supermovetime = 99999
+ignorehitpause = 1
+persistent = 1
+bindtime = 0
 
 [State 100, Build Meter]
 type = PowerAdd
@@ -36,6 +46,11 @@ flag = NoWalk
 type = AssertSpecial
 trigger1 = 1
 flag = NoAutoTurn
+
+[State 101, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = 0,5
 
 [State 100, 4]
 type = ChangeState
@@ -121,6 +136,11 @@ Type = NotHitBy
 Trigger1 = !time
 Value = , NT, ST, NA, SA, NP, SP
 Time = 7
+
+[State 101, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = 0,5
 
 [State 100, 1]
 type = VelSet

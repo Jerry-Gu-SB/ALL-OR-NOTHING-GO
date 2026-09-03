@@ -452,14 +452,7 @@ type = PlaySnd
 trigger1 = Time = 1
 value = 0, 0
 
-[State 610, Camera Shake]
-type = EnvShake
-trigger1 = AnimElem = 4
-trigger2 = MoveHit || MoveGuarded
-persistent = 0
-time = 10
-freq = 10
-ampl = 4
+
 
 [State 0, JORMUNGANDR DEFAULT HITDEF]
 type 				= HitDef
@@ -505,7 +498,7 @@ air.fall 				= 1
 ;===============================
 envshake.time 			= 8
 envshake.freq 			= 8
-envshake.ampl 			= 1
+envshake.ampl 			= 4
 envshake.phase 		= 0.5
 
 
@@ -540,7 +533,8 @@ postype = p1
 pos = 35,4
 facing = 1
 sprpriority = 3
-bindtime = -1
+bindtime = 1
+persistent = 0
 ownpal = 1
 ignorehitpause = 0
 scale = 0.28,0.28
@@ -589,9 +583,9 @@ fall 				= 1
 air.fall 				= 0
 fall.recover = 0
 ;===============================
-envshake.time 			= 8
-envshake.freq 			= 8
-envshake.ampl 			= 1
+envshake.time 			= 10
+envshake.freq 			= 10
+envshake.ampl 			= 3
 envshake.phase 		= 0.5
 
 

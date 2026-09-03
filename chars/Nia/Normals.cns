@@ -1061,6 +1061,13 @@ envshake.freq 			= 8
 envshake.ampl 			= 1
 envshake.phase 		= 0.5
 
+[State 0, Jump Cancel]
+type 		= MapSet
+trigger1 		= movehit
+map 		= "JC"
+value 		= 1
+ignorehitpause 	= 1
+
 [State 400, ChangeState]
 type = ChangeState
 trigger1 = animtime = 0
