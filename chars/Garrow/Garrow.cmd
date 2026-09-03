@@ -796,15 +796,13 @@ trigger2 = (time > 9) || (movecontact && time > 5)
 
 ;---------------------------------------------------------------------------
 ;Jump Light Punch
-[State -1, Jump Light Punch]
+[State -1, JA]
 type = ChangeState
 value = 600
-triggerall = command = "x"
+triggerall = command = "A"
 trigger1 = statetype = A
 trigger1 = ctrl
-trigger2 = stateno = 600
-trigger2 = statetime >= 7
-trigger3 = stateno = 1350 ;Air blocking
+
 
 ;---------------------------------------------------------------------------
 ;Jump Strong Punch

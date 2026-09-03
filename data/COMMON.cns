@@ -4764,13 +4764,13 @@ value = 5110
 ctrl = 0
 
 ;---------------------------------------------------------------------------
-;Crumple
+;tumble
 [Statedef 5250]
 type    = S
 movetype= H
 physics = N
 velset = 0,0
-anim = 5250
+anim = 5220
 
 [State 0, PosSet]
 type = PosSet
@@ -4789,9 +4789,29 @@ x = .9
 
 [State 0, ChangeState]
 type = SelfState
-trigger1 = gethitvar(hittime) = 0
-value = 5110
+trigger1 = AnimTime = 0
+value = 5251
 ctrl = 0
+
+;---------------------------------------------------------------------------
+; tumble get up
+[Statedef 5251]
+type     = S
+movetype = H
+physics  = N
+velset   = 0,0
+anim     = 5221
+
+[State 5251, PosSet]
+type = PosSet
+trigger1 = 1
+y = 0
+
+[State 5221, ChangeState]
+type = SelfState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
 
 ;-----------------------------------------------------------------------------
 ;Ground Bounce Shake
