@@ -2053,7 +2053,7 @@ p2facing = 1
 trigger1 = time = 0
 attr = S, NT
 animtype  = hard
-damage = 1600, 0
+damage = 1800, 0
 pausetime = 8,8
 sparkno = 2
 sparkxy = -10,-40
@@ -2127,7 +2127,7 @@ p2facing = 1
 trigger1 = time = 0
 attr = S, NT
 animtype  = hard
-damage = 1600, 0
+damage = 1800, 0
 guardflag = MA
 pausetime = 8,8
 sparkno = 2
