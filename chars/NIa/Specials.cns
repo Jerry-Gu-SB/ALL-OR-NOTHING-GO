@@ -149,11 +149,12 @@ attr 				= A,NT
 hitflag 				= MAFD
 damage = 2000
 priority = 1, Miss
+ground.type = Trip
 sparkno = -1
 p1sprpriority = 1
 p1facing = 1
 p2facing = 1
-p2stateno = 5250
+
 
 [State 851, VelAdd Jump Aftermath]
 type = VelAdd
