@@ -202,6 +202,8 @@ ground.hittime = 18 + 4*var(9)
 air.hittime = 18
 yaccel = .53
 ground.velocity = -3,0
+guard.velocity = -6
+guard.cornerpush.veloff = 
 air.velocity = -2,-5
 airguard.velocity = -6,-2
 fall.xvelocity = 0
@@ -376,6 +378,84 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
+;---------------------------------------------------------------------------
+;f.5B
+[Statedef 215]
+type = S
+movetype= A
+physics = S
+ctrl = 0
+anim = 215
+velset = vel x,0
+sprpriority = 2
+facep2 = 1
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = 0,4
+
+
+
+[State 0, Vel]
+type = velset
+trigger1 = animelem=1
+x = 1
+
+[State 180, Random Sound]
+type = PlaySnd
+trigger1 = Time = 0
+value = 610, ifelse(Random < 500, 0, 1)
+
+
+[State 210, HitDef]
+type = HitDef
+trigger1 = !time
+attr = S,NA
+hitflag = MAF
+guardflag = M
+animtype = Medium
+priority = 3, Hit 
+damage = 590,0
+getpower = 30,0
+givepower = 20,0
+pausetime = 12,12
+guard.pausetime = 12,12
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound                = S1,26
+guardsound 			= 6,0
+ground.type = Low
+ground.hittime 		= 18
+ground.slidetime = 12
+guard.hittime 	= 12
+ground.hittime = 18 + 4*var(9)
+air.hittime = 18
+yaccel = .53
+ground.velocity = -3,0
+guard.velocity = -6
+guard.cornerpush.veloff = 
+air.velocity = -2,-5
+airguard.velocity = -6,-2
+fall.xvelocity = 0
+fall.yvelocity = -2
+air.fall = 1
+fall.recover = 1
+fall.recovertime = 18
+id = 1
+
+[State 0, Jump Cancel]
+type 		= MapSet
+trigger1 		= movehit
+map 		= "JC"
+value 		= 1
+ignorehitpause 	= 1
+
+[State 210, ChangeState]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
 ;---------------------------------------------------------------------------
 ;5C
 [Statedef 220]

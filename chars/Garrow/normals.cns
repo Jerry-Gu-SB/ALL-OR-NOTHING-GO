@@ -5,7 +5,7 @@ type    = S                      ;State-type: S-stand, C-crouch, A-air, L-liedow
 movetype= A                      ;Move-type: A-attack, I-idle, H-gethit
 physics = S                      ;Physics: S-stand, C-crouch, A-air
 juggle  = 5                     ;Number of air juggle points move takes
-velset = 0,0                     ;Set velocity (x,y) (Def: no change)
+velset = vel x,0                     ;Set velocity (x,y) (Def: no change)
 ctrl = 0                         ;Set ctrl (Def: no change)
 anim = 200                       ;Change animation (Def: no change)                   ;Power to add (Def: 0)
 sprpriority = 2                  ;Set p1's sprite layering priority to 2 (in front)
@@ -66,7 +66,7 @@ physics = S
 juggle  = 4
 poweradd= 11
 ctrl = 0
-velset = 0,0
+velset = vel x,0
 anim = 210
 sprpriority = 2
 
@@ -155,7 +155,7 @@ movetype= A
 physics = S
 juggle  = 4
 ctrl = 0
-velset = 0,0
+velset = vel x,0
 anim = 220
 sprpriority = 2
 

@@ -187,7 +187,8 @@ trigger4 = stateno = 400 && movecontact
 trigger5 = stateno = 410 && movecontact
 trigger6 = stateno = 430 && movecontact
 trigger7 = stateno = 220 && movecontact && prevStateNo != 440
-trigger8 = stateno = 101 
+trigger8 = stateno = 215 && movecontact 
+trigger9 = stateno = 101 
 
 
 ;assault
@@ -236,7 +237,7 @@ triggerall = !ishelper
 triggerall = !AIlevel
 triggerall = command = "B" && command = "holdfwd"
 triggerall = statetype != A
-trigger1 = (stateno = [200,210] || stateno = [400,410]) && movecontact
+trigger1 = (stateno = [200,215] || stateno = [400,410]) && movecontact
 
 [State -1, 66LL]
 type = ChangeState
@@ -297,12 +298,29 @@ triggerall = !ishelper
 triggerall = !AIlevel
 triggerall = command = "B"
 triggerall = command != "holddown"
+triggerall = p2bodydist X=[-35,40]
 trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 101
 trigger3 = stateno = 200 && movecontact
 trigger4 = stateno = 400 && movecontact 
 trigger5 = stateno = 410 && movecontact && prevStateNo != 210
+
+;f.5B
+[State -1]
+type = ChangeState
+value = 215
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "B"
+triggerall = command != "holddown"
+triggerall = p2bodydist X > 40
+trigger1 = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 101
+trigger3 = stateno = 200 && movecontact
+trigger4 = stateno = 400 && movecontact 
+trigger5 = stateno = 410 && movecontact && prevStateNo != 210 && prevStateNo != 215
 
 ;2A
 [State -1]
@@ -331,8 +349,9 @@ trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 210 && movecontact && prevStateNo != 410
-trigger4 = stateno = 400 && movecontact 
-trigger5 = stateno = 101 
+trigger4 = stateno = 215 && movecontact && prevStateNo != 410
+trigger5 = stateno = 400 && movecontact 
+trigger6 = stateno = 101 
 
 ;5C
 [State -1]
@@ -345,7 +364,7 @@ triggerall = command != "holddown"
 trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = (Stateno = [200,210]) && Movecontact
-trigger3 = (Stateno = [210,211]) && Movecontact
+trigger3 = (Stateno = [210,215]) && Movecontact
 trigger4 = (Stateno = [400,410]) && Movecontact
 trigger5 = stateno = 440 && movecontact && prevStateNo != 220
 trigger6 = stateno = 101
