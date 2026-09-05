@@ -405,7 +405,8 @@ x = 1
 [State 180, Random Sound]
 type = PlaySnd
 trigger1 = Time = 0
-value = 610, ifelse(Random < 500, 0, 1)
+value = 600, Random % 3
+
 
 
 [State 210, HitDef]
@@ -1247,15 +1248,11 @@ type = PlaySnd
 trigger1 = time = 0
 value = 0,4
 
-[State 180, Random Sound]
-type = PlaySnd
-trigger1 = Time = 0
-value = 600, Random % 3
-
 [State 0, Vel]
 type = velset
 trigger1 = animelem=2
-x = 0
+x = 2
+
 
 [State 610, Camera Shake]
 type = EnvShake
@@ -1264,7 +1261,10 @@ time = 10
 freq = 10
 ampl = 2
 
-
+[State 180, Random Sound]
+type = PlaySnd
+trigger1 = Time = 0
+value = 610, ifelse(Random < 500, 0, 1)
 
 [State 440, HitDef]
 type = HitDef
