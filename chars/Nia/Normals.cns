@@ -607,7 +607,7 @@ trigger1 				= AnimElem =4
 ;===============================
 damage 				= 400
 pausetime 			= 12,12 + 2 * enemy, movetype = A
-getpower 				= 25 
+getpower 				= 6 
 ;===============================
 attr 				= S,NA
 hitflag 				= MAF

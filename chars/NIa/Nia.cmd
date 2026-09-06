@@ -162,6 +162,31 @@ triggerall = command = "214B"
 triggerall = statetype != A
 trigger1 = var(1)
 
+;22A - Nia MAXIMUM!
+[State -1]
+type = ChangeState
+value = 2000
+triggerall = command = "22A"
+triggerall = statetype != A
+trigger1 = var(1)
+
+;22B - Nia MAXIMUM!
+[State -1]
+type = ChangeState
+value = 2001
+triggerall = command = "22B"
+triggerall = statetype != A
+trigger1 = var(1)
+
+;22C - Nia MAXIMUM!
+[State -1]
+type = ChangeState
+value = 2002
+triggerall = command = "22C"
+triggerall = statetype != A
+triggerall = power >= 1000
+trigger1 = var(1)
+
 ;3C - Antiair Grab
 [State -1, 3C]
 type = ChangeState

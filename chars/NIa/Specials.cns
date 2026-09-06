@@ -1961,3 +1961,127 @@ type = SelfState
 trigger1 = Vel Y > 0
 trigger1 = Pos Y >= 0
 value = 5100 ;Hit ground
+
+;---------------------------------------------------------------------------
+; Nia Maximum A
+[Statedef 2000]
+type = S
+movetype= A
+physics = S
+juggle = 0
+velset = 0, 0
+anim = 2000
+ctrl = 0
+
+[State 50, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 4
+value = 2000,0
+
+[State 200, ChangeState]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Nia Maximum B
+[Statedef 2001]
+type = S
+movetype= A
+physics = S
+juggle = 0
+velset = 0, 0
+anim = 2000
+ctrl = 0
+
+[State 50, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 4
+value = 2000,0
+
+[State 200, ChangeState]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Nia Maximum C
+[Statedef 2002]
+type = S
+movetype= A
+physics = S
+juggle = 0
+velset = 0, 0
+anim = 2001
+ctrl = 0
+
+[State 1120, Afterimage]
+type = AfterImage
+trigger1 = Time = 0
+length = 13
+PalBright   =  30, 30,  0
+PalContrast =  70, 70, 20
+PalAdd      = -10,-10,-10
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 2
+Trans = Add
+time = 2
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = animelem = 1
+time = 10
+movetime = 36
+darken = 0
+anim = -1
+p2defmul = 1
+poweradd = -1000
+
+[State 1120, Afterimage]
+type = AfterImageTime
+trigger1 = AnimTime < -2
+time = 2
+
+[State 1120, Blink Yellow]
+type = PalFX
+trigger1 = Time = 0
+time = 20
+add = 32,16,0
+sinadd = 64,32,5,3
+
+[State 50, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 4
+value = 2000,0
+
+[State 1200, 2]
+type = HitDef
+trigger1 = !MoveContact && !movereversed
+priority = 3, Hit 
+attr = S, NA
+damage    = 520
+animtype  = Hard
+hitflag = MAFD
+guardflag = M
+pausetime = 12,12
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+guardsound 			= 6,0
+hitsound   = s1,10
+guardsound = S6,0
+ground.type = Low
+ground.slidetime = 12
+ground.hittime  = 20 + 10 * (prevstateno = 101)
+guard.hittime =12
+ground.velocity = -4,-4.5
+air.velocity = -.5,-6.5
+fall = 1
+
+[State 200, ChangeState]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
