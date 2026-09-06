@@ -312,7 +312,7 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-;EX Lariat (reuse from original code)
+;EX Maximun missle (reuse from original code)
 [Statedef 1019]
 type = A
 physics = N
@@ -323,11 +323,6 @@ velset = 0,0
 sprpriority = 2
 poweradd = 50
 juggle = 1
-
-[State 1120, Width]
-type = Width
-trigger1 = AnimElemTime(4) >= 0 && AnimElemTime(6) < 0
-value = 5,0
 
 [State 1120, Afterimage]
 type = AfterImage
@@ -344,7 +339,7 @@ time = 2
 
 [State 3000, SuperPause]
 type = SuperPause
-trigger1 = animelem = 2
+trigger1 = animelem = 1
 time = 10
 movetime = 36
 darken = 0
@@ -364,20 +359,16 @@ time = 20
 add = 32,16,0
 sinadd = 64,32,5,3
 
-[State 1120, 1]
-type = PlaySnd
-trigger1 = AnimElem = 4
-value = 0, 2
-
-[State 3000, 1]
-type = PlaySnd
-trigger1 = AnimElem = 5 || animelem = 13 || animelem = 21
-value = S0, 5
 
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 = animelem = 1
 value = S4000,10
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = animelem = 4
+value = 5,19
 
 [State 1200, sound]
 type = playsnd
@@ -393,6 +384,7 @@ edge = 1,0
 type = PosSet
 trigger1 = AnimElem = 1
 y = 0
+
 [State 620, 2]
 type = width
 trigger1 = animelemTime(4) > 0
@@ -402,14 +394,24 @@ player = 20,10
 [State 1100, Velocity]
 type = VelSet
 trigger1 = AnimElem = 4
-x = 26
+x = 18
 y= -4
 
 [State 1200, Vel]
 type = velset
-trigger1 = time >= 30
-x = 2
-y = 14
+trigger1 = anim = 1001
+x = 18
+y = -4
+persistent = 0
+[State 1200, Vel]
+type = velmul
+trigger1 = anim = 1001
+x = 0.98
+[State 1200, Vel]
+type = velAdd
+trigger1 = anim = 1001
+y = .44
+
 
 [State 1200, 1]
 type = HitDef
@@ -450,7 +452,7 @@ air.fall = 1
 fall.recover = 0
 air.recover = 0
 forcestand = 1
-ID = 1019
+ID = 1010
 numhits = 0
 
 [State 901,1]
@@ -459,17 +461,22 @@ trigger1 = time > 1 && numtarget && movehit
 pos = 40, 0
 postype = P1
 time = -1
-id = 1019
+id = 1010
 
 [State 1200, 2]
 type = ChangeState
 trigger1 = time > 1 && numtarget && movehit
-value = 1111
+value = 1011
 persistent = 0
 
-[State 200, ChangeState]
+[State 1010, Anim]
+type = changeanim
+trigger1 = anim = 1103 && pos y < 0
+value = 1001
+
+[State 1010, ChangeState]
 type = ChangeState
-trigger1 = time >= 13 && pos y > 0
+trigger1 = AnimTime = 0 && pos y >= 0
 value = 1001
 ctrl = 0
 
@@ -523,7 +530,7 @@ y = .5
 [State 1510,1]
 type = ChangeState
 trigger1 = Pos Y >= 0 
-trigger2 =  Time >= 55
+trigger2 =  Time >= 70
 value = 1112
 ;---------------------------------------------------------------------------
 ;Lariat Hit
@@ -647,7 +654,7 @@ trigger1 = animtime = 0
 value = 0
 ctrl = 1
 
-;Heavy Lariat
+;Heavy Maximun missle
 [Statedef 1010]
 type    = S
 movetype = A
