@@ -186,7 +186,7 @@ trigger3 = stateno = 210 && movecontact
 trigger4 = stateno = 400 && movecontact
 trigger5 = stateno = 410 && movecontact
 trigger6 = stateno = 430 && movecontact
-trigger7 = stateno = 220 && movecontact && prevStateNo != 440
+trigger7 = (stateno = [220,225]) && movecontact && prevStateNo != 440
 trigger8 = stateno = 215 && movecontact 
 trigger9 = stateno = 101 
 
@@ -219,7 +219,7 @@ type = ChangeState
 value = 230
 triggerall = command = "A" && command = "holdfwd"
 triggerall = statetype != A
-trigger1 = (stateno = [200,220] || stateno = [400,410]) && movecontact
+trigger1 = (stateno = [200,225] || stateno = [400,410]) && movecontact
 
 
 [State -1, 66H]
@@ -322,6 +322,41 @@ trigger3 = stateno = 200 && movecontact
 trigger4 = stateno = 400 && movecontact 
 trigger5 = stateno = 410 && movecontact && prevStateNo != 210 && prevStateNo != 215
 
+;f.5C
+[State -1]
+type = ChangeState
+value = 220
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "C"
+triggerall = command != "holddown"
+triggerall = p2bodydist X > 40
+trigger1 = statetype != A
+trigger1 = ctrl
+trigger2 = (Stateno = [200,210]) && Movecontact
+trigger3 = (Stateno = [210,215]) && Movecontact
+trigger4 = (Stateno = [400,410]) && Movecontact
+trigger5 = stateno = 440 && movecontact && prevStateNo != 220
+trigger6 = stateno = 101
+
+;5C
+[State -1]
+type = ChangeState
+value = 225
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "C"
+triggerall = command != "holddown"
+trigger1 = statetype != A
+trigger1 = ctrl
+trigger2 = (Stateno = [200,210]) && Movecontact
+trigger3 = (Stateno = [210,215]) && Movecontact
+trigger4 = (Stateno = [400,410]) && Movecontact
+trigger5 = stateno = 440 && movecontact && prevStateNo != 220
+trigger5 = stateno = 440 && movecontact && prevStateNo != 225
+trigger6 = stateno = 101
+
+
 ;2A
 [State -1]
 type = ChangeState
@@ -353,21 +388,6 @@ trigger4 = stateno = 215 && movecontact && prevStateNo != 410
 trigger5 = stateno = 400 && movecontact 
 trigger6 = stateno = 101 
 
-;5C
-[State -1]
-type = ChangeState
-value = 220
-triggerall = !ishelper
-triggerall = !AIlevel
-triggerall = command = "C"
-triggerall = command != "holddown"
-trigger1 = statetype != A
-trigger1 = ctrl
-trigger2 = (Stateno = [200,210]) && Movecontact
-trigger3 = (Stateno = [210,215]) && Movecontact
-trigger4 = (Stateno = [400,410]) && Movecontact
-trigger5 = stateno = 440 && movecontact && prevStateNo != 220
-trigger6 = stateno = 101
 
 
 

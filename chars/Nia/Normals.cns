@@ -164,10 +164,10 @@ trigger1 = var(12) >= 9
 value = 211
 
 
-[State 210, PlaySnd]
+[State 180, Random Sound]
 type = PlaySnd
 trigger1 = animelem=3
-value = 210,0
+value = 600, Random % 3
 
 
 [State 610, Camera Shake]
@@ -458,7 +458,7 @@ trigger1 = animtime = 0
 value = 0
 ctrl = 1
 ;---------------------------------------------------------------------------
-;5C
+;f.5C
 [Statedef 220]
 type = S
 movetype= A
@@ -484,7 +484,7 @@ value = 200, Random % 3
 [State 0, Vel]
 type = velset
 trigger1 = animelem=4
-x = 8
+x = 9
 
 [State 610, Camera Shake]
 type = EnvShake
@@ -496,6 +496,7 @@ ampl = 4
 
 [State 0, JORMUNGANDR DEFAULT HITDEF]
 type 				= HitDef
+trigger1 				= !movecontact && !movereversed
 trigger1 				= !movecontact && !movereversed
 ;===============================
 damage 				= 750 
@@ -551,9 +552,158 @@ trigger1 = animtime = 0
 value = 0
 ctrl = 1
 ;---------------------------------------------------------------------------
+;---------------------------------------------------------------------------
+;5C
+[Statedef 225]
+type = S
+movetype= A
+physics = S
+ctrl = 0
+anim = 255
+velset = vel x,0
+sprpriority = 2
+facep2 = 1
+
+
+[State 200, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = 0,3
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = animelem=3
+value = 210,0
+
+
+[State 0, Vel]
+type = velset
+trigger1 = animelem=3
+x = 2
+
+[State 610, Camera Shake]
+type = EnvShake
+trigger1 = AnimElem =5
+time = 10
+freq = 10
+ampl = 4
+
+[State 1,]
+type = explod
+trigger1 = animelemtime(4) = 0
+anim = 260
+postype = p1
+pos = 66,-53
+facing = 1
+sprpriority = 3
+bindtime = 1
+persistent = 0
+ownpal = 1
+ignorehitpause = 0
+scale = 0.18,0.18
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= AnimElem =3
+;===============================
+damage 				= 400
+pausetime 			= 12,12 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NA
+hitflag 				= MAF
+guardflag 			= M
+animtype 				= Hard
+air.animtype 			= Hard
+ground.TYPE 			= High
+air.TYPE 				= High
+priority = 4, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound                = S1,26
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 20
+ground.slidetime		= 16
+air.hittime 			= 20
+down.hittime 			= 10
+ground.velocity 		= -2
+air.velocity 			= -2,-2
+;===============================
+guard.hittime 		= 15
+guard.slidetime		= 15
+guard.velocity 		= -8
+airguard.velocity 		= -1,-1
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 0
+air.fall 				= 1
+;===============================
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= AnimElem =5
+;===============================
+damage 				= 400
+pausetime 			= 12,12 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NA
+hitflag 				= MAF
+guardflag 			= M
+animtype 				= Hard
+air.animtype 			= Hard
+ground.TYPE 			= High
+air.TYPE 				= High
+priority = 4, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound                = S1,26
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 20
+ground.slidetime		= 16
+air.hittime 			= 20
+down.hittime 			= 10
+ground.velocity 		= -5
+air.velocity 			= -2,-2
+;===============================
+guard.hittime 		= 15
+guard.slidetime		= 15
+guard.velocity 		= -8
+airguard.velocity 		= -1,-1
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 0
+air.fall 				= 1
+;===============================
+
+
+[State 0, Jump Cancel]
+type 		= MapSet
+trigger1 		= movehit
+map 		= "JC"
+value 		= 1
+ignorehitpause 	= 1
+
+[State 200, ChangeState]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
 
 ;---------------------------------------------------------------------------
-
+;---------------------------------------------------------------------------
 ;---------------------------------------------------------------------------
 ;66A
 [Statedef 230]
