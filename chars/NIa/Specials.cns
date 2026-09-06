@@ -1997,6 +1997,11 @@ ownpal = 1
 ignorehitpause = 1
 scale = 0.30,0.30
 
+[State 1000, LifeAdd]
+type = LifeAdd
+trigger1 = Time = 0
+value = -500
+
 [State 200, ChangeState]
 type = ChangeState
 trigger1 = animtime = 0
@@ -2037,6 +2042,11 @@ persistent = 0
 ownpal = 1
 ignorehitpause = 1
 scale = 0.30,0.30
+
+[State 1000, LifeAdd]
+type = LifeAdd
+trigger1 = Time = 0
+value = -500
 
 [State 200, ChangeState]
 type = ChangeState
@@ -2099,6 +2109,12 @@ value = 2000,0
 type = PlaySnd
 trigger1 = animelem = 1
 value = 2001,3
+
+
+[State 1000, LifeAdd]
+type = LifeAdd
+trigger1 = Time = 0
+value = -500
 
 [State 1200, 2]
 type = HitDef
