@@ -500,7 +500,7 @@ trigger1 				= !movecontact && !movereversed
 trigger1 				= !movecontact && !movereversed
 ;===============================
 damage 				= 750 
-pausetime 			= 12,12 + 2 * enemy, movetype = A
+pausetime 			= 14,14 + 2 * enemy, movetype = A
 getpower 				= 25 
 ;===============================
 attr 				= S,NA
@@ -588,10 +588,16 @@ time = 10
 freq = 10
 ampl = 4
 
+[State -2, Remove Effect]
+type = RemoveExplod
+trigger1 = StateNo != 225
+id = 260
+
 [State 1,]
 type = explod
 trigger1 = animelemtime(4) = 0
 anim = 260
+id = 260
 postype = p1
 pos = 66,-53
 facing = 1
@@ -664,8 +670,8 @@ priority = 4, Hit
 ;===============================
 sparkno 				= 1
 sparkxy 				= -p2dist x * 0.25, -50
-hitsound                = S1,26
-guardsound 			= 6,0
+hitsound                = S1,0
+guardsound 			= S1,0
 ;===============================
 ground.hittime 		= 20
 ground.slidetime		= 16
@@ -2418,10 +2424,15 @@ type = PlaySnd
 trigger1 = time = 0
 value = F6,2
 
-[State 200, Sound]
+[State 0, PlaySnd]
 type = PlaySnd
 trigger1 = Time = 0
-value = 820, Random % 2
+value = 820, Random % 3
+
+[State 0, Random Voice]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 820, Random % 3
 
 [State 0, PlaySnd]
 type = PlaySnd
