@@ -396,12 +396,6 @@ trigger1 = time = 0
 value = 0,4
 
 
-
-[State 0, Vel]
-type = velset
-trigger1 = animelem=1
-x = 1
-
 [State 180, Random Sound]
 type = PlaySnd
 trigger1 = Time = 0
@@ -432,7 +426,6 @@ ground.slidetime = 12
 guard.hittime 	= 12
 ground.hittime = 18 + 4*var(9)
 air.hittime = 18
-yaccel = .53
 ground.velocity = -3,0
 guard.velocity = -6
 guard.cornerpush.veloff = 
@@ -595,11 +588,11 @@ id = 260
 
 [State 1,]
 type = explod
-trigger1 = animelemtime(4) = 0
+trigger1 = animelemtime(5) = 0
 anim = 260
 id = 260
 postype = p1
-pos = 66,-53
+pos = 65,-55
 facing = 1
 sprpriority = 3
 bindtime = 1
@@ -610,7 +603,7 @@ scale = 0.18,0.18
 
 [State 0, JORMUNGANDR DEFAULT HITDEF]
 type 				= HitDef
-trigger1 				= AnimElem =3
+trigger1 				= AnimElem =4
 ;===============================
 damage 				= 400
 pausetime 			= 12,12 + 2 * enemy, movetype = A
@@ -653,7 +646,7 @@ air.fall 				= 1
 
 [State 0, JORMUNGANDR DEFAULT HITDEF]
 type 				= HitDef
-trigger1 				= AnimElem =5
+trigger1 				= AnimElem =6
 ;===============================
 damage 				= 400
 pausetime 			= 12,12 + 2 * enemy, movetype = A
@@ -1395,7 +1388,6 @@ movetype= A
 physics = C
 ctrl = 0
 anim = 450
-velset = 0,0
 sprpriority = 2
 facep2 = 1
 

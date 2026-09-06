@@ -230,14 +230,14 @@ triggerall = statetype != A
 trigger1 = stateno = 101
 
 ;dash punch cancel
-[State -1, 66L]
+[State -1, 66H]
 type = ChangeState
 value = 240
 triggerall = !ishelper
 triggerall = !AIlevel
 triggerall = command = "B" && command = "holdfwd"
 triggerall = statetype != A
-trigger1 = (stateno = [200,215] || stateno = [400,410]) && movecontact
+trigger1 = (stateno = [200,225] || stateno = [400,410]) && movecontact
 
 [State -1, 66LL]
 type = ChangeState
