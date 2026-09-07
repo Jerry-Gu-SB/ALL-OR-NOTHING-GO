@@ -815,28 +815,15 @@ trigger1 = ctrl
 trigger2 = stateno = 600 
 trigger2 = movecontact
 
-
-;---------------------------------------------------------------------------
-;Jump Light Kick
-[State -1, Jump Light Kick]
-type = ChangeState
-value = 630
-triggerall = command = "a"
-trigger1 = statetype = A
-trigger1 = ctrl
-trigger2 = stateno = 1350 ;Air blocking
-
-;---------------------------------------------------------------------------
 ;Jump Strong Kick
-[State -1, Jump Strong Kick]
+[State -1, JC]
 type = ChangeState
-value = 640
-triggerall = command = "x"
+value = 620
+triggerall = command = "c"
 trigger1 = statetype = A
 trigger1 = ctrl
-trigger2 = stateno = 600 || stateno = 630 ;jump_x or jump_a
+trigger2 = stateno = 600 || stateno = 610 ;jump_x or jump_a
 trigger2 = movecontact
-trigger3 = stateno = 1350 ;Air blocking
 
 
 ;Jump/Super Jump
