@@ -82,7 +82,7 @@ value = 101,0
 [State 100, 1]
 type = VelSet
 trigger1 = 1
-x = 4
+x = 6
 
 [State 6061, Effect]
 type = Explod
