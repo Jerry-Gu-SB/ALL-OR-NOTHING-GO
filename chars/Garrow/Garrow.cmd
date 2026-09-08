@@ -685,12 +685,30 @@ triggerall = !ishelper
 triggerall = !AIlevel
 triggerall = command = "b"
 triggerall = command != "holddown"
+triggerall = p2bodydist X=[-40,40]
 trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 400 && movecontact
 trigger4 = stateno = 410 && movecontact && prevStateNo != 210
 
+
+;---------------------------------------------------------------------------
+;F.5B
+[State -1, F.5B]
+type = ChangeState
+value = 215
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "b"
+triggerall = command != "holddown"
+triggerall = p2bodydist X > 40
+trigger1 = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 && movecontact
+trigger3 = stateno = 400 && movecontact
+trigger4 = stateno = 410 && movecontact && prevStateNo != 210
+trigger5 = stateno = 410 && movecontact && prevStateNo != 215
 ;---------------------------------------------------------------------------
 ;5C
 [State -1]
@@ -702,7 +720,7 @@ triggerall = command != "holddown"
 trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 210 && movecontact
+trigger3 = (Stateno = [210,215])&& movecontact
 trigger4 = stateno = 400 && movecontact
 trigger5 = stateno = 410 && movecontact
 trigger6 = stateno = 420 && movecontact && prevStateNo != 220
@@ -730,8 +748,10 @@ triggerall = command = "holddown"
 trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 210 && movecontact && prevStateNo != 410
-trigger4 = stateno = 400 && movecontact
+trigger3 = stateno = 400 && movecontact
+trigger4 = stateno = 210 && movecontact && prevStateNo != 410
+trigger5 = stateno = 215 && movecontact && prevStateNo != 410
+
 ;---------------------------------------------------------------------------
 [State -1, 2C]
 type = ChangeState
@@ -741,7 +761,7 @@ triggerall = command = "holddown"
 trigger1 = statetype = C
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
-trigger3 = stateno = 210 && movecontact
+trigger3 = (Stateno = [210,215])&& movecontact
 trigger4 = stateno = 220 && movecontact && prevStateNo != 420
 trigger5 = stateno = 400 && movecontact
 trigger6 = stateno = 410 && movecontact
@@ -760,17 +780,6 @@ triggerall = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 101
 
-;---------------------------------------------------------------------------
-;Standing Strong Kick
-[State -1, Standing Strong Kick]
-type = ChangeState
-value = 240
-triggerall = command = "y"
-triggerall = command != "holddown"
-trigger1 = statetype = S
-trigger1 = ctrl
-trigger2 = (stateno = 200) && time > 5
-trigger3 = (stateno = 230) && time > 6
 
 ;---------------------------------------------------------------------------
 ;Taunt

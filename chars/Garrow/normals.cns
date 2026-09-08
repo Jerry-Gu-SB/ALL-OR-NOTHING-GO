@@ -130,6 +130,79 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
+
+
+
+;---------------------------------------------------------------------------
+; F.5B
+[Statedef 215]
+type    = S
+movetype= A
+physics = S
+velset = vel x,0  
+ctrl = 0
+velset = 0,0
+anim = 215
+sprpriority = 2
+
+[State 240, 1]
+type = PlaySnd
+trigger1 = Time = 2
+value = 0, 1
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= !movecontact && !movereversed
+;===============================
+damage 				= 450
+pausetime 			= 12,12 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NA
+hitflag 				= MAF
+guardflag 			= M
+animtype 				= Medium
+air.animtype 			= Medium
+ground.TYPE 			= High
+air.TYPE 				= High
+priority = 2, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= 5,0
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 18
+ground.slidetime		= 8
+air.hittime 			= 16
+down.hittime 			= 10
+ground.velocity 		= -5
+air.velocity 			= -2,-2
+;===============================
+guard.ctrltime 		= 12
+guard.slidetime		= 8
+guard.velocity 		= -6
+airguard.velocity 		= -2,-2
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 0
+air.fall 				= 1
+;===============================
+envshake.time 			= 8
+envshake.freq 			= 8
+envshake.ampl 			= 1
+envshake.phase 		= 0.5
+
+
+[State 240, 4]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
 ;---------------------------------------------------------------------------
 ; Standing strong punch
 ; CNS difficulty: easy
@@ -302,53 +375,7 @@ ctrl = 1
 
 
 
-;---------------------------------------------------------------------------
-; Standing strong kick
-; CNS difficulty: easy
-[Statedef 240]
-type    = S
-movetype= A
-physics = S
-juggle  = 5
-poweradd= 30
-ctrl = 0
-velset = 0,0
-anim = 240
-sprpriority = 2
 
-[State 240, 1]
-type = PlaySnd
-trigger1 = Time = 2
-value = 0, 1
-
-[State 240, 2]
-type = HitDef
-trigger1 = Time = 0
-attr = S, NA
-animtype  = Medium
-damage    = 63
-guardflag = MA
-pausetime = 12,12
-sparkno = 1
-sparkxy = -10,-60
-hitsound   = 5,2
-guardsound = 6,0
-ground.type = Low
-ground.slidetime = 12
-ground.hittime  = 17
-ground.velocity = -6
-air.velocity = -2.2,-3.2
-
-[State 240, 3]
-type = PosAdd
-trigger1 = AnimElem = 7
-x = 12
-
-[State 240, 4]
-type = ChangeState
-trigger1 = AnimTime = 0
-value = 0
-ctrl = 1
 
 ;---------------------------------------------------------------------------
 
