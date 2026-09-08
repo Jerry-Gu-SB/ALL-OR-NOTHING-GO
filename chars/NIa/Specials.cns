@@ -1149,7 +1149,7 @@ pausetime 			= 10,10 + 2 * enemy, movetype = A
 getpower 				= 25 * MAP(GEAR.MUL),0
 ;===============================
 attr 				= A,NA
-hitflag 				= MAF
+hitflag 				= M
 guardflag 			= MA
 animtype 				= Light
 air.animtype 			= Light
@@ -1970,6 +1970,7 @@ movetype= A
 physics = S
 juggle = 0
 velset = 0, 0
+poweradd = 25
 anim = 2000
 ctrl = 0
 
@@ -2016,6 +2017,7 @@ movetype= A
 physics = S
 juggle = 0
 velset = 0, 0
+poweradd = 25
 anim = 2000
 ctrl = 0
 
@@ -2062,6 +2064,7 @@ movetype= A
 physics = S
 juggle = 0
 velset = 0, 0
+poweradd = 25
 anim = 2001
 ctrl = 0
 
