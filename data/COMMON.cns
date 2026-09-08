@@ -6259,7 +6259,7 @@ value = 0
 ;Throw Protection
 [State 0, NotHitBy]
 type = NotHitBy
-trigger1 = (stateno = [120,155]) && stateno != [135,137]
+trigger1 = (stateno = [130,155]) && stateno != [135,137]
 value = ,NT,ST,HT
 time = 6
 ignorehitpause = 1

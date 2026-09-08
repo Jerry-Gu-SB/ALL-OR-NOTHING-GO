@@ -2416,15 +2416,6 @@ type = PlaySnd
 trigger1 = time = 0
 value = F6,2
 
-[State 0, PlaySnd]
-type = PlaySnd
-trigger1 = Time = 0
-value = 820, Random % 3
-
-[State 0, Random Voice]
-type = PlaySnd
-trigger1 = AnimElem = 1
-value = 820, Random % 3
 
 [State 0, PlaySnd]
 type = PlaySnd
@@ -2512,6 +2503,16 @@ sprpriority = 2
 type = PlaySnd
 trigger1 = time = 1
 value = 672,0
+
+[State 0, PlaySnd]
+type = PlaySnd
+trigger1 = Time = 0
+value = 820, Random % 3
+
+[State 0, Random Voice]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 820, Random % 3
 
 [State 0, ChangeAnim]
 type = ChangeAnim
