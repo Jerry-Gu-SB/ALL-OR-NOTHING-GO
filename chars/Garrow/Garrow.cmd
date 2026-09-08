@@ -825,14 +825,18 @@ trigger1 = ctrl
 trigger2 = stateno = 600 || stateno = 610 ;jump_x or jump_a
 trigger2 = movecontact
 
-;Super Jump
-[State -1, Super Jump]
+
+;Jump/Super Jump
+[State -1]
 type = ChangeState
-value = 55
-triggerall = statetype != A
-triggerall = command = "28" || command = "27" || command = "29"
-trigger1 = ctrl
-trigger2 = Map(JC)
+value = 40
+triggerall = command = "holdup" && prevstateno != 810
+trigger1 = stateno = [100,102]
+trigger2 = stateno = [200,221] && MoveHit
+trigger3 = stateno = [400,450] && MoveHit
+trigger4 = stateno = 410 && MoveHit
+
+
 
 ; Slot just sets the order in which State -1 will take precedence, so PerfectBlock has the highest priority of State -1 I guess?
 ; Source: https://mugenfreeforall.com/topic/34752-ricepigeons-coding-tutorial-code-snippet-repository/
