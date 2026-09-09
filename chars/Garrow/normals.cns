@@ -784,7 +784,6 @@ value = 51
 type    = A
 movetype= A
 physics = A
-poweradd= 30
 ctrl = 0
 anim = 610
 sprpriority = 2
@@ -801,6 +800,47 @@ attr = A, NA
 damage = 400
 hitflag 	= MAF
 guardflag 	= HA
+pausetime 	= 12,12 + 2 * (enemy, movetype = A)
+sparkno 		= 1
+sparkxy 		= -5,-35
+hitsound   	= 5,3
+guardsound 			= 6,0
+ground.type 	= high
+air.type		= high
+ground.slidetime 	= 6
+ground.hittime  	= 16
+air.hittime  		= 22 
+ground.velocity 	= -3
+guard.velocity 	= -1
+fall.yvelocity 	= 0
+air.velocity 		= -1.5,-2
+guard.ctrltime 	= 14
+air.fall 			= 1
+ground.cornerpush.veloff = -3
+air.cornerpush.veloff 	= -3 
+
+;---------------------------------------------------------------------------
+; JB-b
+[Statedef 611]
+type    = A
+movetype= A
+physics = A
+ctrl = 0
+anim = 611
+sprpriority = 2
+
+[State 610, 2]
+type = PlaySnd
+trigger1 = Time = 2
+value = 0, 1
+
+[State 610, 3]
+type = HitDef
+trigger1 = Time = 0
+attr = A, NA
+damage = 400
+hitflag 	= MAF
+guardflag 	= MA
 pausetime 	= 12,12 + 2 * (enemy, movetype = A)
 sparkno 		= 1
 sparkxy 		= -5,-35
