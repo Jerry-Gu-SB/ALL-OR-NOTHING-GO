@@ -36,7 +36,7 @@ guard.hittime = 12
 ground.velocity = -6             ;Velocity at which opponent is pushed
 airguard.velocity = -7     ;Guard velocity in air (def: (air.xvel*1.5, air.yvel/2))
 air.type = High                  ;Type: High, Low, Trip (def: same as ground.type)
-air.velocity = -1.2,-1.5
+air.velocity = -2.8,-1.5
 air.fall = 1           ;X-velocity at which opponent is pushed,
 ;Y-velocity at which opponent is pushed
 air.hittime = 15                 ;Time before opponent regains control in air
@@ -522,7 +522,7 @@ guard.hittime = 12
 ground.velocity = -6            ;Velocity at which opponent is pushed
 airguard.velocity = -6,-.8     ;Guard velocity in air (def: (air.xvel*1.5, air.yvel/2))
                 ;Type: High, Low, Trip (def: same as ground.type)
-air.velocity = -1.2,-1.5
+air.velocity = -2.9,-1.5
 air.fall = 1           ;X-velocity at which opponent is pushed,
 ;Y-velocity at which opponent is pushed
 air.hittime = 15                 ;Time before opponent regains control in air
