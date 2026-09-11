@@ -169,7 +169,7 @@ priority = 2, Hit
 ;===============================
 sparkno 				= 1
 sparkxy 				= -p2dist x * 0.25, -50
-hitsound 				= 5,0
+hitsound 				= s1,7
 guardsound 			= 6,0
 ;===============================
 ground.hittime 		= 18
@@ -203,6 +203,109 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
+
+
+
+;5C
+[Statedef 225]
+type    = S
+movetype= A
+physics = S
+ctrl = 0
+velset = vel x,0
+anim = 225
+sprpriority = 2
+
+
+[State 210, 1]
+type = PlaySnd
+trigger1 = Time = 3
+value = 0, 4
+
+[State 210, 1]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 800, 0
+
+[State 0, Vel]
+type = velset
+trigger1 = animelem=2
+x = 2
+
+[State 610, Camera Shake]
+type = EnvShake
+trigger1 = AnimElem = 4
+trigger2 = MoveHit || MoveGuarded
+persistent = 0
+time = 10
+freq = 10
+ampl = 4
+
+[State 1200, 6]
+type = explod
+trigger1 = AnimElem = 3
+anim = 6000
+id = 6000
+postype = p1
+pos = 58,7
+facing = 1
+sprpriority = 3
+bindtime = 1
+ownpal = 1
+sprpriority = 5
+ignorehitpause = 0
+persistent = 0
+scale = .10,.10
+
+[State 1200, 6]
+type = explod
+trigger1 = AnimElem = 3
+anim = 6001
+id = 6001
+pos = 58,7
+facing = 1
+sprpriority = -1
+bindtime = 1
+ownpal = 1
+ignorehitpause = 0
+persistent = 0
+postype = p1
+pos = 0,0
+scale = .10,.10
+
+[State 210, 2]
+type = HitDef
+trigger1 = !MoveContact && !MoveReversed
+attr = S, NA
+hitflag = MAF
+guardflag = M
+animtype  = Medium
+damage    = 690
+pausetime = 11,11
+getpower = 20,0
+givepower = 20,0
+priority = 4, Hit 
+sparkno = 1
+sparkxy = -10,-70
+hitsound   = s1,8
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 18
+ground.velocity = -4.5
+guard.hittime = 14
+air.velocity = -2.5,-4
+air.fall = 1
+fall.recovertime = 45
+ground.cornerpush.veloff = -5
+air.cornerpush.veloff = -5
+
+
+[State 210, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
 ;---------------------------------------------------------------------------
 ; Standing strong punch
 ; CNS difficulty: easy
@@ -218,7 +321,7 @@ ctrl = 1
 ; opponent during that frame, and switches to the next animation element
 ; (notice the elem=6 parameter). If you don't see what I mean, try commenting
 ; out that controller, then hit someone with this attack.
-;5C
+;F.5C
 [Statedef 220]
 type    = S
 movetype= A
@@ -237,24 +340,7 @@ value = 0, 4
 [State 0, Vel]
 type = velset
 trigger1 = animelem=2
-x = 2
-
-[State 210, 2]
-type = varset
-trigger1 = !time
-var(12) = 0
-
-[State 210, 2]
-type = varadd
-triggerall = !ailevel
-trigger1 = command = "HOLD_C"
-var(12) = 1
-
-[State 210, 2]
-type = changestate
-trigger1 = time = 12
-trigger1 = var(12) >= 12
-value = 221
+x = 7
 
 [State 610, Camera Shake]
 type = EnvShake
@@ -276,7 +362,7 @@ damage    = 670
 pausetime = 11,11
 getpower = 20,0
 givepower = 20,0
-priority = 2, Hit 
+priority = 3, Hit 
 sparkno = 1
 sparkxy = -10,-70
 hitsound   = 5,2
@@ -300,7 +386,7 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-; 5[C]
+; 5C~C
 [Statedef 221]
 type    = S
 movetype= A
@@ -582,7 +668,7 @@ priority = 2, Hit
 ;===============================
 sparkno 				= 1
 sparkxy 				= -p2dist x * 0.25, -50
-hitsound 				= 5,2
+hitsound 				= s1,8
 guardsound 			= 6,0
 ;===============================
 ground.hittime 		= 18
@@ -896,7 +982,7 @@ priority = 3, Hit
 ;===============================
 sparkno 				= 1
 sparkxy 				= -p2dist x * 0.25, -50
-hitsound                = 5,3
+hitsound                = s1,7
 guardsound 			= 6,0
 ;===============================
 ground.hittime 		= 20

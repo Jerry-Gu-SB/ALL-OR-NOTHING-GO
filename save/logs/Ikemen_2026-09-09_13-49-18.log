@@ -1,0 +1,73 @@
+Version: v1.0.0-rc.2
+Build Time: 2026.08.01
+Platform: windows (amd64)
+Vulkan 1.3.239
+RAM in Use: 125 MB / OS Reserved: 380 MB
+Active Goroutines: 3
+Timestamp: 2026-09-09 13:49:18
+
+Engine error
+
+Error: vk.CreateSwapchain failed with vulkan error: out of device memory
+goroutine 1 [running, locked to thread]:
+github.com/yuin/gopher-lua.(*LState).PCall.func1()
+	github.com/yuin/gopher-lua@v1.1.0/state.go:1988 +0x212
+panic({0x7ff65fafce60, 0xc00e3de000})
+	runtime/panic.go:884 +0x213
+main.(*Renderer_VK).RecreateSwapchain(0xc0004d8000)
+	github.com/ikemen-engine/Ikemen-GO/src/render_vk.go:2096 +0x9c
+main.(*Renderer_VK).EndFrame(0xc0004d8000)
+	github.com/ikemen-engine/Ikemen-GO/src/render_vk.go:5709 +0x12ff
+main.(*System).await(0x7ff65fa5a820, 0x3c)
+	github.com/ikemen-engine/Ikemen-GO/src/system.go:799 +0x6d
+main.(*System).update(0x7ff65fa5a820)
+	github.com/ikemen-engine/Ikemen-GO/src/system.go:945 +0x22b
+main.(*System).runMatch(0x7ff65fa5a820)
+	github.com/ikemen-engine/Ikemen-GO/src/system.go:3923 +0x7cc
+main.systemScriptInit.func79.3()
+	github.com/ikemen-engine/Ikemen-GO/src/script.go:3140 +0x4b1
+main.systemScriptInit.func79(0xc0001a20b0)
+	github.com/ikemen-engine/Ikemen-GO/src/script.go:3195 +0x403
+github.com/yuin/gopher-lua.callGFunction(0xc0001a20b0, 0x0)
+	github.com/yuin/gopher-lua@v1.1.0/vm.go:202 +0x37
+github.com/yuin/gopher-lua.init.3.func26(0xc0001a20b0, 0x90000400?, 0xc0003b0000?)
+	github.com/yuin/gopher-lua@v1.1.0/vm.go:821 +0x379
+github.com/yuin/gopher-lua.mainLoop(0xc0001a20b0, 0xc0000ba3c0?)
+	github.com/yuin/gopher-lua@v1.1.0/vm.go:31 +0xfa
+github.com/yuin/gopher-lua.(*LState).callR(0xc0001a20b0, 0x0, 0xffffffffffffffff, 0xc0000a0008?)
+	github.com/yuin/gopher-lua@v1.1.0/state.go:1211 +0x1b4
+github.com/yuin/gopher-lua.(*LState).Call(...)
+	github.com/yuin/gopher-lua@v1.1.0/state.go:1967
+github.com/yuin/gopher-lua.(*LState).PCall(0xc0001a20b0, 0x0, 0xc0000ba3c0?, 0x0)
+	github.com/yuin/gopher-lua@v1.1.0/state.go:2030 +0x145
+github.com/yuin/gopher-lua.(*LState).DoFile(0xc0001a20b0, {0xc0002e1bc1?, 0x0?})
+	github.com/yuin/gopher-lua@v1.1.0/auxlib.go:396 +0x6b
+main.realMain()
+	github.com/ikemen-engine/Ikemen-GO/src/main.go:201 +0x4ec
+main.main()
+	github.com/ikemen-engine/Ikemen-GO/src/main.go:59 +0x17
+
+stack traceback:
+	[G]: in function 'game'
+	.\external\script\start.lua:1766: in function 'f_game'
+	.\external\script\start.lua:2380: in function 'launchFight'
+	@external/script/default.lua:2: in function <@external/script/default.lua:0>
+	.\external\script\start.lua:1837: in function 'f'
+	external/script/main.lua:2703: in function 'loop'
+	external/script/main.lua:4039: in main chunk
+	[G]: ?
+
+Go stack traceback:
+goroutine 1 [running, locked to thread]:
+runtime/debug.Stack()
+	runtime/debug/stack.go:24 +0x65
+main.handlePanic({0x7ff65fafe5a0?, 0xc000630100})
+	github.com/ikemen-engine/Ikemen-GO/src/main.go:372 +0x408
+main.realMain.func1()
+	github.com/ikemen-engine/Ikemen-GO/src/main.go:66 +0x2a
+panic({0x7ff65fafe5a0, 0xc000630100})
+	runtime/panic.go:884 +0x213
+main.realMain()
+	github.com/ikemen-engine/Ikemen-GO/src/main.go:206 +0x573
+main.main()
+	github.com/ikemen-engine/Ikemen-GO/src/main.go:59 +0x17

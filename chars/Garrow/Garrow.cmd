@@ -710,20 +710,38 @@ trigger3 = stateno = 400 && movecontact
 trigger4 = stateno = 410 && movecontact && prevStateNo != 210
 trigger5 = stateno = 410 && movecontact && prevStateNo != 215
 ;---------------------------------------------------------------------------
+
 ;5C
 [State -1]
 type = ChangeState
-value = 220
+value = 225
 triggerall = stateno!=40
 triggerall = command = "c"
 triggerall = command != "holddown"
+triggerall = p2bodydist X=[-40,40]
 trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = (Stateno = [210,215])&& movecontact
 trigger4 = stateno = 400 && movecontact
 trigger5 = stateno = 410 && movecontact
-trigger6 = stateno = 420 && movecontact && prevStateNo != 220
+trigger6 = stateno = 420 && movecontact && prevStateNo != 220 && prevStateNo != 225
+;---------------------------------------------------------------------------
+;F.5C
+[State -1]
+type = ChangeState
+value = 220
+triggerall = stateno!=40
+triggerall = command = "c"
+triggerall = command != "holddown"
+triggerall = p2bodydist X > 40
+trigger1 = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 200 && movecontact
+trigger3 = (Stateno = [210,215])&& movecontact
+trigger4 = stateno = 400 && movecontact
+trigger5 = stateno = 410 && movecontact
+trigger6 = stateno = 420 && movecontact && prevStateNo != 220 && prevStateNo != 225
 
 
 ;---------------------------------------------------------------------------
@@ -762,9 +780,10 @@ trigger1 = statetype = C
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = (Stateno = [210,215])&& movecontact
-trigger4 = stateno = 220 && movecontact && prevStateNo != 420
-trigger5 = stateno = 400 && movecontact
-trigger6 = stateno = 410 && movecontact
+trigger4 = stateno = [220,225] && movecontact && prevStateNo != 420
+trigger5 = stateno = 225 && movecontact && prevStateNo != 420
+trigger6 = stateno = 400 && movecontact
+trigger7 = stateno = 410 && movecontact
 
 
 
@@ -852,7 +871,7 @@ type = ChangeState
 value = 40
 triggerall = command = "holdup" && prevstateno != 810
 trigger1 = stateno = [100,102]
-trigger2 = stateno = [200,221] && MoveHit
+trigger2 = stateno = [200,225] && MoveHit
 trigger3 = stateno = [400,450] && MoveHit
 trigger4 = stateno = 410 && MoveHit
 
