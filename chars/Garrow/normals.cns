@@ -36,7 +36,7 @@ guard.hittime = 12
 ground.velocity = -6             ;Velocity at which opponent is pushed
 airguard.velocity = -7     ;Guard velocity in air (def: (air.xvel*1.5, air.yvel/2))
 air.type = High                  ;Type: High, Low, Trip (def: same as ground.type)
-air.velocity = -2.8,-1.5
+air.velocity = -2.8,-2.5
 air.fall = 1           ;X-velocity at which opponent is pushed,
 ;Y-velocity at which opponent is pushed
 air.hittime = 15                 ;Time before opponent regains control in air
@@ -104,7 +104,7 @@ ground.slidetime		= 8
 air.hittime 			= 16
 down.hittime 			= 10
 ground.velocity 		= -5
-air.velocity 			= -2,-2
+air.velocity 			= -1.5,-1.4
 ;===============================
 guard.ctrltime 		= 12
 guard.slidetime		= 8
@@ -372,7 +372,7 @@ ground.slidetime = 12
 ground.hittime  = 18
 ground.velocity = -4.5
 guard.hittime = 14
-air.velocity = -2.5,-4
+air.velocity = -2,-3
 air.fall = 1
 fall.recovertime = 45
 ground.cornerpush.veloff = -5
@@ -561,7 +561,10 @@ type = PlaySnd
 trigger1 = Time = 1
 value = 0, 0
 
-
+[State 0, Vel]
+type = velset
+trigger1 = animelem=3
+x = 4
 
 [State 0, JORMUNGANDR DEFAULT HITDEF]
 type 				= HitDef
@@ -705,54 +708,85 @@ value = 11
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-;Crouch Strong Kick
-; CNS difficulty: easy
-; Description: This move uses "Trip" for the "ground.type" parameter in
-;     its HitDef. It's a special type that puts the opponent in a tripped
-;     animation as he falls. Also, the hitflag parameter in the HitDef
-;     is set to "MAFD". The "D" indicates that a downed opponent can be
-;     hit by the attack.
+;3C
 [Statedef 440]
-type    = C
-movetype= A
-physics = C
-juggle  = 7
-poweradd= 35
-ctrl = 0
-anim = 440
-sprpriority = 2
+type    = S                      ;State-type: S-stand, C-crouch, A-air, L-liedown
+movetype= A                      ;Move-type: A-attack, I-idle, H-gethit
+physics = S                      ;Physics: S-stand, C-crouch, A-air                    ;Number of air juggle points move takes
+velset = vel x,0                     ;Set velocity (x,y) (Def: no change)
+ctrl = 0                         ;Set ctrl (Def: no change)
+anim = 440                      ;Change animation (Def: no change)                   ;Power to add (Def: 0)
+sprpriority = 2 
 
 [State 440, 2]
 type = PlaySnd
 trigger1 = Time = 2
 value = 0, 2
 
-[State 440, 3]
-type = HitDef
+[State 0, Vel]
+type = velset
 trigger1 = Time = 0
-attr = C, NA
-damage    = 72
-hitflag = MAFD
-guardflag = L
-pausetime = 12,12
-sparkno = 1
-sparkxy = -5,-10
-hitsound   = 5,2
-guardsound = 6,0
-ground.type = Trip
-ground.slidetime = 10
-ground.hittime  = 17
-ground.velocity = -1.5,-2
-air.velocity = -1.2,-3
-guard.velocity = -5
-fall = 1
+x = 4
 
-[State 440, 4]
+[State 0, Vel]
+type = velset
+trigger1 = AnimElem = 4
+x = 0
+
+[State 610, Camera Shake]
+type = EnvShake
+trigger1 = AnimElem = 4
+trigger2 = MoveHit || MoveGuarded
+persistent = 0
+time = 10
+freq = 10
+ampl = 4
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= !movecontact && !movereversed
+;===============================
+damage 				= 600
+pausetime 			= 14,14 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NA
+hitflag 				= MAF
+guardflag 			= M
+animtype 				= Medium
+ground.TYPE 			= High
+priority = 2, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= 5,0
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 19
+ground.slidetime		= 8
+air.hittime 			= 26
+down.hittime 			= 10
+ground.velocity 		= -3, -8
+air.velocity 			= -2.3,-5
+;===============================
+guard.ctrltime 		= 14
+guard.slidetime		= 8
+guard.velocity 		= -6
+airguard.velocity 		= -2,-2
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 1
+
+
+[State 210, ChangeState]
 type = ChangeState
-trigger1 = AnimTime = 0
-value = 11
+trigger1 = animtime = 0
+value = 0
 ctrl = 1
-
 ;---------------------------------------------------------------------------
 ;assault
 [Statedef 500]
@@ -945,6 +979,33 @@ guard.ctrltime 	= 14
 air.fall 			= 1
 ground.cornerpush.veloff = -3
 air.cornerpush.veloff 	= -3 
+;---------------------------------------------------------------------------
+;JC start
+[Statedef 615]
+type    = A
+movetype= A
+physics = A
+ctrl = 0
+anim = 630
+sprpriority = 2
+
+
+[State 610, 2]
+type = varset
+trigger1 = 1
+var(31) = 0
+
+[State 0, ChangeState]
+type = ChangeState
+triggerall = var(31) = 0
+triggerall = time = [2,10]
+trigger1 = command !="HOLD_C"
+value = 620
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = time = 14
+value = 621
 
 ;---------------------------------------------------------------------------
 ;JC
@@ -990,12 +1051,12 @@ ground.slidetime		= 16
 air.hittime 			= 21
 down.hittime 			= 10
 ground.velocity 		= -5
-air.velocity 			= -2,-1.4
+air.velocity 			= -2,-2
 ;===============================
 guard.hittime 		= 15
 guard.slidetime		= 15
 guard.velocity 		= -8
-airguard.velocity 		= -1,-1
+airguard.velocity 		= -4,-4
 ;===============================
 ground.cornerpush.veloff	= -4
 air.cornerpush.veloff 	= -4
@@ -1024,6 +1085,112 @@ ground.slidetime = 12
 ground.hittime  = 15
 ground.velocity = -7
 air.velocity = -3,-4
+
+;---------------------------------------------------------------------------
+;J[C]
+[Statedef 621]
+type    = A
+movetype= A
+physics = A
+ctrl = 0
+anim = 641
+sprpriority = 2
+
+[State 640, 2]
+type = PlaySnd
+trigger1 = animelem = 2
+value = 0, 4
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = !time
+x = 2
+y = -4
+
+[State 50, 2]
+type = Explod
+trigger1 = time = 0
+anim = 10700
+pos = -30,-131
+postype = p1
+ownpal = 1
+ignorehitpause = 1
+persistent = 0
+sprpriority = 3
+scale = 0.50,0.50
+
+[State Pal, 1]
+type = PalFX
+trigger1 = Time = 0
+time = 3
+mul = 256,256,256
+add = 256,256,256
+ignorehitpause = 1
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= !movecontact && !movereversed
+trigger1 				= !movecontact && !movereversed
+;===============================
+damage 				= 800 
+pausetime 			= 14,14 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NA
+hitflag 				= MAF
+guardflag 			= HA
+animtype 				= Hard
+air.animtype 			= Hard
+ground.TYPE 			= High
+air.TYPE 				= High
+priority = 3, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound                = s1,7
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 20
+ground.slidetime		= 16
+air.hittime 			= 30
+down.hittime 			= 10
+ground.velocity 		= -5
+air.velocity 			= -2,-3
+;===============================
+guard.hittime 		= 15
+guard.slidetime		= 15
+guard.velocity 		= -8
+airguard.velocity 		= -1,-1
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+p2stateno = 5255
+fall 				= 1
+;===============================
+
+
+[State 640, 3]
+type = HitDef
+trigger1 = Time = 0
+attr = A, NA
+damage    = 70
+guardflag = HA
+priority = 4
+pausetime = 12,12
+sparkno = 1
+sparkxy = -10,-40
+hitsound   = 5,3
+guardsound = 6,0
+animtype = Med
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 15
+ground.velocity = -7
+air.velocity = -3,-4
+
 
 ;---------------------------------------------------------------------------
 ;Kung Fu Throw - Attempt

@@ -710,7 +710,15 @@ trigger3 = stateno = 400 && movecontact
 trigger4 = stateno = 410 && movecontact && prevStateNo != 210
 trigger5 = stateno = 410 && movecontact && prevStateNo != 215
 ;---------------------------------------------------------------------------
+[State -1, 3C]
+type = ChangeState
+value = 440
+triggerall = command = "C" && command = "holddown" && command = "holdfwd"
+triggerall = statetype != A
+trigger1 = ctrl|| (stateno = [200,225] || stateno = [400,420]) && movecontact
+trigger2 = stateno = 100 
 
+;---------------------------------------------------------------------------
 ;5C
 [State -1]
 type = ChangeState
@@ -755,6 +763,7 @@ trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 400 && movecontact
+trigger4 = stateno = 100
 
 
 ;---------------------------------------------------------------------------
@@ -769,6 +778,7 @@ trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 400 && movecontact
 trigger4 = stateno = 210 && movecontact && prevStateNo != 410
 trigger5 = stateno = 215 && movecontact && prevStateNo != 410
+trigger6 = stateno = 100
 
 ;---------------------------------------------------------------------------
 [State -1, 2C]
@@ -776,7 +786,7 @@ type = ChangeState
 value = 420
 triggerall = command = "c"
 triggerall = command = "holddown"
-trigger1 = statetype = C
+triggerall = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = (Stateno = [210,215])&& movecontact
@@ -784,6 +794,9 @@ trigger4 = stateno = [220,225] && movecontact && prevStateNo != 420
 trigger5 = stateno = 225 && movecontact && prevStateNo != 420
 trigger6 = stateno = 400 && movecontact
 trigger7 = stateno = 410 && movecontact
+trigger8 = stateno = 100
+
+
 
 
 
@@ -809,18 +822,6 @@ triggerall = command = "start"
 trigger1 = statetype != A
 trigger1 = ctrl
 
-
-;---------------------------------------------------------------------------
-;Crouching Strong Kick
-[State -1, Crouching Strong Kick]
-type = ChangeState
-value = 440
-triggerall = command = "y"
-triggerall = command = "holddown"
-trigger1 = statetype = C
-trigger1 = ctrl
-trigger2 = (stateno = 400) || (stateno = 430)
-trigger2 = (time > 9) || (movecontact && time > 5)
 
 ;---------------------------------------------------------------------------
 ;Jump Light Punch
@@ -857,7 +858,7 @@ trigger2 = movecontact
 ;Jump Strong Kick
 [State -1, JC]
 type = ChangeState
-value = 620
+value = 615
 triggerall = command = "c"
 trigger1 = statetype = A
 trigger1 = ctrl
