@@ -1122,7 +1122,7 @@ scale = 0.50,0.50
 [State Pal, 1]
 type = PalFX
 trigger1 = Time = 0
-time = 3
+time = 5
 mul = 256,256,256
 add = 256,256,256
 ignorehitpause = 1
@@ -1154,7 +1154,7 @@ ground.hittime 		= 20
 ground.slidetime		= 16
 air.hittime 			= 30
 down.hittime 			= 10
-ground.velocity 		= -5
+ground.velocity 		= -3
 air.velocity 			= -2,-3
 ;===============================
 guard.hittime 		= 15

@@ -246,6 +246,14 @@ type = velset
 trigger1 = animelem=3
 x = 6
 
+[State Pal, 1]
+type = PalFX
+trigger1 = Time = 0
+time = 5
+mul = 256,256,256
+add = 256,256,256
+ignorehitpause = 1
+
 
 [State 211, PlaySnd]
 type = PlaySnd
