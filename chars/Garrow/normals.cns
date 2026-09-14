@@ -479,6 +479,130 @@ ctrl = 1
 ;     KFM will get hit instead of trading hits with his opponent if
 ;     their attack collision boxes (Clsn1) intersect each other's Clsn2
 ;     boxes at the same time.
+;---------------------------------------------------------------------------
+;66A
+[Statedef 230]
+type    = S
+movetype= A
+physics = S
+ctrl = 0
+anim = 230
+sprpriority = 1
+
+[State 0, Vel]
+type = velset
+trigger1 = animelem=1
+x = -13
+
+[State 101, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = 0,5
+
+[State 106, Invul]
+Type = NotHitBy
+Trigger1 = !time
+Value = , NA, SA, HA
+Time = 10
+
+[State 0, Vel]
+type = velset
+trigger1 = animelem=2
+x = 17
+
+[State 0, el]
+type = VelMul
+trigger1 = AnimElemTime(5) >= 0
+x = 0.85
+
+[State 210, 1]
+type = PlaySnd
+trigger1 = animelem= 5
+value = 0, 4
+
+[State 6061, Effect]
+type = Explod
+trigger1 = AnimElem = 2
+anim = 8103
+scale = 0.60,0.60
+postype = p1
+facing = 1
+pos = -68,0
+sprpriority = 3
+ownpal = 1
+removeongethit = 1
+pausemovetime = 99999
+supermovetime = 99999
+ignorehitpause = 1
+persistent = 1
+bindtime = 0
+
+[State 610, Camera Shake]
+type = EnvShake
+trigger1 = AnimElem = 1
+trigger2 = MoveHit || MoveGuarded
+persistent = 0
+time = 7
+freq = 10
+ampl = 4
+
+[State 610, Camera Shake]
+type = EnvShake
+trigger1 = MoveHit || MoveGuarded
+persistent = 0
+time = 10
+freq = 10
+ampl = 4
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= !movecontact && !movereversed
+;===============================
+damage 				= 430
+pausetime 			= 14,14 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NA
+hitflag 				= MAF
+guardflag 			= M
+animtype 				= Medium
+air.animtype 			= Medium
+ground.TYPE 			= High
+air.TYPE 				= High
+priority = 2, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= 5,0
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 18
+ground.slidetime		= 8
+air.hittime 			= 16
+down.hittime 			= 10
+ground.velocity 		= -5
+air.velocity 			= -1.5,-1.4
+;===============================
+guard.ctrltime 		= 14
+guard.slidetime		= 8
+guard.velocity 		= -3
+airguard.velocity 		= -2,-2
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 0
+air.fall 				= 1
+;===============================
+
+
+[State 240, 4]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
 
 ;2A
 [Statedef 400]

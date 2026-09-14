@@ -661,7 +661,24 @@ trigger1 = command = "BB"
 trigger1 = statetype = S
 trigger1 = ctrl
 
+;---------------------------------------------------------------------------
+;66L
+[State -1, 66L]
+type = ChangeState
+value = 230
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "A" 
+trigger1 = statetype != A
+trigger1 = Stateno = 100
 
+;dash punch cancel
+[State -1, 66L]
+type = ChangeState
+value = 230
+triggerall = command = "A" && command = "holdfwd"
+triggerall = statetype != A
+trigger1 = (stateno = [200,225] || stateno = [400,410]) && movecontact
 
 
 ;===========================================================================
@@ -750,7 +767,6 @@ trigger3 = (Stateno = [210,215])&& movecontact
 trigger4 = stateno = 400 && movecontact
 trigger5 = stateno = 410 && movecontact
 trigger6 = stateno = 420 && movecontact && prevStateNo != 220 && prevStateNo != 225
-
 
 ;---------------------------------------------------------------------------
 ;2A
