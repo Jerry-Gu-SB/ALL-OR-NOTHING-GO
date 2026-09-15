@@ -119,6 +119,34 @@ trigger1 = animtime = 0
 value = 0
 ctrl = 1
 
+;5B start
+[Statedef 209]
+type = S
+movetype= A
+physics = S
+ctrl = 0
+anim = 209
+velset = vel x,0
+sprpriority = 2
+facep2 = 1
+
+[State 610, 2]
+type = varset
+trigger1 = 1
+var(12) = 0
+
+[State 0, ChangeState]
+type = ChangeState
+triggerall = var(12) = 0
+triggerall = time = [4,10]
+trigger1 = command !="HOLD_B"
+value = 210
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = time = 13
+value = 211
+
 ;5B
 [Statedef 210]
 type = S
@@ -146,27 +174,10 @@ type = velset
 trigger1 = animelem=3
 x = 3
 
-[State 210, 2]
-type = varset
-trigger1 = !time
-var(12) = 0
-
-[State 210, 2]
-type = varadd
-triggerall = !ailevel
-trigger1 = command = "HOLD_B"
-var(12) = 1
-
-[State 210, 2]
-type = changestate
-trigger1 = time = 9
-trigger1 = var(12) >= 9
-value = 211
-
 
 [State 180, Random Sound]
 type = PlaySnd
-trigger1 = animelem=3
+trigger1 = animelem=1
 value = 600, Random % 3
 
 
@@ -1201,7 +1212,7 @@ trigger1 = animtime = 0
 value = 11
 ctrl = 1
 
-;2L
+;2A
 [Statedef 400]
 type = C
 movetype= A
@@ -1312,7 +1323,7 @@ trigger1 = animtime = 0
 value = 11
 ctrl = 1
  
-; 2H
+; 2B
 [Statedef 410]
 type = C
 movetype= A
@@ -1367,7 +1378,7 @@ ground.slidetime = 30
 ground.hittime = 20
 air.hittime = 20
 ground.velocity = -2,-7
-air.velocity = -2,-5
+air.velocity = -2,-3
 guard.ctrltime = 14
 guard.slidetime		= 10
 guard.velocity 		= -5

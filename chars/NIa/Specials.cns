@@ -310,7 +310,122 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
+;---------------------------------------------------------------------------
+;---------------------------------------------------------------------------
+;236A (22B stack) > 6A Big Drop!
+[Statedef 1211]
+type    = S
+movetype= A
+physics = N
+anim = 1211
+velset = 0,0
+ctrl = 0
+sprpriority = 2
 
+
+[State 621, 1]
+type = statetypeset
+trigger1 = !time
+statetype = A
+
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = animelem=3
+value = 210,0
+
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = animelem = 2
+x = vel x + 7
+y = -3
+
+
+[State 210, 1]
+type = veladd
+trigger1 = animelemtime(6) > 0
+y = 0.8
+
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= !movecontact && !movereversed
+trigger1 				= !movecontact && !movereversed
+;===============================
+damage 				= 800 
+pausetime 			= 10,10 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NA
+hitflag 				= MAF
+guardflag 			= HA
+animtype 				= Hard
+air.animtype 			= Hard
+ground.TYPE 			= High
+air.TYPE 				= High
+priority = 3, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound                = s1,7
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 20
+ground.slidetime		= 16
+air.hittime 			= 36
+down.hittime 			= 10
+ground.velocity 		= -3
+air.velocity 			= -4,9
+;===============================
+guard.hittime 		= 10 
+guard.slidetime		= 15
+guard.velocity 		= -8
+airguard.velocity 		= -1,-1
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+p2stateno = 5255
+fall 				= 1
+;===============================
+
+[State 610, ChangeState]
+type = ChangeState
+trigger1 = pos y >= 0 && vel y > 0
+value = 1212
+
+
+;---------------------------------------------------------------------------
+;land
+[Statedef 1212]
+type    = S
+physics = S
+ctrl = 0
+anim = 1212
+
+[State 810]
+type = PlaySnd
+trigger1 = !time
+value = 40, 0
+
+[State 52, 1]
+type = VelSet
+trigger1 = Time = 0
+y = 0
+
+[State 52, 2]
+type = PosSet
+trigger1 = Time = 0
+y = 0
+
+[State 52, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
 ;---------------------------------------------------------------------------
 ;EX Maximun missle (reuse from original code)
 [Statedef 1019]
@@ -1432,7 +1547,7 @@ value = 5200 ;HITFALL_RECOVER
 type = SelfState
 trigger1 = Vel Y > 0
 trigger1 = Pos Y >= 0
-value = 5100 ;Hit ground
+value = 5201 ;Hit ground
 
 
 ;HOD Heavy Attempt

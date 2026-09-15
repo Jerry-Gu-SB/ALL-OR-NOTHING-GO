@@ -3639,7 +3639,7 @@ y = 0
 
 [State 0, ChangeState] ;Backroll
 type = SelfState
-triggerall = command = "HOLD_D"
+triggerall = command = "A" && command = "holdback"
 trigger1 = time = 5
 value = 5202
 ctrl = 0
@@ -4909,6 +4909,36 @@ type    = A
 movetype= H
 physics = N
 anim = 5160
+
+[State 1200, 6]
+type = explod
+trigger1 = AnimElem = 1
+anim = 6000
+postype = p1
+pos = 0,0
+facing = 1
+sprpriority = 3
+bindtime = 1
+ownpal = 1
+sprpriority = 5
+ignorehitpause = 0
+persistent = 0
+scale = .15,.15
+
+[State 1200, 6]
+type = explod
+trigger1 = AnimElem = 1
+anim = 6001
+pos = 0,0
+facing = 1
+sprpriority = -1
+bindtime = 1
+ownpal = 1
+ignorehitpause = 0
+persistent = 0
+postype = p1
+pos = 0,0
+scale = .15,.15
 
 [State 0, PosSet]
 type = PosSet

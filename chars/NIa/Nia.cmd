@@ -99,6 +99,13 @@ value = 1000
 triggerall = command = "236A" && statetype != A
 trigger1 = var(1) || ctrl
 
+;236A (22B stack) > 6A Big Drop!
+[State -1]
+type = ChangeState
+value = 1211
+triggerall = command = "A" && command = "holdfwd"
+trigger1 = stateno = 1000 && movecontact
+
 ;236B - Maximum Missile
 [State -1]
 type = ChangeState
@@ -318,7 +325,7 @@ trigger4 = stateno = 400 && movecontact
 ;5B
 [State -1]
 type = ChangeState
-value = 210
+value = 209
 triggerall = !ishelper
 triggerall = !AIlevel
 triggerall = command = "B"
