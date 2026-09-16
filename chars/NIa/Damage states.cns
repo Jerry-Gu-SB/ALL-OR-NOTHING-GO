@@ -1,0 +1,117 @@
+;---------------------------------------------------------------------------
+; Air get-hit (fall recovery in air)
+[Statedef 5210];Air Tech
+type    = A
+movetype = I
+physics = A
+anim = 5210
+ctrl = 0
+facep2 = 0
+
+[State 0, Random Voice]
+type = PlaySnd
+trigger1 = Time = 0
+value = 5210, Random % 4
+
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = 1
+value = SCA,NA,SA,HA,NP,SP,HP,NT,ST
+time = 1
+
+[State 5210, 1] ;Blink white
+type = PalFX
+trigger1 = Time
+time = 1
+add = cond(128 - time*8 >= 0, 128 - time*8, 0),cond(128 - time*8 >= 0, 128 - time*8, 0),cond(128 - time*8 >= 0, 128 - time*8, 0)
+
+[State 5210, 2] ;Turn if not facing opponent
+type = Turn
+trigger1 = p2dist X < 0 && time
+
+[State 5210, 2] ;Go fwd
+type = VelSet
+trigger1 = Time = 0
+y = -5.5
+[State 5210, 2] ;Go fwd
+type = VelSet
+trigger1 = Time = 0
+trigger1 = Command = "holdright"
+x = 6*facing
+[State 5210, 2] ;Go back
+type = VelSet
+trigger1 = Time = 0
+trigger1 = Command = "holdleft"
+x = -6*facing
+
+[State 5210, 5] ;Land on ground
+type = ChangeState
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 52 ;Jump land
+ctrl = 1
+
+;=============================================================================
+
+
+;---------------------------------------------------------------------------
+; Backroll
+[Statedef 5202] ;Ground Tech
+type    = S
+movetype= I
+physics = S
+anim = 5125
+facep2 = 1
+
+
+[State 0, Random Voice]
+type = PlaySnd
+trigger1 = Time = 0
+value = 5210, Random % 4
+
+[State 5120, 1a] ;Get up anim (normal)
+type = ChangeAnim
+triggerall = time = 0
+trigger1 = anim != [5111,5119]
+trigger2 = !SelfAnimExist(5120 + (anim % 10))
+value = 5120
+
+[State 5120, 1b] ;Get up anim (for hit up/diag-up)
+type = ChangeAnim
+triggerall = time = 0
+trigger1 = anim = [5111,5119]
+trigger1 = SelfAnimExist(5120 + (anim % 10))
+value = 5120 + (anim % 10)
+
+[State 5120, 2]
+type = VelSet
+trigger1 = Time = 0
+x = -15
+
+[State 0, PalFXWiz]
+type = PalFX
+trigger1 = 1
+time = 1
+add = 50,50,250
+mul = 256,256,256
+sinadd = -80,-80,-8,1
+invertall = 0
+color = 0
+
+[State 5120, 3]
+type = NotHitBy
+trigger1 = 1
+value = SCA
+time = 1
+
+[State 5120, 6] ;Can't be hit right after getting up (short time)
+type = NotHitBy
+trigger1 = AnimTime = 0
+value2 = SCA
+time = 3
+
+[State 5120, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
