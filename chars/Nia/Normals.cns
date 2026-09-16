@@ -2542,3 +2542,231 @@ type = SelfState
 trigger1 = Time = 18
 value = 0
 ctrl = 1
+
+;Air Grab
+[Statedef 840]
+type = A
+movetype = A
+physics = A
+juggle = 0 
+anim = 840
+ctrl = 0
+
+[State 840, 1]
+type = HitDef
+trigger1 = Time = 0
+attr = S, NT
+hitflag = A
+priority = 1, Miss
+sparkno = -1
+p1sprpriority = 1
+p1facing = 1
+p2facing = 1
+p2stateno = 860
+guard.dist = 0
+fall = 1
+
+[State 840, Drag Reverse]
+type = ChangeState
+trigger1 = MoveHit && command = "holdback"
+value = 842
+ctrl = 0
+
+[State 840, Drag Normal]
+type = ChangeState
+trigger1 = MoveHit
+value = 841
+ctrl = 0
+
+;Air Grab Drag
+[Statedef 841]
+type    = S
+movetype = A
+physics = N
+velset = 0,0
+ctrl = 0
+anim = 850
+sprPriority = 4
+
+[State 841, 0]
+type = TargetFacing
+trigger1 = time = 0
+value = -1
+
+[State 841, Voice Line]
+type = PlaySnd
+trigger1 = time = 0
+value = 1600, Random % 4
+
+[State 841, Grab Sound]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 1, 6
+
+[State 841, Throw]
+type = TargetState
+trigger1 = time = 0
+value = 860
+
+[State 841,1]
+type = TargetBind
+trigger1 = AnimElem = 1
+pos = 0, -50
+postype = P1
+time = -1
+
+[State 841, Vel]
+type = veladd
+trigger1 = animelemno(0) = 3
+y = .4
+
+[State 841]
+type = ChangeState
+trigger1 = Pos Y >= 0 
+trigger1 = Vel Y > 0
+value = 851
+;---------------------------------------------------------------------------
+;Air Grab Drag Reversed
+[Statedef 842]
+type    = S
+movetype = A
+physics = N
+velset = 0,0
+ctrl = 0
+anim = 850
+sprPriority = 4
+
+[State 842, Turn]
+type = Turn
+trigger1 = time = 0
+
+[State 842, 0]
+type = TargetFacing
+trigger1 = time = 0
+value = -1
+
+[State 842, Voice Line]
+type = PlaySnd
+trigger1 = time = 0
+value = 1600, Random % 4
+
+[State 842, Grab Sound]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 1, 6
+
+[State 842, Throw]
+type = TargetState
+trigger1 = time = 0
+value = 860
+
+[State 842,1]
+type = TargetBind
+trigger1 = AnimElem = 1
+pos = 0, -50
+postype = P1
+time = -1
+
+[State 842, Vel]
+type = veladd
+trigger1 = animelemno(0) = 3
+y = .4
+
+[State 842]
+type = ChangeState
+trigger1 = Pos Y >= 0 
+value = 851
+;---------------------------------------------------------------------------
+; Air Grab End
+[Statedef 851]
+type = A
+movetype = A
+physics = N
+juggle = 0
+anim = 851
+ctrl = 0
+velset = 0,0
+
+[State 851, 1]
+type = HitDef
+trigger1 				= !movecontact && !movereversed
+attr 				= A,NT
+hitflag 				= MAFD
+damage = 2000
+priority = 1, Miss
+ground.type = Trip
+sparkno = -1
+p1sprpriority = 1
+p1facing = 1
+p2facing = 1
+
+[State 1200, 6]
+type = explod
+trigger1 = AnimElem = 1
+anim = 6000
+postype = P2
+pos = 0,0
+facing = 1
+sprpriority = 3
+bindtime = 1
+ownpal = 1
+sprpriority = 5
+ignorehitpause = 0
+persistent = 0
+scale = .15,.15
+
+[State 1200, 6]
+type = explod
+trigger1 = AnimElem = 1
+anim = 6001
+pos = 0,0
+facing = 1
+sprpriority = -1
+bindtime = 1
+ownpal = 1
+ignorehitpause = 0
+persistent = 0
+postype = p2
+pos = 0,0
+scale = .15,.15
+
+[State 851, VelAdd Jump Aftermath]
+type = VelAdd
+trigger1 = time = 15
+y = -5
+x = -5
+
+[State 851]
+type = TargetBind
+trigger1 = AnimElem = 1
+pos = 50, 0
+postype = P1
+time = -1
+
+[State 851, TargetDrop]
+type = TargetDrop
+trigger1 = AnimElem = 2
+
+[State 851, Hit Sound]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 1, 6
+
+[State 851, Set Air Physics]
+type = StateTypeSet
+trigger1 = AnimElem = 4
+physics = A
+
+[State 851, EnvShake]
+type = EnvShake
+trigger1 = AnimElem = 1
+time = 15
+;---------------------------------------------------------------------------
+; Air Grabbed
+[Statedef 860]
+type = L
+movetype = H
+physics = A
+velset = 0,0
+anim = 860
+ctrl = 0

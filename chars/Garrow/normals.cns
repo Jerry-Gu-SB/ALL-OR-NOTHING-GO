@@ -492,7 +492,7 @@ sprpriority = 1
 [State 0, Vel]
 type = velset
 trigger1 = animelem=1
-x = -13
+x = -18
 
 [State 101, PlaySnd]
 type = PlaySnd
@@ -508,7 +508,7 @@ Time = 10
 [State 0, Vel]
 type = velset
 trigger1 = animelem=2
-x = 17
+x = 19
 
 [State 0, el]
 type = VelMul
@@ -553,6 +553,18 @@ persistent = 0
 time = 10
 freq = 10
 ampl = 4
+
+[State 610, 2]
+type = varset
+trigger1 = 1
+var(31) = 0
+
+[State 0, ChangeState]
+type = ChangeState
+triggerall = var(31) = 0
+triggerall = time = [17,20]
+trigger1 = command ="HOLD_A"
+value = 231
 
 [State 0, JORMUNGANDR DEFAULT HITDEF]
 type 				= HitDef
@@ -603,7 +615,28 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
+;---------------------------------------------------------------------------
+;66[A]
+[Statedef 231]
+type    = S
+movetype= A
+physics = S
+ctrl = 0
+anim = 101
+sprpriority = 1
 
+[State 0, Vel]
+type = velset
+trigger1 = animelem=1
+x = 0
+
+[State 240, 4]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
 ;2A
 [Statedef 400]
 type    = C
@@ -1279,7 +1312,7 @@ ground.slidetime		= 16
 air.hittime 			= 30
 down.hittime 			= 10
 ground.velocity 		= -3
-air.velocity 			= -2,-3
+air.velocity 			= -2,3
 ;===============================
 guard.hittime 		= 15
 guard.slidetime		= 15
@@ -1296,25 +1329,67 @@ fall 				= 1
 ;===============================
 
 
-[State 640, 3]
-type = HitDef
-trigger1 = Time = 0
-attr = A, NA
-damage    = 70
-guardflag = HA
-priority = 4
-pausetime = 12,12
-sparkno = 1
-sparkxy = -10,-40
-hitsound   = 5,3
-guardsound = 6,0
-animtype = Med
-ground.type = High
-ground.slidetime = 12
-ground.hittime  = 15
-ground.velocity = -7
-air.velocity = -3,-4
+;---------------------------------------------------------------------------
+;J.6C
+[Statedef 630]
+type    = A
+movetype= A
+physics = A
+ctrl = 0
+anim = 650
+sprpriority = 2
 
+
+[State 610, 2]
+type = PlaySnd
+trigger1 = Time = 2
+value = 0, 1
+
+
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= !movecontact && !movereversed
+trigger1 				= !movecontact && !movereversed
+;===============================
+damage 				= 800 
+pausetime 			= 14,14 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NA
+hitflag 				= MAF
+guardflag 			= HA
+animtype 				= Hard
+air.animtype 			= Hard
+ground.TYPE 			= High
+air.TYPE 				= High
+priority = 3, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound                =  5,2
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 20
+ground.slidetime		= 16
+air.hittime 			= 30
+down.hittime 			= 10
+ground.velocity 		= -3
+air.velocity 			= -2,9
+;===============================
+guard.hittime 		= 15
+guard.slidetime		= 15
+guard.velocity 		= -8
+airguard.velocity 		= -1,-1
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+
+air.fall				= 1
+;===============================
 
 ;---------------------------------------------------------------------------
 ;Kung Fu Throw - Attempt

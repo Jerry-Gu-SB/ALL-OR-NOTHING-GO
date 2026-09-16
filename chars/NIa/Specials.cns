@@ -1,204 +1,6 @@
-;Air Grab
-[Statedef 840]
-type = A
-movetype = A
-physics = A
-juggle = 0 
-anim = 840
-ctrl = 0
-
-[State 840, 1]
-type = HitDef
-trigger1 = Time = 0
-attr = S, NT
-hitflag = A
-priority = 1, Miss
-sparkno = -1
-p1sprpriority = 1
-p1facing = 1
-p2facing = 1
-p2stateno = 860
-guard.dist = 0
-fall = 1
-
-[State 840, Drag Reverse]
-type = ChangeState
-trigger1 = MoveHit && command = "holdback"
-value = 842
-ctrl = 0
-
-[State 840, Drag Normal]
-type = ChangeState
-trigger1 = MoveHit
-value = 841
-ctrl = 0
-
-;Air Grab Drag
-[Statedef 841]
-type    = S
-movetype = A
-physics = N
-velset = 0,0
-ctrl = 0
-anim = 850
-sprPriority = 4
-
-[State 841, 0]
-type = TargetFacing
-trigger1 = time = 0
-value = -1
-
-[State 841, Voice Line]
-type = PlaySnd
-trigger1 = time = 0
-value = 1600, Random % 4
-
-[State 841, Grab Sound]
-type = PlaySnd
-trigger1 = AnimElem = 1
-value = 1, 6
-
-[State 841, Throw]
-type = TargetState
-trigger1 = time = 0
-value = 860
-
-[State 841,1]
-type = TargetBind
-trigger1 = AnimElem = 1
-pos = 0, -50
-postype = P1
-time = -1
-
-[State 841, Vel]
-type = veladd
-trigger1 = animelemno(0) = 3
-y = .4
-
-[State 841]
-type = ChangeState
-trigger1 = Pos Y >= 0 
-trigger1 = Vel Y > 0
-value = 851
-
-;Air Grab Drag Reversed
-[Statedef 842]
-type    = S
-movetype = A
-physics = N
-velset = 0,0
-ctrl = 0
-anim = 850
-sprPriority = 4
-
-[State 842, Turn]
-type = Turn
-trigger1 = time = 0
-
-[State 842, 0]
-type = TargetFacing
-trigger1 = time = 0
-value = -1
-
-[State 842, Voice Line]
-type = PlaySnd
-trigger1 = time = 0
-value = 1600, Random % 4
-
-[State 842, Grab Sound]
-type = PlaySnd
-trigger1 = AnimElem = 1
-value = 1, 6
-
-[State 842, Throw]
-type = TargetState
-trigger1 = time = 0
-value = 860
-
-[State 842,1]
-type = TargetBind
-trigger1 = AnimElem = 1
-pos = 0, -50
-postype = P1
-time = -1
-
-[State 842, Vel]
-type = veladd
-trigger1 = animelemno(0) = 3
-y = .4
-
-[State 842]
-type = ChangeState
-trigger1 = Pos Y >= 0 
-value = 851
-
-; Air Grab End
-[Statedef 851]
-type = A
-movetype = A
-physics = N
-juggle = 0
-anim = 851
-ctrl = 0
-velset = 0,0
-
-[State 851, 1]
-type = HitDef
-trigger1 				= !movecontact && !movereversed
-attr 				= A,NT
-hitflag 				= MAFD
-damage = 2000
-priority = 1, Miss
-ground.type = Trip
-sparkno = -1
-p1sprpriority = 1
-p1facing = 1
-p2facing = 1
-
-
-[State 851, VelAdd Jump Aftermath]
-type = VelAdd
-trigger1 = time = 15
-y = -5
-x = -5
-
-[State 851]
-type = TargetBind
-trigger1 = AnimElem = 1
-pos = 50, 0
-postype = P1
-time = -1
-
-[State 851, TargetDrop]
-type = TargetDrop
-trigger1 = AnimElem = 2
-
-[State 851, Hit Sound]
-type = PlaySnd
-trigger1 = AnimElem = 1
-value = 1, 6
-
-[State 851, Set Air Physics]
-type = StateTypeSet
-trigger1 = AnimElem = 4
-physics = A
-
-[State 851, EnvShake]
-type = EnvShake
-trigger1 = AnimElem = 1
-time = 15
-
-; Air Grabbed
-[Statedef 860]
-type = L
-movetype = H
-physics = A
-velset = 0,0
-anim = 860
-ctrl = 0
 
 ;---------------------------------------------------------------------------
-;Maximun missle
+;236A: Maximun missle
 [Statedef 1000]
 type    = S
 movetype= A
@@ -371,9 +173,9 @@ sparkxy 				= -p2dist x * 0.25, -50
 hitsound                = s1,7
 guardsound 			= 6,0
 ;===============================
-ground.hittime 		= 20
+ground.hittime 		= 40
 ground.slidetime		= 16
-air.hittime 			= 36
+air.hittime 			= 40
 down.hittime 			= 10
 ground.velocity 		= -3
 air.velocity 			= -4,9
@@ -427,7 +229,7 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 ;---------------------------------------------------------------------------
-;EX Maximun missle (reuse from original code)
+;236C: EX Maximun missle (reuse from original code)
 [Statedef 1019]
 type = A
 physics = N
@@ -595,6 +397,7 @@ trigger1 = AnimTime = 0 && pos y >= 0
 value = 1001
 ctrl = 0
 
+;---------------------------------------------------------------------------
 ;Lariat Drag
 [Statedef 1111]
 type    = S
@@ -724,6 +527,7 @@ Trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
+;---------------------------------------------------------------------------
 ;p2grabbed, dashing
 [Statedef 1207]
 type    = A
@@ -769,7 +573,8 @@ trigger1 = animtime = 0
 value = 0
 ctrl = 1
 
-;Heavy Maximun missle
+;---------------------------------------------------------------------------
+;236B: Heavy Maximun missle
 [Statedef 1010]
 type    = S
 movetype = A
@@ -900,6 +705,7 @@ trigger1 = AnimTime = 0 && pos y >= 0
 value = 1001
 ctrl = 0
 
+;---------------------------------------------------------------------------
 ;Lariat Drag
 [Statedef 1011]
 type    = S
@@ -949,6 +755,7 @@ type = ChangeState
 trigger1 = Pos Y >= 0 
 trigger2 =  Time >= 55
 value = 1012
+
 ;---------------------------------------------------------------------------
 ;Lariat Hit
 [Statedef 1012]
@@ -1026,6 +833,7 @@ Trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
+;---------------------------------------------------------------------------
 ;p2grabbed, dashing
 [Statedef 1207]
 type    = A
@@ -1047,7 +855,7 @@ value= 5010
 type = changeanim2
 trigger1 = time = 0
 value = 1207
-
+;---------------------------------------------------------------------------
 ;Lariat Fall
 [Statedef 1001]
 type = S
@@ -1071,7 +879,8 @@ trigger1 = animtime = 0
 value = 0
 ctrl = 1
 
-;A Crash Landing
+;---------------------------------------------------------------------------
+;j.214A Crash Landing
 [Statedef 1300]
 type    = A
 movetype= A
@@ -1107,7 +916,7 @@ y = 3
 
 [State 220, Stop]
 type = VelSet
-trigger1 = P2Dist X <= 10
+trigger1 = P2Dist X <= 15
 x = 0
 
 [State 620, 2]
@@ -1209,7 +1018,7 @@ trigger1 = animtime = 0
 value = 11
 ctrl = 1
 ;---------------------------------------------------------------------------
-; B Crash Landing 
+;j.214B Crash Landing 
 [Statedef 1310]
 type    = A
 movetype= A
@@ -1245,7 +1054,7 @@ y = 3
 
 [State 220, Stop]
 type = VelSet
-trigger1 = P2Dist X <= 10
+trigger1 = P2Dist X <= 15
 x = 0
 
 [State 620, 2]
@@ -1254,6 +1063,10 @@ trigger1 = animelemTime(5) > 0
 edge = 40,10
 player = 20,10
 
+[State 0, StateTypeSet]
+type = StateTypeSet
+trigger1 = animelem = 6
+physics = N
 
 [State 0, JORMUNGANDR DEFAULT HITDEF]
 type 				= HitDef
@@ -1302,13 +1115,20 @@ envshake.freq 			= 8
 envshake.ampl 			= 1
 envshake.phase 		= 0.5
 
-[State 610, ChangeState]
+[State 1310, Ground Position]
+type = PosSet
+trigger1 = Pos Y >= 0
+y = 0
+
+[State 1310, Crash Landing]
 type = ChangeState
-trigger1 = pos y >= 0 && vel y > 0
+trigger1 = Pos Y >= 0
 value = 1311
+ctrl = 0
+
 ;---------------------------------------------------------------------------
 ; B  Landing
-[Statedef 1301]
+[Statedef 1311]
 type    = L
 movetype= H
 physics = N
@@ -1342,7 +1162,7 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-; Hug of Destruction Attempt Light
+;214A: Hug of Destruction Attempt Light
 [Statedef 1600]
 type = S
 movetype= A
@@ -1408,6 +1228,7 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
+;---------------------------------------------------------------------------
 ; Hug of Destruction Hit Light
 [Statedef 1601]
 type = S
@@ -1507,7 +1328,7 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
-
+;---------------------------------------------------------------------------
 ; HOD Light Getting Grabbed
 [Statedef 1602]
 type = A
@@ -1519,7 +1340,7 @@ velset = 0,0
 type = ChangeAnim2
 trigger1 = Time = 0
 value = 1603
-
+;---------------------------------------------------------------------------
 ; HOD Light Grab Aftermath
 [Statedef 1603] 
 type = A
@@ -1550,7 +1371,7 @@ trigger1 = Pos Y >= 0
 value = 5201 ;Hit ground
 
 
-;HOD Heavy Attempt
+;214B: HOD Heavy Attempt
 [Statedef 1610]
 type = S
 movetype= A
@@ -1615,7 +1436,7 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
-
+;---------------------------------------------------------------------------
 ; Hug of Destruction Hit Heavy
 [Statedef 1611]
 type = S
@@ -1707,14 +1528,14 @@ sparkno 		= 3
 sparkxy 		= -10,-45
 hitsound   	= 5,4
 guardsound 	= 6,0
-ground.type 	= TRIP
-air.type	= TRIP
+ground.type 	= high
+air.type	= high
 animtype 		= medium
 ground.slidetime 	= 14
-ground.hittime  	= 999
+ground.hittime  	= 30
 ground.velocity 	= -20,-5
 air.velocity 		= -20,-5
-air.hittime 		= 999
+air.hittime 		= 30
 fall 			= 1
 fall.yvelocity 	= 0
 guard.slidetime 	= 12
@@ -1740,7 +1561,7 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
-
+;---------------------------------------------------------------------------
 ; HOD Heavy Getting Grabbed
 [Statedef 1612]
 type = A
@@ -1753,6 +1574,8 @@ type = ChangeAnim2
 trigger1 = Time = 0
 value = 1603
 
+
+;---------------------------------------------------------------------------
 ; HOD Heavy Grab Aftermath
 [Statedef 1613] 
 type = A
@@ -1792,7 +1615,7 @@ value = 5100 ;Hit ground
 
 
 
-;Hug of Destruction Attempt EX 
+;214C Hug of Destruction Attempt EX 
 [Statedef 1620]
 type = S
 movetype= A
@@ -2078,7 +1901,7 @@ trigger1 = Pos Y >= 0
 value = 5100 ;Hit ground
 
 ;---------------------------------------------------------------------------
-; Nia Maximum A
+;22A Nia Maximum A
 [Statedef 2000]
 type = S
 movetype= A
@@ -2125,7 +1948,7 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-; Nia Maximum B
+;22B Nia Maximum B
 [Statedef 2001]
 type = S
 movetype= A
@@ -2172,7 +1995,7 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-; Nia Maximum C
+;22C Nia Maximum C
 [Statedef 2002]
 type = S
 movetype= A

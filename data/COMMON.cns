@@ -3639,7 +3639,7 @@ y = 0
 
 [State 0, ChangeState] ;Backroll
 type = SelfState
-triggerall = command = "A" && command = "holdback"
+triggerall = command = "HOLD_A" && command = "holdback"
 trigger1 = time = 5
 value = 5202
 ctrl = 0
@@ -4766,7 +4766,7 @@ ctrl = 0
 ;---------------------------------------------------------------------------
 ;tumble
 [Statedef 5250]
-type    = S
+type    = C
 movetype= H
 physics = N
 velset = 0,0

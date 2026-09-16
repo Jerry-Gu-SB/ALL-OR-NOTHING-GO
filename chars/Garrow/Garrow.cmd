@@ -870,6 +870,15 @@ trigger1 = ctrl
 trigger2 = stateno = 610 
 trigger2 = movecontact
 
+;Jump Strong Kick
+[State -1, J.2C]
+type = ChangeState
+value = 630
+triggerall = command = "c" && command = "holdfwd"
+trigger1 = statetype = A
+trigger1 = ctrl
+trigger2 = stateno = 600 || stateno =[610,620] ;jump_x or jump_a
+trigger2 = movecontact
 
 ;Jump Strong Kick
 [State -1, JC]
