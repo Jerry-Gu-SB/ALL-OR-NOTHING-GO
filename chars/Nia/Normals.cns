@@ -1593,7 +1593,7 @@ type = HitDef
 p2facing = 1
 trigger1 = !MoveContact && !MoveReversed
 attr = A, NA
-damage 		= 150*map(P4) + 5
+damage 		= 250*map(P4) + 5
 hitflag 		= MAF
 guardflag 	= HA
 pausetime 	= 8,8 + 2 * (enemy, movetype = A)
@@ -2300,7 +2300,7 @@ p2facing = 1
 trigger1 = time = 0
 attr = S, NT
 animtype  = hard
-damage = 1800, 0
+damage = 600, 0
 pausetime = 8,8
 sparkno = 2
 sparkxy = -10,-40

@@ -1,4 +1,185 @@
 ;---------------------------------------------------------------------------
+; Stand get-hit (shaking)
+[Statedef 5000]
+type    = S
+movetype= H
+physics = N
+velset = 0,0
+anim = 5000
+
+[State 1, 0]
+type = PlaySnd
+trigger1 = GetHitVar(Damage) <= 600
+trigger1 = Time = 0
+value = 5000, Random % 7
+[State 1, 0]
+type = PlaySnd
+trigger1 = GetHitVar(Damage) >= 601
+trigger1 = Time = 0
+value = 5001, Random % 6
+
+[State 5000, 4] ;Freeze anim
+type = ChangeAnim
+trigger1 = Time > 0
+value = anim
+
+[State 5000, 5] ;State type gets set to aerial if getting hit up
+type = StateTypeSet
+trigger1 = Time = 0
+trigger1 = GetHitVar(yvel) != 0 || GetHitVar(fall)
+trigger2 = Pos Y != 0
+statetype = A
+
+[State 5000, 6]
+type = ChangeState
+trigger1 = HitShakeOver
+trigger1 = GetHitVar(yvel) = 0 && !GetHitVar(fall)
+value = 5001 ;Stand get-hit (knocked back)
+
+[State 5000, 7]
+type = ChangeState
+trigger1 = GetHitVar(yvel) != 0 && HitShakeOver|| GetHitVar(fall) && HitShakeOver
+trigger2 = Pos Y != 0 && HitShakeOver
+value = 5030
+
+;---------------------------------------------------------------------------
+; Crouch get-hit (knocked back)
+[Statedef 5011]
+type    = C
+movetype= H
+physics = C
+anim = 5020
+
+[State 1, 0]
+type = PlaySnd
+trigger1 = GetHitVar(Damage) <= 600
+trigger1 = Time = 0
+value = 5000, Random % 7
+
+[State 1, 0]
+type = PlaySnd
+trigger1 = GetHitVar(Damage) >= 601
+trigger1 = Time = 0
+value = 5001, Random % 6
+[State 5011, 1]
+type = velset
+trigger1 = Time = 0
+x = gethitvar(xvel)* facing
+
+[state friction cancel] 
+type = veladd
+trigger1 = !time
+x = (vel x / const(movement.crouch.friction)) - vel x
+ignorehitpause = 1
+
+[State 5011, 3] ;Stop sliding back
+type = VelMul
+trigger1 = Time >= GetHitVar(Slidetime)
+x = .6
+
+[State 5011, 4]
+type = VelSet
+trigger1 = HitOver
+x = 0
+
+[State 5011, 5]
+type = DefenceMulSet
+trigger1 = HitOver
+value = 1
+[State 0, NotHitBy]
+type = NotHitBy
+trigger1 = HitOver
+value = ,NT,ST,HT
+time = 5
+ignorehitpause = 1
+[State 5011, 6]
+type = ChangeState
+trigger1 = HitOver
+value = 11
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; Air get-hit (shaking)
+[Statedef 5020]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+
+
+[State 1, 0]
+type = PlaySnd
+trigger1 = GetHitVar(Damage) <= 600
+trigger1 = Time = 0
+value = 5000, Random % 7
+
+[State 1, 0]
+type = PlaySnd
+trigger1 = GetHitVar(Damage) >= 601
+trigger1 = Time = 0
+value = 5001, Random % 6
+[State 5020, 1] ;Anim for HIT_LIGHT to HIT_HARD
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = GetHitVar(animtype) != [3,5]
+value = ifelse((GetHitVar(airtype) = 1),5000,5010) + GetHitVar(animtype)
+
+[State 5020, 2] ;Anim for HIT_BACK
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = GetHitVar(animtype) = [3,5]
+value = 5030
+
+[State 5020, 3] ;Anim for HIT_UP/HIT_DIAGUP (only if it exists)
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = (GetHitVar(animtype) = [4,5]) && (SelfAnimExist(5047 + GetHitVar(animtype)))
+value = 5047 + GetHitVar(animtype) ;5051 - 4 + type
+
+[State 5020, 4] ;Freeze anim
+type = ChangeAnim
+trigger1 = Time > 0
+value = anim
+
+[State 5020, 5]
+type = ChangeState
+triggerall = HitFall || pos y > -10
+trigger1 = HitShakeOver
+value = 5030
+
+[State 5020, 5]
+type = ChangeState
+triggerall = !HitFall|| pos y <= -10
+trigger1 = HitShakeOver
+value = 5025 ;Flip-Out
+;---------------------------------------------------------------------------
+; Tripped get-hit (shaking)
+[Statedef 5070]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+
+
+[State 400, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = 5070,0
+
+[State 5070, 1]
+type = ChangeAnim
+trigger1 = gethitvar(animtype) != 5
+value = 5070
+[State 5070, 1]     ;Spinout Anim
+type = ChangeAnim
+trigger1 = gethitvar(animtype) = 5
+value = 5160
+
+[State 5070, 2]
+type = SelfState
+trigger1 = HitShakeOver
+value = 5071
+;---------------------------------------------------------------------------
 ; Air get-hit (fall recovery in air)
 [Statedef 5210];Air Tech
 type    = A
@@ -115,3 +296,150 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
+
+;---------------------------------------------------------------
+;Wall Bounce Shake
+[Statedef 5220]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+
+[State 5220, Anim] ;Custom animation
+type = ChangeAnim2
+trigger1 = 1
+value = 5050
+
+[State 1, 0]
+type = PlaySnd
+trigger1 = Time = 0
+value = 5001, Random % 6
+
+;OG Y Pos --------------------
+; [State 0, MapSet] ;Random DBFZ Smash code i made while bored
+; type = MapSet
+; trigger1 = !time
+; map = "pos_y"
+; value = pos y
+; ignorehitpause = 1
+
+; [State 0, VelMul]
+; type = VelSet
+; trigger1 = !HitShakeOver && time
+; y = cos(time*10/4)*(100/time)
+; ignorehitpause = 1
+
+; [State 0, VelMul]
+; type = PosSet
+; trigger1 = HitShakeOver
+; y = map(pos_y)
+; ignorehitpause = 1
+
+[State 5220, State]
+type = SelfState
+trigger1 = HitShakeOver = 1
+value = 5221
+;--------------------------------------------------
+;Wall Bounce Stick
+[Statedef 5222]
+type    = A
+movetype= H
+physics = N
+
+[State 1200, Shake Screen]
+type = EnvShake
+trigger1 = time = 0
+time = 15    ;Time to shake screen
+ampl = 3     ;Amount to shake
+freq = 120   ;A frequency of 180 shakes the screen rapidly
+
+[State 5222, Turn]
+type = Turn
+trigger1 = (Time = 0) && (FrontEdgeBodyDist <= 30)
+
+[State 5222, Pos]
+type = PosAdd
+trigger1 = Time = 0
+x = 15 - BackEdgeBodyDist
+
+[State 5222, Stop moving]
+type = PosFreeze
+trigger1 = 1
+x = 1
+y = 1
+
+[State 400, PlaySnd]
+type = PlaySnd
+trigger1 = time = 0
+value = 5070,0
+
+[State 1027, No scroll]
+type = ScreenBound
+trigger1 = 1
+value = 1
+movecamera = 0,1
+
+[State 1027, Spark]
+type = Explod
+trigger1 = Time = 0
+anim = F72
+pos = 0, floor (screenpos y) - 50
+postype = back
+sprpriority = 3
+
+[State 5222, Anim]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 5222
+
+[State 1027, Sound]
+type = PlaySnd
+trigger1 = Time = 0
+value = F7,0
+
+[State 5222, State]
+type = SelfState
+trigger1 = time = 5
+value = 5223
+
+;-----------------------------------------------------------------------------
+;Ground Bounce Shake
+[Statedef 5255]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+ctrl = 0
+
+[State 1, 0]
+type = PlaySnd
+trigger1 = Time = 0
+value = 5001, Random % 6
+
+[State 5020, 1] ;Anim for HIT_LIGHT to HIT_HARD
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = GetHitVar(animtype) != [3,5]
+value = ifelse((GetHitVar(airtype) = 1),5000,5010) + GetHitVar(animtype)
+
+[State 5020, 2] ;Anim for HIT_BACK
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = GetHitVar(animtype) = [3,5]
+value = 5030
+
+[State 5020, 3] ;Anim for HIT_UP/HIT_DIAGUP (only if it exists)
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = (GetHitVar(animtype) = [4,5]) && (SelfAnimExist(5047 + GetHitVar(animtype)))
+value = 5047 + GetHitVar(animtype) ;5051 - 4 + type
+
+[State 5020, 4] ;Freeze anim
+type = ChangeAnim
+trigger1 = Time > 0
+value = anim
+
+[State 5020, 5]
+type = ChangeState
+trigger1 = HitShakeOver
+value = 5256

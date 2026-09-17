@@ -13,7 +13,7 @@ sprpriority = 2                  ;Set p1's sprite layering priority to 2 (in fro
 type = HitDef
 trigger1 = !movecontact && !movereversed
 attr = S, NA                     ;Attribute: Standing, Normal Attack
-damage = 190                 ;Damage that move inflicts, guard damage
+damage = 290                 ;Damage that move inflicts, guard damage
 animtype = Light                 ;Animation type: Light, Medium, Heavy, Back (def: Light)
 guardflag = M                  ;Flags on how move is to be guarded against
 hitflag = MAF                    ;Flags of conditions that move can hit
@@ -505,6 +505,18 @@ Trigger1 = !time
 Value = , NA, SA, HA
 Time = 10
 
+[State 3001, ]
+type = afterimage
+trigger1 = Time = 0
+trigger1 = var(13) = 0
+time = 15
+framegap = 5
+length = 15
+PalBright   =  5, 5, 5
+PalContrast =  150, 150, 150
+PalAdd      = -1,-1,-1
+trans = add
+
 [State 0, Vel]
 type = velset
 trigger1 = animelem=2
@@ -656,7 +668,7 @@ value = 0, 0
 type = HitDef
 trigger1 = !movecontact && !movereversed
 attr = C, NA                     ;Attribute: Standing, Normal Attack
-damage = 400                  ;Damage that move inflicts, guard damage
+damage = 340                  ;Damage that move inflicts, guard damage
 animtype = Light                 ;Animation type: Light, Medium, Heavy, Back (def: Light)
 guardflag = M                 ;Flags on how move is to be guarded against
 hitflag = MAF                    ;Flags of conditions that move can hit
