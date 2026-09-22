@@ -123,8 +123,7 @@ victory7 = "なんだと！彼女はここにもいないと？"
 ;           held (remembered from state 800 through state 810).
 
 
-[Statedef 5900]
-type = S
+
 
 [State 5900, 1] ;Clear all int variables
 type = VarRangeSet

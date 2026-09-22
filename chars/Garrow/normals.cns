@@ -464,23 +464,8 @@ ctrl = 1
 
 
 ;---------------------------------------------------------------------------
-
-; CNS difficulty: easy
-; Description: Simple crouching attack. The HitDef's guardflag parameter
-;     is set to "L", meaning that the move can only be guarded low
-;     (crouching), and not by standing or jumping opponents.
-;     Like for all light attacks, it's a good idea to keep the slidetime
-;     and hittime parameters at a smaller number, so the opponent isn't
-;     stunned for too long. For all crouching attacks you have to
-;     remember to set the attr parameter to indicate that it is crouching
-;     attack. In this case, "C, NA" stands for "crouching, normal attack".
-;     The HitDef's priority is set at 3, instead of the default of 4,
-;     so this attack has a lower priority than most others, meaning
-;     KFM will get hit instead of trading hits with his opponent if
-;     their attack collision boxes (Clsn1) intersect each other's Clsn2
-;     boxes at the same time.
 ;---------------------------------------------------------------------------
-;66A
+;4C
 [Statedef 230]
 type    = S
 movetype= A
@@ -489,6 +474,16 @@ ctrl = 0
 anim = 230
 sprpriority = 1
 
+[State 3001, ]
+type = afterimage
+trigger1 = Time = 0
+time = 15
+framegap = 5
+length = 15
+PalBright   =  5, 5, 5
+PalContrast =  150, 150, 150
+PalAdd      = -1,-1,-1
+trans = add
 [State 0, Vel]
 type = velset
 trigger1 = animelem=1
@@ -504,18 +499,6 @@ Type = NotHitBy
 Trigger1 = !time
 Value = , NA, SA, HA
 Time = 10
-
-[State 3001, ]
-type = afterimage
-trigger1 = Time = 0
-trigger1 = var(13) = 0
-time = 15
-framegap = 5
-length = 15
-PalBright   =  5, 5, 5
-PalContrast =  150, 150, 150
-PalAdd      = -1,-1,-1
-trans = add
 
 [State 0, Vel]
 type = velset
@@ -575,7 +558,7 @@ var(31) = 0
 type = ChangeState
 triggerall = var(31) = 0
 triggerall = time = [17,20]
-trigger1 = command ="HOLD_A"
+trigger1 = command ="HOLD_C"
 value = 231
 
 [State 0, JORMUNGANDR DEFAULT HITDEF]
@@ -627,8 +610,14 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
+
+[State 240, 4]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
 ;---------------------------------------------------------------------------
-;66[A]
+;4[C]
 [Statedef 231]
 type    = S
 movetype= A
@@ -647,7 +636,193 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
+; CNS difficulty: easy
+; Description: Simple crouching attack. The HitDef's guardflag parameter
+;     is set to "L", meaning that the move can only be guarded low
+;     (crouching), and not by standing or jumping opponents.
+;     Like for all light attacks, it's a good idea to keep the slidetime
+;     and hittime parameters at a smaller number, so the opponent isn't
+;     stunned for too long. For all crouching attacks you have to
+;     remember to set the attr parameter to indicate that it is crouching
+;     attack. In this case, "C, NA" stands for "crouching, normal attack".
+;     The HitDef's priority is set at 3, instead of the default of 4,
+;     so this attack has a lower priority than most others, meaning
+;     KFM will get hit instead of trading hits with his opponent if
+;     their attack collision boxes (Clsn1) intersect each other's Clsn2
+;     boxes at the same time.
+;---------------------------------------------------------------------------
+;66A
+[Statedef 232]
+type    = S
+movetype= A
+physics = S
+ctrl = 0
+velset = 0,0
+anim = 231
+sprpriority = 1
 
+
+[State 621, 1]
+type = statetypeset
+trigger1 = !time
+statetype = A
+
+
+[State -2, VelSet]
+Type = VelSet
+trigger1 = AnimElem = 1
+x = vel x + 9
+y = -3.5
+
+[State -2, VelSet]
+Type = VelSet
+trigger1 = AnimElem = 6
+x = 10
+y = -5.5
+
+[State -2, grv]
+Type = VelAdd
+trigger1 = AnimElem = 2,>= 0
+y = 0.5
+
+
+
+[State 610, Camera Shake]
+type = EnvShake
+trigger1 = MoveHit || MoveGuarded
+persistent = 0
+time = 10
+freq = 10
+ampl = 4
+
+[State 610, 2]
+type = varset
+trigger1 = 1
+var(31) = 0
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= !movecontact && !movereversed
+;===============================
+damage 				= 490
+pausetime 			= 12,12 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NA
+hitflag 				= MAF
+guardflag 			= M
+animtype 				= Medium
+air.animtype 			= Medium
+ground.TYPE 			= High
+air.TYPE 				= High
+priority = 2, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= 5,0
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 18
+ground.slidetime		= 8
+air.hittime 			= 16
+down.hittime 			= 10
+ground.velocity 		= -5
+air.velocity 			= -1.5,-1.4
+;===============================
+guard.ctrltime 		= 12
+guard.slidetime		= 8
+guard.velocity 		= -6
+airguard.velocity 		= -2,-2
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 0
+air.fall 				= 1
+;===============================
+envshake.time 			= 8
+envshake.freq 			= 8
+envshake.ampl 			= 1
+envshake.phase 		= 0.5
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= AnimElem =6
+;===============================
+damage 				= 430
+pausetime 			= 14,14 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NA
+hitflag 				= MAF
+guardflag 			= M
+animtype 				= Medium
+air.animtype 			= Medium
+ground.TYPE 			= High
+air.TYPE 				= High
+priority = 2, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= 5,0
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 30
+ground.slidetime		= 8
+air.hittime 			= 25
+down.hittime 			= 10
+ground.velocity 		= -25,-5
+air.velocity 			= -26,-6.4
+;===============================
+guard.ctrltime 		= 14
+guard.slidetime		= 8
+guard.velocity 		= -3
+airguard.velocity 		= -2,-2
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 1
+p2stateno 	= 5220
+p2getp1state 	= 0
+missonoverride			= 0
+;===============================
+
+[State 610, ChangeState]
+type = ChangeState
+trigger1 = pos y >= 0 && vel y > 0
+value = 233
+
+
+
+;---------------------------------------------------------------------------
+;land
+[Statedef 233]
+type    = L
+movetype= H
+physics = N
+ctrl = 0
+anim = 232
+
+[State 52, 1]
+type = VelSet
+trigger1 = Time = 0
+y = 0
+
+[State 52, 2]
+type = PosSet
+trigger1 = Time = 0
+y = 0
+
+
+[State 611,2]
+type = ChangeState
+trigger1 = animtime = 0
+value = 0
+ctrl = 1
 ;---------------------------------------------------------------------------
 ;2A
 [Statedef 400]

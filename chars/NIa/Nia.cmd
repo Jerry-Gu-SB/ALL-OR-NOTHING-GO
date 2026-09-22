@@ -106,6 +106,13 @@ value = 1211
 triggerall = command = "A" && command = "holdfwd"
 trigger1 = stateno = 1000 && movecontact
 
+;236A (22B stack)  6B Afterburner
+[State -1]
+type = ChangeState
+value = 1213
+triggerall = command = "B" && command = "holdfwd"
+trigger1 = stateno = 1000 && movecontact
+
 ;236B - Maximum Missile
 [State -1]
 type = ChangeState
@@ -245,14 +252,6 @@ trigger1 = statetype != A
 trigger1 = Stateno = 100
 trigger2 = Stateno = 101 && Time < 10
 
-;dash punch cancel
-[State -1, 66L]
-type = ChangeState
-value = 230
-triggerall = command = "A" && command = "holdfwd"
-triggerall = statetype != A
-trigger1 = (stateno = [200,225] || stateno = [400,410]) && movecontact
-
 
 [State -1, 66H]
 type = ChangeState
@@ -261,15 +260,7 @@ triggerall = command = "B" && command = "holdfwd"
 triggerall = statetype != A
 trigger1 = stateno = 101
 
-;dash punch cancel
-[State -1, 66H]
-type = ChangeState
-value = 240
-triggerall = !ishelper
-triggerall = !AIlevel
-triggerall = command = "B" && command = "holdfwd"
-triggerall = statetype != A
-trigger1 = (stateno = [200,225] || stateno = [400,410]) && movecontact
+
 
 [State -1, 66LL]
 type = ChangeState

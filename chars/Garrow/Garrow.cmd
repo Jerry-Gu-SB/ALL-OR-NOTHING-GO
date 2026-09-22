@@ -665,7 +665,7 @@ trigger1 = ctrl
 ;66L
 [State -1, 66L]
 type = ChangeState
-value = 230
+value = 232
 triggerall = !ishelper
 triggerall = !AIlevel
 triggerall = command = "A" 
@@ -673,12 +673,13 @@ trigger1 = statetype != A
 trigger1 = Stateno = 100
 
 ;dash punch cancel
-[State -1, 66L]
+[State -1, 4C]
 type = ChangeState
 value = 230
-triggerall = command = "A" && command = "holdfwd"
+triggerall = command = "C" && command = "holdback"
 triggerall = statetype != A
-trigger1 = (stateno = [200,225] || stateno = [400,410]) && movecontact
+trigger1 = ctrl|| (stateno = [200,225] || stateno = [400,420]) && movecontact
+trigger2 = stateno = 100 
 
 
 ;===========================================================================

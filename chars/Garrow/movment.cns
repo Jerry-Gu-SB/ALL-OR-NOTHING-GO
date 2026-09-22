@@ -199,4 +199,86 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
+;---------------------------------------------------------------
+;Wall Bounce Shake
+[Statedef 5220]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
 
+[State 5220, Anim] ;Custom animation
+type = ChangeAnim2
+trigger1 = 1
+value = 5050
+
+[State 1, 0]
+type = PlaySnd
+trigger1 = Time = 0
+value = 5001, Random % 6
+
+;OG Y Pos --------------------
+; [State 0, MapSet] ;Random DBFZ Smash code i made while bored
+; type = MapSet
+; trigger1 = !time
+; map = "pos_y"
+; value = pos y
+; ignorehitpause = 1
+
+; [State 0, VelMul]
+; type = VelSet
+; trigger1 = !HitShakeOver && time
+; y = cos(time*10/4)*(100/time)
+; ignorehitpause = 1
+
+; [State 0, VelMul]
+; type = PosSet
+; trigger1 = HitShakeOver
+; y = map(pos_y)
+; ignorehitpause = 1
+
+[State 5220, State]
+type = SelfState
+trigger1 = HitShakeOver = 1
+value = 5221
+;-----------------------------------------------------------------------------
+;Ground Bounce Shake
+[Statedef 5255]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+ctrl = 0
+
+[State 1, 0]
+type = PlaySnd
+trigger1 = Time = 0
+value = 5001, Random % 6
+
+[State 5020, 1] ;Anim for HIT_LIGHT to HIT_HARD
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = GetHitVar(animtype) != [3,5]
+value = ifelse((GetHitVar(airtype) = 1),5000,5010) + GetHitVar(animtype)
+
+[State 5020, 2] ;Anim for HIT_BACK
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = GetHitVar(animtype) = [3,5]
+value = 5030
+
+[State 5020, 3] ;Anim for HIT_UP/HIT_DIAGUP (only if it exists)
+type = ChangeAnim
+trigger1 = Time = 0
+trigger1 = (GetHitVar(animtype) = [4,5]) && (SelfAnimExist(5047 + GetHitVar(animtype)))
+value = 5047 + GetHitVar(animtype) ;5051 - 4 + type
+
+[State 5020, 4] ;Freeze anim
+type = ChangeAnim
+trigger1 = Time > 0
+value = anim
+
+[State 5020, 5]
+type = ChangeState
+trigger1 = HitShakeOver
+value = 5256

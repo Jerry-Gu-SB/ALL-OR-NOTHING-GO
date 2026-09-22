@@ -11,10 +11,12 @@ anim = 5000
 type = PlaySnd
 trigger1 = GetHitVar(Damage) <= 600
 trigger1 = Time = 0
+trigger1 = random <= 499
 value = 5000, Random % 7
 [State 1, 0]
 type = PlaySnd
 trigger1 = GetHitVar(Damage) >= 601
+trigger1 = random <= 749
 trigger1 = Time = 0
 value = 5001, Random % 6
 
@@ -54,13 +56,16 @@ anim = 5020
 type = PlaySnd
 trigger1 = GetHitVar(Damage) <= 600
 trigger1 = Time = 0
+trigger1 = random <= 499
 value = 5000, Random % 7
 
 [State 1, 0]
 type = PlaySnd
 trigger1 = GetHitVar(Damage) >= 601
 trigger1 = Time = 0
+trigger1 = random <= 749
 value = 5001, Random % 6
+
 [State 5011, 1]
 type = velset
 trigger1 = Time = 0
@@ -111,11 +116,12 @@ velset = 0,0
 type = PlaySnd
 trigger1 = GetHitVar(Damage) <= 600
 trigger1 = Time = 0
+trigger1 = random <= 499
 value = 5000, Random % 7
-
 [State 1, 0]
 type = PlaySnd
 trigger1 = GetHitVar(Damage) >= 601
+trigger1 = random <= 749
 trigger1 = Time = 0
 value = 5001, Random % 6
 [State 5020, 1] ;Anim for HIT_LIGHT to HIT_HARD
