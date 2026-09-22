@@ -321,11 +321,11 @@ sparkxy 				= -p2dist x * 0.25, -50
 hitsound                = S1,0
 guardsound 			= S1,0
 ;===============================
-ground.hittime 		= 50
+ground.hittime 		= 57
 ground.slidetime		= 16
 air.hittime 			= 50
 down.hittime 			= 10
-ground.velocity 		= -29,-7
+ground.velocity 		= -29,-9
 air.velocity 			= -29,-6
 ;===============================
 guard.hittime 		= 14
