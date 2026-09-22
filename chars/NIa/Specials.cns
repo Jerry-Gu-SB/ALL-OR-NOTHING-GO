@@ -1283,7 +1283,179 @@ type = ChangeState
 trigger1 = animtime = 0
 value = 0
 ctrl = 1
+;---------------------------------------------------------------------------
+;j.214C Crash Landing
+[Statedef 1315]
+type    = A
+movetype= A
+physics = A
+juggle = 0
+sprpriority = 2
+anim = 1315
+ctrl = 0
 
+[State 1120, Afterimage]
+type = AfterImage
+trigger1 = Time = 0
+length = 13
+PalBright   =  30, 30,  0
+PalContrast =  70, 70, 20
+PalAdd      = -10,-10,-10
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 2
+Trans = Add
+time = 2
+
+[State 3000, SuperPause]
+type = SuperPause
+trigger1 = animelem = 4
+time = 10
+movetime = 36
+darken = 0
+anim = -1
+p2defmul = 1
+poweradd = -1000
+
+[State 1120, Afterimage]
+type = AfterImageTime
+trigger1 = AnimTime < -2
+time = 2
+
+[State 1120, Blink Yellow]
+type = PalFX
+trigger1 = Time = 0
+time = 20
+add = 32,16,0
+sinadd = 64,32,5,3
+
+[State 0, Pick Random]
+type = VarRandom
+trigger1 = Time = 11
+v = 0
+range = 0,1
+
+[State 0]
+type = PlaySnd
+trigger1 = Time = 11
+value = 1300,var(0)
+
+[State 620, 2]
+type = velset
+trigger1 = animelemtime(1) >= 0
+trigger1 = animelemTime(4) < 0
+x = -0.6
+y = -1.5
+
+[State 620, 2]
+type = veladd
+trigger1 = animelemTime(5) > 0
+x = 4
+y = 3
+
+[State 220, Stop]
+type = VelSet
+trigger1 = P2Dist X <= 15
+x = 0
+
+[State 620, 2]
+type = width
+trigger1 = animelemTime(5) > 0
+edge = 40,10
+player = 20,10
+
+[State 0, StateTypeSet]
+type = StateTypeSet
+trigger1 = animelem = 6
+physics = N
+
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= !movecontact && !movereversed
+;===============================
+damage 				= 800
+pausetime 			= 10,10 + 2 * enemy, movetype = A
+getpower 				= 25 * MAP(GEAR.MUL),0
+;===============================
+attr 				= A,NA
+hitflag 				= MAF
+guardflag 			= MA
+animtype 				= Light
+air.animtype 			= Light
+ground.TYPE 			= High
+air.TYPE 				= High
+priority = 1, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= 5,0
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 16
+ground.slidetime		= 10
+air.hittime 			= 14
+down.hittime 			= 10
+ground.velocity 		= -5
+air.velocity 			= -2,-2
+;===============================
+guard.ctrltime 		= 16
+guard.slidetime		= 8
+guard.velocity 		= -6
+airguard.velocity 		= -1,-1
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 0
+air.fall 				= 1
+;===============================
+envshake.time 			= 8
+envshake.freq 			= 8
+envshake.ampl 			= 1
+envshake.phase 		= 0.5
+
+[State 610, ChangeState]
+type = ChangeState
+trigger1 = pos y >= 0 && vel y > 0
+value = 1316
+
+;---------------------------------------------------------------------------
+; Landing
+[Statedef 1316]
+type    = L
+movetype= H
+physics = N
+ctrl = 0
+anim = 1316
+
+[State 611, EnvShake]
+type = FallEnvShake
+trigger1 = Time = 0
+
+[State 611, Var] ;Save fall velocity
+type = VarSet
+trigger1 = Time = 0
+sysvar(1) = floor(vel y)
+
+[State 52, 1]
+type = posset
+trigger1 = !time
+y = 0
+
+[State 52, 1]
+type = VelSet
+trigger1 = Time = 0
+x = 1
+y = 0
+
+[State 1200, 4]
+type = ChangeState
+trigger1 = animtime = 0
+value = 11
+ctrl = 1
 ;---------------------------------------------------------------------------
 ;214A: Hug of Destruction Attempt Light
 [Statedef 1600]

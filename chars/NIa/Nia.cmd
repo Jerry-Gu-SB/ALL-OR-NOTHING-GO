@@ -160,6 +160,14 @@ value = 1310
 triggerall = command = "214B" && statetype = A
 trigger1 = var(1)
 
+;j214C - Crash Landing
+[State -1]
+type = ChangeState
+value = 1315
+triggerall = command = "214C" && statetype = A
+triggerall = power >= 1000
+trigger1 = var(1)
+
 ;214A - Hug of Destruction
 [State -1]
 type = ChangeState
