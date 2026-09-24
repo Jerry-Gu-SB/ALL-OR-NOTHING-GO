@@ -1461,8 +1461,9 @@ fall.xvelocity = 0
 fall.yvelocity = -2
 air.fall = 1
 fall = 1
-fall.recover = 1
-fall.recovertime = 40
+p2stateno = 5255
+fall 				= 1
+
 
 [State 0, Jump Cancel]
 type 		= MapSet
