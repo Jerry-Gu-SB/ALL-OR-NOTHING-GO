@@ -275,7 +275,7 @@ type = ChangeState
 value = 231
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "A"
+triggerall = command = "B"
 triggerall = statetype != A
 trigger1 = stateno = 230
 trigger1 = Movecontact
@@ -286,7 +286,7 @@ type = ChangeState
 value = 232
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "A"
+triggerall = command = "B"
 triggerall = statetype != A
 trigger1 = stateno = 231
 trigger1 = Movecontact
@@ -298,7 +298,7 @@ type = ChangeState
 value = 233
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "A"
+triggerall = command = "B"
 triggerall = statetype != A
 trigger1 = stateno = 232
 trigger1 = Movecontact
