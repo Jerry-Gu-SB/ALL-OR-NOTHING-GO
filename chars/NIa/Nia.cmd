@@ -258,7 +258,7 @@ triggerall = !AIlevel
 triggerall = command = "B" && command = "holdfwd"
 trigger1 = statetype != A
 trigger1 = Stateno = 100
-trigger2 = Stateno = 101 && Time < 10
+trigger2 = Stateno = 101 && Time < 12
 
 
 [State -1, 66H]
@@ -266,7 +266,7 @@ type = ChangeState
 value = 240
 triggerall = command = "C" && command = "holdfwd"
 triggerall = statetype != A
-trigger1 = stateno = 101
+trigger1 = stateno = 101 &&Time < 12
 
 
 
