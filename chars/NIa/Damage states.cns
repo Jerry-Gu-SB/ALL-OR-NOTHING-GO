@@ -408,6 +408,76 @@ type = SelfState
 trigger1 = time = 5
 value = 5223
 
+;------------------
+;Wall Stick - Shake
+[Statedef 5230]
+type    = A
+movetype= H
+physics = N
+velset = 0,0
+
+[State 5230, Anim]
+type = ChangeAnim2
+trigger1 = 1
+value = 5031
+
+[State 1025, State]
+type = ChangeState
+trigger1 = HitShakeOver = 1
+value = 5231
+
+;------------------
+;Wall Slide - Hit Wall
+[Statedef 5227]
+type    = A
+movetype= H
+physics = N
+anim = 5031
+velset = 0, 0
+
+;X Smash--------------------
+[State 0, MapSet]
+type = MapSet
+trigger1 = !time
+map = "pos_x"
+value = pos x
+ignorehitpause = 1
+
+[State 0, PosSet]
+type = PosSet
+trigger1 = HitShakeOver
+x = map(pos_x)
+ignorehitpause = 1
+
+[State 5232, Stop moving]
+type = PosFreeze
+trigger1 = 1
+x = 0
+y = 0
+
+[State 5232, Spark]
+type = Explod
+trigger1 = Time = 0
+anim = F72
+pos = 0, floor (screenpos y) - 50
+postype = back
+sprpriority = 3
+
+[State 5232, Anim]
+type = ChangeAnim
+trigger1 = Time = 0
+value = 5222
+
+[State 5232, Sound]
+type = PlaySnd
+trigger1 = Time = 0
+value = F7,0
+
+[State 1027, State]
+type = ChangeState
+trigger1 = Time = 2
+value = 5228
+
 ;-----------------------------------------------------------------------------
 ;Ground Bounce Shake
 [Statedef 5255]
@@ -449,3 +519,6 @@ value = anim
 type = ChangeState
 trigger1 = HitShakeOver
 value = 5256
+
+
+
