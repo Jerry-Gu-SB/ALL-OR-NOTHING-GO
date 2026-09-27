@@ -169,13 +169,32 @@ time = 1
 ;---------------------------------------------------------------------------
 ; Win state decider
 ; CNS difficulty: basic
+; Win state decider
 [Statedef 180]
 type = S
+ctrl = 0
+velset = 0,0
 
-[State 180, 1]
+[State 180, ChangeState]
 type = ChangeState
 trigger1 = Time = 0
 value = 181
+
+[Statedef 181]
+type = S
+ctrl = 0
+anim = 181
+velset = 0,0
+
+[State 181, 1]
+type = playsnd
+trigger1 =  Time = 0
+value = 180, ifelse(Random < 500, 0, 1)
+
+[State 181, AssertSpecial]
+type = AssertSpecial
+trigger1 = time < 180
+flag = roundnotover
 
 ;---------------------------------------------------------------------------
 ; Win pose 1 - Bow

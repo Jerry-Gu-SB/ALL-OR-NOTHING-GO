@@ -400,29 +400,8 @@ sprpriority = 2
 [State 0, Vel]
 type = velset
 trigger1 = animelem=2
-x = 10
+x = 11
 
-
-[State 50, 2]
-type = Explod
-trigger1 = time = 0
-anim = 10700
-postype = p1
-pos = 19,-47
-ownpal = 1
-ignorehitpause = 1
-persistent = 0
-sprpriority = 3
-scale = 0.50,0.50
-
-[State 610, Camera Shake]
-type = EnvShake
-trigger1 = AnimElem = 2
-trigger2 = MoveHit || MoveGuarded
-persistent = 0
-time = 10
-freq = 10
-ampl = 4
 
 [State 210, 2]
 type = HitDef
@@ -446,11 +425,12 @@ ground.slidetime = 12
 ground.hittime  = 18
 ground.velocity = -4.5
 guard.hittime = 15
-air.velocity = -2.5,-4
-air.fall = 1
+air.velocity = -2.5,6
+fall = 1
 fall.recovertime = 45
 ground.cornerpush.veloff = -5
 air.cornerpush.veloff = -5
+p2stateno = 5255
 
 
 [State 210, 5]

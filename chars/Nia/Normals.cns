@@ -68,7 +68,7 @@ pausetime 			= 10,10 + 2 * enemy, movetype = A
 getpower 				= 25 * MAP(GEAR.MUL),0
 ;===============================
 attr 				= S,NA
-hitflag 				= MAF
+hitflag 				= MAFD
 guardflag 			= M
 animtype 				= Light
 air.animtype 			= Light
@@ -192,7 +192,7 @@ ampl = 3
 type = HitDef
 trigger1 = !time
 attr = S,NA
-hitflag = MAF
+hitflag = MAFD
 guardflag = M
 animtype = Medium
 priority = 3, Hit 
@@ -426,7 +426,7 @@ value = 600, Random % 3
 type = HitDef
 trigger1 = !time
 attr = S,NA
-hitflag = MAF
+hitflag = MAFD
 guardflag = M
 animtype = Medium
 priority = 3, Hit 
@@ -516,7 +516,7 @@ pausetime 			= 14,14 + 2 * enemy, movetype = A
 getpower 				= 25 
 ;===============================
 attr 				= S,NA
-hitflag 				= MAF
+hitflag 				= MAFD
 guardflag 			= M
 animtype 				= Hard
 air.animtype 			= Hard
@@ -629,7 +629,7 @@ pausetime 			= 12,12 + 2 * enemy, movetype = A
 getpower 				= 6 
 ;===============================
 attr 				= S,NA
-hitflag 				= MAF
+hitflag 				= MAFD
 guardflag 			= M
 animtype 				= Hard
 air.animtype 			= Hard
@@ -762,7 +762,7 @@ trigger1 = animelem = 4
 attr = S, NA
 animtype  = Hard
 damage    = 160
-hitflag = MAF
+hitflag = MAFD
 guardflag = L
 pausetime = 10,10
 getpower 				= 25 * MAP(GEAR.MUL),0
@@ -839,7 +839,7 @@ trigger1 = !time
 attr = S, NA
 animtype  = Hard
 damage    = 160
-hitflag = MAF
+hitflag = MAFD
 guardflag = L
 pausetime = 10,10
 priority = 3, Hit 
@@ -924,7 +924,7 @@ trigger1 = !time
 attr = S, NA
 animtype  = Hard
 damage    = 160
-hitflag = MAF
+hitflag = MAFD
 guardflag = L
 pausetime = 10,10
 priority = 3, Hit 
@@ -1009,7 +1009,7 @@ trigger1 = !time
 attr = S, NA
 animtype  = Hard
 damage    = 160
-hitflag = MAF
+hitflag = MAFD
 guardflag = L
 pausetime = 10,10
 priority = 3, Hit 
@@ -1021,7 +1021,7 @@ ground.type = Low
 ground.slidetime = 12
 guard.slidetime = 15
 guard.hittime = 4
-ground.hittime  = 20
+ground.hittime  = 22
 ground.velocity = -3
 air.velocity = -2,-5
 air.hittime = 17
@@ -1271,7 +1271,7 @@ pausetime 			= 8,8 + 2 * (enemy, movetype = A)
 getpower 				= 25 * MAP(GEAR.MUL)
 ;===============================
 attr 				= S,NA
-hitflag 				= MAF
+hitflag 				= MAFD
 guardflag 			= L
 animtype 				= Light
 air.animtype 			= Light
@@ -1725,7 +1725,7 @@ value = 0,4
 type = velset
 trigger1 = animelem = 1
 x = 3
-y = -4
+y = -5
 [State 0, Vel]
 type = veladd
 trigger1 = animelemno(0) = 2

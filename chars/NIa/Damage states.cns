@@ -520,5 +520,47 @@ type = ChangeState
 trigger1 = HitShakeOver
 value = 5256
 
+;---------------------------------------------------------------------------
+;tumble
+[Statedef 5250]
+type    = s
+movetype= H
+physics = N
+velset = 0,0
+anim = 5220
 
+[State 0, PosSet]
+type = PosSet
+trigger1 = 1
+y = 0
+
+[State 0, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = floor(gethitvar(xvel)) * facing
+
+[State 0, VelMul]
+type = VelMul
+trigger1 = 1
+x = .9
+
+[State 5000, 5] ;State type gets set to aerial if getting hit up
+type = StateTypeSet
+trigger1 = Time = 0
+trigger1 = GetHitVar(yvel) != 0 || GetHitVar(fall)
+trigger2 = Pos Y != 0
+statetype = A
+
+[State 5000, 6]
+type = ChangeState
+trigger1 = HitShakeOver
+trigger1 = GetHitVar(yvel) = 0 && !GetHitVar(fall)
+value = 5001 ;Stand get-hit (knocked back)
+
+
+[State 0, ChangeState]
+type = SelfState
+trigger1 = AnimTime = 0
+value = 5251
+ctrl = 0
 

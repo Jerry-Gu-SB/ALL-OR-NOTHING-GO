@@ -769,6 +769,20 @@ trigger4 = stateno = 400 && movecontact
 trigger5 = stateno = 410 && movecontact
 trigger6 = stateno = 420 && movecontact && prevStateNo != 220 && prevStateNo != 225
 
+;===========================================================================
+;---------------------------------------------------------------------------
+;5C~C
+[State -1]
+type = ChangeState
+value = 221
+triggerall = command = "C"
+triggerall = command != "holddown"
+trigger1 = statetype != A
+trigger1 = ctrl
+trigger2 = stateno = 220 && movecontact
+
+
+;---------------------------------------------------------------------------
 ;---------------------------------------------------------------------------
 ;2A
 [State -1]
