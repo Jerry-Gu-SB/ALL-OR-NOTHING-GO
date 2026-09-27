@@ -1,0 +1,352 @@
+;---------------------------------------------------------------------------
+; 22A Blood Cleaver 
+[Statedef 1100]
+type    = S
+movetype= A
+physics = S
+poweradd= 55
+velset = 0,0
+anim = 1100
+ctrl = 0
+sprpriority = 2
+
+
+[State 1100, 1]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 0, 2
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= !movecontact && !movereversed
+;===============================
+damage 				= 1410
+pausetime 			= 16,16 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NA
+hitflag 				= MAF
+guardflag 			= MA
+animtype 				= Medium
+air.animtype 			= Medium
+ground.TYPE 			= High
+air.TYPE 				= High
+priority = 2, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= s1,7
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 40
+ground.slidetime		= 8
+air.hittime 			= 74
+down.hittime 			= 10
+ground.velocity 		= -5,-7
+air.velocity 			= -1,-12
+;===============================
+guard.ctrltime 		= 16
+guard.slidetime		= 10
+guard.velocity 		= -3
+airguard.velocity 		= -4,-4
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 1
+;===============================
+envshake.time 			= 8
+envshake.freq 			= 8
+envshake.ampl 			= 4
+envshake.phase 		= 0.5         
+
+[State 1100, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;22B Blood Cleaver 
+[Statedef 1110]
+type    = S
+movetype= A
+physics = S
+juggle  = 4
+poweradd= 60
+velset = 0,0
+anim = 1110
+ctrl = 0
+sprpriority = 2
+
+
+[State 1, ]
+type = nothitby
+Trigger1 = !time
+value = SCA
+Time = 17
+
+
+[State 1110, 1]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 0, 2
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= AnimElem = 4
+;===============================
+damage 				= 1700
+pausetime 			= 12,12 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NA
+hitflag 				= MAF
+guardflag 			= M
+animtype 				= Medium
+air.animtype 			= Medium
+ground.TYPE 			= High
+air.TYPE 				= High
+priority = 2, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= s1,7
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 46
+ground.slidetime		= 8
+air.hittime 			= 55
+down.hittime 			= 10
+ground.velocity 		= -5,-7
+air.velocity 			= -4,-8
+;===============================
+guard.ctrltime 		= 16
+guard.slidetime		= 10
+guard.velocity 		= -3
+airguard.velocity 		= -4,-4
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 1
+;===============================
+envshake.time 			= 8
+envshake.freq 			= 8
+envshake.ampl 			= 4
+envshake.phase 		= 0.5  
+
+[State 1110, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= AnimElem = 5
+;===============================
+damage 				= 1700
+pausetime 			= 12,12 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NA
+hitflag 				= MAF
+guardflag 			= M
+animtype 				= Medium
+air.animtype 			= Medium
+ground.TYPE 			= High
+air.TYPE 				= High
+priority = 2, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= s1,7
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 46
+ground.slidetime		= 8
+air.hittime 			= 55
+down.hittime 			= 10
+ground.velocity 		= -5,9
+air.velocity 			= -4,-13
+;===============================
+guard.ctrltime 		= 16
+guard.slidetime		= 10
+guard.velocity 		= -3
+airguard.velocity 		= -4,-4
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 1
+;===============================
+envshake.time 			= 8
+envshake.freq 			= 8
+envshake.ampl 			= 4
+envshake.phase 		= 0.5  
+
+[State 1110, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+; 22C Blood Cleaver 
+[Statedef 1120]
+type    = S
+movetype= A
+physics = S
+juggle  = 6
+poweradd= -330
+velset = 0,0
+anim = 1120
+ctrl = 0
+sprpriority = 2
+
+[State 1, ]
+type = nothitby
+Trigger1 = !time
+value = SCA
+Time = 13
+
+[State 1120, Afterimage]
+type = AfterImage
+trigger1 = Time = 0
+length = 13
+PalBright   =  30, 30,  0
+PalContrast =  70, 70, 20
+PalAdd      = -10,-10,-10
+PalMul      = .85,.85,.50
+TimeGap  = 1
+FrameGap = 2
+Trans = Add
+time = 2
+
+[State 1120, Afterimage]
+type = AfterImageTime
+trigger1 = AnimTime < -2
+time = 2
+
+[State 1120, Blink Yellow]
+type = PalFX
+trigger1 = Time = 0
+time = 20
+add = 32,16,0
+sinadd = 64,32,5,3
+
+[State 1120, 1]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 0, 2
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= AnimElem = 4
+;===============================
+damage 				= 1700
+pausetime 			= 12,12 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NA
+hitflag 				= MAF
+guardflag 			= M
+animtype 				= Medium
+air.animtype 			= Medium
+ground.TYPE 			= High
+air.TYPE 				= High
+priority = 2, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= s1,7
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 46
+ground.slidetime		= 8
+air.hittime 			= 55
+down.hittime 			= 10
+ground.velocity 		= -5,-7
+air.velocity 			= -2,-8
+;===============================
+guard.ctrltime 		= 16
+guard.slidetime		= 10
+guard.velocity 		= -3
+airguard.velocity 		= -4,-4
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 1
+;===============================
+envshake.time 			= 8
+envshake.freq 			= 8
+envshake.ampl 			= 4
+envshake.phase 		= 0.5  
+
+[State 1110, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= AnimElem = 5
+;===============================
+damage 				= 1700
+pausetime 			= 12,12 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NA
+hitflag 				= MAF
+guardflag 			= M
+animtype 				= Medium
+air.animtype 			= Medium
+ground.TYPE 			= High
+air.TYPE 				= High
+priority = 2, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= s1,7
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 46
+ground.slidetime		= 8
+air.hittime 			= 55
+down.hittime 			= 10
+ground.velocity 		= -5,9
+air.velocity 			= -4,-13
+;===============================
+guard.ctrltime 		= 16
+guard.slidetime		= 10
+guard.velocity 		= -3
+airguard.velocity 		= -4,-4
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 1
+;===============================
+envshake.time 			= 8
+envshake.freq 			= 8
+envshake.ampl 			= 4
+envshake.phase 		= 0.5  
+
+[State 1120, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1

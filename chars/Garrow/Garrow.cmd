@@ -478,13 +478,19 @@ var(1) = 0
 
 [State -1, Combo condition Check]
 type = VarSet
-trigger1 = statetype != A
 trigger1 = ctrl
-trigger2 = (stateno = [200,299]) || (stateno = [400,499])
-trigger2 = stateno != 440 ;Except for sweep kick
+trigger2 = (stateno = [200,299]) || (stateno = [400,499] || stateno = [600,700]) 
 trigger2 = movecontact
-trigger3 = stateno = 1310 || stateno = 1330 ;From blocking
 var(1) = 1
+
+[State -1, Super Cancel Special Attacks]
+type = VarSet
+trigger1 = var(1)
+trigger2 = stateno = [1000,3000) && MoveContact
+trigger3 = (stateno = [1000, 1001] || stateno = 2000 ) && animelemno(0) > 3
+trigger4 = stateno = 2100 && animelemno(0) >= 2
+var(2) = 1
+ignorehitpause = 1
 
 ;---------------------------------------------------------------------------
 ; Throw
@@ -530,30 +536,36 @@ value = 1010
 triggerall = command = "QCF_y"
 trigger1 = var(1) ;Use combo condition (above)
 
-;---------------------------------------------------------------------------
-;Fast Kung Fu Upper (1/3 super bar)
-[State -1, Fast Kung Fu Upper]
-type = ChangeState
-value = 1120
-triggerall = command = "upper_xy"
-triggerall = power >= 330
-trigger1 = var(1) ;Use combo condition (above)
 
-;---------------------------------------------------------------------------
-;Light Kung Fu Upper
-[State -1, Light Kung Fu Upper]
+; 22A Blood Cleaver
+[State -1]
 type = ChangeState
 value = 1100
-triggerall = command = "upper_x"
-trigger1 = var(1) ;Use combo condition (above)
+triggerall = command = "22A"
+triggerall = statetype != A
+trigger1 = var(1)
 
 ;---------------------------------------------------------------------------
-;Strong Kung Fu Upper
-[State -1, Strong Kung Fu Upper]
+;22B Blood Cleaver
+[State -1]
 type = ChangeState
 value = 1110
-triggerall = command = "upper_y"
-trigger1 = var(1) ;Use combo condition (above)
+triggerall = command = "22B"
+triggerall = statetype != A
+trigger1 = var(1)
+
+;---------------------------------------------------------------------------
+;22C Blood Cleaver
+[State -1]
+type = ChangeState
+value = 1120
+triggerall = command = "22C"
+triggerall = statetype != A
+triggerall = power >= 1000
+trigger1 = var(1)
+trigger2 =  stateno = 1100 && movecontact
+
+;---------------------------------------------------------------------------
 
 ;---------------------------------------------------------------------------
 ;Fast Kung Fu Blow (1/3 super bar)
@@ -668,7 +680,7 @@ type = ChangeState
 value = 232
 triggerall = !ishelper
 triggerall = !AIlevel
-triggerall = command = "A" 
+triggerall = command = "B" 
 trigger1 = statetype != A
 trigger1 = Stateno = 100
 
