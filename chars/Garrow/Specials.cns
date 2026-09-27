@@ -170,10 +170,10 @@ guardsound 			= 6,0
 ;===============================
 ground.hittime 		= 46
 ground.slidetime		= 8
-air.hittime 			= 55
+air.hittime 			= 50
 down.hittime 			= 10
-ground.velocity 		= -5,9
-air.velocity 			= -4,-13
+ground.velocity 		= -5,-7
+air.velocity 			= -4,-9
 ;===============================
 guard.ctrltime 		= 16
 guard.slidetime		= 10
@@ -274,7 +274,7 @@ ground.slidetime		= 8
 air.hittime 			= 55
 down.hittime 			= 10
 ground.velocity 		= -5,-7
-air.velocity 			= -2,-8
+air.velocity 			= -2,-9
 ;===============================
 guard.ctrltime 		= 16
 guard.slidetime		= 10
@@ -325,8 +325,8 @@ ground.hittime 		= 46
 ground.slidetime		= 8
 air.hittime 			= 55
 down.hittime 			= 10
-ground.velocity 		= -5,9
-air.velocity 			= -4,-13
+ground.velocity 		= -5,-7
+air.velocity 			= -2,-8
 ;===============================
 guard.ctrltime 		= 16
 guard.slidetime		= 10

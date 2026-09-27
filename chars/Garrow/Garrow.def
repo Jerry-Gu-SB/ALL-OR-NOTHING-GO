@@ -5,12 +5,10 @@
 [Info]
 name = "Garrow"        ;Name of character
 displayname = "Garrow" ;Name of character to display
-versiondate = 07,26,2026   ;Version date of character (MM-DD-YYYY or X.XX)
 ikemenversion = 0.99           ;Version of M.U.G.E.N character works on (X.XX)
 author = "Bentae, spiral"         ;Character author name
 pal.defaults = 1,2,3,4,5      ;Default palettes in order of preference (up to 4)
                             ;Numbering starts from 1
-localcoord = 320,240        ;Local coordinate space width and height
 
 ; Files for the player
 [Files]
@@ -27,14 +25,10 @@ sound   = Garrow.snd           ;Sound
 ai      = Garrow.ai            ;AI hints data (not used)
 movelist = movelist.dat     ;Ikemen feature: Movelist
 
-; Maps character selection buttons to palette numbers.
+
 [Palette Keymap]
 a = 1
-b = 2
-c = 3
-x = 4
-y = 5
-z = 6
+
 
 ; Arcade mode
 [Arcade]
