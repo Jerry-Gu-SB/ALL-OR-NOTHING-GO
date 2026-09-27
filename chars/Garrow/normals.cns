@@ -1240,7 +1240,7 @@ value = 0, 1
 
 [State 610, 3]
 type = HitDef
-trigger1 = Time = 0
+trigger1 = !time
 attr = A, NA
 damage = 400
 hitflag 	= MAF
@@ -1281,7 +1281,7 @@ value = 0, 1
 
 [State 610, 3]
 type = HitDef
-trigger1 = Time = 0
+trigger1 = !time
 attr = A, NA
 damage = 400
 hitflag 	= MAF
