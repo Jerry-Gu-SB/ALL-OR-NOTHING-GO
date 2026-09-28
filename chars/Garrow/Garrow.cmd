@@ -295,7 +295,7 @@ trigger1 = ctrl
 
 ;---------------------------------------------------------------------------
 ;66L
-[State -1, 66L]
+[State -1, 66B]
 type = ChangeState
 value = 232
 triggerall = !ishelper
@@ -303,12 +303,20 @@ triggerall = !AIlevel
 triggerall = command = "B" 
 trigger1 = statetype != A
 trigger1 = Stateno = 100
+;---------------------------------------------------------------------------
+[State -1, 3C]
+type = ChangeState
+value = 440
+triggerall = command = "C" && command = "holddown" && command = "holdfwd"
+triggerall = statetype != A
+trigger1 = ctrl|| (stateno = [200,225] || stateno = [400,420]) && movecontact
+trigger2 = stateno = 100
 
-;dash punch cancel
-[State -1, 4C]
+
+[State -1, 6C]
 type = ChangeState
 value = 230
-triggerall = command = "C" && command = "holdback"
+triggerall = command = "C" && command = "holdfwd"
 triggerall = statetype != A
 trigger1 = ctrl|| (stateno = [200,225] || stateno = [400,420]) && movecontact
 trigger2 = stateno = 100 
@@ -359,14 +367,7 @@ trigger2 = stateno = 200 && movecontact
 trigger3 = stateno = 400 && movecontact
 trigger4 = stateno = 410 && movecontact && prevStateNo != 210
 trigger5 = stateno = 410 && movecontact && prevStateNo != 215
-;---------------------------------------------------------------------------
-[State -1, 3C]
-type = ChangeState
-value = 440
-triggerall = command = "C" && command = "holddown" && command = "holdfwd"
-triggerall = statetype != A
-trigger1 = ctrl|| (stateno = [200,225] || stateno = [400,420]) && movecontact
-trigger2 = stateno = 100 
+ 
 
 ;---------------------------------------------------------------------------
 ;5C

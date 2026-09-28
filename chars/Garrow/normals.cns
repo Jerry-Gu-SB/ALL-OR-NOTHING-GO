@@ -391,7 +391,6 @@ ctrl = 1
 type    = S
 movetype= A
 physics = S
-juggle  = 4
 velset = 0,0 
 ctrl = 0
 anim = 221
@@ -632,7 +631,7 @@ ctrl = 1
 ;     their attack collision boxes (Clsn1) intersect each other's Clsn2
 ;     boxes at the same time.
 ;---------------------------------------------------------------------------
-;66A
+;66B
 [Statedef 232]
 type    = S
 movetype= A
