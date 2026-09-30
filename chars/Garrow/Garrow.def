@@ -5,7 +5,7 @@
 [Info]
 name = "Garrow"        ;Name of character
 displayname = "Garrow" ;Name of character to display
-ikemenversion = 0.99           ;Version of M.U.G.E.N character works on (X.XX)
+ikemenversion = 0.99          ;Version of M.U.G.E.N character works on (X.XX)
 author = "Bentae, spiral"         ;Character author name
 pal.defaults = 1,2,3,4,5      ;Default palettes in order of preference (up to 4)
                             ;Numbering starts from 1

@@ -1,15 +1,24 @@
 {
-  "playtime": 1948.3,
+  "playtime": 7820.74,
   "modes": {
     "training": {
       "playtime": 0,
       "clear": 0
     },
     "netplayversus": {
-      "playtime": 1948.3,
-      "clear": 13,
+      "playtime": 4456.33,
+      "clear": 22,
       "clearcount": {
-        "nia": 13
+        "nia": 16,
+        "garrow": 6
+      }
+    },
+    "versus": {
+      "playtime": 3364.41,
+      "clear": 16,
+      "clearcount": {
+        "garrow": 4,
+        "nia": 12
       }
     }
   }
