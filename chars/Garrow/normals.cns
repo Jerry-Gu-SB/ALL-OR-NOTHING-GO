@@ -1654,15 +1654,17 @@ sparkno = 2
 sparkxy = -10,-40
 hitsound = 5,4
 guardsound = 6,2
-ground.type = trip
-air.type = trip
+ground.type = High
+air.type = High
 ground.slidetime = 12
-ground.hittime  = 17
+ground.hittime  = 22
 fall.yvelocity = 0
 ground.velocity = -5, -3.5
 air.velocity = -5.2,-3.5
 fall = 1
 getpower = 0
+p2stateno 	= 5220
+p2getp1state 	= 0
 
 [State 0, TargetState]
 type = TargetState
@@ -1729,15 +1731,17 @@ sparkxy = -10,-40
 hitsound = 5,4
 guardsound = 6,2
 ground.type = high
-ground.hittime  = 999
-air.hittime     = 999
+ground.hittime  = 22
+air.hittime     = 22
 ground.velocity = -5, -3.5
 air.velocity = -5.2,-3.5
 fall.yvelocity = 0
 fall = 1
-ground.type = TRIP
-air.type = TRIP
+ground.type = HIgh
+air.type = High
 getpower = 0
+p2stateno 	= 5220
+p2getp1state 	= 0
 
 [State 0, TargetState]
 type = TargetState
