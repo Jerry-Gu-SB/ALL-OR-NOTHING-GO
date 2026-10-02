@@ -408,7 +408,7 @@ trigger6 = stateno = 420 && movecontact && prevStateNo != 220 && prevStateNo != 
 [State -1]
 type = ChangeState
 value = 221
-triggerall = command = "C"
+triggerall = command = "c"
 triggerall = command != "holddown"
 trigger1 = statetype != A
 trigger1 = ctrl
