@@ -43,7 +43,7 @@ ground.slidetime		= 8
 air.hittime 			= 74
 down.hittime 			= 10
 ground.velocity 		= -5,-7
-air.velocity 			= -1,-12
+air.velocity 			= -1,-10
 ;===============================
 guard.ctrltime 		= 16
 guard.slidetime		= 10
