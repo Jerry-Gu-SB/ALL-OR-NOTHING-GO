@@ -2288,6 +2288,12 @@ type = LifeAdd
 trigger1 = Time = 0
 value = -500
 
+[State 2000, 22M Stack Set]
+type 		= MapSet
+trigger1 = Time = 0
+map 		= "M_stack_NIA"
+value 		= 3
+
 [State 200, ChangeState]
 type = ChangeState
 trigger1 = animtime = 0
@@ -2414,17 +2420,24 @@ map 		= "L_stack_NIA"
 value 		= -1
 ;=========================
 
-[Statedef -2]
+[Statedef -4]
 ;---------------------------------------------------------------------------
-;22L Stack Set
-[State -2, 22L Stack Set]
+[State -4, 22L Stack Set]
 type 		= MapSet
 triggerall  = RoundState = 2 ; Round Start
 trigger1 = RoundTime = 0
 map 		= "L_stack_NIA"
 value 		= 0
 
-[State -2, Red Tint]
+;22L Stack Set
+[State -4, 22L Stack Set]
+type 		= MapSet
+triggerall  = RoundState = 2 ; Round Start
+trigger1 = RoundTime = 0
+map 		= "L_stack_NIA"
+value 		= 0
+
+[State -4, Red Tint]
 type 		= PalFX
 trigger1    = !IsHelper && map(L_stack_NIA) > 0
 time        = -1
@@ -2432,36 +2445,30 @@ add         = 100, 0, 0
 
 ;---------------------------------------------------------------------------
 ;22M Stack Set
-[State -2, 22M Stack Set]
+[State -4, 22M Stack Set]
 type 		= MapSet
 triggerall  = RoundState = 2  ; Round Start
-trigger1 = Time = 0
+trigger1 = RoundTime = 0
 map 		= "M_stack_NIA"
 value 		= 0
 
+[Statedef +1]
 ; Red Afterimage
-[State -2, Red afterimage]
+[State -4, Red afterimage]
 type = AfterImage
-trigger1 = !IsHelper && map(M_stack_NIA) > 0
-length = 15
-TimeGap  = 2
+trigger1 = !IsHelper && RoundTime % 10 = 0 && map(M_stack_NIA) > 0
+time = 25
+length = 60
+TimeGap  = 1
 FrameGap = 1
-Trans = Add
-time = 1
-palbright = 1, 1, 1
+Trans = add1
+palbright = 25, 25, 25
 palcontrast = 255,20,20
 
-
 ; ==== DEBUG
-[State DebugDisplay]
+[State -2,  DebugDisplay]
 type = DisplayToClipboard
 trigger1 = 1
-text = "Custom M Stack NIA: %d"
+text = "Custom M Stack NIA: %f"
 params = Map(M_stack_NIA)
-
-[State DebugDisplay]
-type = DisplayToClipboard
-trigger1 = 1
-text = "Custom L Stack NIA: %d"
-params = Map(L_stack_NIA)
 
