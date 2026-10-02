@@ -43,7 +43,7 @@ ground.slidetime		= 8
 air.hittime 			= 74
 down.hittime 			= 10
 ground.velocity 		= -5,-7
-air.velocity 			= -1,-10
+air.velocity 			= -1,-12
 ;===============================
 guard.ctrltime 		= 16
 guard.slidetime		= 10
@@ -116,9 +116,9 @@ sparkxy 				= -p2dist x * 0.25, -50
 hitsound 				= s1,7
 guardsound 			= 6,0
 ;===============================
-ground.hittime 		= 46
+ground.hittime 		= 30
 ground.slidetime		= 8
-air.hittime 			= 55
+air.hittime 			= 30
 down.hittime 			= 10
 ground.velocity 		= -5,-7
 air.velocity 			= -4,-8
