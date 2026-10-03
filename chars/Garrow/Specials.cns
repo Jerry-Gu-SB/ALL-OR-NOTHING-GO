@@ -40,10 +40,10 @@ guardsound 			= 6,0
 ;===============================
 ground.hittime 		= 40
 ground.slidetime		= 8
-air.hittime 			= 74
+air.hittime 			= 69
 down.hittime 			= 10
 ground.velocity 		= -5,-7
-air.velocity 			= -1,-12
+air.velocity 			= -1,-11.2
 ;===============================
 guard.ctrltime 		= 16
 guard.slidetime		= 10
