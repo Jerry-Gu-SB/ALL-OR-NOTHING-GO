@@ -182,8 +182,8 @@ offset = 0, 0
 ;
 ; ;Adjust the volume. 100 is for 100%.
 ;bgmVolume = 50
-bgmusic = stages/NiaV2.mp3
-bgvolume = 100
+bgmusic = NiaV2 Demo Full Final.mp3
+bgvolume = 255
 
 ; ==========================================================
 

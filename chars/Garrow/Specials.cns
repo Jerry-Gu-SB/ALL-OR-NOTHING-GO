@@ -98,7 +98,7 @@ value = 0, 2
 type 				= HitDef
 trigger1 				= AnimElem = 4
 ;===============================
-damage 				= 1700
+damage 				= 700
 pausetime 			= 12,12 + 2 * enemy, movetype = A
 getpower 				= 25 
 ;===============================
@@ -150,7 +150,7 @@ ctrl = 1
 type 				= HitDef
 trigger1 				= AnimElem = 5
 ;===============================
-damage 				= 1700
+damage 				= 1000
 pausetime 			= 12,12 + 2 * enemy, movetype = A
 getpower 				= 25 
 ;===============================
@@ -251,7 +251,7 @@ value = 0, 2
 type 				= HitDef
 trigger1 				= AnimElem = 4
 ;===============================
-damage 				= 1700
+damage 				= 700
 pausetime 			= 12,12 + 2 * enemy, movetype = A
 getpower 				= 25 
 ;===============================
@@ -303,7 +303,7 @@ ctrl = 1
 type 				= HitDef
 trigger1 				= AnimElem = 5
 ;===============================
-damage 				= 1700
+damage 				= 1000
 pausetime 			= 12,12 + 2 * enemy, movetype = A
 getpower 				= 25 
 ;===============================

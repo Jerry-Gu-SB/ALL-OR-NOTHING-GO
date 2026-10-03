@@ -264,9 +264,9 @@ Garrow
  ;
  ;Insert your stages below.
 
-stages/black.def
+stages/black.def, music=sound/Garrow.mp3
 stages/dark.def
-stages/purple.def
+stages/purple.def, music=sound/NiaV2 Demo Full Final.mp3
 
 ;-------------------------------------------------------------------------------
 [Options]

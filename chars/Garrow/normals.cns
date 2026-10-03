@@ -1608,7 +1608,10 @@ type = PlaySnd
 trigger1 = Time = 2
 value = 0, 1
 
-
+[State 230, 1]
+type = PlaySnd
+trigger1 = Time = 1
+value =210,0
 
 [State 0, JORMUNGANDR DEFAULT HITDEF]
 type 				= HitDef
@@ -1704,7 +1707,7 @@ value = S0,0
 
 [State -1, Random Voice]
 type = PlaySnd
-trigger1 = AnimElem = 4
+trigger1 = AnimElem = 3
 value = 800, Random % 3
 
 [State 800, 2]
@@ -1870,6 +1873,7 @@ value = 812
 type = PlaySnd
 trigger1 = animelem = 6
 value = S0,1
+
 [State 0, PlaySnd]
 type = PlaySnd
 trigger1 = animelem = 6

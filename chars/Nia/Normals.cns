@@ -2780,13 +2780,13 @@ ctrl = 0
 [State -1, Random Voice]
 type = VarRandom
 trigger1 = Anim = 800
-trigger1 = AnimElem = 5
+trigger1 = AnimElem = 4
 v = 0
 range = 0,4
 
 [State -1, Play Voice]
 type = PlaySnd
 trigger1 = Anim = 800
-trigger1 = AnimElem = 5
+trigger1 = AnimElem = 4
 value = 800,var(0)
 
