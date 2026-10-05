@@ -7,6 +7,7 @@ on:
     paths:
       - '**.cns'
       - '.github/scripts/update_wiki.py'
+  workflow_dispatch: # added for manual running
 
 concurrency:
   group: 'publish-wiki'
