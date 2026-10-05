@@ -1756,19 +1756,92 @@ trigger1 = time = 0
 time = 1
 pos = 40,-35
 
+[State -1, Random Voice]
+type = PlaySnd
+trigger1 = time = 0
+value = 801, Random % 3
 [State 1,]
 type = explod
-trigger1 = animelemtime(1) = 0
-anim = 830
+trigger1 = animelemtime(2) = 0
+anim = 8016
 postype = p1
-pos = 42,-139
+pos = 42,-135
+facing = 1
+sprpriority = 5
+bindtime = 1
+persistent = 0
+ownpal = 1
+ignorehitpause = 0
+scale =.40,.40
+
+[State 1,]
+type = explod
+trigger1 = animelemtime(2) = 0
+anim = 831
+postype = p1
+pos = 42,-143
 facing = 1
 sprpriority = 3
 bindtime = 1
 persistent = 0
 ownpal = 1
-ignorehitpause = 0
+ignorehitpause = 1
 scale =.20,.20
+
+[State 1200, 6]
+type = explod
+trigger1 =  animelemtime(2) = 0
+anim = 6200
+postype = p1
+pos = 42, -144
+facing = -1
+vfacing = -1
+sprpriority = 4
+bindtime = -1
+ownpal = 0
+ignorehitpause = 1
+scale = 0.2,0.2
+
+[State 1200, 6]
+type = explod
+trigger1 = animelemtime(2) = 0
+anim = 6200
+postype = p1
+pos = 42, -100
+facing = 1
+sprpriority = 4
+bindtime = -1
+ownpal = 0
+ignorehitpause =1
+scale = 0.2,0.2
+
+[State 1200, 6]
+type = explod
+trigger1 = animelemtime(2) = 0
+anim = 6200
+postype = p1
+pos = 42, -122
+facing = 1
+vfacing = -1
+sprpriority = 4
+bindtime = -1
+ownpal = 0
+ignorehitpause = 1
+scale = 0.4,0.1
+
+[State 1200, 6]
+type = explod
+trigger1 = animelemtime(2) = 0
+anim = 6200
+postype = p1
+pos = 42, -122
+facing = -1
+sprpriority = 4
+bindtime = -1
+ownpal = 0
+ignorehitpause = 1
+scale = 0.4,0.1
+
 
 [State -2, Starter Level]
 type 		= MapSet
@@ -1812,41 +1885,35 @@ value = 700
 [State 0]
 type = HitDef 
 p2facing = 1
-trigger1 = AnimElem =2
+trigger1 = AnimElem =2 
 attr = S, NT
 animtype  = hard
-damage = 1000, 0
-pausetime = 8,8
-sparkno = 2
-sparkxy = -15,-137
-hitsound = s1,8
+sparkno = 3
+sparkxy = -10,-40
+hitsound = s1,7
 guardsound = 6,2
 ground.type = High
 air.type = High
 ground.slidetime = 12
 ground.hittime  = 30
 fall.yvelocity = 0
-ground.velocity = -5, -3.5
-air.velocity = -5.2,-3.5
+ground.velocity = 0, 0
+air.velocity = 0,0
+fall = 0
+getpower = 0
+palfx.time = 12
+palfx.add = 7,-200,-200
+palfx.sinadd = 30,30,0,5
+palfx.color = 0
+palfx.invertall = 1
 
-[State 0, TargetBind]
-type = TargetBind
-trigger1 = AnimElem =2
-time = 1
-pos = 40,-35
-
-[State 0, TargetBind]
-type = TargetBind
-trigger1 = AnimElem =3
-time = 1
-pos = 40,-35
 [State 0]
 type = HitDef 
 p2facing = 1
-trigger1 = AnimElem =6
+trigger1 = AnimElem = 5 
 attr = S, NT
 animtype  = hard
-damage = 600, 0
+damage = 1700, 0
 pausetime = 8,8
 sparkno = 2
 sparkxy = -10,-40
@@ -1858,7 +1925,7 @@ ground.slidetime = 12
 ground.hittime  = 30
 fall.yvelocity = 0
 ground.velocity = -8, -3.5
-air.velocity = -5.2,-3.5
+air.velocity = -8, -3.5
 fall = 1
 getpower = 0
 p2stateno 	= 5220
@@ -1911,7 +1978,10 @@ pos = 49,-33
 type = PosAdd
 trigger1 = time = 0
 x = -25
-
+[State -1, Random Voice]
+type = PlaySnd
+trigger1 = time = 0
+value = 801, Random % 3
 [State 1000, LifeAdd]
 type = LifeAdd
 trigger1 = AnimElem =2 
@@ -1919,8 +1989,8 @@ value = 700
 
 [State 1,]
 type = explod
-trigger1 = animelemtime(1) = 0
-anim = 830
+trigger1 = animelemtime(2) = 0
+anim = 8016
 postype = p1
 pos = 42,-139
 facing = 1
@@ -1929,63 +1999,122 @@ bindtime = 1
 persistent = 0
 ownpal = 1
 ignorehitpause = 0
+scale =.40,.40
+
+[State 1,]
+type = explod
+trigger1 = animelemtime(2) = 0
+anim = 831
+postype = p1
+pos = 42,-143
+facing = 1
+sprpriority = 3
+bindtime = 1
+persistent = 0
+ownpal = 1
+ignorehitpause = 1
 scale =.20,.20
 
-[State 0, TargetBind]
-type = TargetBind
-trigger1 = AnimElem =2
-time = 1
-pos = 40,-35
+[State 1200, 6]
+type = explod
+trigger1 =  animelemtime(2) = 0
+anim = 6200
+postype = p1
+pos = 42, -144
+facing = -1
+vfacing = -1
+sprpriority = 4
+bindtime = -1
+ownpal = 0
+ignorehitpause = 1
+scale = 0.2,0.2
 
-[State 0, TargetBind]
-type = TargetBind
-trigger1 = AnimElem =3
-time = 1
-pos = 40,-35
+[State 1200, 6]
+type = explod
+trigger1 = animelemtime(2) = 0
+anim = 6200
+postype = p1
+pos = 42, -100
+facing = 1
+sprpriority = 4
+bindtime = -1
+ownpal = 0
+ignorehitpause =1
+scale = 0.2,0.2
+
+[State 1200, 6]
+type = explod
+trigger1 = animelemtime(2) = 0
+anim = 6200
+postype = p1
+pos = 42, -122
+facing = 1
+vfacing = -1
+sprpriority = 4
+bindtime = -1
+ownpal = 0
+ignorehitpause = 1
+scale = 0.4,0.1
+
+[State 1200, 6]
+type = explod
+trigger1 = animelemtime(2) = 0
+anim = 6200
+postype = p1
+pos = 42, -122
+facing = -1
+sprpriority = 4
+bindtime = -1
+ownpal = 0
+ignorehitpause = 1
+scale = 0.4,0.1
 ;ignorehitpause = 
 ;persistent = 
 [State 0]
 type = HitDef 
 p2facing = 1
-trigger1 = AnimElem =2
+trigger1 = AnimElem =2 
 attr = S, NT
 animtype  = hard
-damage = 1000, 0
-pausetime = 8,8
-sparkno = 2
-sparkxy = -15,-137
-hitsound = s1,8
+sparkno = 3
+sparkxy = -10,-40
+hitsound = s1,7
 guardsound = 6,2
 ground.type = High
 air.type = High
 ground.slidetime = 12
 ground.hittime  = 30
 fall.yvelocity = 0
-ground.velocity = -5, -3.5
-air.velocity = -5.2,-3.5
+ground.velocity = 0, 0
+air.velocity = 0,0
+fall = 0
+getpower = 0
+palfx.time = 12
+palfx.add = 7,-200,-200
+palfx.sinadd = 30,30,0,5
+palfx.color = 0
+palfx.invertall = 1
 
 [State 0]
 type = HitDef 
 p2facing = 1
-trigger1 = AnimElem =6
+trigger1 = AnimElem = 5 
 attr = S, NT
 animtype  = hard
-damage = 1600, 0
-guardflag = MA
+damage = 1700, 0
 pausetime = 8,8
 sparkno = 2
 sparkxy = -10,-40
 hitsound = 5,4
 guardsound = 6,2
-ground.type = high
-ground.hittime  = 30
-air.hittime     = 30
-ground.velocity = -8, -3.5
-air.velocity = -5.2,-3.5
-fall.yvelocity = 0
-fall = 1
-ground.type = HIgh
+ground.type = High
 air.type = High
+ground.slidetime = 12
+ground.hittime  = 30
+fall.yvelocity = 0
+ground.velocity = -8, -3.5
+air.velocity = -8, -3.5
+fall = 1
 getpower = 0
 p2stateno 	= 5220
 p2getp1state 	= 0
