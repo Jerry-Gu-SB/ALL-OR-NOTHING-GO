@@ -5366,6 +5366,14 @@ trigger1 = time = 50
 value = 5110
 ctrl = 0
 
+; Crumple
+[Statedef 5280]
+type = S
+movetype = S
+sprpriority = 0
+velset = 0, 0
+ctrl = 0
+
 ;---------------------------------------------------------------
 ;Ringout Shake
 [Statedef 5300]
