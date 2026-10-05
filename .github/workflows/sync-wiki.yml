@@ -1,0 +1,38 @@
+name: Auto-Update Wiki State Reference
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.cns'
+      - 'update_wiki.py'
+
+jobs:
+  update-wiki-doc:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Execute State Reference Update Script
+        run: python update_wiki.py
+
+      - name: Sync Markdown to GitHub Wiki
+        uses: Andrew-Chen-Wang/github-wiki-action@v4
+        with:
+          path: docs # local directory for .md files
+          commit-message: 'Auto-update wiki state reference from CNS files'
+          strategy: clone
+          ignore: |
+            Home.md
+            _Sidebar.md
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
