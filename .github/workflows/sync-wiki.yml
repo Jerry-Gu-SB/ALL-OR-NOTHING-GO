@@ -1,0 +1,42 @@
+name: Auto-Update Wiki State Reference
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**.cns'
+      - '.github/scripts/update_wiki.py'
+  workflow_dispatch: # added for manual running
+
+concurrency:
+  group: 'publish-wiki'
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  update-wiki-doc:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7 # upgraded to v7 for node 24 compat
+        with:
+          python-version: '3.x'
+
+      - name: Execute State Reference Update Script
+        run: python .github/scripts/update_wiki.py
+
+      - name: Sync Markdown to GitHub Wiki
+        uses: Andrew-Chen-Wang/github-wiki-action@v4
+        with:
+          path: docs # local directory for .md files
+          commit-message: 'Auto-update wiki state reference from CNS files'
+          strategy: clone
+          ignore: |
+            Home.md
+            _Sidebar.md

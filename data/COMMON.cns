@@ -5366,6 +5366,14 @@ trigger1 = time = 50
 value = 5110
 ctrl = 0
 
+; Crumple
+[Statedef 5280]
+type = S
+movetype = S
+sprpriority = 0
+velset = 0, 0
+ctrl = 0
+
 ;---------------------------------------------------------------
 ;Ringout Shake
 [Statedef 5300]
@@ -5667,24 +5675,6 @@ trigger1 = command = "THROW"
 trigger1 = statetype != A
 trigger1 = ctrl || (stateno = [200,230] && time < 3) && prevstateno != [200, 430]
 
-[State -1, Random Voice]
-type = VarRandom
-trigger1 = Anim = 800
-trigger1 = AnimElem = 5
-v = 0
-range = 0,4
-
-[State -1, Play Voice]
-type = PlaySnd
-trigger1 = Anim = 800
-trigger1 = AnimElem = 5
-value = 800,var(0)
-
-[State -1, PlaySnd]
-type = PlaySnd
-trigger1 = Anim = 805
-trigger1 =  AnimElem = 1
-value = 810,0
 
 ;Air Raid
 [State -1, Super Jump Cancel]
