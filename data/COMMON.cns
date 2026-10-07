@@ -5369,7 +5369,7 @@ ctrl = 0
 ; Crumple
 [Statedef 5280]
 type = S
-movetype = S
+movetype = H
 sprpriority = 0
 velset = 0, 0
 ctrl = 0
