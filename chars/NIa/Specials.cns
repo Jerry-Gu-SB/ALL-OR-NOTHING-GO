@@ -2266,6 +2266,7 @@ physics = S
 juggle = 0
 velset = 0, 0
 poweradd = 25
+sprpriority = 2
 anim = 2000
 ctrl = 0
 
@@ -2403,22 +2404,23 @@ trigger1 = !time
 value = 3000, 0
 
 
-[State 0, Corner Effect]
+[State 0,]
 type = Explod
 trigger1 = Time = 0
 anim = 7000
-pos = 0,0
+postype = back
+pos = -20,20
 facing = 1
 sprpriority = 1
 ownpal = 1
 ignorehitpause = 1
 scale = 0.25,0.25
 
-[State 0, Corner Effect]
+[State 0, ]
 type = Explod
 trigger1 = Time = 0
 anim = 7001
-pos = 0,0
+pos = -20,20
 facing = 1
 ownpal = 1
 ignorehitpause = 1
