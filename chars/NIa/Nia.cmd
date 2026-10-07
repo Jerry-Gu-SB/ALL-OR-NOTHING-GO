@@ -209,6 +209,14 @@ triggerall = statetype != A
 triggerall = power >= 1000
 trigger1 = var(1)
 
+[State -1]
+type = ChangeState
+value = 2002
+triggerall = command = "22C"
+triggerall = power >= 1000
+trigger1 = stateno = 1000 && movecontact
+
+
 ;3C - Antiair Grab
 [State -1, 3C]
 type = ChangeState

@@ -246,7 +246,6 @@ type = PlaySnd
 trigger1 = Time = 1
 value = 220, Random % 2
 
-
 [State 0, Vel]
 type = velset
 trigger1 = animelem=2
@@ -884,7 +883,7 @@ givepower = 20,0
 pausetime = 10, 10                ;Time attacker pauses, time opponent shakes
 guard.pausetime = 10,10
 sparkno = 0                      ;Spark anim no (Def: set above)
-sparkxy = -10, -76               ;X-offset for the "hit spark" rel. to p2,
+sparkxy = -10, -70               ;X-offset for the "hit spark" rel. to p2,
 ;Y-offset for the spark rel. to p1
 hitsound = 5, 0                  ;Sound to play on hit
 guardsound = 6, 0                ;Sound to play on guard
@@ -965,7 +964,7 @@ air.TYPE 				= High
 priority = 2, Hit 
 ;===============================
 sparkno 				= 1
-sparkxy 				= -10,-55
+sparkxy 				= -10,-5
 hitsound 				= 5,2
 guardsound 			= 6,0
 ;===============================
@@ -1056,7 +1055,7 @@ air.TYPE 				= High
 priority = 2, Hit 
 ;===============================
 sparkno 				= 1
-sparkxy 				= -p2dist x * 0.25, -50
+sparkxy 				= -p2dist x * 0.25, -10
 hitsound 				= s1,8
 guardsound 			= 6,0
 ;===============================
@@ -1888,8 +1887,6 @@ p2facing = 1
 trigger1 = AnimElem =2 
 attr = S, NT
 animtype  = hard
-sparkno = 3
-sparkxy = -10,-40
 hitsound = s1,7
 guardsound = 6,2
 ground.type = High
