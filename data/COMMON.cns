@@ -659,6 +659,27 @@ ctrl = 0
 velset = 0,0
 sprpriority = 2
 
+[State 1,]
+type = Explod
+trigger1 = !time
+anim = 9887
+pos = -27,enemynear,const(size.head.pos.y)
+postype = p1
+removetime = -2
+supermove = 1
+facing = 1
+scale = 0.25,0.25
+sprpriority = 0
+id = 9887
+bindtime = 1
+ontop = 1
+ownpal = 1
+ignorehitpause = 1
+pausemovetime = -1
+
+
+ignorehitpause = 0
+scale =.40,.40
 [State 0, Width]
 type = Width
 trigger1 = 1
@@ -695,6 +716,8 @@ ctrl = 0
 velset = 0,0
 anim = 803
 sprpriority = 2
+
+
 
 [State 0, TargetState]
 type = TargetState
