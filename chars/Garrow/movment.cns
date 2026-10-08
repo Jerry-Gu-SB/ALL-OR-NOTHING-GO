@@ -135,7 +135,7 @@ sprpriority = 1
 Type = NotHitBy
 Trigger1 = !time
 Value = , NT, ST, NA, SA, NP, SP
-Time = 7
+Time = 8
 
 [State 101, PlaySnd]
 type = PlaySnd

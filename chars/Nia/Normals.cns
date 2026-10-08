@@ -1619,6 +1619,11 @@ ground.cornerpush.veloff = -2.5
 air.cornerpush.veloff 	= -2.5
 getpower 		= 65 * map(P4)
 
+[State 630, 2]
+type = ModifyHitDef
+trigger1 = vel y < 0
+guardflag = MA
+
 [State 600, 3]
 type = changestate
 trigger1 = AnimTime = 0
@@ -1699,6 +1704,11 @@ air.fall 			= 1
 ground.cornerpush.veloff = -3
 air.cornerpush.veloff 	= -3 
 getpower 				= 75 * map(P4)
+
+[State 630, 2]
+type = ModifyHitDef
+trigger1 = vel y < 0
+guardflag = MA
 
 [State 600, 3]
 type = changestate

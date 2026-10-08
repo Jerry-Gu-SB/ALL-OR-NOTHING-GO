@@ -1292,6 +1292,10 @@ ground.cornerpush.veloff = -2.5
 air.cornerpush.veloff 	= -2.5
 getpower 		= 10
 
+[State 600, 2]
+type = ModifyHitDef
+trigger1 = vel y < 0
+guardflag = MA
 
 [State 600, 3]
 type = changestate
@@ -1344,6 +1348,11 @@ air.fall 			= 1
 ground.cornerpush.veloff = -3
 air.cornerpush.veloff 	= -3 
 
+[State 610, 3]
+type = ModifyHitDef
+trigger1 = vel y < 0
+guardflag = MA
+
 ;---------------------------------------------------------------------------
 ; JB-b
 [Statedef 611]
@@ -1389,6 +1398,12 @@ guard.ctrltime 	= 14
 air.fall 			= 1
 ground.cornerpush.veloff = -3
 air.cornerpush.veloff 	= -3 
+
+[State 630, 2]
+type = ModifyHitDef
+trigger1 = vel y < 0
+guardflag = MA
+
 ;---------------------------------------------------------------------------
 ;JC start
 [Statedef 615]
@@ -1479,6 +1494,10 @@ guard.cornerpush.veloff 	= -8
 air.fall 				= 1
 ;===============================
 
+[State 0, 2]
+type = ModifyHitDef
+trigger1 = vel y < 0
+guardflag = MA
 
 [State 640, 3]
 type = HitDef
@@ -1590,6 +1609,10 @@ p2stateno = 5255
 fall 				= 1
 ;===============================
 
+[State 0, 2]
+type = ModifyHitDef
+trigger1 = vel y < 0
+guardflag = MA
 
 ;---------------------------------------------------------------------------
 ;J.6C
@@ -1656,7 +1679,10 @@ guard.cornerpush.veloff 	= -8
 air.fall				= 1
 ;===============================
 
-
+[State 630, 2]
+type = ModifyHitDef
+trigger1 = vel y < 0
+guardflag = MA
 ;---------------------------------------------------------------------------
 ;Throw
 [Statedef 800]
