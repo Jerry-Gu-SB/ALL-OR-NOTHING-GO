@@ -2452,10 +2452,8 @@ Clsn2Default: 2
 ;--------------------
 ; GUARDSTART (stand)
 [Begin Action 120]
-Clsn2: 3
-  Clsn2[0] = -91, -583, -9, -500
-  Clsn2[1] = -87, -520, 67, -308
-  Clsn2[2] = -85, -333, 60, 18
+Clsn2: 1
+  Clsn2[0] = -112, -542, 98, 8
 120,0, 0,0, 1
 
 ; GUARDSTART (crouch)
@@ -2474,10 +2472,8 @@ Clsn2: 2
 
 ; GUARD (stand)
 [Begin Action 130]
-Clsn2: 3
-  Clsn2[0] = -91, -583, -9, -500
-  Clsn2[1] = -87, -520, 67, -308
-  Clsn2[2] = -85, -333, 60, 18
+Clsn2: 1
+  Clsn2[0] = -112, -542, 98, 8
 120,0, 0,0, -1
 
 ; GUARD (crouch)
@@ -2496,10 +2492,8 @@ Clsn2: 2
 
 ; GUARDEND (stand)
 [Begin Action 140]
-Clsn2: 3
-  Clsn2[0] = -91, -583, -9, -500
-  Clsn2[1] = -87, -520, 67, -308
-  Clsn2[2] = -85, -333, 60, 18
+Clsn2: 1
+  Clsn2[0] = -112, -542, 98, 8
 120,0, 0,0, 5
 
 ; GUARDEND (crouch)
@@ -2518,10 +2512,8 @@ Clsn2: 2
 
 ; Hit back while guarding (stand)
 [Begin Action 150]
-Clsn2: 3
-  Clsn2[0] = -91, -583, -9, -500
-  Clsn2[1] = -87, -520, 67, -308
-  Clsn2[2] = -85, -333, 60, 18
+Clsn2Default: 1
+  Clsn2[0] = -112, -542, 98, 8
 120,1, 0,0, 4
 120,2, 0,0, 8
 120,1, 0,0, 4
