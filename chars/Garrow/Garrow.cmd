@@ -214,9 +214,7 @@ var(1) = 1
 [State -1, Super Cancel Special Attacks]
 type = VarSet
 trigger1 = var(1)
-trigger2 = stateno = [1000,3000) && MoveContact
-trigger3 = (stateno = [1000, 1001] || stateno = 2000 ) && animelemno(0) > 3
-trigger4 = stateno = 2100 && animelemno(0) >= 2
+trigger2 = (stateno = [1001,1003) || (stateno = 1012) || stateno = 1100) 
 var(2) = 1
 ignorehitpause = 1
 
@@ -240,7 +238,30 @@ trigger2 = p2movetype != H
 ;---------------------------------------------------------------------------
 
 ;---------------------------------------------------------------------------
+;236A - Crescent Edge
+[State -1]
+type = ChangeState
+value = 1000
+triggerall = command = "236A" && statetype != A
+trigger1 = var(1)
 
+
+;---------------------------------------------------------------------------
+;236B - Crescent Edge
+[State -1]
+type = ChangeState
+value = 1010
+triggerall = command = "236B" && statetype != A
+trigger1 = var(1)
+
+;Ex Crescent Edge
+[State -1]
+type = ChangeState
+value = 1020
+triggerall = command = "236C"
+triggerall = power >= 1000 && statetype != A
+trigger1 = var(1)
+trigger2 =  var(2)
 
 ; 22A Blood Cleaver
 [State -1]
@@ -268,7 +289,8 @@ triggerall = command = "22C"
 triggerall = statetype != A
 triggerall = power >= 1000
 trigger1 = var(1)
-trigger2 =  stateno = 1100 && movecontact
+trigger2 =  var(2)
+
 
 ;---------------------------------------------------------------------------
 

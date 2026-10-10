@@ -1,4 +1,671 @@
 ;---------------------------------------------------------------------------
+; Kung Fu Palm
+; CNS difficulty: medium
+; Description: This is like a standard attack, but with some differences.
+;   There are two HitDefs in this attack. One is triggered when the
+;   opponent is near (using a p2bodydist trigger), and the other
+;   when the opponent is farther away. The main differences between
+;   the near and far versions of the HitDefs is that the near version
+;   has a "fall" parameter set to 1, causing the opponent to be knocked
+;   down. Other minor differences are the damage, and the velocity to
+;   give the opponent.
+;   The line "attr = S, SA" line means this is a Standing, Special Attack.
+;   It is important you have the attr parameter set correctly for all
+;   you HitDefs.
+
+;236A  Crescent Edge start
+[Statedef 1000]
+type    = S
+movetype= A
+physics = S
+velset = 0,0
+anim = 1000
+ctrl = 0
+sprpriority = 2
+
+[State 1,]
+type = explod
+trigger1 = animelemtime(2) = 0
+anim = 7002
+postype = p1
+pos = -75,-57
+removetime = -2
+facing = 1
+sprpriority = 3
+bindtime = 1
+persistent = 0
+ownpal = 1
+ignorehitpause = 0
+pausemovetime = -1
+scale = 0.28,0.28
+
+
+[State 610, 2]
+type = varset
+trigger1 = 1
+var(12) = 0
+
+[State 0, ChangeState]
+type = ChangeState
+triggerall = var(12) = 0
+triggerall = time = [3,9]
+trigger1 = command !="HOLD_A"
+value = 1001
+
+
+[State 209, Just Frame Release]
+type = ChangeState
+triggerall = var(12) = 0
+triggerall = Time = [10,11]
+trigger1 = Command != "HOLD_A"
+value = 1003
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = time = 13
+value = 1002
+
+;---------------------------------------------------------------------------
+;Crescent Edge normal
+[Statedef 1001]
+type    = S
+movetype= A
+physics = S
+poweradd= 55
+velset = 0,0
+anim = 1001
+ctrl = 0
+sprpriority = 2
+
+[State 240, 1]
+type = PlaySnd
+trigger1 = Time = 2
+value = 0, 1
+
+[State 1,]
+type = explod
+trigger1 = animelemtime(1) = 0
+anim = 1005
+postype = p1
+pos = 0,-54
+facing = 1
+sprpriority = 3
+bindtime = 1
+persistent = 0
+ownpal = 1
+ignorehitpause = 0
+scale = 0.45,0.28
+
+[State 1000, LifeAdd]
+type = LifeAdd
+trigger1 = Time = 1
+value = -500
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= !movecontact && !movereversed
+;===============================
+damage 				= 1200,200
+pausetime 			= 16,16 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NP
+hitflag 				= MAF
+guardflag 			= MA
+animtype 				= Hard
+air.animtype 			= Medium
+ground.TYPE 			= Low
+air.TYPE 				= High
+priority = 1, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= s1,7
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 20
+ground.slidetime		= 8
+air.hittime 			= 24
+down.hittime 			= 10
+ground.velocity 		= -5,-3
+air.velocity 			= -5,-3.4
+;===============================
+guard.ctrltime 		= 16
+guard.slidetime		= 10
+guard.velocity 		= -9
+airguard.velocity 		= -2,-2
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 1
+;===============================
+envshake.time 			= 8
+envshake.freq 			= 8
+envshake.ampl 			= 1
+envshake.phase 		= 0.5
+
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;charged Crescent Edge 
+[Statedef 1002]
+type    = S
+movetype= A
+physics = S
+poweradd= 55
+velset = 0,0
+anim = 1002
+ctrl = 0
+sprpriority = 2
+
+[State 240, 1]
+type = PlaySnd
+trigger1 = Time = 2
+value = 0, 1
+
+[State 1,]
+type = explod
+trigger1 = animelemtime(2) = 9
+anim = 1005
+postype = p1
+pos = 3,-54
+facing = 1
+sprpriority = 3
+bindtime = 1
+persistent = 0
+ownpal = 1
+ignorehitpause = 0
+scale = 0.45,0.28
+
+[State Pal, 1]
+type = PalFX
+trigger1 = Time = 0
+time = 5
+mul = 256,256,256
+add = 256,256,256
+ignorehitpause = 1
+
+[State 1000, LifeAdd]
+type = LifeAdd
+trigger1 = Time = 1
+value = -1000
+
+[State 1000, LifeAdd]
+type = LifeAdd
+trigger1 = MoveHit
+value = 100
+
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= !movecontact && !movereversed
+;===============================
+damage 				= 1230,210
+pausetime 			= 14,14 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NP
+hitflag 				= MAF
+guardflag 			= MA
+animtype 				= Hard
+air.animtype 			= Medium
+ground.TYPE 			= Low
+air.TYPE 				= High
+priority = 1, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= 5,0
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 30
+ground.slidetime		= 8
+air.hittime 			= 35
+down.hittime 			= 10
+ground.velocity 		= -25,-5
+air.velocity 			= -26,-6.4
+;===============================
+guard.ctrltime 		= 37
+guard.slidetime		= 10
+guard.velocity 		= -2
+airguard.velocity 		= -2,-2
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 1
+p2stateno 	= 5220
+p2getp1state 	= 0
+missonoverride			= 0
+;===============================
+
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+;----------------------------------------------------------------------------
+;perfect Crescent Edge 
+[Statedef 1003]
+type    = S
+movetype= A
+physics = S
+poweradd= 55
+velset = 0,0
+anim = 1003
+ctrl = 0
+sprpriority = 2
+
+[State 240, 1]
+type = PlaySnd
+trigger1 = Time = 2
+value = 0, 1
+
+[State 1,]
+type = explod
+trigger1 = animelemtime(2) = 9
+anim = 1005
+postype = p1
+pos = 3,-54
+facing = 1
+sprpriority = 3
+bindtime = 1
+persistent = 0
+ownpal = 1
+ignorehitpause = 0
+scale = 0.45,0.28
+
+[State 1200, 6]
+type = explod
+trigger1 = !time
+anim = 6114
+id = 6114
+postype = p1
+pos = 0,-75
+facing = 1
+sprpriority = 3
+bindtime = 4
+ownpal = 1
+ignorehitpause = 1
+scale = 0.5,0.5
+
+[State Pal, 1]
+type = PalFX
+trigger1 = Time = 0
+time = 5
+mul = 256,256,256
+add = 256,256,256
+ignorehitpause = 1
+
+
+[State 1, 3]
+type = playsnd
+trigger1 = !time
+value = 3000, 0
+
+
+[State 1000, LifeAdd]
+type = LifeAdd
+trigger1 = Time = 1
+value = -1000
+
+[State 1000, LifeAdd]
+type = LifeAdd
+trigger1 = MoveGuarded
+value = 700
+
+[State 1000, LifeAdd]
+type = LifeAdd
+trigger1 = MoveHit
+value = 100
+
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= !movecontact && !movereversed
+;===============================
+damage 				= 1300,210
+pausetime 			= 14,14 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NP
+hitflag 				= MAF
+guardflag 			= MA
+animtype 				= Hard
+air.animtype 			= Medium
+ground.TYPE 			= Low
+air.TYPE 				= High
+priority = 1, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= 5,0
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 37
+ground.slidetime		= 8
+air.hittime 			= 40
+down.hittime 			= 10
+ground.velocity 		= -25,-5
+air.velocity 			= -26,-6.4
+;===============================
+guard.ctrltime 		= 37
+guard.slidetime		= 8
+guard.velocity 		= -2
+airguard.velocity 		= -2,-2
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 1
+p2stateno 	= 5220
+p2getp1state 	= 0
+missonoverride			= 0
+;===============================
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;236B  Crescent Edge start
+[Statedef 1010]
+type    = S
+movetype= A
+physics = S
+velset = 0,0
+anim = 1000
+ctrl = 0
+sprpriority = 2
+
+[State 1,]
+type = explod
+trigger1 = animelemtime(2) = 0
+anim = 7002
+postype = p1
+pos = -75,-57
+facing = 1
+sprpriority = 3
+bindtime = 1
+persistent = 0
+ownpal = 1
+ignorehitpause = 0
+scale = 0.28,0.28
+
+
+[State 610, 2]
+type = varset
+trigger1 = 1
+var(12) = 0
+
+[State 0, ChangeState]
+type = ChangeState
+triggerall = var(12) = 0
+triggerall = time = [3,9]
+trigger1 = command !="HOLD_B"
+value = 1011
+
+[State 0, ChangeState]
+type = ChangeState
+trigger1 = time = 13
+value = 1012
+
+;Crescent Edge feint
+[Statedef 1011]
+type    = S
+movetype= A
+physics = S
+poweradd= 55
+velset = 0,0
+anim = 1010
+ctrl = 0
+sprpriority = 2
+
+[State 240, 1]
+type = PlaySnd
+trigger1 = Time = 2
+value = 0, 1
+
+
+[State 0, Vel]
+type = velset
+trigger1 = animelem=2
+x = 7
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;unblockable Crescent Edge 
+[Statedef 1012]
+type    = S
+movetype= A
+physics = S
+poweradd= 55
+velset = 0,0
+anim = 1011
+ctrl = 0
+sprpriority = 2
+
+[State 240, 1]
+type = PlaySnd
+trigger1 = Time = 2
+value = 0, 1
+
+[State 1,]
+type = explod
+trigger1 = animelemtime(2) = 11
+anim = 1005
+postype = p1
+pos = 3,-54
+facing = 1
+sprpriority = 3
+bindtime = 1
+persistent = 0
+ownpal = 1
+ignorehitpause = 0
+scale = 0.30,0.28
+
+[State Pal, 1]
+type = PalFX
+trigger1 = Time = 0
+time = 5
+mul = 256,256,256
+add = 256,256,256
+ignorehitpause = 1
+
+[State 1000, LifeAdd]
+type = LifeAdd
+trigger1 = Time = 1
+value = -1000
+
+[State 1000, LifeAdd]
+type = LifeAdd
+trigger1 = MoveHit
+value = 1000
+
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= !movecontact && !movereversed
+;===============================
+damage 				= 1230
+pausetime 			= 14,14 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NP
+hitflag 				= MAF
+guardflag 			= 
+animtype 				= Hard
+air.animtype 			= Medium
+ground.TYPE 			= Low
+air.TYPE 				= High
+priority = 1, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= 5,0
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 30
+ground.slidetime		= 8
+air.hittime 			= 35
+down.hittime 			= 10
+ground.velocity 		= -25,-5
+air.velocity 			= -26,-6.4
+;===============================
+guard.ctrltime 		= 20
+guard.slidetime		= 8
+guard.velocity 		= -2
+airguard.velocity 		= -2,-2
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 1
+p2stateno 	= 5220
+p2getp1state 	= 0
+missonoverride			= 0
+;===============================
+
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+;=======================================================
+;236C Crescent Edge
+[Statedef 1020]
+type    = S
+movetype= A
+physics = S
+poweradd= -1000
+velset = 0,0
+anim = 1020
+ctrl = 0
+sprpriority = 2
+
+[State 1200, 6]
+type = explod
+trigger1 = !time
+anim = 6114
+id = 6114
+postype = p1
+pos = 0,-75
+facing = 1
+sprpriority = 3
+bindtime = 4
+ownpal = 1
+ignorehitpause = 1
+scale = 0.5,0.5
+
+[State 1300, Blink]
+type = PalFX
+trigger1 = !time
+time = 20
+add = 0,0,52
+sinadd = 64,32,5,3
+
+
+[State 1, 3]
+type = playsnd
+trigger1 = !time
+value = 3000, 0
+
+[State 1120, 1]
+type = PlaySnd
+trigger1 = AnimElem = 4
+value = 0, 2
+
+[State 1,]
+type = explod
+trigger1 = animelemtime(5) = 0
+anim = 1005
+postype = p1
+pos = -1,-54
+facing = 1
+sprpriority = 3
+bindtime = 1
+persistent = 0
+ownpal = 1
+ignorehitpause = 0
+scale = 0.55,0.28
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= !movecontact && !movereversed
+;===============================
+damage 				= 1300,220
+pausetime 			= 14,14 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NP
+hitflag 				= MAF
+guardflag 			= MA
+animtype 				= Hard
+air.animtype 			= Medium
+ground.TYPE 			= Low
+air.TYPE 				= High
+priority = 1, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound 				= 5,0
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 37
+ground.slidetime		= 8
+air.hittime 			= 40
+down.hittime 			= 10
+ground.velocity 		= -25,-5
+air.velocity 			= -26,-6.4
+;===============================
+guard.ctrltime 		= 26
+guard.slidetime		= 8
+guard.velocity 		= -2
+airguard.velocity 		= -2,-2
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+fall 				= 1
+p2stateno 	= 5220
+p2getp1state 	= 0
+missonoverride			= 0
+;===============================
+
+
+[State 1000, 7]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+
+;---------------------------------------------------------------------------
 ; 22A Blood Cleaver 
 [Statedef 1100]
 type    = S
@@ -20,7 +687,7 @@ value = 0, 2
 type 				= HitDef
 trigger1 				= !movecontact && !movereversed
 ;===============================
-damage 				= 1410
+damage 				= 1410,100
 pausetime 			= 16,16 + 2 * enemy, movetype = A
 getpower 				= 25 
 ;===============================
@@ -98,7 +765,7 @@ value = 0, 2
 type 				= HitDef
 trigger1 				= AnimElem = 4
 ;===============================
-damage 				= 700
+damage 				= 1430,100
 pausetime 			= 12,12 + 2 * enemy, movetype = A
 getpower 				= 25 
 ;===============================
@@ -253,7 +920,7 @@ value = 0, 2
 type 				= HitDef
 trigger1 				= AnimElem = 4
 ;===============================
-damage 				= 700
+damage 				= 1500,100
 pausetime 			= 12,12 + 2 * enemy, movetype = A
 getpower 				= 25 
 ;===============================

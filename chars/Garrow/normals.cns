@@ -158,10 +158,7 @@ velset = 0,0
 anim = 215
 sprpriority = 2
 
-[State 240, 1]
-type = PlaySnd
-trigger1 = Time = 2
-value = 0, 1
+
 
 [State 0, Random Voice]
 type = PlaySnd
@@ -789,9 +786,9 @@ sparkxy 				= -p2dist x * 0.25, -50
 hitsound 				= 5,0
 guardsound 			= 6,0
 ;===============================
-ground.hittime 		= 30
+ground.hittime 		= 40
 ground.slidetime		= 8
-air.hittime 			= 25
+air.hittime 			= 40
 down.hittime 			= 10
 ground.velocity 		= -25,-5
 air.velocity 			= -26,-6.4
