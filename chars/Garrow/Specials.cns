@@ -205,7 +205,7 @@ type    = S
 movetype= A
 physics = S
 juggle  = 6
-poweradd= -330
+poweradd= -1000
 velset = 0,0
 anim = 1120
 ctrl = 0
@@ -217,30 +217,32 @@ Trigger1 = !time
 value = SCA
 Time = 13
 
-[State 1120, Afterimage]
-type = AfterImage
-trigger1 = Time = 0
-length = 13
-PalBright   =  30, 30,  0
-PalContrast =  70, 70, 20
-PalAdd      = -10,-10,-10
-PalMul      = .85,.85,.50
-TimeGap  = 1
-FrameGap = 2
-Trans = Add
-time = 2
+[State 1200, 6]
+type = explod
+trigger1 = !time
+anim = 6114
+id = 6114
+postype = p1
+pos = 0,-75
+facing = 1
+sprpriority = 3
+bindtime = 4
+ownpal = 1
+ignorehitpause = 1
+scale = 0.5,0.5
 
-[State 1120, Afterimage]
-type = AfterImageTime
-trigger1 = AnimTime < -2
-time = 2
-
-[State 1120, Blink Yellow]
+[State 1300, Blink]
 type = PalFX
-trigger1 = Time = 0
+trigger1 = !time
 time = 20
-add = 32,16,0
+add = 0,0,52
 sinadd = 64,32,5,3
+
+
+[State 1, 3]
+type = playsnd
+trigger1 = !time
+value = 3000, 0
 
 [State 1120, 1]
 type = PlaySnd

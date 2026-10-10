@@ -1734,7 +1734,7 @@ value = 0,4
 [State 0, Vel]
 type = velset
 trigger1 = animelem = 1
-x = 3
+x = 2
 y = -5
 [State 0, Vel]
 type = veladd

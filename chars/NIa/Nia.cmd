@@ -85,7 +85,8 @@ type = ChangeState
 value = 1019
 triggerall = command = "236C"
 triggerall = power >= 1000 
-trigger1 = stateno = 1000 && movecontact
+trigger1 = stateno = 1000 && AnimElemTime(5) >= 0
+trigger2 = stateno = 1201
 ;---------------------------------------------------
 ;Special Moves
 ;---------------------------------------------------
@@ -120,20 +121,7 @@ value = 1010
 triggerall = command = "236B" && statetype != A
 trigger1 = var(1)
 
-;EX Hug of Destruction!
-[State -1]
-type = ChangeState
-value = 1620
-triggerall = command = "214C" && statetype != A
-triggerall = power >= 1000
-trigger1 = var(1)
 
-[State -1]
-type = ChangeState
-value = 1620
-triggerall = command = "214C" 
-triggerall = power >= 1000
-trigger1 = stateno = 1000 && movecontact
 
 ;Jump Air Grab
 [State -1]
@@ -167,6 +155,21 @@ value = 1315
 triggerall = command = "214C" && statetype = A
 triggerall = power >= 1000
 trigger1 = var(1)
+;EX Hug of Destruction!
+[State -1]
+type = ChangeState
+value = 1620
+triggerall = command = "214C" && statetype != A
+triggerall = power >= 1000
+trigger1 = var(1)
+
+[State -1]
+type = ChangeState
+value = 1620
+triggerall = command = "214C" 
+triggerall = power >= 1000
+trigger1 = stateno = 1000 && AnimElemTime(5) >= 0
+trigger2 = stateno = 1201
 
 ;214A - Hug of Destruction
 [State -1]
@@ -214,7 +217,8 @@ type = ChangeState
 value = 2002
 triggerall = command = "22C"
 triggerall = power >= 1000
-trigger1 = stateno = 1000 && movecontact
+trigger1 = stateno = 1000 && AnimElemTime(5) >= 0
+trigger2 = stateno = 1201
 
 
 ;3C - Antiair Grab
@@ -337,7 +341,7 @@ triggerall = !ishelper
 triggerall = !AIlevel
 triggerall = command = "B"
 triggerall = command != "holddown"
-triggerall = p2bodydist X=[-35,40]
+triggerall = p2bodydist X=[-45,45]
 trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 101
@@ -353,7 +357,7 @@ triggerall = !ishelper
 triggerall = !AIlevel
 triggerall = command = "B"
 triggerall = command != "holddown"
-triggerall = p2bodydist X > 40
+triggerall = p2bodydist X > 45
 trigger1 = statetype != A
 trigger1 = ctrl
 trigger2 = stateno = 101
