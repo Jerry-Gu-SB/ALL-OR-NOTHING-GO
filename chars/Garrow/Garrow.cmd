@@ -214,7 +214,7 @@ var(1) = 1
 [State -1, Super Cancel Special Attacks]
 type = VarSet
 trigger1 = var(1)
-trigger2 = (stateno = [1001,1003) || (stateno = 1012) || stateno = 1100) 
+trigger2 = (stateno = [1001,1003]) || (stateno =[1012,1013] || stateno = 1100)
 var(2) = 1
 ignorehitpause = 1
 
