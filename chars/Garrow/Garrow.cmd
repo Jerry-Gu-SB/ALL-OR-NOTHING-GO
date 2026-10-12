@@ -218,6 +218,9 @@ trigger2 = (stateno = [1001,1003]) || (stateno =[1012,1013] || stateno = 1100)
 var(2) = 1
 ignorehitpause = 1
 
+
+
+
 ;---------------------------------------------------------------------------
 ; Throw
 [State -1, Throw]
@@ -263,6 +266,28 @@ triggerall = power >= 1000 && statetype != A
 trigger1 = var(1)
 trigger2 =  var(2)
 
+
+[State -1]
+type = ChangeState
+value = 1000
+triggerall = command = "236A" 
+trigger1 = stateno = 233
+
+
+[State -1]
+type = ChangeState
+value = 1010
+triggerall = command = "236B" 
+trigger1 = stateno = 233
+
+
+[State -1]
+type = ChangeState
+value = 1020
+triggerall = command = "236C"
+triggerall = power >= 1000 
+trigger1 = stateno = 233
+
 ; 22A Blood Cleaver
 [State -1]
 type = ChangeState
@@ -306,6 +331,7 @@ trigger1 = command = "66"
 trigger1 = statetype = S
 trigger1 = ctrl
 
+
 ;---------------------------------------------------------------------------
 ;Run Back
 [State -1, Run Back]
@@ -335,10 +361,11 @@ trigger1 = ctrl|| (stateno = [200,225] || stateno = [400,420]) && movecontact
 trigger2 = stateno = 100
 
 
-[State -1, 6C]
+[State -1, 4C]
 type = ChangeState
 value = 230
-triggerall = command = "C" && command = "holdfwd"
+triggerall = command = "C" && command = "holdback"
+triggerall = command != "holddown"
 triggerall = statetype != A
 trigger1 = ctrl|| (stateno = [200,225] || stateno = [400,420]) && movecontact
 trigger2 = stateno = 100 

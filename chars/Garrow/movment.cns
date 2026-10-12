@@ -307,7 +307,7 @@ movetype= H
 physics = N
 anim = 5031
 velset = 0, 0
-
+facep2 = 1
 ;X Smash--------------------
 [State 0, MapSet]
 type = MapSet

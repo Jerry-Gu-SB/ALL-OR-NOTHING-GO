@@ -415,6 +415,7 @@ type    = A
 movetype= H
 physics = N
 velset = 0,0
+facep2 = 1
 
 [State 5230, Anim]
 type = ChangeAnim2
@@ -434,6 +435,7 @@ movetype= H
 physics = N
 anim = 5031
 velset = 0, 0
+facep2 = 1
 
 ;X Smash--------------------
 [State 0, MapSet]

@@ -7,7 +7,8 @@ physics = S                      ;Physics: S-stand, C-crouch, A-air             
 velset = vel x,0                     ;Set velocity (x,y) (Def: no change)
 ctrl = 0                         ;Set ctrl (Def: no change)
 anim = 200                       ;Change animation (Def: no change)                   ;Power to add (Def: 0)
-sprpriority = 2                  ;Set p1's sprite layering priority to 2 (in front)
+sprpriority = 2  
+facep2 = 1                ;Set p1's sprite layering priority to 2 (in front)
 
 
 [State 0, Random Voice]
@@ -74,6 +75,7 @@ velset = vel x,0
 ctrl = 0
 anim = 210
 sprpriority = 2
+facep2 = 1
 
 [State 230, 1]
 type = PlaySnd
@@ -157,7 +159,7 @@ ctrl = 0
 velset = 0,0
 anim = 215
 sprpriority = 2
-
+facep2 = 1
 
 
 [State 0, Random Voice]
@@ -231,7 +233,7 @@ ctrl = 0
 velset = vel x,0
 anim = 225
 sprpriority = 2
-
+facep2 = 1
 
 [State 210, 1]
 type = PlaySnd
@@ -346,7 +348,7 @@ ctrl = 0
 velset = vel x,0
 anim = 220
 sprpriority = 2
-
+facep2 = 1
 
 [State 210, 1]
 type = PlaySnd
@@ -480,6 +482,7 @@ physics = S
 ctrl = 0
 anim = 230
 sprpriority = 1
+facep2 = 1
 
 [State 3001, ]
 type = afterimage
@@ -717,6 +720,26 @@ ampl = 4
 type = varset
 trigger1 = 1
 var(31) = 0
+
+[State -2, Wallbounce Type Set]
+type 		= MapSet
+trigger1 	= time = 0
+map 		= "wallbounce_boomerang"
+value 		= 0
+ignorehitpause 	= 1
+persistent 		= 1
+redirectid      = enemynear, id
+
+
+
+
+[State 5223, Vel X] ;"Boomerang" Wall bounce check. Sends the hit player back to the first player instead of just having a set velocity.
+type = VelSet
+triggerall = enemy, map(wallbounce_boomerang)
+trigger1 = Time = 0
+x = p2dist x * 0.80 
+
+
 [State 0, JORMUNGANDR DEFAULT HITDEF]
 type 				= HitDef
 trigger1 				= !movecontact && !movereversed
@@ -786,11 +809,11 @@ sparkxy 				= -p2dist x * 0.25, -50
 hitsound 				= 5,0
 guardsound 			= 6,0
 ;===============================
-ground.hittime 		= 40
+ground.hittime 		= 47
 ground.slidetime		= 8
 air.hittime 			= 40
 down.hittime 			= 10
-ground.velocity 		= -25,-5
+ground.velocity 		= -25,-8
 air.velocity 			= -26,-6.4
 ;===============================
 guard.ctrltime 		= 14
@@ -808,6 +831,7 @@ p2stateno 	= 5220
 p2getp1state 	= 0
 missonoverride			= 0
 ;===============================
+
 
 [State 610, ChangeState]
 type = ChangeState
@@ -851,6 +875,7 @@ velset = vel x,0
 ctrl = 0
 anim = 400
 sprpriority = 2
+facep2 = 1
 
 [State 400, 1]
 type = PlaySnd
@@ -925,6 +950,8 @@ velset = vel x,0
 ctrl = 0
 anim = 410
 sprpriority = 2
+facep2 = 1
+
 
 [State 410, 1]
 type = PlaySnd
@@ -1007,6 +1034,8 @@ velset = vel x,0
 ctrl = 0
 anim = 420
 sprpriority = 2
+facep2 = 1
+
 
 [State 430, 1]
 type = PlaySnd
@@ -1099,6 +1128,8 @@ velset = vel x,0                     ;Set velocity (x,y) (Def: no change)
 ctrl = 0                         ;Set ctrl (Def: no change)
 anim = 440                      ;Change animation (Def: no change)                   ;Power to add (Def: 0)
 sprpriority = 2 
+facep2 = 1
+
 
 [State 440, 2]
 type = PlaySnd
@@ -1585,9 +1616,9 @@ sparkxy 				= -p2dist x * 0.25, -50
 hitsound                = s1,7
 guardsound 			= 6,0
 ;===============================
-ground.hittime 		= 20
+ground.hittime 		= 40
 ground.slidetime		= 16
-air.hittime 			= 30
+air.hittime 			= 47
 down.hittime 			= 10
 ground.velocity 		= -3
 air.velocity 			= -2,3

@@ -10,6 +10,7 @@ poweradd = 40
 velset = 0,0
 ctrl = 0
 sprpriority = 1
+facep2 = 1
 
 
 [State 621, 1]
@@ -123,6 +124,7 @@ anim = 1211
 velset = 0,0
 ctrl = 0
 sprpriority = 2
+facep2 = 1
 
 [State 3001, Red AfterImage]
 type = AfterImage
@@ -360,7 +362,7 @@ ctrl = 0
 anim = 1103
 velset = 0,0
 sprpriority = 2
-juggle = 1
+facep2 = 1
 
 
 [State 1200, 6]
@@ -725,7 +727,7 @@ velset = 0,0
 ctrl = 0
 anim = 1003
 poweradd=0
-juggle = 1
+facep2 = 1
 
 [State 0, PlaySnd]
 type = PlaySnd
@@ -1505,6 +1507,7 @@ juggle = 0
 velset = 0, 0
 anim = 1600
 ctrl = 0
+facep2 = 1
 
 [State 1600, 1]
 type = HitDef
@@ -1714,6 +1717,7 @@ juggle = 0
 velset = 0, 0
 anim = 1604
 ctrl = 0
+facep2 = 1
 
 [State 1600, 1]
 type = HitDef
@@ -1958,6 +1962,7 @@ juggle = 0
 velset = 0, 0
 anim = 1605
 ctrl = 0
+facep2 = 1
 
 
 [State 1200, 6]
