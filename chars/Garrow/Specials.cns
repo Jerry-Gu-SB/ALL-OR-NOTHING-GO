@@ -29,6 +29,7 @@ facep2 = 1
 type = explod
 trigger1 = animelemtime(2) = 0
 anim = 7002
+id = 7002
 postype = p1
 pos = -75,-57
 removetime = -2
@@ -40,7 +41,10 @@ ownpal = 1
 ignorehitpause = 0
 pausemovetime = -1
 scale = 0.28,0.28
-
+[State -2, Remove Effect]
+type = RemoveExplod
+trigger1 = StateNo != 1000
+id = 7002
 
 [State 610, 2]
 type = varset
@@ -276,7 +280,7 @@ value = 0, 1
 
 [State 1,]
 type = explod
-trigger1 = animelem = 2
+trigger1 = animelemtime(1) = 8
 anim = 1005
 postype = p1
 pos = 3,-54
@@ -538,8 +542,8 @@ ground.hittime 		= 50
 ground.slidetime		= 8
 air.hittime 			= 60
 down.hittime 			= 10
-ground.velocity 		= -25,-5
-air.velocity 			= -26,-6.4
+ground.velocity 		= -25,-9
+air.velocity 			= -26,-8
 ;===============================
 guard.ctrltime 		= 20
 guard.slidetime		= 8
@@ -572,7 +576,7 @@ movetype= A
 physics = S
 poweradd= 55
 velset = 0,0
-anim = 1011
+anim = 1012
 ctrl = 0
 sprpriority = 2
 
@@ -660,8 +664,8 @@ ground.hittime 		= 50
 ground.slidetime		= 8
 air.hittime 			= 60
 down.hittime 			= 10
-ground.velocity 		= -25,-5
-air.velocity 			= -26,-6.4
+ground.velocity 		= -25,-9
+air.velocity 			= -26,-8
 ;===============================
 guard.ctrltime 		= 50
 guard.slidetime		= 8
