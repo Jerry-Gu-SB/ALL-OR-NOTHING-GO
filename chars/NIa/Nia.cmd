@@ -452,10 +452,20 @@ triggerall = statetype = A
 trigger1 = ctrl
 trigger2 = stateno = 600 && movecontact
 
-;j.C
+;j.2C
 [State -1]
 type = ChangeState
 value = 620
+triggerall = command = "C" && command = "holddown"
+triggerall = statetype = A 
+trigger1 = ctrl
+trigger2 = stateno = [600,615] && movecontact
+
+
+;j.C
+[State -1]
+type = ChangeState
+value = 615
 triggerall = command = "C"
 triggerall = statetype = A 
 trigger1 = ctrl

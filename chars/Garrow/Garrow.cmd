@@ -461,7 +461,8 @@ triggerall = command = "c"
 triggerall = command != "holddown"
 trigger1 = statetype != A
 trigger1 = ctrl
-trigger2 = stateno = 220 && movecontact
+trigger2 = stateno = 220 
+trigger2 = (time > 18) || (movecontact && time > 14)
 
 
 ;---------------------------------------------------------------------------
