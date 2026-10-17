@@ -1,4 +1,3 @@
-
 ;---------------------------------------------------------------------------
 ;236A: Maximun missle
 [Statedef 1000]
@@ -12,6 +11,35 @@ ctrl = 0
 sprpriority = 1
 facep2 = 1
 
+
+; =================== M STACK ARMOR =========================
+[State 1000, M Stack Decrement]
+type = MapAdd
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && time = 0
+map = "M_stack_NIA"
+value = -1
+
+[State 1000, HitOverride]
+type = HitOverride
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && map(NiaCannotMStackArmor) = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+keepstate = 1
+time = 1
+
+[State 1000, Armor Off]
+type = MapSet
+trigger1 = HitOverridden
+map = "NiaCannotMStackArmor"
+value = 1
+
+[State 1000, Reset NiaCannotMStackArmor]
+type = MapSet
+trigger1 = HitOver = 1
+map = "NiaCannotMStackArmor"
+value = 0
+ignorehitpause = 1
+
+; ==========================================================
 
 [State 621, 1]
 type = statetypeset
@@ -210,6 +238,36 @@ type = ChangeState
 trigger1 = pos y >= 0 && vel y > 0
 value = 1212
 
+; =================== M STACK ARMOR =========================
+[State 1000, M Stack Decrement]
+type = MapAdd
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && time = 0
+map = "M_stack_NIA"
+value = -1
+
+[State 1000, HitOverride]
+type = HitOverride
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && map(NiaCannotMStackArmor) = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+keepstate = 1
+time = 1
+
+[State 1000, Armor Off]
+type = MapSet
+trigger1 = HitOverridden
+map = "NiaCannotMStackArmor"
+value = 1
+
+[State 1000, Reset NiaCannotMStackArmor]
+type = MapSet
+trigger1 = HitOver = 1
+map = "NiaCannotMStackArmor"
+value = 0
+ignorehitpause = 1
+
+; ==========================================================
+
+
 
 ;---------------------------------------------------------------------------
 ;land
@@ -351,6 +409,37 @@ type = ChangeState
 trigger1 = animtime = 0
 value = 0
 ctrl = 1
+
+
+; =================== M STACK ARMOR =========================
+[State 1000, M Stack Decrement]
+type = MapAdd
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && time = 0
+map = "M_stack_NIA"
+value = -1
+
+[State 1000, HitOverride]
+type = HitOverride
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && map(NiaCannotMStackArmor) = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+keepstate = 1
+time = 1
+
+[State 1000, Armor Off]
+type = MapSet
+trigger1 = HitOverridden
+map = "NiaCannotMStackArmor"
+value = 1
+
+[State 1000, Reset NiaCannotMStackArmor]
+type = MapSet
+trigger1 = HitOver = 1
+map = "NiaCannotMStackArmor"
+value = 0
+ignorehitpause = 1
+
+; ==========================================================
+
 
 ;---------------------------------------------------------------------------
 ;236C: EX Maximun missle (reuse from original code)
@@ -540,6 +629,37 @@ type = ChangeState
 trigger1 = AnimTime = 0 && pos y >= 0
 value = 1001
 ctrl = 0
+
+
+; =================== M STACK ARMOR =========================
+[State 1000, M Stack Decrement]
+type = MapAdd
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && time = 0
+map = "M_stack_NIA"
+value = -1
+
+[State 1000, HitOverride]
+type = HitOverride
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && map(NiaCannotMStackArmor) = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+keepstate = 1
+time = 1
+
+[State 1000, Armor Off]
+type = MapSet
+trigger1 = HitOverridden
+map = "NiaCannotMStackArmor"
+value = 1
+
+[State 1000, Reset NiaCannotMStackArmor]
+type = MapSet
+trigger1 = HitOver = 1
+map = "NiaCannotMStackArmor"
+value = 0
+ignorehitpause = 1
+
+; ==========================================================
+
 
 ;---------------------------------------------------------------------------
 ;Lariat Drag
@@ -849,6 +969,36 @@ trigger1 = AnimTime = 0 && pos y >= 0
 value = 1001
 ctrl = 0
 
+; =================== M STACK ARMOR =========================
+[State 1000, M Stack Decrement]
+type = MapAdd
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && time = 0
+map = "M_stack_NIA"
+value = -1
+
+[State 1000, HitOverride]
+type = HitOverride
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && map(NiaCannotMStackArmor) = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+keepstate = 1
+time = 1
+
+[State 1000, Armor Off]
+type = MapSet
+trigger1 = HitOverridden
+map = "NiaCannotMStackArmor"
+value = 1
+
+[State 1000, Reset NiaCannotMStackArmor]
+type = MapSet
+trigger1 = HitOver = 1
+map = "NiaCannotMStackArmor"
+value = 0
+ignorehitpause = 1
+
+; ==========================================================
+
+
 ;---------------------------------------------------------------------------
 ;Lariat Drag
 [Statedef 1011]
@@ -1127,6 +1277,35 @@ type = ChangeState
 trigger1 = pos y >= 0 && vel y > 0
 value = 1301
 
+; =================== M STACK ARMOR =========================
+[State 1000, M Stack Decrement]
+type = MapAdd
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && time = 0
+map = "M_stack_NIA"
+value = -1
+
+[State 1000, HitOverride]
+type = HitOverride
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && map(NiaCannotMStackArmor) = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+keepstate = 1
+time = 1
+
+[State 1000, Armor Off]
+type = MapSet
+trigger1 = HitOverridden
+map = "NiaCannotMStackArmor"
+value = 1
+
+[State 1000, Reset NiaCannotMStackArmor]
+type = MapSet
+trigger1 = HitOver = 1
+map = "NiaCannotMStackArmor"
+value = 0
+ignorehitpause = 1
+
+; ==========================================================
+
 ;---------------------------------------------------------------------------
 ; Landing
 [Statedef 1301]
@@ -1269,6 +1448,38 @@ type = ChangeState
 trigger1 = Pos Y >= 0
 value = 1311
 ctrl = 0
+
+
+; =================== M STACK ARMOR =========================
+[State 1000, M Stack Decrement]
+type = MapAdd
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && time = 0
+map = "M_stack_NIA"
+value = -1
+
+[State 1000, HitOverride]
+type = HitOverride
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && map(NiaCannotMStackArmor) = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+keepstate = 1
+time = 1
+
+[State 1000, Armor Off]
+type = MapSet
+trigger1 = HitOverridden
+map = "NiaCannotMStackArmor"
+value = 1
+
+[State 1000, Reset NiaCannotMStackArmor]
+type = MapSet
+trigger1 = HitOver = 1
+map = "NiaCannotMStackArmor"
+value = 0
+ignorehitpause = 1
+
+; ==========================================================
+
+
 
 ;---------------------------------------------------------------------------
 ; B  Landing
@@ -1463,6 +1674,37 @@ type = ChangeState
 trigger1 = pos y >= 0 && vel y > 0
 value = 1316
 
+
+; =================== M STACK ARMOR =========================
+[State 1000, M Stack Decrement]
+type = MapAdd
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && time = 0
+map = "M_stack_NIA"
+value = -1
+
+[State 1000, HitOverride]
+type = HitOverride
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && map(NiaCannotMStackArmor) = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+keepstate = 1
+time = 1
+
+[State 1000, Armor Off]
+type = MapSet
+trigger1 = HitOverridden
+map = "NiaCannotMStackArmor"
+value = 1
+
+[State 1000, Reset NiaCannotMStackArmor]
+type = MapSet
+trigger1 = HitOver = 1
+map = "NiaCannotMStackArmor"
+value = 0
+ignorehitpause = 1
+
+; ==========================================================
+
+
 ;---------------------------------------------------------------------------
 ; Landing
 [Statedef 1316]
@@ -1564,6 +1806,36 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
+
+; =================== M STACK ARMOR =========================
+[State 1000, M Stack Decrement]
+type = MapAdd
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && time = 0
+map = "M_stack_NIA"
+value = -1
+
+[State 1000, HitOverride]
+type = HitOverride
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && map(NiaCannotMStackArmor) = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+keepstate = 1
+time = 1
+
+[State 1000, Armor Off]
+type = MapSet
+trigger1 = HitOverridden
+map = "NiaCannotMStackArmor"
+value = 1
+
+[State 1000, Reset NiaCannotMStackArmor]
+type = MapSet
+trigger1 = HitOver = 1
+map = "NiaCannotMStackArmor"
+value = 0
+ignorehitpause = 1
+
+; ==========================================================
+
 
 ;---------------------------------------------------------------------------
 ; Hug of Destruction Hit Light
@@ -1774,6 +2046,36 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
+
+; =================== M STACK ARMOR =========================
+[State 1000, M Stack Decrement]
+type = MapAdd
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && time = 0
+map = "M_stack_NIA"
+value = -1
+
+[State 1000, HitOverride]
+type = HitOverride
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && map(NiaCannotMStackArmor) = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+keepstate = 1
+time = 1
+
+[State 1000, Armor Off]
+type = MapSet
+trigger1 = HitOverridden
+map = "NiaCannotMStackArmor"
+value = 1
+
+[State 1000, Reset NiaCannotMStackArmor]
+type = MapSet
+trigger1 = HitOver = 1
+map = "NiaCannotMStackArmor"
+value = 0
+ignorehitpause = 1
+
+; ==========================================================
+
 ;---------------------------------------------------------------------------
 ; Hug of Destruction Hit Heavy
 [Statedef 1611]
@@ -2091,6 +2393,36 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
+
+; =================== M STACK ARMOR =========================
+[State 1000, M Stack Decrement]
+type = MapAdd
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && time = 0
+map = "M_stack_NIA"
+value = -1
+
+[State 1000, HitOverride]
+type = HitOverride
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && map(NiaCannotMStackArmor) = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+keepstate = 1
+time = 1
+
+[State 1000, Armor Off]
+type = MapSet
+trigger1 = HitOverridden
+map = "NiaCannotMStackArmor"
+value = 1
+
+[State 1000, Reset NiaCannotMStackArmor]
+type = MapSet
+trigger1 = HitOver = 1
+map = "NiaCannotMStackArmor"
+value = 0
+ignorehitpause = 1
+
+; ==========================================================
+
 ; Hug of Destruction Hit EX
 [Statedef 1621]
 type = S
@@ -2361,7 +2693,7 @@ value = -500
 type 		= MapSet
 trigger1 = Time = 0
 map 		= "M_stack_NIA"
-value 		= 3
+value 		= 4
 
 [State 200, ChangeState]
 type = ChangeState
@@ -2495,21 +2827,6 @@ trigger1 = animtime = 0
 value = 0
 ctrl = 1
 
-
-; === DELETE THIS LATER, DEBUG ====
-[State 2002, 22L Stack Set]
-type 		= MapAdd
-trigger1 = time = 0
-map 		= "M_stack_NIA"
-value 		= -1
-
-[State 2002, 22L Stack Set]
-type 		= MapAdd
-trigger1 = time = 0
-map 		= "L_stack_NIA"
-value 		= -1
-;=========================
-
 [Statedef -4]
 ;---------------------------------------------------------------------------
 [State -4, 22L Stack Set]
@@ -2542,11 +2859,19 @@ trigger1 = RoundTime = 0
 map 		= "M_stack_NIA"
 value 		= 0
 
+;22M Can Armor Flag Set
+[State -4, 22M Stack Set]
+type 		= MapSet
+triggerall  = RoundState = 2  ; Round Start
+trigger1 = RoundTime = 0
+map 		= "NiaCannotMStackArmor"
+value 		= 0  ; 0 = cannot armor, 1 = yes can.
+
 [Statedef +1]
 ; Red Afterimage
 [State -4, Red afterimage]
 type = AfterImage
-trigger1 = !IsHelper && RoundTime % 10 = 0 && map(M_stack_NIA) > 0
+trigger1 = !IsHelper && RoundTime % 10 = 0 && map(M_stack_NIA) > 1
 time = 25
 length = 60
 TimeGap  = 1
@@ -2554,11 +2879,4 @@ FrameGap = 1
 Trans = add1
 palbright = 25, 25, 25
 palcontrast = 255,20,20
-
-; ==== DEBUG
-[State -2,  DebugDisplay]
-type = DisplayToClipboard
-trigger1 = 1
-text = "Custom M Stack NIA: %f"
-params = Map(M_stack_NIA)
 
