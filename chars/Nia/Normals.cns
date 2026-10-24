@@ -1493,6 +1493,7 @@ air.fall = 1
 fall = 1
 p2stateno = 5255
 p2getp1state = 0
+missonoverride = 0
 fall 				= 1
 
 
@@ -2244,6 +2245,7 @@ p1facing = ifelse(command = "holdfwd", 1, -1)
 p2facing = 1
 p1stateno = 710
 p2stateno = 720
+missonoverride = 0
 guard.dist = 0
 fall = 1
 
@@ -2696,6 +2698,7 @@ p1sprpriority = 1
 p1facing = 1
 p2facing = 1
 p2stateno = 860
+missonoverride = 0
 guard.dist = 0
 fall = 1
 

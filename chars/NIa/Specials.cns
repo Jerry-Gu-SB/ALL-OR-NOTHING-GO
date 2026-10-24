@@ -232,6 +232,7 @@ guard.cornerpush.veloff 	= -8
 p2stateno = 5255
 p2getp1state = 0
 fall 				= 1
+missonoverride = 0
 ;===============================
 
 [State 610, ChangeState]
@@ -401,6 +402,7 @@ guard.cornerpush.veloff 	= -8
 fall 				= 1
 p2stateno 			=  map(Cornersplat)
 p2getp1state 			= 0
+missonoverride = 0
 ;===============================
 
 
@@ -1767,6 +1769,7 @@ p1facing = 1
 p2facing = 1
 p1stateno = 1601
 p2stateno = 1602
+missonoverride = 0
 guard.dist = 0
 fall = 1
 
@@ -1785,6 +1788,7 @@ p1facing = 1
 p2facing = 1      
 p1stateno = 1601
 p2stateno = 1602
+missonoverride = 0
 fall = 1  
 fall.recover = 0
 guard.dist = 0
@@ -2008,6 +2012,7 @@ p1facing = 1
 p2facing = 1
 p1stateno = 1611
 p2stateno = 1612
+missonoverride = 0
 guard.dist = 0
 fall = 1
 
@@ -2026,6 +2031,7 @@ p1facing = 1
 p2facing = 1      
 p1stateno = 1611
 p2stateno = 1612
+missonoverride = 0
 fall = 1  
 fall.recover = 0
 guard.dist = 0
@@ -2342,6 +2348,7 @@ p1stateno = 1621
 p2stateno = 1622
 guard.dist = 0
 fall = 1
+missonoverride = 0
 
 [State 1610, HOD Heavy]
 type = HitDef
@@ -2360,6 +2367,7 @@ p2stateno = 1622
 fall = 1  
 fall.recover = 0
 guard.dist = 0
+missonoverride = 0
 
 [State 1120, Width]
 type = Width

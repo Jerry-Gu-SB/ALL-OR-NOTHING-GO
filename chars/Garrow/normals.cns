@@ -470,6 +470,7 @@ ground.cornerpush.veloff = -5
 air.cornerpush.veloff = -5
 p2stateno = 5255
 p2getp1state = 0
+missonoverride = 0
 
 
 [State 210, 5]
@@ -806,6 +807,7 @@ guard.cornerpush.veloff 	= -8
 fall 				= 1
 p2stateno 	= 5220 
 p2getp1state 	= 0
+missonoverride = 0
 ;===============================
 
 
@@ -1633,7 +1635,9 @@ down.cornerpush.veloff 	= -8
 guard.cornerpush.veloff 	= -8
 ;===============================
 p2stateno = 5255
+p2getp1state = 0
 fall 				= 1
+missonoverride = 0
 ;===============================
 
 [State 0, 2]
@@ -1745,6 +1749,7 @@ hitsound = S6,0 ;Throw Hit
 p2facing = 1          ;Force p2 to face KFM
 p1stateno = 803
 p2stateno = 820       ;If hit, p2 changes to state 820 in KFM's cns
+missonoverride = 0
 forcestand = 1              ;Force p2 into falling down
 forcenofall = 1
 ground.velocity = 0,0
@@ -1980,6 +1985,7 @@ fall = 1
 getpower = 0
 p2stateno 	= 5220
 p2getp1state 	= 0
+missonoverride = 0
 
 [State 0, TargetState]
 type = TargetState
@@ -2168,6 +2174,7 @@ fall = 1
 getpower = 0
 p2stateno 	= 5220
 p2getp1state 	= 0
+missonoverride = 0
 
 [State 0, TargetState]
 type = TargetState
