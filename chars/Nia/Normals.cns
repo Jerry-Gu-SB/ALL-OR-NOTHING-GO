@@ -398,6 +398,35 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
+; =================== L STACK ARMOR =========================
+[State 1000, L Stack Decrement]
+type = MapAdd
+trigger1 = !IsHelper && map(L_stack_NIA) > 0 && time = 0
+map = "L_stack_NIA"
+value = -1
+
+[State 1000, HitOverride]
+type = HitOverride
+trigger1 = !IsHelper && map(L_stack_NIA) > 0 && map(NiaCannotLStackArmor) = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+keepstate = 1
+time = 1
+
+[State 1000, Armor Off]
+type = MapSet
+trigger1 = HitOverridden
+map = "NiaCannotLStackArmor"
+value = 1
+
+[State 1000, Reset NiaCannotLStackArmor]
+type = MapSet
+trigger1 = HitOver = 1
+map = "NiaCannotLStackArmor"
+value = 0
+ignorehitpause = 1
+
+; ==========================================================
+
 ;---------------------------------------------------------------------------
 ;f.5B
 [Statedef 215]
