@@ -487,7 +487,8 @@ value = 3000, 0
 type = Explod
 trigger1 = Time = 0
 anim = 7000
-pos = 0,0
+pos = camerapos x - 230, camerapos y
+postype = none
 facing = 1
 sprpriority = 1
 ownpal = 1
@@ -498,7 +499,8 @@ scale = 0.25,0.25
 type = Explod
 trigger1 = Time = 0
 anim = 7001
-pos = 0,0
+pos = camerapos x - 230, camerapos y
+postype = none
 facing = 1
 ownpal = 1
 ignorehitpause = 1
@@ -1754,7 +1756,8 @@ facep2 = 1
 
 [State 1600, 1]
 type = HitDef
-trigger1 = Time = 0
+triggerall = enemynear, movetype != H
+trigger1 = !movehit && !movereversed
 attr = S, NT
 hitflag = M-
 priority = 1, Miss
@@ -1770,8 +1773,8 @@ fall = 1
 [State 1600, HOD Heavy]
 type = HitDef 
 nochainID = 8000
-trigger1 = !movehit && !movereversed
 triggerall = enemynear, movetype = H
+trigger1 = !movehit && !movereversed
 attr = S, ST         
 hitflag = MAF+
 priority = 1, Miss    
@@ -1994,7 +1997,8 @@ facep2 = 1
 
 [State 1600, 1]
 type = HitDef
-trigger1 = Time = 0
+triggerall = enemynear, movetype != H
+trigger1 = !movehit && !movereversed
 attr = S, NT
 hitflag = M-
 priority = 1, Miss
@@ -2325,7 +2329,8 @@ value = -1000
 
 [State 1600, 1]
 type = HitDef
-trigger1 = Time = 0
+triggerall = enemynear, movetype != H
+trigger1 = !movehit && !movereversed
 attr = S, NT
 hitflag = M-
 priority = 1, Miss
