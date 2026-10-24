@@ -1492,6 +1492,7 @@ fall.yvelocity = -2
 air.fall = 1
 fall = 1
 p2stateno = 5255
+p2getp1state = 0
 fall 				= 1
 
 
