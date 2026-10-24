@@ -3947,7 +3947,7 @@ x = 1.6
 type = VelSet
 triggerall = enemy, map(wallbounce_boomerang)
 trigger1 = Time = 0
-x = p2dist x * 0.01
+x = p2dist x * 0.015
 
 [State -2, Wallbounce Type Set]
 type 		= MapSet
@@ -5708,32 +5708,6 @@ triggerall = command = "holdup" || command = "up"
 trigger1 = Map(JC) && movehitvar(overridden) = 0
 
 
-;===========================================================================
-;DEADZONE ATTACKS
-;BC
-[State -1, Standing Deadzone]
-type = ChangeState
-value = 700
-triggerall = command = "DEADZONE"
-triggerall = statetype != A
-trigger1 = ctrl || (stateno = [200,240] && time < 3) && prevstateno != [200, 440]
-;jBC
-[State -1, Aerial Deadzone]
-type = ChangeState
-value = 710
-triggerall = command = "DEADZONE"
-triggerall = statetype = A
-trigger1 = ctrl || (stateno = [600,630] && time < 3) && prevstateno != [200, 430]
-;Guard Cancel BC
-[State -1, Guard Cancel Deadzone]
-type = ChangeState
-value = 715
-triggerall = command = "B" && command = "C"
-triggerall = statetype != A && power >= 500
-trigger1 = stateno = [150,153]
-;===========================================================================
-
-
 ;==============================================================================
 ;------------------------------------------------------------------------------
 [Statedef +1]
@@ -5776,6 +5750,18 @@ ignorehitpause 	= 0
 
 
 [Statedef -2]
+
+;=================================
+;Air Drift
+;=================================
+[State -2, Corner Only WallSplat Check]
+type 		= MapSet
+trigger1 	= 1
+map 		= "cornerSplat"
+value 		= cond((abs(camerapos x) > 300 && frontedgedist < 450) && (stagefrontedgedist < stagebackedgedist), 5225, 5220)
+ignorehitpause 	= 0
+persistent	= 0
+
 
 ;=================================
 ;Air Drift

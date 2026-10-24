@@ -398,7 +398,7 @@ down.cornerpush.veloff 	= -8
 guard.cornerpush.veloff 	= -8
 ;===============================
 fall 				= 1
-p2stateno 	=  5225
+p2stateno 	=  map(Cornersplat)
 p2getp1state 	= 0
 ;===============================
 

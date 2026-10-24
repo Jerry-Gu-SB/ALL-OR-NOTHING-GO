@@ -1,19 +1,4 @@
-;---------------------------------------------------------------------------
-; Kung Fu Palm
-; CNS difficulty: medium
-; Description: This is like a standard attack, but with some differences.
-;   There are two HitDefs in this attack. One is triggered when the
-;   opponent is near (using a p2bodydist trigger), and the other
-;   when the opponent is farther away. The main differences between
-;   the near and far versions of the HitDefs is that the near version
-;   has a "fall" parameter set to 1, causing the opponent to be knocked
-;   down. Other minor differences are the damage, and the velocity to
-;   give the opponent.
-;   The line "attr = S, SA" line means this is a Standing, Special Attack.
-;   It is important you have the attr parameter set correctly for all
-;   you HitDefs.
-
-;236A  Crescent Edge start
+;236A - Crescent Edge - Start
 [Statedef 1000]
 type    = S
 movetype= A
@@ -41,30 +26,28 @@ ownpal = 1
 ignorehitpause = 0
 pausemovetime = -1
 scale = 0.28,0.28
-[State -2, Remove Effect]
-type = RemoveExplod
-trigger1 = StateNo != 1000
-id = 7002
-
-[State 610, 2]
-type = varset
-trigger1 = 1
-var(12) = 0
+removeonchangestate = 1
 
 [State 0, ChangeState]
 type = ChangeState
-triggerall = var(12) = 0
 triggerall = time = [3,9]
-trigger1 = command !="HOLD_A"
+trigger1 = command != "HOLD_A"
 value = 1001
 
 
 [State 209, Just Frame Release]
 type = ChangeState
-triggerall = var(12) = 0
 triggerall = Time = [10,11]
 trigger1 = Command != "HOLD_A"
 value = 1003
+
+[State Pal, 1]
+type = PalFX
+trigger1 = Time = 10
+time = 2
+mul = 256,256,256
+add = 256,256,256
+ignorehitpause = 1
 
 [State 0, ChangeState]
 type = ChangeState
@@ -72,7 +55,7 @@ trigger1 = time = 13
 value = 1002
 
 ;---------------------------------------------------------------------------
-;Crescent Edge normal
+;236A - Normal
 [Statedef 1001]
 type    = S
 movetype= A
@@ -157,7 +140,7 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-;charged Crescent Edge 
+;236A - Charged
 [Statedef 1002]
 type    = S
 movetype= A
@@ -187,21 +170,13 @@ ownpal = 1
 ignorehitpause = 0
 scale = 0.45,0.28
 
-[State Pal, 1]
-type = PalFX
-trigger1 = Time = 0
-time = 5
-mul = 256,256,256
-add = 256,256,256
-ignorehitpause = 1
-
 
 [State 0, JORMUNGANDR DEFAULT HITDEF]
 type 				= HitDef
 trigger1 				= !movecontact && !movereversed
 ;===============================
 damage 				= 1230,210
-pausetime 			= 14,14 + 2 * enemy, movetype = A
+pausetime 			= 10,10 + 2 * enemy, movetype = A
 getpower 				= 25 
 ;===============================
 attr 				= S,NP
@@ -225,9 +200,9 @@ down.hittime 			= 10
 ground.velocity 		= -25,-5
 air.velocity 			= -26,-9
 ;===============================
-guard.ctrltime 		= 50
-guard.slidetime		= 10
-guard.velocity 		= -2
+guard.ctrltime 		= 29
+guard.slidetime		= 29
+guard.velocity 		= -10
 airguard.velocity 		= -2,-2
 ;===============================
 ground.cornerpush.veloff	= -4
@@ -248,7 +223,7 @@ trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 ;----------------------------------------------------------------------------
-;perfect Crescent Edge 
+;236A - Perfect
 [Statedef 1003]
 type    = S
 movetype= A
@@ -337,9 +312,9 @@ down.hittime 			= 10
 ground.velocity 		= -25,-5
 air.velocity 			= -26,-9
 ;===============================
-guard.ctrltime 		= 50
-guard.slidetime		= 8
-guard.velocity 		= -2
+guard.ctrltime 		= 29
+guard.slidetime		= 29
+guard.velocity 		= -10
 airguard.velocity 		= -2,-2
 ;===============================
 ground.cornerpush.veloff	= -4
@@ -353,13 +328,21 @@ p2getp1state 	= 0
 missonoverride			= 0
 ;===============================
 
+[State -2, Wallbounce Type Set]
+type 		= MapSet
+trigger1 		= movehit
+map 			= "wallbounce_boomerang"
+value 		= 1
+ignorehitpause 	= 1
+persistent 		= 0
+
 [State 1000, 7]
 type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 
-;236B  Crescent Edge start
+;236B - Crescent Edge - Start
 [Statedef 1010]
 type    = S
 movetype= A
@@ -409,7 +392,7 @@ type = ChangeState
 trigger1 = time = 16
 value = 1012
 
-;Crescent Edge feint
+;236B - Feint
 [Statedef 1011]
 type    = S
 movetype= A
@@ -438,7 +421,7 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-;unblockable Crescent Edge 
+;236B - Charged (Unblockable)
 [Statedef 1012]
 type    = S
 movetype= A
@@ -530,7 +513,7 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-;B Perfecr Crescent Edge 
+;236B - Perfect
 [Statedef 1013]
 type    = S
 movetype= A
@@ -635,6 +618,13 @@ p2getp1state 	= 0
 missonoverride			= 0
 ;===============================
 
+[State -2, Wallbounce Type Set]
+type 		= MapSet
+trigger1 		= movehit
+map 			= "wallbounce_boomerang"
+value 		= 1
+ignorehitpause 	= 1
+persistent 		= 0
 
 [State 1000, 7]
 type = ChangeState
@@ -745,6 +735,13 @@ p2getp1state 	= 0
 missonoverride			= 0
 ;===============================
 
+[State -2, Wallbounce Type Set]
+type 		= MapSet
+trigger1 		= movehit
+map 			= "wallbounce_boomerang"
+value 		= 1
+ignorehitpause 	= 1
+persistent 		= 0
 
 [State 1000, 7]
 type = ChangeState

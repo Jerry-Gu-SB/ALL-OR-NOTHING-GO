@@ -351,6 +351,14 @@ anim = 220
 sprpriority = 2
 facep2 = 1
 
+[State -2, No 2C Cancel]
+type 		= MapSet
+trigger1 		= prevstateno = 420
+map 			= "No2C"
+value 		= 1
+ignorehitpause 	= 1
+persistent 		= 0
+
 [State 210, 1]
 type = PlaySnd
 trigger1 = Time = 2
@@ -461,6 +469,7 @@ fall.recovertime = 45
 ground.cornerpush.veloff = -5
 air.cornerpush.veloff = -5
 p2stateno = 5255
+p2getp1state = 0
 
 
 [State 210, 5]
@@ -647,38 +656,20 @@ type = ChangeState
 trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
-; CNS difficulty: easy
-; Description: Simple crouching attack. The HitDef's guardflag parameter
-;     is set to "L", meaning that the move can only be guarded low
-;     (crouching), and not by standing or jumping opponents.
-;     Like for all light attacks, it's a good idea to keep the slidetime
-;     and hittime parameters at a smaller number, so the opponent isn't
-;     stunned for too long. For all crouching attacks you have to
-;     remember to set the attr parameter to indicate that it is crouching
-;     attack. In this case, "C, NA" stands for "crouching, normal attack".
-;     The HitDef's priority is set at 3, instead of the default of 4,
-;     so this attack has a lower priority than most others, meaning
-;     KFM will get hit instead of trading hits with his opponent if
-;     their attack collision boxes (Clsn1) intersect each other's Clsn2
-;     boxes at the same time.
-;---------------------------------------------------------------------------
+ 
 ;66B
 [Statedef 232]
 type    = S
 movetype= A
 physics = S
 ctrl = 0
-velset = 0,0
 anim = 231
 sprpriority = 1
-
-
 
 [State 230, 1]
 type = PlaySnd
 trigger1 = AnimElem = 2
 value =210,0
-
 
 [State 0, Random Sound]
 type = PlaySnd
@@ -699,7 +690,7 @@ y = -3.5
 [State -2, VelSet]
 Type = VelSet
 trigger1 = AnimElem = 6
-x = 10
+x = vel x + 10
 y = -5.5
 
 [State -2, grv]
@@ -727,10 +718,11 @@ var(31) = 0
 
 [State 0, JORMUNGANDR DEFAULT HITDEF]
 type 				= HitDef
+triggerall 			= animelem = 4
 trigger1 				= !movecontact && !movereversed
 ;===============================
 damage 				= 490
-pausetime 			= 12,12 + 2 * enemy, movetype = A
+pausetime 			= 8,8 + 2 * enemy, movetype = A
 getpower 				= 25 
 ;===============================
 attr 				= S,NA
@@ -777,7 +769,7 @@ type 				= HitDef
 trigger1 				= AnimElem =6
 ;===============================
 damage 				= 430
-pausetime 			= 14,14 + 2 * enemy, movetype = A
+pausetime 			= 12,12 + 2 * enemy, movetype = A
 getpower 				= 25 
 ;===============================
 attr 				= S,NA
@@ -821,10 +813,18 @@ p2getp1state 	= 0
 type 		= MapSet
 trigger1 		= movehit
 map 		= "wallbounce_yvel"
-value 		= -4 - (map(CounterHit) * 2) + (map(untechDecay) * 0.2)
+value 		= -6 - (map(CounterHit) * 2) + (map(untechDecay) * 0.2)
 ignorehitpause 	= 1
 persistent 		= 0
 
+
+[State -2, Wallbounce Type Set]
+type 		= MapSet
+trigger1 		= movehit
+map 			= "wallbounce_boomerang"
+value 		= 1
+ignorehitpause 	= 1
+persistent 		= 0
 
 [State 610, ChangeState]
 type = ChangeState
@@ -1029,6 +1029,13 @@ anim = 420
 sprpriority = 2
 facep2 = 1
 
+[State -2, No 5C Cancel]
+type 		= MapSet
+trigger1 		= prevstateno = [220,221]
+map 			= "No5C"
+value 		= 1
+ignorehitpause 	= 1
+persistent 		= 0
 
 [State 430, 1]
 type = PlaySnd
@@ -1565,12 +1572,6 @@ type = PlaySnd
 trigger1 = Time = 1
 value = 440,2
 
-[State 0, VelSet]
-type = VelSet
-trigger1 = !time
-x = 2
-y = -4
-
 [State 50, 2]
 type = Explod
 trigger1 = time = 0
@@ -1607,7 +1608,7 @@ animtype 				= Hard
 air.animtype 			= Hard
 ground.TYPE 			= High
 air.TYPE 				= High
-priority = 3, Hit 
+priority 				= 3, Hit 
 ;===============================
 sparkno 				= 1
 sparkxy 				= -p2dist x * 0.25, -50
