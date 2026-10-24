@@ -116,6 +116,123 @@ type = ChangeState
 trigger1 = animtime = 0
 value = 1201
 
+; 236A: Maximum Missile (22B stacks)
+[Statedef 1210]
+type    = S
+movetype= A
+physics = N
+anim = 1210
+poweradd = 40
+velset = 0,0
+ctrl = 0
+sprpriority = 1
+facep2 = 1
+
+
+; =================== L STACK ARMOR =========================
+[State 1000, L Stack Decrement]
+type = MapAdd
+trigger1 = !IsHelper && map(L_stack_NIA) > 0 && time = 0
+map = "L_stack_NIA"
+value = -1
+
+[State 1000, HitOverride]
+type = HitOverride
+trigger1 = !IsHelper && map(L_stack_NIA) > 0 && map(NiaCannotLStackArmor) = 0
+attr = SCA,NA,SA,HA,NP,SP,HP
+keepstate = 1
+time = 1
+
+[State 1000, Armor Off]
+type = MapSet
+trigger1 = HitOverridden
+map = "NiaCannotLStackArmor"
+value = 1
+
+[State 1000, Reset NiaCannotLStackArmor]
+type = MapSet
+trigger1 = HitOver = 1
+map = "NiaCannotLStackArmor"
+value = 0
+ignorehitpause = 1
+
+; ==========================================================
+
+[State 621, 1]
+type = statetypeset
+trigger1 = !time
+statetype = A
+
+[State 1200, sound]
+type = playsnd
+trigger1 =  Time = 0
+value = 1200, ifelse(Random < 500, 0, 2)
+
+
+[State 210, PlaySnd]
+type = PlaySnd
+trigger1 = time = 3
+value = 5,19
+
+[State 1,]
+type = explod
+trigger1 = animelemtime(5) = 0
+anim = 2100
+id = 2100
+postype = p1
+pos = -33,-91
+facing = 1
+sprpriority = -1
+bindtime = -1
+ownpal = 1
+ignorehitpause = 1
+scale = 0.16,0.16
+
+
+[State 621, 1]
+type = VelSet
+trigger1 = animelemtime(5) > 0
+x = 14
+
+[State 210, HitDef]
+type = HitDef
+trigger1 = !MoveContact && !movereversed
+attr = S,NA
+hitflag = MAF
+guardflag = MA
+animtype = Medium
+damage = 900,0
+getpower = 30,0
+givepower = 20,0
+pausetime = 8,8
+guard.pausetime = 12,12
+sparkNo= s8010
+guard.sparkNo=-1 + 0 * (var(34) := 8000)
+sparkXY=-1 + 0 * (var(35) := 200), var(36):=-50
+hitsound = S1,26
+guardsound = S6,0
+ground.type = Low
+ground.slidetime = 19
+guard.slidetime = 19
+ground.hittime = 16
+guard.ctrltime 		= 40
+air.hittime = 22
+yaccel = .53
+ground.velocity = -13,0
+air.velocity = -3,-8
+airguard.velocity = -6,-2
+fall.xvelocity = 0
+fall.yvelocity = -2
+air.fall = 1
+fall.recover = 0
+id = 1
+
+
+[State 1200, 4]
+type = ChangeState
+trigger1 = animtime = 0
+value = 1201
+
 ;---------------------------------------------------------------------------
 ;land
 [Statedef 1201]
@@ -265,7 +382,12 @@ map = "NiaCannotLStackArmor"
 value = 0
 ignorehitpause = 1
 
-; ==========================================================
+; =================== M STACK DECREMENT ====================
+[State 1000, M Stack Decrement]
+type = MapAdd
+trigger1 = !IsHelper && map(L_stack_NIA) > 0 && time = 0
+map = "M_stack_NIA"
+value = -1
 
 
 

@@ -96,6 +96,12 @@ trigger2 = stateno = 1201
 ;236A - Maximum Missile
 [State -1]
 type = ChangeState
+value = 1210
+triggerall = command = "236A" && statetype != A && map(M_stack_NIA) > 0
+trigger1 = var(1) || ctrl
+
+[State -1]
+type = ChangeState
 value = 1000
 triggerall = command = "236A" && statetype != A
 trigger1 = var(1) || ctrl
