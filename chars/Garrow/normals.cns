@@ -672,11 +672,6 @@ velset = 0,0
 anim = 231
 sprpriority = 1
 
-[State 5223, Vel X] ;"Boomerang" Wall bounce check. Sends the hit player back to the first player instead of just having a set velocity.
-type = VelSet
-triggerall = enemy, map(wallbounce_boomerang)
-trigger1 = Time = 0
-x = p2dist x 
 
 
 [State 230, 1]
@@ -820,6 +815,15 @@ fall 				= 1
 p2stateno 	= 5220 
 p2getp1state 	= 0
 ;===============================
+
+
+[State -2, Wallbounce Velocity Set]
+type 		= MapSet
+trigger1 		= movehit
+map 		= "wallbounce_yvel"
+value 		= -4 - (map(CounterHit) * 2) + (map(untechDecay) * 0.2)
+ignorehitpause 	= 1
+persistent 		= 0
 
 
 [State 610, ChangeState]
@@ -1369,6 +1373,11 @@ air.cornerpush.veloff 	= -3
 type = ModifyHitDef
 trigger1 = vel y < 0
 guardflag = MA
+
+[State 600, 3]
+type = changestate
+trigger1 = AnimTime = 0
+value = 51
 
 ;---------------------------------------------------------------------------
 ; JB-b

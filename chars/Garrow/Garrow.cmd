@@ -505,7 +505,7 @@ trigger1 = ctrl
 trigger2 = stateno = 200 && movecontact
 trigger3 = (Stateno = [210,215])&& movecontact
 trigger4 = stateno = [220,225] && movecontact && prevStateNo != 420
-trigger5 = stateno = 225 && movecontact && prevStateNo != 420
+trigger5 = stateno = 225 && movecontact && prevStateNo != 420 && prevStateNo != 221
 trigger6 = stateno = 400 && movecontact
 trigger7 = stateno = 410 && movecontact
 trigger8 = stateno = 100
