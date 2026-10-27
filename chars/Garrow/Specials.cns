@@ -112,7 +112,7 @@ ground.hittime 		= 45
 ground.slidetime		= 8
 air.hittime 			= 50
 down.hittime 			= 10
-ground.velocity 		= -5,-3
+ground.velocity 		= -5,-6
 air.velocity 			= -2,-7
 ;===============================
 guard.ctrltime 		= 16
@@ -531,7 +531,7 @@ value = 0, 1
 
 [State 1,]
 type = explod
-trigger1 = animelemtime(2) = 11
+trigger1 = animelemtime(1) = 8
 anim = 1005
 postype = p1
 pos = 3,-54
@@ -541,7 +541,7 @@ bindtime = 1
 persistent = 0
 ownpal = 1
 ignorehitpause = 0
-scale = 0.30,0.28
+scale = 0.30,0.31
 
 [State 1200, 6]
 type = explod
