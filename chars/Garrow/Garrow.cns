@@ -1738,7 +1738,33 @@ ctrl = 1
 ; States that are executed when in self's state file (use statedef -3)
 ;---------------------------------------------------------------------------
 
+[Statedef -2]
+
+[State -2, No 2C Cancel]
+type 		= MapSet
+trigger1 		= ctrl
+map 			= "No2C"
+value 		= 0
+ignorehitpause 	= 1
+persistent 		= 0
+[State -2, No 5C Cancel]
+type 		= MapSet
+trigger1 		= ctrl
+map 			= "No5C"
+value 		= 0
+ignorehitpause 	= 1
+persistent 		= 0
+
 [Statedef -3]
+
+[State 0, DisplayToClipboard]
+type = DisplayToClipboard
+trigger1 = 1
+text = "cameraposx = %f"
+params = camerapos x
+;ignorehitpause = 
+;persistent = 
+
 
 ;This controller plays a sound everytime KFM lands from a jump, or
 ;from his back-dash.

@@ -347,7 +347,9 @@ down.cornerpush.veloff 	= -8
 guard.cornerpush.veloff 	= -8
 ;===============================
 p2stateno = 5255
+p2getp1state = 0
 fall 				= 1
+missonoverride = 0
 ;===============================
 
 [State 610, ChangeState]
@@ -520,8 +522,9 @@ down.cornerpush.veloff 	= -8
 guard.cornerpush.veloff 	= -8
 ;===============================
 fall 				= 1
-p2stateno 	=  5225
-p2getp1state 	= 0
+p2stateno 			=  map(Cornersplat)
+p2getp1state 			= 0
+missonoverride = 0
 ;===============================
 
 
@@ -608,7 +611,8 @@ value = 3000, 0
 type = Explod
 trigger1 = Time = 0
 anim = 7000
-pos = 0,0
+pos = camerapos x - 230, camerapos y
+postype = none
 facing = 1
 sprpriority = 1
 ownpal = 1
@@ -619,7 +623,8 @@ scale = 0.25,0.25
 type = Explod
 trigger1 = Time = 0
 anim = 7001
-pos = 0,0
+pos = camerapos x - 230, camerapos y
+postype = none
 facing = 1
 ownpal = 1
 ignorehitpause = 1
@@ -1875,7 +1880,8 @@ facep2 = 1
 
 [State 1600, 1]
 type = HitDef
-trigger1 = Time = 0
+triggerall = enemynear, movetype != H
+trigger1 = !movehit && !movereversed
 attr = S, NT
 hitflag = M-
 priority = 1, Miss
@@ -1885,14 +1891,15 @@ p1facing = 1
 p2facing = 1
 p1stateno = 1601
 p2stateno = 1602
+missonoverride = 0
 guard.dist = 0
 fall = 1
 
 [State 1600, HOD Heavy]
 type = HitDef 
 nochainID = 8000
-trigger1 = !movehit && !movereversed
 triggerall = enemynear, movetype = H
+trigger1 = !movehit && !movereversed
 attr = S, ST         
 hitflag = MAF+
 priority = 1, Miss    
@@ -1903,6 +1910,7 @@ p1facing = 1
 p2facing = 1      
 p1stateno = 1601
 p2stateno = 1602
+missonoverride = 0
 fall = 1  
 fall.recover = 0
 guard.dist = 0
@@ -2115,7 +2123,8 @@ facep2 = 1
 
 [State 1600, 1]
 type = HitDef
-trigger1 = Time = 0
+triggerall = enemynear, movetype != H
+trigger1 = !movehit && !movereversed
 attr = S, NT
 hitflag = M-
 priority = 1, Miss
@@ -2125,6 +2134,7 @@ p1facing = 1
 p2facing = 1
 p1stateno = 1611
 p2stateno = 1612
+missonoverride = 0
 guard.dist = 0
 fall = 1
 
@@ -2143,6 +2153,7 @@ p1facing = 1
 p2facing = 1      
 p1stateno = 1611
 p2stateno = 1612
+missonoverride = 0
 fall = 1  
 fall.recover = 0
 guard.dist = 0
@@ -2446,7 +2457,8 @@ value = -1000
 
 [State 1600, 1]
 type = HitDef
-trigger1 = Time = 0
+triggerall = enemynear, movetype != H
+trigger1 = !movehit && !movereversed
 attr = S, NT
 hitflag = M-
 priority = 1, Miss
@@ -2458,6 +2470,7 @@ p1stateno = 1621
 p2stateno = 1622
 guard.dist = 0
 fall = 1
+missonoverride = 0
 
 [State 1610, HOD Heavy]
 type = HitDef
@@ -2476,6 +2489,7 @@ p2stateno = 1622
 fall = 1  
 fall.recover = 0
 guard.dist = 0
+missonoverride = 0
 
 [State 1120, Width]
 type = Width
