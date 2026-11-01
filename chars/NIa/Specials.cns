@@ -479,6 +479,7 @@ add = 0,0,52
 sinadd = 64,32,5,3
 
 
+
 [State 1, 3]
 type = playsnd
 trigger1 = !time
