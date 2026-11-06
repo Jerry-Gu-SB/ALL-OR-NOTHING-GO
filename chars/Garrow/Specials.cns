@@ -676,7 +676,7 @@ type = PlaySnd
 trigger1 = AnimElem = 4
 value = 0, 2
 
-[State 1,]
+[State 1, Slash Effect]
 type = explod
 trigger1 = animelemtime(5) = 0
 anim = 1005
