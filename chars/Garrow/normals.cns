@@ -408,6 +408,7 @@ ground.velocity = -4.5
 guard.hittime = 14
 air.velocity = -2,-3
 air.fall = 1
+air.hittime = 25
 fall.recovertime = 45
 ground.cornerpush.veloff = -5
 air.cornerpush.veloff = -5
@@ -1204,6 +1205,101 @@ fall 				= 1
 [State 210, ChangeState]
 type = ChangeState
 trigger1 = animtime = 0
+value = 0
+ctrl = 1
+
+;---------------------------------------------------------------------------
+;6B
+[Statedef 450]
+type    = S
+movetype= A
+physics = S
+ctrl = 0
+velset = vel x,0
+anim = 450
+sprpriority = 2
+facep2 = 1
+
+
+[State 210, 1]
+type = PlaySnd
+trigger1 = Time = 2
+value = 0, 4
+
+
+[State 230, 1]
+type = PlaySnd
+trigger1 = Time = 1
+value =210,0
+
+
+[State 0, Vel]
+type = velset
+trigger1 = animelem=2
+x = 3
+
+
+
+[State 210, 2]
+type = HitDef
+trigger1 = animelem= 6
+attr = S, NA
+hitflag = MAF
+guardflag = M
+animtype  = Medium
+damage    = 400
+pausetime = 11,11
+getpower = 20,0
+givepower = 20,0
+priority = 3, Hit 
+sparkno = 1
+sparkxy = -10,-70
+hitsound   = 5,2
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 18
+ground.velocity = -2
+guard.hittime = 14
+air.velocity = -2,-3
+air.fall = 1
+air.hittime = 20
+fall.recovertime = 45
+ground.cornerpush.veloff = -5
+air.cornerpush.veloff = -5
+
+
+[State 210, 2]
+type = HitDef
+trigger1 = animelem= 9
+attr = S, NA
+hitflag = MAF
+guardflag = M
+animtype  = Medium
+damage    = 360
+pausetime = 11,11
+getpower = 20,0
+givepower = 20,0
+priority = 3, Hit 
+sparkno = 1
+sparkxy = -10,-70
+hitsound   = 5,2
+guardsound = 6,0
+ground.type = High
+ground.slidetime = 12
+ground.hittime  = 21
+ground.velocity = 6,-5
+guard.hittime = 14
+air.velocity = 6,-4
+air.fall = 1
+air.hittime = 30
+fall.recovertime = 45
+ground.cornerpush.veloff = -5
+air.cornerpush.veloff = -5
+
+[State 210, 5]
+type = ChangeState
+trigger1 = AnimTime = 0
 value = 0
 ctrl = 1
 ;---------------------------------------------------------------------------
