@@ -66,7 +66,6 @@ trigger2 = command = "holdback"
 trigger2 = (p2statetype = S) || (p2statetype = C)
 trigger2 = p2movetype != H
 
-
 ;---------------------------------------------------------------------------
 
 ;---------------------------------------------------------------------------
@@ -148,7 +147,58 @@ trigger2 =  var(2)
 
 ;---------------------------------------------------------------------------
 
+; Scarlet Edge Ground Variants (Launch into air)
+;---------------------------------------------------------------------------
+;214A - Scarlet Edge (Light) 
+[State -1, Scarlet Edge A (Ground)]
+type = ChangeState
+value = 1300 
+triggerall = command = "214A" 
+triggerall = statetype != A ; check for grounded state
+trigger1 = ctrl
 
+;214B - Scarlet Edge (Medium)
+[State -1, Scarlet Edge B (Ground)]
+type = ChangeState
+value = 1310
+triggerall = command = "214B"
+triggerall = statetype != A
+trigger1 = ctrl
+
+;214C - Scarlet Edge (Heavy)
+[State -1, Scarlet Edge C (Ground)]
+type = ChangeState
+value = 1320
+triggerall = command = "214C"
+triggerall = statetype != A
+trigger1 = ctrl
+
+;---------------------------------------------------------------------------
+; Scarlet Edge Air Variants (Downward Fireballs)
+;---------------------------------------------------------------------------
+;j214A - Scarlet Edge (Light Air)
+[State -1, Scarlet Edge A (Air)]
+type = ChangeState
+value = 1305
+triggerall = command = "214A"
+triggerall = statetype = A
+trigger1 = ctrl
+
+;j214B - Scarlet Edge (Medium Air)
+[State -1, Scarlet Edge B (Air)]
+type = ChangeState
+value = 1315
+triggerall = command = "214B"
+triggerall = statetype = A
+trigger1 = ctrl
+
+;j214C - Scarlet Edge (Heavy Air)
+[State -1, Scarlet Edge C (Air)]
+type = ChangeState
+value = 1325
+triggerall = command = "214C"
+triggerall = statetype = A
+trigger1 = ctrl
 
 ;===========================================================================
 ;---------------------------------------------------------------------------
