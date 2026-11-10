@@ -2434,12 +2434,12 @@ type = Explod
 trigger1 = Time = 0
 anim = 7000
 postype = left
-pos = 0,100 ; adjust positioning here
+pos = 0,200 ; adjust positioning here
 facing = 1
-sprpriority = 1
+sprpriority = -1
 ownpal = 1
 ignorehitpause = 1
-scale = 0.1,0.1
+scale = 0.2,0.2
 bindtime = -1 ; lock to viewport bounds 1 = default, -1 = infinite (until removetime)
 removetime = 30 ; adjust as needed, 30 frames ≈ 0.5 second
 
@@ -2448,12 +2448,12 @@ type = Explod
 trigger1 = Time = 0
 anim = 7001
 postype = left
-pos = 0,100 ; adjust positioning here
+pos = 0,200 ; adjust positioning here
 facing = 1
 ownpal = 1
 ignorehitpause = 1
-sprpriority = 0
-scale = 0.1,0.1
+sprpriority = -1
+scale = 0.2,0.2
 bindtime = -1 ; lock to viewport bounds
 removetime = 30
 
