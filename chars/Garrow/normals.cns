@@ -1315,6 +1315,12 @@ velset = 0,0
 anim = 42
 sprpriority = 2
 
+[State 500, Set Assault Flag]
+type = MapSet
+trigger1 = Time = 0
+map = "assault_flag"
+value = 1
+
 [State 220]
 type = PlaySnd
 trigger1 = Time = 0
@@ -1448,13 +1454,41 @@ type = PlaySnd
 trigger1 = Time = 1
 value = 200, Random % 2
 
-[State 610, 3]
+;--- Assault HitDef (hits mid) ---
+[State 610, Assault HitDef]
 type = HitDef
-trigger1 = !time
+trigger1 = !time && (Vel Y < 0 || Map(assault_flag) = 1) ; only trigger if coming from assault dash or rising
+attr = A, NA
+damage = 400
+hitflag = MAF
+guardflag = MA ; hit mid
+pausetime = 12,12 + 2 * (enemy, movetype = A)
+sparkno = 1
+sparkxy = -5, -35 
+hitsound = 5,3
+guardsound 			= 6,0
+ground.type 	= high
+air.type		= high
+ground.slidetime 	= 6
+ground.hittime  	= 20
+air.hittime  		= 22 
+ground.velocity 	= -3
+guard.velocity 	= -1
+fall.yvelocity 	= 0
+air.velocity 		= -1.5,-2
+guard.ctrltime 	= 14
+air.fall 			= 1
+ground.cornerpush.veloff = -3
+air.cornerpush.veloff 	= -3 
+
+; --- Normal HitDef (hits high) ---
+[State 610, Normal HitDef]
+type = HitDef
+trigger1 = !time && Map(assault_flag) != 1   ; <-- trigger on standard jumps
 attr = A, NA
 damage = 400
 hitflag 	= MAF
-guardflag 	= HA
+guardflag 	= HA  ; hits high (overhead)
 pausetime 	= 12,12 + 2 * (enemy, movetype = A)
 sparkno 		= 1
 sparkxy 		= -5,-35
@@ -1474,10 +1508,12 @@ air.fall 			= 1
 ground.cornerpush.veloff = -3
 air.cornerpush.veloff 	= -3 
 
-[State 610, 3]
-type = ModifyHitDef
-trigger1 = vel y < 0
-guardflag = MA
+[State 610, Clear Flag on Hit]
+type = MapSet 
+trigger1 = movecontact
+map = "assault_flag"
+value = 0
+
 
 [State 600, 3]
 type = changestate
