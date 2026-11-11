@@ -608,29 +608,18 @@ trigger1 = !time
 value = 3000, 0
 
 
-[State 0, Corner Effect]
-type = Explod
+[State 0, Trigger EX Cut-In Effect]
+type = Helper
 trigger1 = Time = 0
-anim = 7000
-pos = camerapos x - 230, camerapos y
-postype = none
-facing = 1
-sprpriority = 1
+helpertype = normal
+name = "EX Cut-In"
+ID = 6000
+stateno = 6000
+pos = 0, 0
+postype = p1
+facing = ifelse(TeamSide = 1, 1, -1)
 ownpal = 1
 ignorehitpause = 1
-scale = 0.25,0.25
-
-[State 0, Corner Effect]
-type = Explod
-trigger1 = Time = 0
-anim = 7001
-pos = camerapos x - 230, camerapos y
-postype = none
-facing = 1
-ownpal = 1
-ignorehitpause = 1
-sprpriority = 0
-scale = 0.25,0.25
 
 [State 1300, 1]
 type = poweradd
@@ -1683,27 +1672,18 @@ trigger1 = !time
 value = 3000, 0
 
 
-[State 0, Corner Effect]
-type = Explod
+[State 0, Trigger EX Cut-In Effect]
+type = Helper
 trigger1 = Time = 0
-anim = 7000
-pos = 0,0
-facing = 1
-sprpriority = 1
+helpertype = normal
+name = "EX Cut-In"
+ID = 6000
+stateno = 6000
+pos = 0, 0
+postype = p1
+facing = ifelse(TeamSide = 1, 1, -1)
 ownpal = 1
 ignorehitpause = 1
-scale = 0.25,0.25
-
-[State 0, Corner Effect]
-type = Explod
-trigger1 = Time = 0
-anim = 7001
-pos = 0,0
-facing = 1
-ownpal = 1
-ignorehitpause = 1
-sprpriority = 0
-scale = 0.25,0.25
 
 [State 1300, 1]
 type = poweradd
@@ -2429,65 +2409,18 @@ trigger1 = !time
 value = 3000, 0
 
 
-[State 0, P1 Corner Effect]
-type = Explod
-triggerall = TeamSide = 1 ; only runs if character on p1 side
+[State 0, Trigger EX Cut-In Effect]
+type = Helper
 trigger1 = Time = 0
-anim = 7000
-postype = left
-pos = 0,200 ; adjust positioning here
-facing = 1
-sprpriority = -1
+helpertype = normal
+name = "EX Cut-In"
+ID = 6000
+stateno = 6000
+pos = 0, 0
+postype = p1
+facing = ifelse(TeamSide = 1, 1, -1)
 ownpal = 1
 ignorehitpause = 1
-scale = 0.2,0.2
-bindtime = -1 ; lock to viewport bounds 1 = default, -1 = infinite (until removetime)
-removetime = 30 ; adjust as needed, 30 frames ≈ 0.5 second
-
-[State 0, P1 Corner Effect]
-type = Explod
-triggerall = TeamSide = 1 ; only runs if character on p1 side
-trigger1 = Time = 0
-anim = 7001
-postype = left
-pos = 0,200 ; adjust positioning here
-facing = 1
-ownpal = 1
-ignorehitpause = 1
-sprpriority = -1
-scale = 0.2,0.2
-bindtime = -1 ; lock to viewport bounds
-removetime = 30
-
-[State 0, P2 Corner Effect]
-type = Explod
-triggerall = TeamSide = 2 ; only runs if character on p1 side
-trigger1 = Time = 0
-anim = 7000
-postype = right
-pos = 0,200 ; adjust positioning here
-facing = -1
-sprpriority = -1
-ownpal = 1
-ignorehitpause = 1
-scale = 0.2,0.2
-bindtime = -1 ; lock to viewport bounds 1 = default, -1 = infinite (until removetime)
-removetime = 30 ; adjust as needed, 30 frames ≈ 0.5 second
-
-[State 0, P2 Corner Effect]
-type = Explod
-triggerall = TeamSide = 2 ; only runs if character on p2 side
-trigger1 = Time = 0
-anim = 7001
-postype = right
-pos = 0,200 ; adjust positioning here
-facing = -1
-ownpal = 1
-ignorehitpause = 1
-sprpriority = -1
-scale = 0.2,0.2
-bindtime = -1 ; lock to viewport bounds
-removetime = 30
 
 [State 1300, 1]
 type = poweradd
@@ -2877,7 +2810,7 @@ value = 0
 ctrl = 1
 
 ;---------------------------------------------------------------------------
-;22C Nia Maximum C
+;22C Nia Maximum C (EX version)
 [Statedef 2002]
 type = S
 movetype= A
@@ -2916,28 +2849,18 @@ trigger1 = !time
 value = 3000, 0
 
 
-[State 0,]
-type = Explod
+[State 0, Trigger EX Cut-In Effect]
+type = Helper
 trigger1 = Time = 0
-anim = 7000
-postype = back
-pos = -20,20
-facing = 1
-sprpriority = 1
+helpertype = normal
+name = "EX Cut-In"
+ID = 6000
+stateno = 6000
+pos = 0, 0
+postype = p1
+facing = ifelse(TeamSide = 1, 1, -1)
 ownpal = 1
 ignorehitpause = 1
-scale = 0.25,0.25
-
-[State 0, ]
-type = Explod
-trigger1 = Time = 0
-anim = 7001
-pos = -20,20
-facing = 1
-ownpal = 1
-ignorehitpause = 1
-sprpriority = 0
-scale = 0.25,0.25
 
 [State 1300, 1]
 type = poweradd
@@ -3042,6 +2965,49 @@ trigger1 = RoundTime = 0
 map 		= "M_stack_NIA"
 value 		= 0
 
+;---------------------------------------------------------------------------
+; EX Move Cut-In Helper [Statedef 6000]
+[Statedef 6000]
+type = A
+movetype = I
+physics = N
+anim = 9999 ; using invis anim from .air file
+ctrl = 0
+
+[State 6000, EX Cut-In Effect]
+type = Explod
+trigger1 = Time = 0
+anim = 7000
+postype = left
+; if TeamSide is 1, X is 0. If TeamSide is 2, X is the full screen width (GameWidth)
+pos = ifelse(TeamSide = 1, 0, ScreenWidth), 200
+; Faces right (1) for P1, faces left (-1) for P2
+facing = ifelse(TeamSide = 1, 1, -1)
+sprpriority = -1
+ownpal = 1
+ignorehitpause = 1
+scale = 0.2,0.2
+bindtime = -1 ; lock to viewport bounds 1 = default, -1 = infinite (until removetime)
+removetime = 30 ; adjust as needed, 30 frames ≈ 0.5 second
+
+[State 6000, EX Cut-In Background Effect]
+type = Explod
+trigger1 = Time = 0
+anim = 7001
+postype = left
+pos = ifelse(TeamSide = 1, 0, ScreenWidth), 200
+facing = ifelse(TeamSide = 1, 1, -1)
+ownpal = 1
+ignorehitpause = 1
+sprpriority = -1
+scale = 0.2,0.2
+bindtime = -1 ; lock to viewport bounds
+removetime = 30
+
+[State 6000, Destroy Self]
+type = DestroySelf
+trigger1 = Time >= 30 ; clean up helper once cut-in finishes
+
 
 [Statedef +1]
 ; Red Afterimage
@@ -3061,4 +3027,5 @@ type = DisplayToClipboard
 trigger1 = 1
 text = "L_stack_NIA %f"
 params = map(L_stack_NIA)
+
 
