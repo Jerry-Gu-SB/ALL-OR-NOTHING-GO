@@ -2979,7 +2979,7 @@ type = Explod
 trigger1 = Time = 0
 anim = 7000
 postype = left
-; if TeamSide is 1, X is 0. If TeamSide is 2, X is the full screen width (GameWidth)
+; if TeamSide is 1, X is 0. If TeamSide is 2, X is the full screen width (ScreenWidth)
 pos = ifelse(TeamSide = 1, 0, ScreenWidth), 200
 ; Faces right (1) for P1, faces left (-1) for P2
 facing = ifelse(TeamSide = 1, 1, -1)
