@@ -91,6 +91,11 @@ trigger2 = stateno = 1201
 ;Special Moves
 ;---------------------------------------------------
 
+[State -1, Reflector]
+type = ChangeState
+value = 900
+triggerall = command = "BC" && statetype != A
+trigger1 = var(1) || ctrl
 
 
 ;236A - Maximum Missile

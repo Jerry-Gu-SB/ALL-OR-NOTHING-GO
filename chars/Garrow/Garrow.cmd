@@ -74,7 +74,7 @@ trigger2 = p2movetype != H
 type = ChangeState
 value = 1000
 triggerall = command = "236A" && statetype != A
-trigger1 = var(1)
+trigger1 = var(1)|| ctrl
 
 
 ;---------------------------------------------------------------------------
@@ -83,7 +83,7 @@ trigger1 = var(1)
 type = ChangeState
 value = 1010
 triggerall = command = "236B" && statetype != A
-trigger1 = var(1)
+trigger1 = var(1)|| ctrl
 
 ;Ex Crescent Edge
 [State -1]
@@ -91,8 +91,8 @@ type = ChangeState
 value = 1020
 triggerall = command = "236C"
 triggerall = power >= 1000 && statetype != A
-trigger1 = var(1)
-trigger2 =  var(2)
+trigger1 = var(1)|| ctrl
+trigger2 =  var(2)|| ctrl
 
 
 [State -1]
@@ -122,7 +122,7 @@ type = ChangeState
 value = 1100
 triggerall = command = "22A"
 triggerall = statetype != A
-trigger1 = var(1)
+trigger1 = var(1)|| ctrl
 
 ;---------------------------------------------------------------------------
 ;22B Blood Cleaver
@@ -131,7 +131,7 @@ type = ChangeState
 value = 1110
 triggerall = command = "22B"
 triggerall = statetype != A
-trigger1 = var(1)
+trigger1 = var(1)|| ctrl
 
 ;---------------------------------------------------------------------------
 ;22C Blood Cleaver
@@ -141,8 +141,8 @@ value = 1120
 triggerall = command = "22C"
 triggerall = statetype != A
 triggerall = power >= 1000
-trigger1 = var(1)
-trigger2 =  var(2)
+trigger1 = var(1)|| ctrl
+trigger2 =  var(2)|| ctrl
 
 
 ;---------------------------------------------------------------------------
@@ -155,7 +155,7 @@ type = ChangeState
 value = 1300 
 triggerall = command = "214A" 
 triggerall = statetype != A ; check for grounded state
-trigger1 = ctrl
+trigger1 = var(1)|| ctrl
 
 ;214B - Scarlet Edge (Medium)
 [State -1, Scarlet Edge B (Ground)]
@@ -163,7 +163,7 @@ type = ChangeState
 value = 1310
 triggerall = command = "214B"
 triggerall = statetype != A
-trigger1 = ctrl
+trigger1 =var(1)|| ctrl
 
 ;214C - Scarlet Edge (Heavy)
 [State -1, Scarlet Edge C (Ground)]
@@ -171,7 +171,10 @@ type = ChangeState
 value = 1320
 triggerall = command = "214C"
 triggerall = statetype != A
-trigger1 = ctrl
+triggerall = power >= 1000
+trigger1 = var(1)|| ctrl
+trigger2 =  var(2)|| ctrl
+
 
 ;---------------------------------------------------------------------------
 ; Scarlet Edge Air Variants (Downward Fireballs)
@@ -182,7 +185,7 @@ type = ChangeState
 value = 1305
 triggerall = command = "214A"
 triggerall = statetype = A
-trigger1 = ctrl
+trigger1 = var(1)|| ctrl
 
 ;j214B - Scarlet Edge (Medium Air)
 [State -1, Scarlet Edge B (Air)]
@@ -190,7 +193,7 @@ type = ChangeState
 value = 1315
 triggerall = command = "214B"
 triggerall = statetype = A
-trigger1 = ctrl
+trigger1 = var(1)|| ctrl
 
 ;j214C - Scarlet Edge (Heavy Air)
 [State -1, Scarlet Edge C (Air)]
@@ -198,7 +201,9 @@ type = ChangeState
 value = 1325
 triggerall = command = "214C"
 triggerall = statetype = A
-trigger1 = ctrl
+triggerall = power >= 1000
+trigger1 =  var(1)|| ctrl
+trigger2 =  var(2)|| ctrl
 
 ;===========================================================================
 ;---------------------------------------------------------------------------
