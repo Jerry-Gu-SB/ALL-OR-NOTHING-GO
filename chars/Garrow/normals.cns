@@ -33,7 +33,7 @@ givepower = 20,0
 pausetime = 10, 10 
 guard.pausetime = 10,10              ;Time attacker pauses, time opponent shakes
 sparkno = 0                      ;Spark anim no (Def: set above)
-sparkxy = -10, -76               ;X-offset for the "hit spark" rel. to p2,
+sparkxy = -10, -80               ;X-offset for the "hit spark" rel. to p2,
 ;Y-offset for the spark rel. to p1
 hitsound = 5, 0                  ;Sound to play on hit
 guardsound = 6, 0                ;Sound to play on guard
@@ -109,7 +109,7 @@ ground.TYPE 			= High
 air.TYPE 				= High
 priority = 2, Hit 
 ;===============================
-sparkno 				= 1
+sparkno 				= 0
 sparkxy 				= -p2dist x * 0.25, -50
 hitsound 				= 5,0
 guardsound 			= 6,0
@@ -185,8 +185,8 @@ ground.TYPE 			= High
 air.TYPE 				= High
 priority = 2, Hit 
 ;===============================
-sparkno 				= 1
-sparkxy 				= -p2dist x * 0.25, -50
+sparkno 				= 4
+sparkxy 				= -p2dist x * 0.25, -66
 hitsound 				= s1,7
 guardsound 			= 6,0
 ;===============================
@@ -737,7 +737,7 @@ air.TYPE 				= High
 priority = 2, Hit 
 ;===============================
 sparkno 				= 1
-sparkxy 				= -p2dist x * 0.25, -50
+sparkxy 				= -p2dist x * 0.25, -48
 hitsound 				= 5,0
 guardsound 			= 6,0
 ;===============================
@@ -783,8 +783,8 @@ ground.TYPE 			= High
 air.TYPE 				= High
 priority = 2, Hit 
 ;===============================
-sparkno 				= 1
-sparkxy 				= -p2dist x * 0.25, -50
+sparkno 				= 0
+sparkxy 				= -p2dist x * 0.25, -60
 hitsound 				= 5,0
 guardsound 			= 6,0
 ;===============================
@@ -900,8 +900,8 @@ givepower = 20,0
 ;Hit/Miss/Dodge type (Def: Hit)
 pausetime = 10, 10                ;Time attacker pauses, time opponent shakes
 guard.pausetime = 10,10
-sparkno = 0                      ;Spark anim no (Def: set above)
-sparkxy = -10, -70               ;X-offset for the "hit spark" rel. to p2,
+sparkno = 1                     ;Spark anim no (Def: set above)
+sparkxy = -10, -58               ;X-offset for the "hit spark" rel. to p2,
 ;Y-offset for the spark rel. to p1
 hitsound = 5, 0                  ;Sound to play on hit
 guardsound = 6, 0                ;Sound to play on guard
@@ -984,7 +984,7 @@ air.TYPE 				= High
 priority = 2, Hit 
 ;===============================
 sparkno 				= 1
-sparkxy 				= -10,-5
+sparkxy 				= -10,-9
 hitsound 				= 5,2
 guardsound 			= 6,0
 ;===============================
@@ -1083,7 +1083,7 @@ ground.TYPE 			= Trip
 air.TYPE 				= High
 priority = 2, Hit 
 ;===============================
-sparkno 				= 1
+sparkno 				= 4
 sparkxy 				= -p2dist x * 0.25, -10
 hitsound 				= s1,8
 guardsound 			= 6,0
