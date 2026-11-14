@@ -6,7 +6,7 @@
 ; for drawtypes (optional), A - trans_add, S - trans_sub.
 
 ;---------------------------------------------------------------------------
-; Light hit spark
+; medium  hit spark
 [Begin Action 0]
 0,0, 0,0, 2, , , 0.11,0.11
 Interpolate Blend
@@ -14,13 +14,13 @@ Interpolate Blend
 0,1, 0,0, 3, , , 0.13,0.13
 0,2, 0,0, 3, , AS256D132, 0.2,0.2
 
-; Medium hit spark
+; light  hit spark
 [Begin Action 1]
-1,0, 0,0, 2, , , 0.12,0.12
+1,0, 0,0, 2, , , 0.13,0.13
 Interpolate Blend
-1,0, 0,0, 3, , , 0.13,0.13
-1,1, 0,0, 3, , , 0.14,0.14
-1,2, 0,0, 3, , AS256D132, 0.24,0.24
+1,0, 0,0, 3, , , 0.15,0.15
+1,1, 0,0, 3, , , 0.16,0.16
+1,2, 0,0, 3, , AS256D132, 0.27,0.27
 
 ; Strong hit spark
 [Begin Action 2]
@@ -66,6 +66,30 @@ Interpolate Blend
 4,1, 0,0, 3, , , 0.33,0.33
 4,2, 0,0, 3, , , 0.34,0.34
 4,3, 0,0, 3, , AS256D132, 0.34,0.34
+
+; slash left
+[Begin Action 5]
+4,0, 0,0, 2, , , 0.32,0.32, 50
+Interpolate Blend
+4,1, 0,0, 3, , , 0.33,0.33, 50
+4,2, 0,0, 3, , , 0.34,0.34, 50
+4,3, 0,0, 3, , AS256D132, 0.34,0.34, 50
+
+; slash right
+[Begin Action 6]
+4,0, 0,0, 2, , , 0.32,0.32, 120
+Interpolate Blend
+4,1, 0,0, 3, , , 0.33,0.33, 120
+4,2, 0,0, 3, , , 0.34,0.34, 120
+4,3, 0,0, 3, , AS256D132, 0.34,0.34, 120
+
+; slash vertical
+[Begin Action 7]
+4,0, 0,0, 2, , , 0.32,0.32, 90
+Interpolate Blend
+4,1, 0,0, 3, , , 0.33,0.33, 90
+4,2, 0,0, 3, , , 0.34,0.34, 90
+4,3, 0,0, 3, , AS256D132, 0.34,0.34, 90
 
 ; Weak blood hit spark
 [Begin Action 10]
