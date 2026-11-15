@@ -156,7 +156,7 @@ map = "NiaCannotLStackArmor"
 value = 0
 ignorehitpause = 1
 
-[State 1000, L Stack Decrement]
+[State 1000, M Stack Decrement]
 type = MapAdd
 trigger1 = !IsHelper && map(M_stack_NIA) > 0 && time = 0
 map = "M_stack_NIA"
@@ -301,10 +301,9 @@ type = veladd
 trigger1 = animelemtime(6) > 0
 y = 0.8
 
-
 [State 0, JORMUNGANDR DEFAULT HITDEF]
 type 				= HitDef
-trigger1 				= !movecontact && !movereversed
+trigger1 				= !movecontact && !movereversed && map(M_stack_NIA) > 0
 ;===============================
 damage 				= 800 
 pausetime 			= 10,10 + 2 * enemy, movetype = A
@@ -347,6 +346,54 @@ fall 				= 1
 missonoverride = 0
 ;===============================
 
+
+
+[State 0, JORMUNGANDR DEFAULT HITDEF]
+type 				= HitDef
+trigger1 				= !movecontact && !movereversed &&  map(M_stack_NIA) = 0
+;===============================
+damage 				= 800 
+pausetime 			= 10,10 + 2 * enemy, movetype = A
+getpower 				= 25 
+;===============================
+attr 				= S,NA
+hitflag 				= MAF
+guardflag 			= HA
+animtype 				= Hard
+air.animtype 			= Hard
+ground.TYPE 			= High
+air.TYPE 				= High
+priority = 3, Hit 
+;===============================
+sparkno 				= 1
+sparkxy 				= -p2dist x * 0.25, -50
+hitsound                = s1,7
+guardsound 			= 6,0
+;===============================
+ground.hittime 		= 20
+ground.slidetime		= 16
+air.hittime 			= 40
+down.hittime 			= 10
+ground.velocity 		= -3
+air.velocity 			= -4,9
+;===============================
+guard.hittime 		= 10 
+guard.slidetime		= 15
+guard.velocity 		= -8
+airguard.velocity 		= -1,-1
+;===============================
+ground.cornerpush.veloff	= -4
+air.cornerpush.veloff 	= -4
+down.cornerpush.veloff 	= -8
+guard.cornerpush.veloff 	= -8
+;===============================
+p2stateno = 5249
+p2getp1state = 0
+fall 				= 1
+missonoverride = 0
+;===============================
+
+
 [State 610, ChangeState]
 type = ChangeState
 trigger1 = pos y >= 0 && vel y > 0
@@ -382,7 +429,7 @@ ignorehitpause = 1
 ; =================== M STACK DECREMENT ====================
 [State 1000, M Stack Decrement]
 type = MapAdd
-trigger1 = !IsHelper && map(L_stack_NIA) > 0 && time = 0
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && time = 0
 map = "M_stack_NIA"
 value = -1
 

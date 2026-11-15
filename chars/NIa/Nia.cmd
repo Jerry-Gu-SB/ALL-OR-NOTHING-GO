@@ -117,6 +117,7 @@ type = ChangeState
 value = 1211
 triggerall = command = "A" && command = "holdfwd"
 trigger1 = stateno = 1000 && movecontact
+trigger2 = stateno = 1210 && movecontact
 
 ;236A (22B stack)  6B Afterburner
 [State -1]
