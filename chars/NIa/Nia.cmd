@@ -125,6 +125,7 @@ type = ChangeState
 value = 1213
 triggerall = command = "B" && command = "holdfwd"
 trigger1 = stateno = 1000 && movecontact
+trigger2 = stateno = 1210 && movecontact
 
 ;236B - Maximum Missile
 [State -1]
