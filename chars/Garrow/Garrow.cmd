@@ -94,6 +94,13 @@ triggerall = power >= 1000 && statetype != A
 trigger1 = var(1)|| ctrl
 trigger2 =  var(2)|| ctrl
 
+[State -1, 236x 6A]
+type = ChangeState
+value = 501
+triggerall = command = "A" && command = "holdfwd"
+triggerall = command != "holddown"
+triggerall = statetype != A
+trigger1 = (stateno = [1001,1003] || stateno = [1012,1013]) && movecontact
 
 [State -1]
 type = ChangeState
