@@ -245,6 +245,18 @@ triggerall = statetype != A
 trigger1 = ctrl || (stateno = [200,233] || stateno = [400,440]) && movecontact
 trigger2 = stateno = 101 
 
+;6A
+[State -1, 3C]
+type = ChangeState
+value = 670
+triggerall = !ishelper
+triggerall = !AIlevel
+triggerall = command = "A" && command = "holdfwd"
+triggerall = command != "holddown"
+triggerall = statetype != A
+trigger1 = ctrl || (stateno = [200,225] || stateno = [400,440]) && movecontact
+trigger2 = stateno = 101 
+
 ;Sweep
 [State -1]
 type = ChangeState

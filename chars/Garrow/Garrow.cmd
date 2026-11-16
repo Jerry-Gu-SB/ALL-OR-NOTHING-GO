@@ -236,6 +236,16 @@ triggerall = command = "B"
 trigger1 = statetype != A
 trigger1 = Stateno = 100
 ;---------------------------------------------------------------------------
+
+[State -1, 6A]
+type = ChangeState
+value = 460
+triggerall = command = "A" && command = "holdfwd"
+triggerall = command != "holddown"
+triggerall = statetype != A
+trigger1 = ctrl|| (stateno = [200,225] || stateno = [400,420]) && movecontact
+trigger2 = stateno = 100 
+
 [State -1, 3C]
 type = ChangeState
 value = 450
