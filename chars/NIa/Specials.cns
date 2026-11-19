@@ -3170,19 +3170,40 @@ physics = N
 anim = 9999 ; using invis anim from .air file
 ctrl = 0
 
+[State 6000, EX Freeze Frame]
+type = SuperPause
+trigger1 = Time = 0
+time = 3 ; Freezes the rest of the stage/opponent for frame duration
+anim = -1 ; Suppress default MUGEN blue flash/spark 
+sound = -1 ; Suppress default MUGEN super sound (in case we wanna play our own PlaySnd)
+pos = 0,0
+movetime = 3 ; Allows THIS helper to keep moving/animating during the freeze
+darken = 0 ; Set to 1 if we want to dim the stage background during the freeze
+
+[State 6000, UNIB Zoom In]
+type = Zoom
+trigger1 = Time = 0
+scale = 1.05 ; slighlty zoom in camera (1.0 is default)
+pos = Root, pos x, root, pos y ; focus zoom on cut-in side
+time = 30 ; zoom in for cut-in duration
+movetime = 8 ; # of frames to zoom in
+outtime = 12 ; # of frames to zoom out
+lag = 0.85 ; (0 = instant snap, 0.99 = heavily cushioned glide)
+
 [State 6000, EX Cut-In Effect]
 type = Explod
 trigger1 = Time = 0
 anim = 7000
-postype = left
-; if TeamSide is 1, X is 0. If TeamSide is 2, X is the full screen width (ScreenWidth)
-pos = ifelse(TeamSide = 1, 0, ScreenWidth), 200
-; Faces right (1) for P1, faces left (-1) for P2
-facing = ifelse(TeamSide = 1, 1, -1)
+under = 1 ; force to background under character and all HUD elements
+ontop = 0
+space = screen
+pos = ifelse(root,facing = 1, 0, ScreenWidth), 200
+facing = 1 ; Keeping at 1 to prevent sprite from going offscreen
+vfacing = 1
 sprpriority = -1
 ownpal = 1
 ignorehitpause = 1
-scale = 0.2,0.2
+scale = ifelse(root,facing = 1, 0.2, -0.2), 0.2 ; If facing left, invert the scale's X component to mirror it inward
 bindtime = -1 ; lock to viewport bounds 1 = default, -1 = infinite (until removetime)
 removetime = 30 ; adjust as needed, 30 frames ≈ 0.5 second
 
@@ -3190,19 +3211,23 @@ removetime = 30 ; adjust as needed, 30 frames ≈ 0.5 second
 type = Explod
 trigger1 = Time = 0
 anim = 7001
-postype = left
-pos = ifelse(TeamSide = 1, 0, ScreenWidth), 200
-facing = ifelse(TeamSide = 1, 1, -1)
+under = 1 ; force to background under character and all HUD elements
+ontop = 0
+space = screen
+pos = ifelse(root,facing = 1, 0, ScreenWidth), 200
+facing = 1
+vfacing = 1
 ownpal = 1
 ignorehitpause = 1
 sprpriority = -1
-scale = 0.2,0.2
+scale = ifelse(root,facing = 1, 0.2, -0.2), 0.2
 bindtime = -1 ; lock to viewport bounds
 removetime = 30
 
 [State 6000, Destroy Self]
 type = DestroySelf
 trigger1 = Time >= 30 ; clean up helper once cut-in finishes
+;---------------------------------------------------------------------------
 
 
 [Statedef +1]
