@@ -1200,37 +1200,135 @@ value = 1305 ; shift into air fireball state
 ctrl = 0 ; keeping control locked to execute attack automatically
 
 ;===========================================================================
-; j.214A - Scarlet Edge Fireball (Light)
+; j.214A - Start - Charge Check
 ;===========================================================================
 [Statedef 1305]
 type = A
 movetype = A
-physics = N ; temp disable gravity physics
+physics = A             ; Keep normal air gravity & jump momentum active!
+ctrl = 0
+anim = 1305             ; Charge/wind-up animation
+; NO velset = 0, 0 here so momentum carries over
+
+; --- HALT MOMENTUM ONCE CHARGED (At Frame 25) ---
+[State 1305, Freeze Momentum When Charged]
+type = VelSet
+trigger1 = Time = 15
+x = 0
+y = 0
+
+[State 1305, Disable Gravity When Charged]
+type = StateTypeSet
+trigger1 = Time = 15
+physics = N             ; Locks character in mid-air while holding full charge
+
+[State 1305, Full Charge Flash]
+type = PalFX
+trigger1 = Time = 15
+time = 8
+add = 120, 120, 40
+ignorehitpause = 1
+
+[State 1305, Full Charge Sound]
+type = PlaySnd
+trigger1 = Time = 15
+value = 3000, 1
+
+; --- LANDING SAFETY CHECK (In case they hit the floor before Time = 25) ---
+[State 1305, Land While Charging Early]
+type = ChangeState
+trigger1 = Vel Y > 0 && Pos Y >= 0
+value = 52              ; Standard landing state
+
+; --- BRANCHING ---
+; Branch 1: Released early -> Uncharged Fireball (Keeps Moving)
+[State 1305, Release Uncharged]
+type = ChangeState
+triggerall = Time >= 2
+trigger1 = command != "HOLD_A"
+trigger1 = Time < 15
+value = 1306
+
+; Branch 2: Held past threshold -> Charged Fireball (Stays Frozen)
+[State 1305, Release Charged]
+type = ChangeState
+trigger1 = command != "HOLD_A" && Time >= 15
+trigger2 = Time >= 25
+value = 1307
+
+;===========================================================================
+; j.214A - Uncharged Light Fireball (Maintains Jump Arc)
+;===========================================================================
+[Statedef 1306]
+type = A
+movetype = A
+physics = A             ; Continues natural falling/forward momentum
 ctrl = 0
 anim = 1305
-velset = 0,0 ; freeze mid-air for attack
+; Note: NO velset = 0, 0 
 
-[State 1305, Spawn Fireball Helper]
+[State 1306, Spawn Normal Fireball]
 type = Helper
 trigger1 = AnimElem = 3
 helpertype = Normal
 name = "Scarlet Edge Fireball Light"
 ID = 1360
 stateno = 1360
-pos = 30, -10
+pos = 70, -40
 postype = p1
 keyctrl = 0
 ownpal = 1
 
-[State 1305, Restore Gravity]
-type = StateTypeSet
-trigger1 = AnimTime = 0 ; trigger on fireball anim completion
-physics = A ; back to normal jumping physics
+; Land immediately if the jump arc touches the ground before AnimTime = 0
+[State 1306, Land Early]
+type = ChangeState
+trigger1 = Vel Y > 0 && Pos Y >= 0
+value = 52
 
-[State 1305, Back to Jump Fall]
+[State 1306, Back to Jump Fall]
 type = ChangeState
 trigger1 = AnimTime = 0
-value = 45 ; return control back to regular air state
+value = 45
+ctrl = 1
+
+;===========================================================================
+; j.214A - Charged Light Fireball (Halt Mid-Air Momentum)
+;===========================================================================
+[Statedef 1307]
+type = A
+movetype = A
+physics = N             ; Gravity stays disabled during the charged throw
+ctrl = 0
+anim = 1305
+velset = 0, 0           ; Guarantees zero movement during charged release
+
+[State 1307, Charged Release Flash]
+type = PalFX
+trigger1 = Time = 0
+time = 12
+add = 80, 20, 20
+
+[State 1307, Spawn Charged Fireball]
+type = Helper
+trigger1 = AnimElem = 3
+helpertype = Normal
+name = "Scarlet Edge Charged Fireball"
+ID = 1360
+stateno = 1360
+pos = 70, -40
+postype = p1
+keyctrl = 0
+ownpal = 1
+
+[State 1307, Restore Gravity]
+type = StateTypeSet
+trigger1 = AnimTime = 0
+physics = A             ; Re-enables gravity right as the throw finishes
+
+[State 1307, Back to Jump Fall]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 45
 ctrl = 1
 
 ;===========================================================================
@@ -1268,37 +1366,156 @@ value = 1315 ; shift into air fireball state
 ctrl = 0 ; keeping control locked to execute attack automatically
 
 ;===========================================================================
-; j.214B - Scarlet Edge Fireball (Medium)
+; j.214B - Start - Charge Check (Saves Momentum on Entry)
 ;===========================================================================
 [Statedef 1315]
 type = A
 movetype = A
-physics = N ; temp disable gravity physics
+physics = N             ; Turns off gravity so character floats immediately
+ctrl = 0
+anim = 1304
+; Note: Do NOT put velset = 0, 0 in the Statedef header, or it will erase Vel X/Y before Time = 0!
+
+; --- store jump momentum before freezing ---
+[State 1315, Save Horizontal Momentum]
+type = VarSet
+trigger1 = Time = 0
+fv = 1
+value = Vel X
+
+[State 1315, Save Vertical Momentum]
+type = VarSet
+trigger1 = Time = 0
+fv = 2
+value = Vel Y
+
+; --- freeze velocity to float in place ---
+[State 1315, Halt Momentum]
+type = VelSet
+trigger1 = Time = 0
+x = 0
+y = 0
+
+; --- small float hover bob ---
+[State 1315, Hover Bob Motion]
+type = VelSet
+trigger1 = Time >= 1
+x = 0
+y = 0.35 * sin(Time * 0.15)
+
+; --- indicator full charge (At Frame 25) ---
+[State 1315, Full Charge Flash]
+type = PalFX
+trigger1 = Time = 25
+time = 8
+add = 120, 120, 40
+ignorehitpause = 1
+
+[State 1315, Full Charge Sound]
+type = PlaySnd
+trigger1 = Time = 25
+value = 3000, 1
+
+; --- BRANCHING ---
+; Branch 1: Released early -> Uncharged Fireball (Restores Jump Momentum)
+[State 1315, Release Uncharged]
+type = ChangeState
+triggerall = Time >= 2
+trigger1 = command != "HOLD_B"
+trigger1 = Time < 25
+value = 1316
+
+; Branch 2: Held past threshold -> Charged Fireball (Stays Frozen)
+[State 1315, Release Charged]
+type = ChangeState
+trigger1 = command != "HOLD_B" && Time >= 25
+trigger2 = Time >= 60 ; (max hold time 1 second)
+value = 1317
+
+; --- LANDING SAFETY CHECK ---
+[State 1315, Land While Charging]
+type = ChangeState
+trigger1 = Vel Y > 0 && Pos Y >= 2
+value = 52
+
+;===========================================================================
+; j.214B - Uncharged Medium Fireball 
+;===========================================================================
+[Statedef 1316]
+type = A
+movetype = A
+physics = A             ; Re-enables normal air gravity
 ctrl = 0
 anim = 1315
-velset = 0,0 ; freeze mid-air for attack
 
-[State 1315, Spawn Fireball Helper]
+; --- restore saved jump momentum ---
+[State 1316, Restore Jump Arc]
+type = VelSet
+trigger1 = Time = 0
+x = fvar(1)
+y = fvar(2)
+
+[State 1316, Spawn Medium Fireball]
 type = Helper
 trigger1 = AnimElem = 3
 helpertype = Normal
 name = "Scarlet Edge Fireball Medium"
 ID = 1360
 stateno = 1360
-pos = 30, -10
+pos = 70, -40
 postype = p1
 keyctrl = 0
 ownpal = 1
 
-[State 1315, Restore Gravity]
-type = StateTypeSet
-trigger1 = AnimTime = 0 ; trigger on fireball anim completion
-physics = A ; back to normal jumping physics
+[State 1316, Land Early]
+type = ChangeState
+trigger1 = Vel Y > 0 && Pos Y >= 0
+value = 52
 
-[State 1315, Back to Jump Fall]
+[State 1316, Back to Jump Fall]
 type = ChangeState
 trigger1 = AnimTime = 0
-value = 45 ; return control back to regular air state
+value = 45
+ctrl = 1
+
+;===========================================================================
+; j.214B - Charged Medium Fireball 
+;===========================================================================
+[Statedef 1317]
+type = A
+movetype = A
+physics = A             ; Re-enables normal air gravity
+ctrl = 0
+anim = 1315
+
+; --- restore saved jump momentum ---
+[State 1317, Restore Jump Arc]
+type = VelSet
+trigger1 = Time = 0
+x = fvar(1)
+y = fvar(2)
+
+[State 1317, Spawn Medium Fireball]
+type = Helper
+trigger1 = AnimElem = 3
+helpertype = Normal
+name = "Scarlet Edge Fireball Medium"
+ID = 1360
+stateno = 1360
+pos = 70, -40
+postype = p1
+keyctrl = 0
+ownpal = 1
+
+[State 1317, Land Early]
+type = ChangeState
+trigger1 = Vel Y > 0 && Pos Y >= 0
+value = 52
+
+[State 1317, Back to Jump Fall]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 45
 ctrl = 1
 
 ;===========================================================================
@@ -1313,7 +1530,7 @@ ctrl = 0
 anim = 1320 ; set to match air launch anim
 velset = 0,0
 
-[State 1200, 6]
+[State 1200, EX Flash Explod]
 type = explod
 trigger1 = !time
 anim = 6114
@@ -1326,6 +1543,7 @@ bindtime = 4
 ownpal = 1
 ignorehitpause = 1
 scale = 0.5,0.5
+
 
 [State 1300, Blink]
 type = PalFX
@@ -1364,102 +1582,246 @@ value = 1325 ; shift into air fireball state
 ctrl = 0 ; keeping control locked to execute attack automatically
 
 ;===========================================================================
-; j.214C - Scarlet Edge Fireball (Heavy)
+; j.214C - Start - Charge Check (Momentum Preserved Until Charged)
 ;===========================================================================
 [Statedef 1325]
 type = A
 movetype = A
-physics = N ; temp disable gravity physics
+physics = A             ; Keep normal air gravity & jump momentum active
 ctrl = 0
-anim = 1325
-velset = 0,0 ; freeze mid-air for attack
+anim = 1325             ; Heavy charge animation (or reuse 1325)
 
-[State 1200, 6]
-type = explod
+; --- EX STARTUP EFFECTS (Only plays if input raw in the air, not from 1320) ---
+[State 1325, EX Flash Explod]
+type = Explod
+triggerall = PrevStateNo != 1320 ; Only triggers if done raw in the air (j.214C)
 trigger1 = !time
 anim = 6114
 id = 6114
 postype = p1
-pos = 0,-75
+pos = 0, -75
 facing = 1
 sprpriority = 3
 bindtime = 4
 ownpal = 1
 ignorehitpause = 1
-scale = 0.5,0.5
+scale = 0.5, 0.5
 
-[State 1300, Blink]
+[State 1325, EX PalFX Blink]
 type = PalFX
+triggerall = PrevStateNo != 1320
 trigger1 = !time
 time = 20
-add = 0,0,52
-sinadd = 64,32,5,3
+add = 0, 0, 52
+sinadd = 64, 32, 5, 3
 
-
-[State 1, 3]
-type = playsnd
+[State 1325, EX Sound]
+type = PlaySnd
+triggerall = PrevStateNo != 1320
 trigger1 = !time
 value = 3000, 0
 
-[State 1325, Spawn Fireball Helper]
+; --- HALT MOMENTUM ONCE CHARGED (At Frame 25) ---
+[State 1325, Freeze Momentum When Charged]
+type = VelSet
+trigger1 = Time = 25
+x = 0
+y = 0
+
+[State 1325, Disable Gravity When Charged]
+type = StateTypeSet
+trigger1 = Time = 25
+physics = N
+
+[State 1325, Full Charge Flash]
+type = PalFX
+trigger1 = Time = 25
+time = 8
+add = 120, 120, 40
+ignorehitpause = 1
+
+[State 1325, Full Charge Sound]
+type = PlaySnd
+trigger1 = Time = 25
+value = 3000, 1
+
+; --- LANDING SAFETY CHECK ---
+[State 1325, Land While Charging Early]
+type = ChangeState
+trigger1 = Vel Y > 0 && Pos Y >= 0 
+value = 52
+
+; --- BRANCHING ---
+; Branch 1: Released early -> Uncharged Heavy Fireball (Keeps Moving)
+[State 1325, Release Uncharged]
+type = ChangeState
+triggerall = Time >= 6
+trigger1 = command != "HOLD_C"
+trigger1 = Time < 25
+value = 1326
+
+; Branch 2: Held past threshold -> Charged Heavy Fireball (Stays Frozen)
+[State 1325, Release Charged]
+type = ChangeState
+trigger1 = command != "HOLD_C" && Time >= 25
+trigger2 = Time >= 45
+value = 1327
+
+;===========================================================================
+; j.214C - Uncharged Heavy Fireball (Maintains Jump Arc)
+;===========================================================================
+[Statedef 1326]
+type = A
+movetype = A
+physics = A
+ctrl = 0
+anim = 1325
+
+[State 1326, Spawn Heavy Fireball]
 type = Helper
 trigger1 = AnimElem = 3
 helpertype = Normal
 name = "Scarlet Edge Fireball Heavy"
 ID = 1360
 stateno = 1360
-pos = 30, -10
+pos = 70, -40
 postype = p1
 keyctrl = 0
 ownpal = 1
 
-[State 1325, Restore Gravity]
-type = StateTypeSet
-trigger1 = AnimTime = 0 ; trigger on fireball anim completion
-physics = A ; back to normal jumping physics
+[State 1326, Land Early]
+type = ChangeState
+trigger1 = Vel Y > 0 && Pos Y >= 0
+value = 52
 
-[State 1325, Back to Jump Fall]
+[State 1326, Back to Jump Fall]
 type = ChangeState
 trigger1 = AnimTime = 0
-value = 45 ; return control back to regular air state
+value = 45
 ctrl = 1
 
 ;===========================================================================
-; Scarlet Edge - Downward Fireball (Helper Object)
+; j.214C - Charged Heavy Fireball (Halts Momentum in Mid-Air)
+;===========================================================================
+[Statedef 1327]
+type = A
+movetype = A
+physics = N
+ctrl = 0
+anim = 1325
+velset = 0, 0
+
+[State 1327, Charged Release Flash]
+type = PalFX
+trigger1 = Time = 0
+time = 12
+add = 80, 20, 20
+
+[State 1327, Spawn Charged Heavy Fireball]
+type = Helper
+trigger1 = AnimElem = 3
+helpertype = Normal
+name = "Scarlet Edge Charged Heavy Fireball"
+ID = 1360
+stateno = 1360
+pos = 70, -40
+postype = p1
+keyctrl = 0
+ownpal = 1
+
+[State 1327, Restore Gravity]
+type = StateTypeSet
+trigger1 = AnimTime = 0
+physics = A
+
+[State 1327, Back to Jump Fall]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 45
+ctrl = 1
+
+;===========================================================================
+; Scarlet Edge - Projectile (Helper Object)
 ;===========================================================================
 [Statedef 1360]
 type    = A
 movetype= A
 physics = N
-anim    = 1360	; Traveling fireball animation ID
-velset  = 6, 6  ; Moves 6 pixels forward, 6 down
+anim    = 1360	; fireball animation ID
+velset  = 6, 6  ; Default Speed (Light), Moves 6 pixels forward, moves 6 down
 
-[State 1360, HitDef]
+; --- Adjust projectile speed based on performed version ---
+[State 1360, Medium Speed]
+type = VelSet
+trigger1 = Time = 0 && Parent, StateNo = 1316
+x = 7.5
+y = 7.5
+
+[State 1360, Heavy / Charged Speed]
+type = VelSet
+trigger1 = Time = 0 && (Parent, StateNo = 1326 || Parent, StateNo = 1307 || Parent, StateNo = 1317 || Parent, StateNo = 1327)
+x = 9
+y = 9
+
+; --- change sizing? ---
+[State 1360, Charged Size Boost]
+type = AngleDraw
+trigger1 = Parent, StateNo = 1307 || Parent, StateNo = 1317 || Parent, StateNo = 1327
+scale = 1.35, 1.35
+
+; --- NORMAL HITDEF (Light, Medium, Heavy Uncharged) ---
+[State 1360, HitDef Normal]
 type = HitDef
 trigger1 = Time = 0
+trigger1 = Parent, StateNo != 1307 && Parent, StateNo != 1317 && Parent, StateNo != 1327
 attr = A, SP
-damage = 60, 15
+damage = ifelse(Parent, StateNo = 1326, 80, ifelse(Parent, StateNo = 1316, 70, 60)), 15
 animtype = Medium
+hitflag = MAF
+guardflag = MA
+pausetime = 8, 8
+sparkno = -1
+guard.sparkno = -1
+ground.type = High
+ground.slidetime = 14
+ground.hittime = 14
+ground.velocity = -5, 0
+air.velocity = -4, -3
+
+; --- CHARGED HITDEF (Knocks Down + Higher Damage) ---
+[State 1360, HitDef Charged]
+type = HitDef
+trigger1 = Time = 0
+trigger1 = Parent, StateNo = 1307 || Parent, StateNo = 1317 || Parent, StateNo = 1327
+attr = A, SP
+damage = 105, 25
+animtype = Heavy
 hitflag = MAF ; MHLAFD+-  medium(=HL), high, low, air, fall, down
 guardflag = MA ; MHLAFD+-  default = empty / unguardable
 pausetime = 8, 8
 sparkno = -1
 guard.sparkno = -1
-;hitsound
-;guardsound
-;ground.type = 
-;ground.slidetime = 
-;ground.hittime = 
-;ground.velocity =
-;air.velocity =
+ground.type = High
+ground.slidetime = 18
+ground.hittime = 18
+ground.velocity = -6, -4
+air.velocity = -6, -4
+fall = 1
+
+; --- EXPLOSION TRIGGERS ---
+[State 1360, Hit Opponent Explosion]
+type = ChangeState
+trigger1 = MoveContact ; Explodes immediately when hitting or blocked by P2
+value = 1365
+ignorehitpause = 1
 
 [State 1360, Hit Floor Explosion]
 type = ChangeState
-trigger1 = Pos Y >= 0 ; trigger on contact with floor
-value = 1365 ; move into explosion state
+trigger1 = Pos Y >= 0 ; Explodes on contact with floor
+value = 1365
 
 ;===========================================================================
-; Scarlet Edge - Fireball Explosion
+; Scarlet Edge - Projectile Impact Explosion
 ;===========================================================================
 [Statedef 1365]
 type = S
@@ -1468,13 +1830,56 @@ physics = N
 anim = 1255 ; explosion anim id
 velset = 0, 0
 
-[State 1365, Snap to Ground Surface]
+[State 1365, Snap to Ground Surface] ; only occurs if near floor
 type = PosSet
-trigger1 = Time = 0
-y = 0 ; locks epxlosion spirte against floor
+trigger1 = Time = 0 && Pos Y >= -10
+y = 0 ; locks epxlosion sprite against floor
 
 [State 1365, Delete Fireball Helper]
 type = DestroySelf
 trigger1 = AnimTime = 0 ; delete obj on anim end
 
+
+;---------------------------------------------------------------------------
+; EX Move Cut-In Helper [Statedef 6000]
+[Statedef 6000]
+type = A
+movetype = I
+physics = N
+anim = 9999 ; using invis anim from .air file
+ctrl = 0
+
+[State 6000, EX Cut-In Effect]
+type = Explod
+trigger1 = Time = 0
+anim = 7000 ; TODO: needs to be changed to Garrow's EX Cut in anim id
+postype = left
+; if TeamSide is 1, X is 0. If TeamSide is 2, X is the full screen width (ScreenWidth)
+pos = ifelse(TeamSide = 1, 0, ScreenWidth), 200
+; Faces right (1) for P1, faces left (-1) for P2
+facing = ifelse(TeamSide = 1, 1, -1)
+sprpriority = -1
+ownpal = 1
+ignorehitpause = 1
+scale = 0.2,0.2
+bindtime = -1 ; lock to viewport bounds 1 = default, -1 = infinite (until removetime)
+removetime = 30 ; adjust as needed, 30 frames ≈ 0.5 second
+
+[State 6000, EX Cut-In Background Effect]
+type = Explod
+trigger1 = Time = 0
+anim = 7001
+postype = left
+pos = ifelse(TeamSide = 1, 0, ScreenWidth), 200
+facing = ifelse(TeamSide = 1, 1, -1)
+ownpal = 1
+ignorehitpause = 1
+sprpriority = -1
+scale = 0.2,0.2
+bindtime = -1 ; lock to viewport bounds
+removetime = 30
+
+[State 6000, Destroy Self]
+type = DestroySelf
+trigger1 = Time >= 30 ; clean up helper once cut-in finishes
 

@@ -2216,6 +2216,7 @@ Clsn2Default: 2
 Clsn2: 1
   Clsn2[0] = -130, -614, 150, 0
 1300,0, 0,-3, 9
+LoopStart
 Clsn2: 1
   Clsn2[0] = -188, -566, 204, -36
 1300,9, 0,0, 4
@@ -2235,6 +2236,11 @@ LoopStart
 Clsn2: 1
   Clsn2[0] = -176, -648, 134, -56
 640,6, 0,0, 2, H
+
+; Scarlet Edge - Charge Hold Loop
+[Begin Action 1304]
+Loopstart
+1300, 9, 0, 0, 4
 
 ; Medium SE
 [Begin Action 1310]
@@ -2294,7 +2300,6 @@ Clsn2: 1
 Clsn2: 1
   Clsn2[0] = -162, -600, 204, -124
 1300,7, 0,40, 4, , , 1,1.1
-LoopStart
 Clsn2: 1
   Clsn2[0] = -176, -648, 134, -56
 640,6, 0,0, 3, H

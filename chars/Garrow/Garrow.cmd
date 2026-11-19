@@ -170,7 +170,7 @@ type = ChangeState
 value = 1310
 triggerall = command = "214B"
 triggerall = statetype != A
-trigger1 =var(1)|| ctrl
+trigger1 = var(1)|| ctrl
 
 ;214C - Scarlet Edge (Heavy)
 [State -1, Scarlet Edge C (Ground)]
