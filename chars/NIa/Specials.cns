@@ -1367,52 +1367,44 @@ trigger1 = animelem = 6
 physics = N
 
 
+
+[State 1600, 1]
+type = HitDef
+triggerall = enemynear, movetype != H
+trigger1 = !movehit && !movereversed
+attr = S, NT
+hitflag = M- 
+priority = 1, Miss
+sparkno = -1
+p1sprpriority = 1
+p1facing = 1
+p2facing = 1
+p1stateno = 1601
+p2stateno = 1602
+missonoverride = 0
+guard.dist = 0
+fall = 1
+
+
 [State 0, JORMUNGANDR DEFAULT HITDEF]
-type 				= HitDef
+type 				    = HitDef
+triggerall              = enemynear, movetype != H
 trigger1 				= !movecontact && !movereversed
 ;===============================
-damage 				= 800
-pausetime 			= 10,10 + 2 * enemy, movetype = A
-getpower 				= 25 * MAP(GEAR.MUL),0
-;===============================
-attr 				= A,NA
+attr 				= A,NT
 hitflag 				= MAF
-guardflag 			= MA
-animtype 				= Light
-air.animtype 			= Light
-ground.TYPE 			= High
-air.TYPE 				= High
-priority = 1, Hit 
+priority = 1, Miss 
 ;===============================
-sparkno 				= 1
-sparkxy 				= -p2dist x * 0.25, -50
+sparkno 				= -1
 hitsound 				= 5,0
-guardsound 			= 6,0
 ;===============================
-ground.hittime 		= 16
-ground.slidetime		= 10
-air.hittime 			= 14
-down.hittime 			= 10
-ground.velocity 		= -5
-air.velocity 			= -2,-2
-;===============================
-guard.ctrltime 		= 16
-guard.slidetime		= 8
-guard.velocity 		= -6
-airguard.velocity 		= -1,-1
-;===============================
-ground.cornerpush.veloff	= -4
-air.cornerpush.veloff 	= -4
-down.cornerpush.veloff 	= -8
-guard.cornerpush.veloff 	= -8
-;===============================
-fall 				= 0
+fall 				= 1
 air.fall 				= 1
 ;===============================
-envshake.time 			= 8
-envshake.freq 			= 8
-envshake.ampl 			= 1
-envshake.phase 		= 0.5
+p1facing = 1
+p2facing = -1
+p1stateno = 1313
+p2stateno = 1323
 
 [State 610, ChangeState]
 type = ChangeState
@@ -1447,6 +1439,160 @@ value = 0
 ignorehitpause = 1
 
 ; ==========================================================
+
+; j.214A Crash Landing HIT
+[Statedef 1313]
+type = S
+movetype= A
+physics = N
+anim = 1303
+poweradd = 60
+
+[State 1313, PosSet]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 1313, VelSet]
+type = VelSet
+trigger1 = time = 0
+x = 0
+y = 0
+
+[State 1313, SprPriority]
+type = SprPriority
+trigger1 = AnimElem = 4
+value = -4
+
+[State 1313, PosSet]
+type = PosSet
+trigger1 = time = 0
+y = 0
+
+[State 1313, Voiceline]
+type = PlaySnd
+trigger1 = Time = 0
+value = 1600, Random % 4
+
+[State 1601, Grab Sound]
+type = PlaySnd
+trigger1 = AnimElem = 1
+value = 1, 6
+
+[State 0]
+type = Zoom
+trigger1 = !movehit
+scale = exp(0.080 * ln(time))
+pos = pos x,0
+ignorehitpause = 1
+
+
+[State 1601, Grab Sound]
+type = PlaySnd
+trigger1 = AnimElem = 6
+value = 1, 4
+
+[State 1313, Bind 1]
+type = TargetBind
+trigger1 = AnimElem = 1
+pos = 25.75, 11.0
+
+[State 1313, Bind 2]
+type = TargetBind
+trigger1 = AnimElem = 2
+pos = 18.25, 17.75
+
+[State 1313, Bind 3]
+type = TargetBind
+trigger1 = AnimElem = 3
+pos = 33.25, 11.25
+
+[State 1313, Bind 4]
+type = TargetBind
+trigger1 = AnimElem = 4
+pos = 21.0, -2.25
+
+[State 1313, Bind 5]
+type = TargetBind
+trigger1 = AnimElem = 5
+pos = 4.5, -0.25
+
+[State 1313, Bind 6]
+type = TargetBind
+trigger1 = AnimElem = 6
+pos = -4.0, -4.5
+
+[State 1313, Bind 7]
+type = TargetBind
+trigger1 = AnimElem = 7
+pos = -1.0, -26.5
+
+[State 1313, Hurt]
+type = TargetLifeAdd
+trigger1 = AnimElem = 7
+value = -2000
+
+[State 1313, Throw]
+type = TargetState
+trigger1 = AnimElem = 7
+value = 1324
+
+[State 1313, State End]
+type = ChangeState
+trigger1 = AnimTime = 0
+value = 0
+ctrl = 1
+
+; j. 214A P2 Getting Thrown
+[Statedef 1323]
+type = A
+movetype = H
+physics = N
+velset = 0,0
+
+[State 1323, 1]
+type = ChangeAnim2
+trigger1 = Time = 0
+value = 1304
+
+; j.214A P2 Recovery
+[Statedef 1324]
+type = A
+movetype = H
+physics = N
+velset = -10,-10
+poweradd = 40
+anim = 5061
+
+[State 1324, 1] ;Gravity
+type = VelAdd
+trigger1 = 1
+y = .4
+
+
+[State 1324, 2] ; Recover near ground (use ChangeState)
+type = ChangeState
+triggerall = Vel Y > 0
+triggerall = Pos Y >= -20
+triggerall = alive
+triggerall = CanRecover
+trigger1 = Command = "recovery"
+value = 5200 ;HITFALL_RECOVER
+
+[State 1324, 3] ; Recover in mid air (use SelfState)
+type = SelfState
+triggerall = Vel Y > 0
+triggerall = alive
+triggerall = CanRecover
+trigger1 = Command = "recovery"
+value = 5210 ;HITFALL_AIRRECOVER
+
+[State 1324, 4] ;Hit ground
+type = SelfState
+trigger1 = Vel Y > 0
+trigger1 = Pos Y >= 0
+value = 5100 ;Hit ground
+
 
 ;---------------------------------------------------------------------------
 ; Landing
