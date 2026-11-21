@@ -1057,6 +1057,10 @@ velset = 0,0
 sprpriority = 2
 facep2 = 1
 
+[State 1019, CtrlSet Cancelling]
+type = CtrlSet
+trigger1 = !IsHelper && MoveGuarded && map(M_stack_NIA) > 0
+value = 1
 
 [State 1200, 6]
 type = explod
@@ -1181,6 +1185,7 @@ givepower = 24,24
 ground.type = low
 ground.slidetime = 20
 ground.hittime  = 20
+guard.pausetime = 0, 20
 guard.ctrltime = 20
 ground.velocity = 0
 air.velocity = -6,-6
@@ -1234,6 +1239,13 @@ trigger1 = !IsHelper && map(L_stack_NIA) > 0 && time = 0
 map = "L_stack_NIA"
 value = -1
 
+; Need to decrement stacks at the END of lariat in order to adjust properties in the subsequent states
+[State 1000, M Stack Decrement] 
+type = MapAdd
+trigger1 = !IsHelper && map(M_stack_NIA) > 0 && time = 0
+map = "M_stack_NIA"
+value = -1
+
 [State 1000, HitOverride]
 type = HitOverride
 trigger1 = !IsHelper && map(L_stack_NIA) > 0 && map(NiaCannotLStackArmor) = 0
@@ -1278,6 +1290,8 @@ type = changeanim2
 trigger1 = time = 0
 value = 1207
 
+
+;---------------------------------------------------------------------------
 ;Lariat Fall
 [Statedef 1001]
 type = S
